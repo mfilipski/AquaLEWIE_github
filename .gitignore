@@ -45,3 +45,16 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# My added Gitignores 
+Stata/madedata/*
+Stata/temp/*
+
+
+# Added manually in Github
+GAMS/AQ_LEWIE_InputSheet_v0_blank.xlsx
+GAMS/UG_LEWIE_InputSheet_version9.xlsx
+Stata/do/Step7_LEWIE_input_generation_fromHeng_Uganda.do
+
+
+Stata/do/Aqlw02_NonFarm_comments4aunghtun.do
