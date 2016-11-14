@@ -3,7 +3,7 @@ capture log close
 set more off
 
 * define paths
-global workdir "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE\Stata"
+global workdir "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\Stata"
 global rawdata "D:\Docs\Myanmar\Data\AquaAgri\version0_9July16_v14"
 global aadir "D:\Docs\Myanmar\AquaAgri\Analysis"
 global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"

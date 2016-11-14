@@ -4,7 +4,7 @@ global drop
 
 
 * define paths
-global workdir "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE\Stata"
+global workdir "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\Stata"
 global aquamade "D:\Docs\Myanmar\AquaAgri\Analysis\Aqua\stata\made"
 
 global graphs "$workdir\graphs"
@@ -17,7 +17,7 @@ global rawdatav1 "D:\Docs\Myanmar\Data\AquaAgri\version1"
 global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
 global hhgroup "$madedata\hhgroups.dta"
 
-global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE\GAMS\AQ_LEWIE_InputSheet_v0"
+global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v0"
 
 cd $workdir 
 
@@ -307,5 +307,5 @@ mat l iosh
  
 
 putexcel B20 = matrix(iosh, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
-crash 
+ 
 
