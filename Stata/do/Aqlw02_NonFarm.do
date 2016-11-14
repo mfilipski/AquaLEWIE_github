@@ -175,6 +175,8 @@ replace yrc = rclak * wd_year if rcfreq == 1
 tab yrc 
 tab yrc rcfreq 
 
+label var yrc "total yearly recurrent costs"
+
 *Step8 - calculation of mean net income
 gen netinc =  ysale - (yrc+ylc)
 
@@ -233,29 +235,35 @@ replace locald = 0 if e301 == 1
 replace locald =1 if locsh>=50  
 tab locald 
 tab locald btype 
-
+labe var locald "indicator for locally procured"
 
 
 
 * Merge with asset values 
 *=====================================
 merge m:1 eahhid using $madedata\ass_val 
+drop if _m==2 
+drop _m
 
 
 
 * Regression log-log to figure out labor vs capital: 
 * ========================================
+gen nothing =1
+imputeout ysale ylc nval, bylist(nothing)
 
-gen ly = log(ysale) 
-gen llc = log(ylc) 
-gen lass = log(rval)
+gen ly = log(ysaleimp) 
+gen llc = log(ylcimp) 
+gen lass = log(nvalimp)
 lab var ly "log of income from activity"
 lab var llc "log of value of labor inputs"
 lab var lass "log of value of total assets of the household"
 
+
 constraint 4 llc + lass = 1 
 eststo clear 
-bysort btype:  eststo: cnsreg ly llc lass if locald==1 , c(4)
+*bysort btype:  eststo: cstreg ly llc  lass if locald==1 , c(4)
+bysort btype:  eststo: reg ly llc  lass if locald==1 
 estout
 
 return list
@@ -271,6 +279,8 @@ matrix coleq mout = "`r(m1_estimates_title)'"  "`r(m1_estimates_title)'"  "`r(m1
 mat l mout
 
 putexcel B4 = matrix(mout, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
+
+* FIGURE OUT WHY THIS GIVES NEGATIVE RESULTS! 
 
 
 

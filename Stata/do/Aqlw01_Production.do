@@ -30,19 +30,36 @@ cd $workdir
 * Need to take both nurseries and growout ponds - appending them together
 * Keeping only the income and input costs: 
 use $aquamade\aqua_allcosts, clear
+
+* Merge in value of total assets 
+merge m:1 eahhid using $madedata\ass_val 
+drop if _m==2
+drop _m 
+
+* Impute out values if needed: 
+imputeout cst_purch cst_constrep, bylist(cluster) 
+ 
+
 cap mat clear
 * generate variables to put all costs into simple categories: 
 * purchased inputs, labor, capital
 egen i_aqua = rowtotal(cst_seed)
 *gen i_agri = 
-*egen i_feed = rowtotal() 
+egen i_feed = rowtotal(cst_feed) 
 egen i_labor = rowtotal(cst_lab) 
+* Is land the area or the investment?  *aqua_sparea
 egen i_land = rowtotal(aqua_sparea) 
-egen i_capit = rowtotal(cst_purch cst_constrep cst_mach cst_bor) 
-egen i_other = rowtotal(cst_oinp cst_harv cst_mkt cst_leg cst_feed)
+* Includes real value of all assets rval: 
+* egen i_capit = rowtotal(cst_purch cst_constrep cst_mach ) 
+* adding cost of purchase and cost of construction makes a negative coeff for small farms. 
+* that might be because land is already picking up that investment
+egen i_capit = rowtotal(nval cst_mach)
+egen i_other = rowtotal(cst_oinp cst_harv cst_mkt cst_leg  cst_bor)
 
-global rhsfish "li_labor li_land li_capit li_other"
-global cstrfish "li_labor+li_land+li_capit+li_other"
+* Maybe no need for Other - they are intermediate inputs, not value-added creating inputs
+global rhsfish "li_labor li_land li_capit li_feed "
+global cstrfish "li_labor+li_land+li_capit+li_feed"
+
 
 label var i_land "Land"
 
@@ -94,7 +111,7 @@ mat l mout
 
 putexcel B4 = matrix(mout, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
 
-
+ 
 * ============================================================
 * ============= Nursery Ponds??  ===========
 * ============================================================
@@ -161,5 +178,7 @@ matrix colnames mout = beta se p
 mat l mout
  
 putexcel B4 = matrix(mout, names) using $lewiesheet, sheet("Crop") modify keepcellformat 
-crash
-*/ 
+ 
+
+
+ 
