@@ -239,31 +239,36 @@ labe var locald "indicator for locally procured"
 
 
 
-* Merge with asset values 
+* Merge with asset values  - Unnecessary in the end 
+* asset values are for all hh assets, not activity-specific: not surprising that is doesn't work too well. 
 *=====================================
 merge m:1 eahhid using $madedata\ass_val 
 drop if _m==2 
 drop _m
 
 
-
-* Regression log-log to figure out labor vs capital: 
+* Regression log-log to figure share of labor: 
 * ========================================
 gen nothing =1
 imputeout ysale ylc nval, bylist(nothing)
 
 gen ly = log(ysaleimp) 
 gen llc = log(ylcimp) 
-gen lass = log(nvalimp)
 lab var ly "log of income from activity"
 lab var llc "log of value of labor inputs"
-lab var lass "log of value of total assets of the household"
+* unnecessary (results were bad): 
+* gen lass = log(nvalimp)
+*lab var lass "log of value of total assets of the household"
 
 
-constraint 4 llc + lass = 1 
+
 eststo clear 
+* tried with constraint - bad results. 
+* constraint 4 llc + lass = 1 
 *bysort btype:  eststo: cstreg ly llc  lass if locald==1 , c(4)
-bysort btype:  eststo: reg ly llc  lass if locald==1 
+
+* Try just one regressor, and do 1-beta for the other? 
+bysort btype:  eststo: reg ly llc   if locald==1 
 estout
 
 return list
@@ -278,8 +283,9 @@ matrix coleq mout = "`r(m1_estimates_title)'"  "`r(m1_estimates_title)'"  "`r(m1
 						"`r(m3_estimates_title)'"  "`r(m3_estimates_title)'"  "`r(m3_estimates_title)'"
 mat l mout
 
+ 
 putexcel B4 = matrix(mout, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
-
+crash
 * FIGURE OUT WHY THIS GIVES NEGATIVE RESULTS! 
 
 
