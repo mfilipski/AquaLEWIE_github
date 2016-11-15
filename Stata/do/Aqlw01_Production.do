@@ -27,10 +27,34 @@ cd $workdir
 * ============= Data for Fish Activity =======================
 * ============================================================
 
+* 1) Compute total output from fish activity, by household: 
+*----------------------------------------------------------------------------------------------
+use $aquamade\aqua_allcosts, clear
+merge 1:1 eahh using $hhgroup 
+drop if _m==2 
+drop _m 
+count
+
+collapse (sum) rev_fish, by (lwgroup) 
+decode lwgroup, gen(gname)
+list 
+mkmat rev_fish, matrix(m) rownames(gname)
+mat list m
+matrix fishrev = m'
+matrix list fishrev 
+putexcel B2 = matrix(fishrev, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
+clear
+
+
+
+*  2) Compute factor shares: 
+*----------------------------------------------------------------------------------------------
+
 * Need to take both nurseries and growout ponds - appending them together
 * Keeping only the income and input costs: 
 use $aquamade\aqua_allcosts, clear
 
+ 
 * Merge in value of total assets 
 merge m:1 eahhid using $madedata\ass_val 
 drop if _m==2
@@ -71,14 +95,6 @@ tempfile growout
 save `growout' 
 
 
-
-keep eahhid y i_* 
-sort eahhid
-tempfile growout 
-save `growout' , replace
-
- 
-
 merge 1:1 eahh using $hhgroup 
 drop if _m==2 
 drop _m 
@@ -109,7 +125,9 @@ mat l mout
 matrix colnames mout = beta se p beta se p 
 mat l mout
 
-putexcel B4 = matrix(mout, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
+putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
+
+ 
 
  
 * ============================================================
@@ -124,6 +142,26 @@ putexcel B4 = matrix(mout, names) using $lewiesheet, sheet("Fish") modify keepce
 * ============================================================
 * ============= Data for Crop - Livestock Activity ===========
 * ============================================================
+
+* 3) Agriculture total output 
+*----------------------------------------------------------------------
+use $agrimade\agri_costs_revs,  clear
+merge 1:1 eahh using $hhgroup 
+drop if _m==2 
+drop _m 
+count
+
+THIS IS WHERE I STOPPED!  NEED TO COMPUTE TOTAL REVENUE FROM AG ACTIVITY AND 
+EXPORT IT TO B2 IN THE EXCEL SHEET 
+
+matrix croprev = ***************
+putexcel B2 = matrix(croprev, names) using $lewiesheet, sheet("Crop") modify keepcellformat 
+
+crash 
+
+
+* 4) Agriculture factor shares 
+*----------------------------------------------------------------------
 
 use $agrimade\agri_costs_revs,  clear
 cap mat clear 
@@ -177,7 +215,7 @@ mat l mout
 matrix colnames mout = beta se p 
 mat l mout
  
-putexcel B4 = matrix(mout, names) using $lewiesheet, sheet("Crop") modify keepcellformat 
+putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("Crop") modify keepcellformat 
  
 
 
