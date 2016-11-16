@@ -35,6 +35,8 @@ drop if _m==2
 drop _m 
 count
 
+ 
+
 collapse (sum) rev_fish, by (lwgroup) 
 decode lwgroup, gen(gname)
 list 
@@ -150,20 +152,22 @@ merge 1:1 eahh using $hhgroup
 drop if _m==2 
 drop _m 
 count
-
+ 
 
 egen y = rowtotal(gross_sale_monsoon gross_sale_dry)
+* Convert to Lahks 
+replace y=y/100000
 decode lwgroup , gen(groupname)
 collapse (sum)  y, by(lwgroup groupname)
 mkmat  y , matrix(mm) rownames(groupname) 
 matrix croprev = mm'
 
-crahs 
+ 
 mat l croprev 
 
 putexcel B2 = matrix(croprev, names) using $lewiesheet, sheet("Crop") modify keepcellformat 
 
-crash 
+ 
 
 
 /* 4) Agriculture factor shares */
@@ -191,15 +195,20 @@ egen y = rowtotal(gross_sale_monsoon gross_sale_dry)
 
 
 
+
+
 merge 1:1 eahh using $hhgroup 
 drop if _m==2 
 drop _m 
 count
 
 * Generate Log variables where needed: 
+* No need to recode to lahk.
 foreach v of varlist y i_* {
-	gen l`v' = log(`v')
+		gen l`v' = log(`v')
 }
+
+sum l* 
 
 * run a constrained log-log regression
 eststo clear  

@@ -21,6 +21,8 @@ global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LE
 
 cd $workdir 
 
+ /* 1) Compute total production and all inputs in lahk  */
+
 use "$rawdatav1\sec_e3v1.dta", clear
 gen eahhid=ea*1000+hhid
 clonevar activ = e300_id 
@@ -249,11 +251,12 @@ drop _m
 
 * Regression log-log to figure share of labor: 
 * ========================================
-gen nothing =1
-imputeout ysale ylc nval, bylist(nothing)
+* Remove outliers if needed 
+* gen nothing =1
+* imputeout ysale ylc nval, bylist(nothing) 
 
-gen ly = log(ysaleimp) 
-gen llc = log(ylcimp) 
+gen ly = log(ysale) 
+gen llc = log(ylc) 
 lab var ly "log of income from activity"
 lab var llc "log of value of labor inputs"
 * unnecessary (results were bad): 
@@ -282,23 +285,17 @@ matrix coleq mout = "`r(m1_estimates_title)'"  "`r(m1_estimates_title)'"  "`r(m1
 					"`r(m2_estimates_title)'"  "`r(m2_estimates_title)'"  "`r(m2_estimates_title)'" ///
 						"`r(m3_estimates_title)'"  "`r(m3_estimates_title)'"  "`r(m3_estimates_title)'"
 mat l mout
-
  
-putexcel B4 = matrix(mout, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
-crash
-* FIGURE OUT WHY THIS GIVES NEGATIVE RESULTS! 
+putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
 
 
-
-* Figure out share of intermediate inputs: 
+/* 2) Figure out share of intermediate inputs:  */
 * =============================================
 gen inpsh = yrc / ysale 
 tabstat inpsh, by(btype)
-* Removing outliers 
-gen nothing = 1 
-imputeout inpsh , bylist(nothing)
-label var inpshimp "itermediate inputs share"
-tabstat inpshimp, by (btype) save 
+
+label var inpsh "itermediate inputs share"
+tabstat inpsh, by (btype) save 
 return list 
 
 matrix ish = r(Stat1) \ r(Stat2) \ r(Stat3)
@@ -325,3 +322,30 @@ mat l iosh
 putexcel B20 = matrix(iosh, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
  
 
+ /* 3) Compute total production in lakh  */
+ 
+* first merge in the groups 
+merge m:1 eahhid using $madedata\hhgroups 
+tab _m 
+drop if _m == 2 
+drop _m
+ 
+collapse (sum) ysale , by(lwgroup) 
+list 
+decode lwgroup , gen(groupname)
+mkmat ysale , matrix(m) rowname(groupname) 
+
+matrix prodserret = m'
+
+putexcel B2 = matrix(prodserret, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
