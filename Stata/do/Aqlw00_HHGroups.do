@@ -26,15 +26,25 @@ use $hhchar
 * Fish-farmers >40  (aquasize >40)
 * Agricultural households (anyone who has an agritype)
 * Absentee owners (not in data) 
+
 gen lwgroup = . 
-replace lwgroup = 0 if landless==1 | resp==3
+
+* aqua cluster
 replace lwgroup = 1 if resp== 1
 replace lwgroup = 2 if aqua_sizecat==3
-replace lwgroup = 3 if agritype!=.
+replace lwgroup = 3 if agritype!=. & cluster == 1
+replace lwgroup = 4 if (landless==1 | resp==3) & cluster == 1  & lwgroup==.
 
-label define lwgroup 0 "nonfarm" 1 "aqua_le40" 2 "aqua_gt40" 3 "agri household"
+* agri cluster
+replace lwgroup = 5 if agritype!=. & cluster == 2 & lwgroup ==. 
+replace lwgroup = 6 if (landless==1 | resp==3) & cluster == 2 
+  
+label define lwgroup 0 "nonfarm" 1 "aqua_le40" 2 "aqua_gt40" 3 "aqua_ag" 4 "aqua_ll" 5 "agri_ag" 6 "agri_ll" 
 label values lwgroup lwgroup 
+tab lwgroup 
+tab lwgroup [aw=weight]
 
+ 
 count 
 tab lwgroup 
 sort eahhid  

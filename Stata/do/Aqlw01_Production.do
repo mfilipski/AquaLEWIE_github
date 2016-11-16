@@ -27,7 +27,7 @@ cd $workdir
 * ============= Data for Fish Activity =======================
 * ============================================================
 
-* 1) Compute total output from fish activity, by household: 
+/*  1) Compute total output from fish activity, by household:  */
 *----------------------------------------------------------------------------------------------
 use $aquamade\aqua_allcosts, clear
 merge 1:1 eahh using $hhgroup 
@@ -47,7 +47,7 @@ clear
 
 
 
-*  2) Compute factor shares: 
+/*  2) Compute factor shares: */
 *----------------------------------------------------------------------------------------------
 
 * Need to take both nurseries and growout ponds - appending them together
@@ -143,7 +143,7 @@ putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("Fish") modify keepce
 * ============= Data for Crop - Livestock Activity ===========
 * ============================================================
 
-* 3) Agriculture total output 
+/* 3) Agriculture total output  */
 *----------------------------------------------------------------------
 use $agrimade\agri_costs_revs,  clear
 merge 1:1 eahh using $hhgroup 
@@ -151,16 +151,22 @@ drop if _m==2
 drop _m 
 count
 
-THIS IS WHERE I STOPPED!  NEED TO COMPUTE TOTAL REVENUE FROM AG ACTIVITY AND 
-EXPORT IT TO B2 IN THE EXCEL SHEET 
 
-matrix croprev = ***************
+egen y = rowtotal(gross_sale_monsoon gross_sale_dry)
+decode lwgroup , gen(groupname)
+collapse (sum)  y, by(lwgroup groupname)
+mkmat  y , matrix(mm) rownames(groupname) 
+matrix croprev = mm'
+
+crahs 
+mat l croprev 
+
 putexcel B2 = matrix(croprev, names) using $lewiesheet, sheet("Crop") modify keepcellformat 
 
 crash 
 
 
-* 4) Agriculture factor shares 
+/* 4) Agriculture factor shares */
 *----------------------------------------------------------------------
 
 use $agrimade\agri_costs_revs,  clear
