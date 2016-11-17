@@ -46,14 +46,28 @@ list eahhid good good2 good3 total_foodexp group annual_total_foodexp ///
 collapse (sum)  annual_total_f annual_expend1 annual_expend2 annual_expend, by(lwgroup group)
 list, sepby(lwgroup)
 keep group lwgroup  annual_expend
+decode lwgroup , gen(gnames)
 rename annual_expend ae 
-levelsof ae , local(ae_levels) 
-crash 
+levelsof gnames , local(g_names) 
+di `g_names' 
+
 tab lwgroup 
-reshape wide ae, i(group) j(lwgroup)
+keep ae group lwgroup 
+reshape wide ae , i(group) j(lwgroup)
 list 
 
-rename ae1
+* Decode and add names: 
+decode group , gen(items)
+mkmat  ae* , matrix(m)  rownames(items)
+matrix list m  
+matrix colnames m = `g_names' 
+matrix list m  
+
+putexcel B2 = matrix(m, names) using $lewiesheet, sheet("Cons") modify keepcellformat 
+
+
+* Compute average shares with SE's for next version:  
+
 
 
 
