@@ -32,8 +32,31 @@ tab good group
 tab good2 group
 tab good3 group 
 
+* Merge in housheold characteristics 
+merge m:1 eahhid using $hhgroup 
+drop _m 
+
+* Now collapse the way we want:  
+sort eahhid 
+list eahhid good good2 good3 total_foodexp group annual_total_foodexp /// 
+		expend1 annual_expend1 annual_expend2 exppc annual_expend in 1/300, ///
+		sepby(eahh) string(15) 
+
+
+collapse (sum)  annual_total_f annual_expend1 annual_expend2 annual_expend, by(lwgroup group)
+list, sepby(lwgroup)
+keep group lwgroup  annual_expend
+rename annual_expend ae 
+levelsof ae , local(ae_levels) 
 crash 
-collapse (sum) total_foodexp annual_total_f annual_expend1 annual_expend2 annual_expend, by(group)
+tab lwgroup 
+reshape wide ae, i(group) j(lwgroup)
+list 
+
+rename ae1
+
+
+
 
 
 
