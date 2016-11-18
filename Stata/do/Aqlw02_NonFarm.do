@@ -196,6 +196,11 @@ replace btype = 3 if inlist( activ, 1 , 3 , 4 , 5 , 7 , 8 , 17 , 18 , 21 , 22 , 
 label define btype 1 "prod n proc" 2 "services" 3 "trade n retail"
 label values btype btype
 
+tab activ btype , m
+list activ ysale if btype==.
+* decide what to do with "other specify" 
+* let's put a third in each at the end 
+
 sort btype 
 tab activ btype 
 
@@ -330,14 +335,36 @@ tab _m
 drop if _m == 2 
 drop _m
  
-collapse (sum) ysale , by(lwgroup) 
+collapse (sum) ysale , by(lwgroup btype) 
 list 
+
+* Redistribute the "." values: one third into each of the other cats
+gen dots = ysale if btype==. 
+egen dots2 = sum(dots), by(lwgroup)
+gen ysale2 = ysale + (1/3) *dots2 
+list
+drop if btype==. 
+
+
+* 
 decode lwgroup , gen(groupname)
-mkmat ysale , matrix(m) rowname(groupname) 
+levelsof groupname, local(names)
+*mkmat ysale , matrix(m) rowname(groupname) 
+*mat  l m
 
-matrix prodserret = m'
+list
 
-putexcel B2 = matrix(prodserret, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
+keep ysale2 btype lwgroup 
+reshape wide ysale2, i(btype) j(lwgroup)
+l
+decode btype, gen(bnames)
+mkmat ysale*, matrix(m) rownames(bnames)
+matrix list m
+di `names'
+matrix colnames m =  `names'
+matrix list m 
+ 
+putexcel B2 = matrix(m, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
 
  
  
