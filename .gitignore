@@ -49,6 +49,8 @@ Temporary Items
 # My added Gitignores 
 Stata/madedata/*
 Stata/temp/*
+Stata/archives/*
+GAMS/archives/*
 ~*
 */~*
 

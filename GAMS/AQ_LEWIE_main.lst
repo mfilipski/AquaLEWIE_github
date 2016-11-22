@@ -1,0 +1,378 @@
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/22/16 15:52:58 Page 1
+MYANMAR AQUACULTURE LEWIE MODEL
+C o m p i l a t i o n
+
+
+   2  * Mateusz Filipski, Dec 2016
+   3   
+   4  * The model reads in data from excel spreadsheet in the form of parameter 
+      distributions
+   5  * Then it draws from those distributions and constructs a SAM from the val
+      ues drawn
+   6  * The it uses those same values to calibrate a village economywide model
+   7  * A few useful gams options
+   8  option limrow=30 ;
+   9  option limcol=30 ;
+  10  *$onsymlist
+  11  *$onsymxref
+  12  * unstar the following only if you don't have a PATH licence
+  13  *option mcp = miles;
+  14   
+  15   
+  16  * name of the excel file (WITHOUT .xlsx extension):
+  18  * name of index sheet (village-specific):
+  20  * name of include file containing village-specific assumptions
+  22  * name of output file for text output:
+  24   
+  25  * choose the elasticity of supply of labor - hired and family
+  28   
+  29  * choose whether or not to have a budget constraint and how much of the tr
+      ansfer releives that constraint
+  30  * 0 = no constraint ,  1 = constraint
+  31  * If the constraint is active, the parameter shSCTprod determines what % o
+      f the transfer is used to relieve the constraint
+  33  parameter shSCTprod share of SCT used for buying purchased inputs ;
+  34  shSCTprod = 0 ;
+  35   
+  36   
+  37  * choose the number of draws (the second number)
+  38  * nb: must be greater than 10 to allow for percentiles to be computed
+  39  set draw /dr0*dr11/ ;
+  40   
+  41   
+  42  * Choose simulation parameters:
+  44   
+  45   
+  46   
+  47  * ########################################################################
+      #########################
+  48  * Understanding the output:
+  49  * = Parameters with a "_dr" suffix are the inputs to each round of simulat
+      ion. They were either
+  50  * drawn from a distribution, or are computed so that the economy is at equ
+      ilibrium (given the drawn parameters)
+  51  * The first draw is "dr0" and corresponds to the mean values of the parame
+      ter distributions.
+  52  * ex: shcobb_dr(g,f,h,draw) is the cobb douglas factor share drawn from th
+      e known distributions of factor shares
+  53  *     shcobb_dr(g,f,h,"dr0") is the mean of that cobb douglas factor share
+       known distribution
+  54  *     endow_dr(f,h,draw) is the household endowment of factor that is cons
+      istent with the draws of shcobb_dr
+  55   
+  56  * = Parameters with a "1" suffix are the values generated from the calibra
+      tion run of each drawns model. In theory
+  57  * they should be identical to the _dr parameters, because those were chose
+      n to satisfy the model equations.
+  58   
+  59  * = Parameters with a "2" suffix are the values generated from the simulat
+      ion performed on each draw.
+  60  * = Parameters with a "D" suffix are the level changes between the "2" and
+       "1" parameter of the same name. ex: yD(h,draw) = y2(h,draw)-y1(h,draw)
+  61  * = Parameters with a "PC" suffix are the % changes from "1" level.  ex: t
+      qpPC(g,draw) = tqpD(g,draw)/tqp1(g,draw)
+  62  * = Multipliers are computed for each draw. ex: ymult_h(h,draw) is the cha
+      nge in nominal income of a household / the transfer it received
+  63   
+  64  * The above parameters are all indexed by draw. IE, if we do 1000 iteratio
+      ns, there will be 1000 observations of those parameters.
+  65  * = Parameters with a "_mv" suffix contain MEANS, STDEV, and for some PERC
+      ENTILES of the parameters that are indexed by draw.
+  66  * ex: yD_mv(h,"mean") = sum(draw, yD(h,draw)) / card(draw) ;
+  67  *     yD_mv(h,"stdev") = sqrt(sum(draw, sqr(yD(h,draw) - yD_mv(h,"mean")))
+      /(card(draw)-1)) ;
+  68   
+  69  * = Multipliers also have "_mv" versions. ex: ymult_all_mv(mv) holds the m
+      eans, stdev, and percentiles of the overall nominal income multiplier.
+  70  * ########################################################################
+      #########################
+  71   
+  72   
+  73  * ========================================================================
+      ========================
+  74  * ========================================================================
+      ========================
+  75  * ==================== READ IN DATA FROM EXCEL ===========================
+      ====================
+  76  * ========================================================================
+      ========================
+  77  * ========================================================================
+      ========================
+  78   
+  79   
+INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/1_Re
+           ad_Excel.gms
+  81   
+  82  * Name the sets that will be used:
+  83  sets
+  84  ac all accounts
+  85  g(ac) goods
+  86  f(ac) factors
+  87  h(ac) households
+  88  var  variable names
+  89  ;
+  90  parameter Alldata(*,*,*,*,h);
+  91   
+  92  * Read in the data from LEWIE spreadsheet:
+  93  * the $call reads XL data and makes a .gdx file with it
+  94  * (unstar the "call" statement to re-read from the excel spreadsheet)
+  96  * The "Index" tab of the XL spreadsheet tells the gdxxrw procedure where t
+      hings are.
+  97  * The index looks like this:
+  98   
+  99  *Type        Name        Range        Dimensions
+ 100  *                                        rdim       cdim
+ 101  *dset        ac        Input!A3            1
+ 102  *dset        var       Input!B3           1
+ 103  *dset        h         Input!F2                       1
+ 104  *dset        g         Input!C3             1
+ 105  *dset        f         Input!E3:E300        1
+ 106  *par         alldata   Input!B2        4         1
+ 107   
+ 108  * Which means, for instance, that the column going down from cell "INPUT!a
+      3" contains the set ac
+ 109  * ac are all the accounts of the SAM, so you need to make sure this column
+       contains all of those.
+ 110  * similarly, column "Input!C3" is where GAMS reads the names of all the go
+      ods - so you need to make sure all are there
+ 111  * etc. for all these elements.
+ 112   
+ 113  * the $gdxin opens the data loading procedure and calls the .gdx file we j
+      ust made
+GDXIN   D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSh
+        eet_v1.gdx
+--- LOAD  ac = 1:ac
+--- LOAD  g = 4:g
+--- LOAD  f = 5:f
+--- LOAD  h = 3:h
+--- LOAD  var = 2:var
+--- LOAD  Alldata = 6:alldata
+ 116  display ac, g, f, h, var, ALLDATA ;
+ 117   
+ 118  * This option controls the decimals and display format
+ 119  option alldata:2:4:1;
+ 120  display alldata;
+ 121   
+ 122  * the phantom element "null" can be put in a set to avoid leaving the set 
+      empty in some simulations
+ 123  * (GAMS can't handle empty sets)
+ 125   
+ 126  * Read in the matrix:
+ 127  *======================================================
+ 128  alias (ac, aca) ;
+ 129  alias (g,gg,ggg)
+ 130        (h,hh)
+ 131        (f,fa) ;
+ 132   
+ 133  * Get raw values for input variables and some parameter values
+ 134  parameter
+ 135       xlID(gg,g,h)          intermediate demand for of gg for production of
+       g by h
+ 136       xlFD(g,f,h)           factor demand in g production by h
+ 137       xlbeta(g,f,h)         exponent on factor f in produciton of g
+ 138       xlbetase(g,f,h)       standard error on beta(gfh)
+ 139       xlacobb(g,h)          shift parameter on production of g
+ 140       xlacobbse(g,h)        standard error on acobb
+ 141       xlalpha(g,h)          consumption share of income
+ 142       xlalphase(g,h)          consumption share of income
+ 143       xlcmin(g,h)           incompressible consumption
+ 144       xlendow(f,h)          endowment of factors in the economy
+ 145       xlROCendow(f,h)       endowment of factors outside the economy
+ 146       xlROWendow(f,h)       endowment of factors outside the country
+ 147       xlTRINsh(h)           cash transfers given to other households (share
+       of income)
+ 148       xlTROUTsh(h)          cash transfers received from other households  
+      (share of expenditures)
+ 149       xlTRINshse(h)         standard error of cash transfers given to other
+       households (share of income)
+ 150       xlTROUTshse(h)        standard error of cash transfers received from 
+      other households  (share of expenditures)
+ 151       xlSAVinfsh(h)         share of income going to informal savings
+ 152       xlSAVinfshse(h)       standard error of share of income going to info
+      rmal savings
+ 153       xlSAVformsh(h)        share of income going to formal savings
+ 154       xlSAVformshse(h)      standard error of share of income going to form
+      al savings
+ 155       xllabexp(h)           not sure what this is and why there's a negativ
+      e value
+ 156       xlexpoutsh(h)         share of expenditures on outside goods
+ 157       xlremit(h)            level of remittances
+ 158       xlothertransfers(h)   level of exogenous transfers
+ 159       xlnhh(h)              number of households represented by this
+ 160       xlhhinc(h)            mean household income
+ 161       xlhhexp(h)            mean household expenditures
+ 162       xlhhsize(h)           mean household size
+ 163       xlrevsh_vil(g,h)        share of business in the village
+ 164       xlrevsh_zoi(g,h)        share of business in the zoi
+ 165       xlrevsh_rol(g,h)        share of business in the rest of lesotho
+ 166       xlrevsh_row(g,h)        share of business in the row
+ 167       xlVA2IDsh(g,gg,h)     for each dollar of VA how much ID was consumed
+ 168  ;
+ 169   
+ 170  xlID(gg,g,h) = alldata("INTD",g,gg,"",h) ;
+****                              $116
+**** LINE     90 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 171  xlFD(g,f,h) = alldata("FD",g,"",f,h) ;
+****                           $116
+**** LINE     91 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 172  xlbeta(g,f,h) = alldata("beta",g,"",f,h) ;
+****                               $116
+**** LINE     92 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 173  xlbetase(g,f,h) = alldata("se",g,"",f,h) ;
+****                               $116
+**** LINE     93 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 174   
+ 175  * note: the A is actually log(A) because of the log-log regression
+ 176  *xlacobb(g,h) = exp(alldata("acobb",g,"","",h)) ;
+ 177  *xlacobbse(g,h) = exp(alldata("acobbse",g,"","",h)) ;
+ 178  xlacobb(g,h) = (alldata("acobb",g,"","",h)) ;
+****                                $116
+**** LINE     98 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 179  xlacobbse(g,h) = (alldata("acobbse",g,"","",h)) ;
+****                                    $116
+**** LINE     99 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 180   
+ 181  xlalpha(g,h) = alldata("alpha",g,"","",h) ;
+****                               $116
+**** LINE    101 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 182  xlalphase(g,h) = alldata("alphase",g,"","",h) ;
+****                                   $116
+**** LINE    102 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 183  xlcmin(g,h) = alldata("acobbse",g,"","",h) ;
+ 184   
+ 185  xlendow(f,h) = alldata("endow","","",f,h) + alldata("zoiendow","","",f,h) 
+      ;
+ 186  xlendow("LABOR",h) = sum(g, xlFD(g,"LABOR",h));
+ 187  xlendow("LAND",h) = sum(g, xlFD(g,"LAND",h));
+ 188  xlendow("CAPITAL",h) = sum(g, xlFD(g,"CAPITAL",h));
+ 189  xlROCendow(f,h) = alldata("ROCendow","","",f,h) ;
+ 190  xlROWendow(f,h) = alldata("ROWendow","","",f,h) ;
+ 191   
+ 192  xlTROUTsh(h) = alldata("TRANSFOUT","","","",h) ;
+ 193  xlTRINsh(h) = alldata("TRANSFIN","","","",h) ;
+ 194  xlTROUTshse(h) = alldata("TRANSFOUTse","","","",h) ;
+****                                       $116
+**** LINE    114 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 195  xlTRINshse(h) = alldata("TRANSFINse","","","",h) ;
+****                                     $116
+**** LINE    115 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 196   
+ 197  xlSAVinfsh(h) = alldata("savinformal","","","",h) ;
+****                                      $116
+**** LINE    117 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 198  xlSAVinfshse(h) = alldata("savinformalse","","","",h) ;
+****                                          $116
+**** LINE    118 INCLUDE     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\includes/1_Read_Excel.gms
+**** LINE     80 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+ 199  xlSAVformsh(h) = alldata("savinformal","","","",h)   ;
+ 200  xlSAVformshse(h) = alldata("savinformalse","","","",h) ;
+ 201   
+ 202  xlexpoutsh(h) = alldata("exproles","","","",h) ;
+ 203   
+ 204  xlremit(h)  =  alldata("remits","","","",h) ;
+ 205  xlothertransfers(h)  =  alldata("NONSCtransfers","","","",h) ;
+ 206   
+ 207   
+ 208  xlnhh(h) = alldata("NumberHH","","","",h) ;
+ 209  xlhhinc(h) = alldata("HHinc","","","",h) ;
+ 210  xlhhexp(h) = alldata("HHexp","","","",h) ;
+ 211  xlhhsize(h) = alldata("HHsize","","","",h) ;
+ 212   
+ 213  xlrevsh_vil(g,h) = alldata("revsh_vil",g,"","",h) ;
+ 214  xlrevsh_zoi(g,h) = alldata("revsh_zoi",g,"","",h) ;
+ 215  xlrevsh_rol(g,h) = alldata("revsh_rol",g,"","",h) ;
+ 216  xlrevsh_row(g,h) = alldata("revsh_row",g,"","",h) ;
+ 217   
+ 218  xlVA2IDsh(gg,g,h) = alldata("VA2IDsh",g,gg,"",h) ;
+ 219   
+ 220   
+ 221  display xlID, xlFD, xlbeta, xlbetase, xlacobb, xlacobbse, xlalpha, xlcmin,
+       xlendow, xlROCendow, xlROWendow,
+ 222       xlTROUTsh, xlTRINsh, xlTROUTshse, xlTRINshse, xlSAVinfsh, xlSAVinfshs
+      e, xlSAVformsh, xlSAVformshse,
+ 223       xlexpoutsh, xlremit, xlothertransfers, xlnhh, xlhhinc, xlhhexp, xlhhs
+      ize, xlrevsh_vil, xlrevsh_zoi,
+ 224       xlrevsh_rol, xlrevsh_row, xlVA2IDsh ;
+ 225   
+ 226   
+EXIT D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/22/16 15:52:58 Page 2
+MYANMAR AQUACULTURE LEWIE MODEL
+Error Messages
+
+
+116  Label is unknown
+
+**** 12 ERROR(S)   0 WARNING(S)
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/22/16 15:52:58 Page 3
+MYANMAR AQUACULTURE LEWIE MODEL
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  D:\Docs\Myanmar\AquaAgri\Analysis\Aqua
+                                          LEWIE_github\GAMS\AQ_LEWIE_main.gms
+     2       80 INCLUDE        1      80  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
+                                           aLEWIE_github\GAMS\includes/1_Read_Ex
+                                           cel.gms
+     3       95 CALL           2      15  .gdxxrw input=AQ_LEWIE_InputSheet_v1.x
+                                           lsx output=AQ_LEWIE_InputSheet_v1.gdx
+                                           index=Index!A2
+     4      114 GDXIN          2      34  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
+                                           aLEWIE_github\GAMS\AQ_LEWIE_InputShee
+                                           t_v1.gdx
+     5      227 EXIT           1      83  D:\Docs\Myanmar\AquaAgri\Analysis\Aqua
+                                          LEWIE_github\GAMS\AQ_LEWIE_main.gms
+
+
+COMPILATION TIME     =        0.905 SECONDS      3 MB  24.5.4 r54492 WEX-WEI
+
+
+USER: Computer Services                              G150407:1601CO-GEN
+      International Food Policy Research Institute               DC2119
+
+
+**** FILE SUMMARY
+
+Input      D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main
+           .gms
+Output     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main
+           .lst
+
+**** USER ERROR(S) ENCOUNTERED

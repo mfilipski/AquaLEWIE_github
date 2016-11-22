@@ -87,20 +87,20 @@ parameter
      xlVA2IDsh(g,gg,h)     for each dollar of VA how much ID was consumed
 ;
 
-xlIDsh(gg,g,h) = alldata("INTDsh",g,gg,"",h) ;
+xlID(gg,g,h) = alldata("INTD",g,gg,"",h) ;
 xlFD(g,f,h) = alldata("FD",g,"",f,h) ;
 xlbeta(g,f,h) = alldata("beta",g,"",f,h) ;
-xlbeta_se(g,f,h) = alldata("se",g,"",f,h) ;
+xlbetase(g,f,h) = alldata("se",g,"",f,h) ;
 
 * note: the A is actually log(A) because of the log-log regression
 *xlacobb(g,h) = exp(alldata("acobb",g,"","",h)) ;
 *xlacobbse(g,h) = exp(alldata("acobbse",g,"","",h)) ;
-xlfshare(g,h) = (alldata("fshare",g,"","",h)) ;
-xlfshare_se(g,h) = (alldata("fshare_se",g,"","",h)) ;
+xlacobb(g,h) = (alldata("acobb",g,"","",h)) ;
+xlacobbse(g,h) = (alldata("acobbse",g,"","",h)) ;
 
-xleshare(g,h) = alldata("eshare",g,"","",h) ;
-xleshare_se(g,h) = alldata("eshare_se",g,"","",h) ;
-xlemin(g,h) = alldata("emin",g,"","",h) ;
+xlalpha(g,h) = alldata("alpha",g,"","",h) ;
+xlalphase(g,h) = alldata("alphase",g,"","",h) ;
+xlcmin(g,h) = alldata("acobbse",g,"","",h) ;
 
 xlendow(f,h) = alldata("endow","","",f,h) + alldata("zoiendow","","",f,h) ;
 xlendow("LABOR",h) = sum(g, xlFD(g,"LABOR",h));
