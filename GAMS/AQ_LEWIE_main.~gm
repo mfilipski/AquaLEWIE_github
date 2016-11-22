@@ -118,25 +118,24 @@ $include includes/4a_DefineAllParameters.gms
 * PARAMETERS THAT ARE DRAWN
 * =================================================================================
 * default at initial values
-shcobb_t(g,f,h,draw) = xlbeta(g,f,h);
-acobb_dr(g,h,draw)   = xlacobb(g,h) ;
-alpha_t(g,h,draw)    = xlalpha(g,h) ;
+fshare_t(g,f,h,draw) = xlfshare(g,f,h);
+pshift_dr(g,h,draw)  = xlpshift(g,h) ;
+eshare_t(g,h,draw)    = xleshare(g,h) ;
 troutsh_dr(h,draw)   = xltroutsh(h) ;
-savsh_dr(h,draw)     = xlSAVinfsh(h) + xlSAVformsh(h) ;
+savsh_dr(h,draw)     = xlSAVsh(h) ;
 exprocsh_dr(h,draw)  = xlexpoutsh(h) ;
 
 * draw all values once - except for dr0 wich will be the xl base
-shcobb_t(g,f,h,"dr0") = xlbeta(g,f,h);
-alpha_t(g,h,"dr0")    = xlalpha(g,h) ;
-troutsh_dr(h,"dr0")   = xltroutsh(h) ;
-savsh_dr(h,"dr0")     = xlSAVinfsh(h) + xlSAVformsh(h) ;
-exprocsh_dr(h,"dr0")  = xlexpoutsh(h) ;
+*fshare_t(g,f,h,"dr0") = xlfshare(g,f,h);
+*eshare_t(g,h,"dr0")   = eshare(g,h) ;
+*troutsh_dr(h,"dr0")   = xltroutsh(h) ;
+*savsh_dr(h,"dr0")     = xlSAVinfsh(h) ;
+*exprocsh_dr(h,"dr0")  = xlexpoutsh(h) ;
 
-shcobb_t(g,f,h,draw)$(not sameas(draw,"dr0")) = normal(xlbeta(g,f,h),xlbetase(g,f,h));
-alpha_t(g,h,draw)$(not sameas(draw,"dr0"))    = normal(xlalpha(g,h),xlalphase(g,h));
-troutsh_dr(h,draw)$(not sameas(draw,"dr0"))   = normal(xltroutsh(h),xltroutshse(h));
-savsh_dr(h,draw)$(not sameas(draw,"dr0"))     = normal(xlSAVinfsh(h),xlSAVinfshse(h))
-                                              + normal(xlSAVformsh(h),xlSAVformshse(h));
+fshare_t(g,f,h,draw)$(not sameas(draw,"dr0")) = normal(xlfshare(g,f,h),xlfshare_se(g,f,h));
+pshift_t(g,h,draw)$(not sameas(draw,"dr0"))    = normal(xlpshift(g,h),xlpshift_se(g,h));
+troutsh_dr(h,draw)$(not sameas(draw,"dr0"))   = normal(xltroutsh(h),xltroutsh_se(h));
+savsh_dr(h,draw)$(not sameas(draw,"dr0"))     = normal(xlSAVsh(h),xlSAVsh_se(h));
 
 display shcobb_t, alpha_t, troutsh_dr, savsh_dr, exprocsh_dr;
 
