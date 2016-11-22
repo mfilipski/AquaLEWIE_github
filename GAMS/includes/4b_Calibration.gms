@@ -1,119 +1,293 @@
-$TITLE MYANMAR AQUACULTURE LEWIE MODEL
-* Mateusz Filipski, Dec 2016
-
-* The model reads in data from excel spreadsheet in the form of parameter distributions
-* Then it draws from those distributions and constructs a SAM from the values drawn
-* The it uses those same values to calibrate a village economywide model
-* A few useful gams options
-option limrow=30 ;
-option limcol=30 ;
-*$onsymlist
-*$onsymxref
-* unstar the following only if you don't have a PATH licence
-*option mcp = miles;
-
-
-* name of the excel file (WITHOUT .xlsx extension):
-$setglobal data_input "AQ_LEWIE_InputSheet_v1"
-* name of index sheet (village-specific):
-$setglobal input_sheet_index "Index!A2"
-* name of include file containing village-specific assumptions
-$setglobal assumptions_file  "2_MarketAssumptions.gms"
-* name of output file for text output:
-$setglobal output_txt_file "AQ_LEWIE_output"
-
-* choose the elasticity of supply of labor - hired and family
-$setglobal hlse 100
-$setglobal flse 100
-
-* choose whether or not to have a budget constraint and how much of the transfer releives that constraint
-* 0 = no constraint ,  1 = constraint
-* If the constraint is active, the parameter shSCTprod determines what % of the transfer is used to relieve the constraint
-$setglobal budgetconstraint 0
-parameter shSCTprod share of SCT used for buying purchased inputs ;
-shSCTprod = 0 ;
-
-
-* choose the number of draws (the second number)
-* nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr11/ ;
-
-
-* Choose simulation parameters:
-$setglobal new_land 0
-
-
-
-* #################################################################################################
-* Understanding the output:
-* = Parameters with a "_dr" suffix are the inputs to each round of simulation. They were either
-* drawn from a distribution, or are computed so that the economy is at equilibrium (given the drawn parameters)
-* The first draw is "dr0" and corresponds to the mean values of the parameter distributions.
-* ex: shcobb_dr(g,f,h,draw) is the cobb douglas factor share drawn from the known distributions of factor shares
-*     shcobb_dr(g,f,h,"dr0") is the mean of that cobb douglas factor share known distribution
-*     endow_dr(f,h,draw) is the household endowment of factor that is consistent with the draws of shcobb_dr
-
-* = Parameters with a "1" suffix are the values generated from the calibration run of each drawns model. In theory
-* they should be identical to the _dr parameters, because those were chosen to satisfy the model equations.
-
-* = Parameters with a "2" suffix are the values generated from the simulation performed on each draw.
-* = Parameters with a "D" suffix are the level changes between the "2" and "1" parameter of the same name. ex: yD(h,draw) = y2(h,draw)-y1(h,draw)
-* = Parameters with a "PC" suffix are the % changes from "1" level.  ex: tqpPC(g,draw) = tqpD(g,draw)/tqp1(g,draw)
-* = Multipliers are computed for each draw. ex: ymult_h(h,draw) is the change in nominal income of a household / the transfer it received
-
-* The above parameters are all indexed by draw. IE, if we do 1000 iterations, there will be 1000 observations of those parameters.
-* = Parameters with a "_mv" suffix contain MEANS, STDEV, and for some PERCENTILES of the parameters that are indexed by draw.
-* ex: yD_mv(h,"mean") = sum(draw, yD(h,draw)) / card(draw) ;
-*     yD_mv(h,"stdev") = sqrt(sum(draw, sqr(yD(h,draw) - yD_mv(h,"mean")))/(card(draw)-1)) ;
-
-* = Multipliers also have "_mv" versions. ex: ymult_all_mv(mv) holds the means, stdev, and percentiles of the overall nominal income multiplier.
-* #################################################################################################
-
 
 * ================================================================================================
 * ================================================================================================
-* ==================== STEP 1 - READ IN DATA FROM EXCEL ==========================================
+* ====================== STEP 3 - CALIBRATE THE MODEL  ===========================================
 * ================================================================================================
 * ================================================================================================
 
+parameter
+* meta-parameters with parameter draws
+shcobb_t(g,f,h,draw)  unscaled draw the cobb-douglas prod shares
+alpha_t(g,h,draw)     unscaled draw of consumption shares
+pv_dr(g,v,draw)       drawn or computed from draw price at village level
+pz_dr(g,draw)         drawn or computed from draw price at zoi level
+ph_dr(g,h,draw)       drawn or computed from draw price as seen from household
+pva_dr(g,h,draw)      drawn or computed from draw price of value added
+qva_dr(g,h,draw)      drawn or computed from draw quantity of value added
+qp_dr(g,h,draw)       drawn or computed from draw quantity produced
+tqp_dr(g,draw)        drawn or computed total qty produced in the zoi
+ttqp_dr(draw)         drawn or computed total output of the zoi
+fd_dr(g,f,h,draw)     drawn or computed from draw factor demand
+id_dr(g,gg,h,draw)    drawn or computed from draw intermediate demand
+acobb_dr(g,h,draw)    drawn or computed from draw cobb-douglas shifter
+shcobb_dr(g,f,h,draw) drawn or computed from draw cobb-douglas shares
+r_dr(g,f,h,draw)      drawn or computed from draw rent for fixed factors
+wv_dr(f,v,draw)       drawn or computed from draw village-wide wage for tradable factors
+wz_dr(f,draw)         drawn or computed from draw zoi-wide wage for tradable factors
+vash_dr(g,h,draw)     drawn or computed from draw value-added share
+idsh_dr(gg,g,h,draw)  drawn or computed from draw intermediate demand share
+tidsh_dr(gg,h,draw)   drawn or computed from draw total intermediate input share (1-vash)
+fixfac_dr(g,f,h,draw) drawn or computed from draw fixed factor demand
+unemp_dr(f,h,draw)    drawn or computed from draw unemployment
+unempsh_dr(f,h,draw)  drawn or computed from draw hh share of total unemployment
+vfmsfix_dr(f,v,draw)  drawn or computed from draw factors fixed at the Village level
+zfmsfix_dr(f,draw)    drawn or computed from draw factors fixed at the zoi level
+vmsfix_dr(g,v,draw)   drawn or computed from draw goods fixed at the Village level
+zmsfix_dr(g,draw)     drawn or computed from draw goods fixed at the zoi level
+
+exinc_dr(h,draw)      drawn or computed from draw exogenous income
+endow_dr(f,h,draw)    drawn or computed from draw endowment
+qc_dr(g,h,draw)       drawn or computed from draw level of consumption
+tqc_dr(g,draw)        drawn or computed from draw total qc
+alpha_dr(g,h,draw)    drawn or computed from draw consumption shares
+y_dr(h,draw)          drawn or computed from draw nominal hh income
+cpi_dr(h,draw)        drawn or computed from draw consumer price index of hh
+ry_dr(h,draw)         drawn or computed from draw real hh income
+cmin_dr(g,h,draw)     drawn or computed from draw incompressible demand
+trin_dr(h,draw)       drawn or computed from draw transfers in - received
+trout_dr(h,draw)      drawn or computed from draw transfers out - given
+trinsh_dr(h,draw)     drawn or computed from draw share of all transfers in the eco going to h
+troutsh_dr(h,draw)    drawn or computed from draw share of yousehold h's income being given as transfers
+hfd_dr(f,h,draw)      drawn or computed from draw factor demand of household h for factor f
+vfd_dr(f,v,draw)      drawn or computed from draw village demand for factor f
+zfd_dr(f,draw)        drawn or computed from draw zoi demand for factor f
+hms_dr(g,h,draw)      drawn or computed from draw household marketed surplus of good g
+vms_dr(g,v,draw)      drawn or computed from draw village marketed surplus of good g
+zms_dr(g,draw)        drawn or computed from draw household marketed surplus of good g
+hfms_dr(f,h,draw)     drawn or computed from draw household factor marketed surplus
+vfms_dr(f,v,draw)     drawn or computed from draw village factor marketed surplus
+zfms_dr(f,draw)       drawn or computed from draw zoi factor marketed surplus
+
+savsh_dr(h,draw)      drawn or computed savings rate
+sav_dr(h,draw)        drawn or computed savings level
+exprocsh_dr(h,draw)   drawn or computed outside-of-zoi expenditures rate
+exproc_dr(h,draw)     drawn or computed outside-of-zoi expenditures level
+expzoish_dr(h,draw)   drawn or computed outside-of-zoi expenditures level
 
 
-$include includes/1_Read_Excel.gms
+* calibration values in each draw
+*pm1(g,draw)         calibrated market price
+pv1(g,v,draw)       calibrated price at village level
+pz1(g,draw)         calibrated price at zoi level
+ph1(g,h,draw)       calibrated price as seen by household
+pva1(g,h,draw)      calibrated price of value added
+qva1(g,h,draw)      calibrated quantity of value added
+qp1(g,h,draw)       calibrated quantity produced
+tqp1(g,draw)        calibrated total quantity produced
+ttqp1(draw)
+hqp1(h,draw)         calibrated total qty produced by a household
+fd1(g,f,h,draw)     calibrated factor demand
+id1(g,gg,h,draw)    calibrated intermediate demand
+acobb1(g,h,draw)    calibrated cobb-douglas shifter
+shcobb1(g,f,h,draw) calibrated cobb-douglas shares
+r1(g,f,h,draw)      calibrated rent for fixed factors
+wv1(f,v,draw)       calibrated village-wide wage for tradable factors
+wz1(f,draw)         calibrated zoi-wide wage for tradable factors
+vash1(g,h,draw)     calibrated value-added share
+idsh1(gg,g,h,draw)  calibrated intermediate demand share
+tidsh1(gg,h,draw)   calibrated total intermediate input share (1-vash)
+fixfac1(g,f,h,draw) calibrated fixed factor demand
+exinc1(h,draw)      calibrated exogenous income
+endow1(f,h,draw)    calibrated endowment
+qc1(g,h,draw)       calibrated level of consumption
+alpha1(g,h,draw)    calibrated consumption shares
+y1(h,draw)          calibrated income of household
+cpi1(h,draw)        calibrated cpi
+vqc1(v,g,draw)      calibrated village consumption
+vcpi1(v,draw)       calibrated village cpi
+cri1(v,f,draw)        calibrated rent weighted index
+
+ry1(h,draw)         calibrated real income
+ty1(draw)           calibrated income total
+try1(draw)          calibrated real income total
+cmin1(g,h,draw)     calibrated incompressible demand
+trin1(h,draw)       calibrated transfers in - received
+trout1(h,draw)      calibrated transfers out - given
+sav1(h,draw)        calibrated savings
+exproc1(h,draw)     calibrated expenditure rest of country
+trinsh1(h,draw)     calibrated share of all transfers in the eco going to h
+troutsh1(h,draw)    calibrated share of yousehold h's income being given as transfers
+hfd1(f,h,draw)      calibrated factor demand of household h for factor f
+vfd1(f,v,draw)      calibrated village demand for factor f
+zfd1(f,draw)        calibrated zoi demand for factor f
+hms1(g,h,draw)      calibrated household marketed surplus of good g
+vms1(g,v,draw)      calibrated village marketed surplus of good g
+zms1(g,draw)        calibrated household marketed surplus of good g
+*unemp1(f,h,draw)    calibrated unemployement in the household
+hfms1(f,h,draw)     calibrated household factor marketed surplus
+vfms1(f,v,draw)     calibrated village factor marketed surplus
+zfms1(f,draw)       calibrated zoi factor marketed surplus
+vfmsfix1(f,v,draw)    calibrated factors fixed at the Village level (family labor)
+zfmsfix1(f,draw)      calibrated factors fixed at the zoi level (hired labor)
+hfsup1(f,h,draw)    calibrated factor supply by the household
+
+
+* after a simulation for each draw
+*pm2(g,draw)         simulated market price
+pv2(g,v,draw)       simulated price at village level
+pz2(g,draw)         simulated price at zoi level
+ph2(g,h,draw)       simulated price as seen by household
+pva2(g,h,draw)      simulated price of value added
+qva2(g,h,draw)      simulated quantity of value added
+qp2(g,h,draw)       simulated quantity produced
+tqp2(g,draw)        simulated total quantity produced in the economy
+ttqp2(draw)
+hqp2(h,draw)         sim total qty produced by a household
+fd2(g,f,h,draw)     simulated factor demand
+id2(g,gg,h,draw)    simulated intermediate demand
+acobb2(g,h,draw)    simulated cobb-douglas shifter
+shcobb2(g,f,h,draw) simulated cobb-douglas shares
+r2(g,f,h,draw)      simulated rent for fixed factors
+wv2(f,v,draw)       simulated village-wide wage for tradable factors
+wz2(f,draw)         simulated zoi-wide wage for tradable factors
+vash2(g,h,draw)     simulated value-added share
+idsh2(gg,g,h,draw)  simulated intermediate demand share
+tidsh2(gg,h,draw)   simulated total intermediate input share (2-vash)
+fixfac2(g,f,h,draw) simulated fixed factor demand
+exinc2(h,draw)      simulated exogenous income
+endow2(f,h,draw)    simulated endowment
+qc2(g,h,draw)       simulated level of consumption
+alpha2(g,h,draw)    simulated consumption shares
+y2(h,draw)          simulated income of household
+cpi2(h,draw)        simulated cpi
+cri2(v,f,draw)          simulated capital rent index (cap rent in activity*weight of activity)
+vqc2(v,g,draw)      simulated village consumption
+vcpi2(v,draw)       simulated village cpi
+
+
+ry2(h,draw)         simulated real income
+ty2(draw)           simulated income total
+try2(draw)          simulated real income total
+cmin2(g,h,draw)     simulated incompressible demand
+trin2(h,draw)       simulated transfers in - received
+trout2(h,draw)      simulated transfers out - given
+sav2(h,draw)        simulated savings
+exproc2(h,draw)     simulated expenditure rest of country
+trinsh2(h,draw)     simulated share of all transfers in the eco going to h
+troutsh2(h,draw)    simulated share of yousehold h's income being given as transfers
+hfd2(f,h,draw)      simulated factor demand of household h for factor f
+vfd2(f,v,draw)      simulated village demand for factor f
+zfd2(f,draw)        simulated zoi demand for factor f
+hms2(g,h,draw)      simulated household marketed surplus of good g
+vms2(g,v,draw)      simulated village marketed surplus of good g
+zms2(g,draw)        simulated household marketed surplus of good g
+*unemp2(f,h,draw)    calibrated unemployement in the households
+hfms2(f,h,draw)     simulated household factor marketed surplus
+vfms2(f,v,draw)     simulated village factor marketed surplus
+zfms2(f,draw)       simulated zoi factor marketed surplus
+hfsup2(f,h,draw)    simulated factor supply by the household
+
+* delta calibration /simulation
+pvD(g,v,draw)       delta price at village level
+pzD(g,draw)         delta price at zoi level
+phD(g,h,draw)       delta price as seen by household
+
+pvaD(g,h,draw)      delta price of value added
+qvaD(g,h,draw)      delta quantity of value added
+qpD(g,h,draw)       delta quantity produced
+tqpD(g,draw)        delta total qp
+ttqpD(draw)
+hqpD(h,draw)          delta hqp
+fdD(g,f,h,draw)     delta factor demand
+idD(g,gg,h,draw)    delta intermediate demand
+acobbD(g,h,draw)    delta cobb-douglas shifter
+shcobbD(g,f,h,draw) delta cobb-douglas shares
+rD(g,f,h,draw)      delta rent for fixed factors
+wvD(f,v,draw)       delta village-wide wage for tradable factors
+wzD(f,draw)         delta zoi-wide wage for tradable factors
+vashD(g,h,draw)     delta value-added share
+idshD(gg,g,h,draw)  delta intermediate demand share
+tidshD(gg,h,draw)   delta total intermediate input share (1-vash)
+fixfacD(g,f,h,draw) delta fixed factor demand
+exincD(h,draw)      delta exogenous income
+endowD(f,h,draw)    delta endowment
+qcD(g,h,draw)       delta level of consumption
+alphaD(g,h,draw)    delta consumption shares
+yD(h,draw)          delta income of household
+cpiD(h,draw)        delta cpi
+criD(v,f,draw)        delta capital rent index (cap rent in activity*weight of activity)
+vqcD(v,g,draw)      delta village consumption
+vcpiD(v,draw)       delta village cpi
+
+ryD(h,draw)         delta real income
+tyD(draw)           delta income total
+tryD(draw)          delta real income total
+cminD(g,h,draw)     delta incompressible demand
+trinD(h,draw)       delta transfers in - received
+troutD(h,draw)      delta transfers out - given
+savD(h,draw)        delta savings
+exprocD(h,draw)     delta expenditure rest of country
+trinshD(h,draw)     delta share of all transfers in the eco going to h
+troutshD(h,draw)    delta share of yousehold h's income being given as transfers
+hfdD(f,h,draw)      delta factor demand of household h for factor f
+vfdD(f,v,draw)      delta village demand for factor f
+zfdD(f,draw)        delta zoi demand for factor f
+hmsD(g,h,draw)      delta household marketed surplus of good g
+vmsD(g,v,draw)      delta village marketed surplus of good g
+zmsD(g,draw)        delta household marketed surplus of good g
+hfmsD(f,h,draw)     delta household factor marketed surplus
+vfmsD(f,v,draw)     delta village factor marketed surplus
+zfmsD(f,draw)       delta zoi factor marketed surplus
+hfsupD(f,h,draw)    delta factor supply by the household
+
+* percent change calibration/simulation
+pvPC(g,v,draw)        % change price at village level
+pzPC(g,draw)          % chage price at zoi level
+phPC(g,h,draw)        % change price as seen by household
+
+pvaPC(g,h,draw)      % change price of value added
+qvaPC(g,h,draw)      % change quantity of value added
+qpPC(g,h,draw)       % change quantity produced
+tqpPC(g,draw)        % change in total qp
+ttqpPC(draw)
+hqpPC(h,draw)          % change in hqp
+
+fdPC(g,f,h,draw)     % change factor demand
+idPC(g,gg,h,draw)    % change intermediate demand
+acobbPC(g,h,draw)    % change cobb-douglas shifter
+shcobbPC(g,f,h,draw) % change cobb-douglas shares
+rPC(g,f,h,draw)      % change rent for fixed factors
+wvPC(f,v,draw)       % change village-wide wage for tradable factors
+wzPC(f,draw)         % change zoi-wide wage for tradable factors
+vashPC(g,h,draw)     % change value-added share
+idshPC(gg,g,h,draw)  % change intermediate demand share
+tidshPC(gg,h,draw)   % change total intermediate input share (1-vash)
+fixfacPC(g,f,h,draw) % change fixed factor demand
+exincPC(h,draw)      % change exogenous income
+endowPC(f,h,draw)    % change endowment
+qcPC(g,h,draw)       % change level of consumption
+alphaPC(g,h,draw)    % change consumption shares
+yPC(h,draw)          % change income of household
+cpiPC(h,draw)        % change in cpi
+criPC(v,f,draw)        % change capital rent index (cap rent in activity*weight of activity)
+vqcPC(v,g,draw)      % change village consumption
+vcpiPC(v,draw)       % change village cpi
+
+
+ryPC(h,draw)         % change in real income
+tyPC(draw)           % change income total
+tryPC(draw)          % change real income total
+cminPC(g,h,draw)     % change incompressible demand
+trinPC(h,draw)       % change transfers in - received
+troutPC(h,draw)      % change transfers out - given
+savPC(h,draw)        % change savings
+exprocPC(h,draw)     % change expenditure rest of country
+trinshPC(h,draw)     % change share of all transfers in the eco going to h
+troutshPC(h,draw)    % change share of yousehold h's income being given as transfers
+hfdPC(f,h,draw)      % change factor demand of household h for factor f
+vfdPC(f,v,draw)      % change village demand for factor f
+zfdPC(f,draw)        % change zoi demand for factor f
+hmsPC(g,h,draw)      % change household marketed surplus of good g
+vmsPC(g,v,draw)      % change village marketed surplus of good g
+zmsPC(g,draw)        % change household marketed surplus of good g
+hfmsPC(f,h,draw)     % change household factor marketed surplus
+vfmsPC(f,v,draw)     % change village factor marketed surplus
+zfmsPC(f,draw)       % change zoi factor marketed surplus
+hfsupPC(f,h,draw)    % change factor supply by the household
+;
 
 
 
-* ================================================================================================
-* ================================================================================================
-* ==================== STEP 2 - MAKE ASSUMPTIONS FOR THE ECONOMY (village-specific) ==============
-* ================================================================================================
-* ================================================================================================
-* This file is defined as a macro for convenience:
-* that way sub-sets of simulations can easily be edited
-$include includes/%assumptions_file%
-
-
-* ================================================================================================
-* ================================================================================================
-* ========================= STEP 3 - MODEL   =====================================================
-* ================================================================================================
-* ================================================================================================
-
-$include includes/3_Model.gms
-
-* ================================================================================================
-* ================================================================================================
-* ========================= STEP 4 - CALIBRATION  ================================================
-* ================================================================================================
-* ================================================================================================
-
-$include includes/4a_DefineAllParameters.gms
-
-
-* ================================================================================================
-* ================================================================================================
-* ====================== STEP 4 - CALIBRATE THE MODEL  ===========================================
-* ================================================================================================
-* ================================================================================================
 
 * PARAMETERS THAT ARE DRAWN
 * =================================================================================
@@ -139,8 +313,6 @@ savsh_dr(h,draw)$(not sameas(draw,"dr0"))     = normal(xlSAVinfsh(h),xlSAVinfshs
                                               + normal(xlSAVformsh(h),xlSAVformshse(h));
 
 display shcobb_t, alpha_t, troutsh_dr, savsh_dr, exprocsh_dr;
-
-$exit
 
 * ### DATA CHECKPOINT: avoid negative values
 * correct the factor shares that were drawn negative
@@ -536,244 +708,3 @@ execute 'xlstalk.exe -O MakeMeASam_V1.xlsx' ;
 * The first time you run the program, erase rng=a1:am39,
 * then the program will put the SAM in cell a1, and from then you'll know how big your range needs to be.
 
-
-$exit
-
-$include includes/4b_Calibration.gms
-
-
-* ================================================================================================
-* ================================================================================================
-* ===================== STEP 4 - SOLVE THE MODEL IN A LOOP OVER PARAMETERS DRAWS =================
-* ================================================================================================
-* ================================================================================================
-
-
-$exit
-
-* The zero draw is using the mean values. Starting after dr1, those values are randomely drawn.
-loop(draw,
-* re-initialise all the variables in the matrix
-* but this time not at the I levels - rather, at the _dr levels
-cmin(g,h)      = cmin_dr(g,h,draw) ;
-acobb(g,h)     = acobb_dr(g,h,draw) ;
-shcobb(g,f,h)  = shcobb_dr(g,f,h,draw) ;
-PZ.l(g)        = pz_dr(g,draw) ;
-PV.l(g,v)      = pv_dr(g,v,draw) ;
-PH.l(g,h)      = ph_dr(g,h,draw) ;
-QVA.l(g,h)     = qva_dr(g,h,draw) ;
-FD.l(g,f,h)    = fd_dr(g,f,h,draw) ;
-ID.l(gg,g,h)   = id_dr(gg,g,h,draw) ;
-R.l(g,fk,h)    = r_dr(g,fk,h,draw);
-WV.l(f,v)      = wv_dr(f,v,draw) ;
-WZ.l(f)        = wz_dr(f,draw);
-QP.l(g,h)      = qp_dr(g,h,draw) ;
-fixfac(g,fk,h) = fixfac_dr(g,fk,h,draw) ;
-vfmsfix(ftv,v) = vfmsfix_dr(ftv,v,draw) ;
-zfmsfix(ftz)   = zfmsfix_dr(ftz,draw) ;
-PVA.l(g,h)     = pva_dr(g,h,draw) ;
-vash(g,h)      = vash_dr(g,h,draw) ;
-idsh(gg,g,h)   = idsh_dr(gg,g,h,draw) ;
-tidsh(g,h)     = tidsh_dr(g,h,draw) ;
-exinc(h)       = exinc_dr(h,draw) ;
-endow(f,h)     = endow_dr(f,h,draw) ;
-Y.l(h)         = y_dr(h,draw) ;
-CPI.l(h)       = cpi_dr(h,draw) ;
-RY.l(h)        = ry_dr(h,draw) ;
-TRIN.l(h)      = trin_dr(h,draw) ;
-trinsh(h)      = trinsh_dr(h,draw) ;
-QC.l(g,h)      = qc_dr(g,h,draw) ;
-alpha(g,h)     = alpha_dr(g,h,draw) ;
-troutsh(h)     = troutsh_dr(h,draw) ;
-TROUT.l(h)     = trout_dr(h,draw) ;
-HFD.l(f,h)     = hfd_dr(f,h,draw);
-VFD.l(f,v)     = vfd_dr(f,v,draw);
-ZFD.l(f)       = zfd_dr(f,draw);
-HMS.l(g,h)     = hms_dr(g,h,draw);
-VMS.l(g,v)     = vms_dr(g,v,draw);
-ZMS.l(g)       = zms_dr(g,draw);
-vmsfix(gtv,v)  = vmsfix_dr(gtv,v,draw);
-zmsfix(gtz)    = zmsfix_dr(gtz,draw);
-HFMS.l(ft,h)   = hfms_dr(ft,h,draw);
-VFMS.l(ft,v)   = vfms_dr(ft,v,draw);
-ZFMS.l(ft)     = zfms_dr(ft,draw);
-savsh(h)       = savsh_dr(h,draw) ;
-exprocsh(h)    = exprocsh_dr(h,draw) ;
-SAV.l(h)       = sav_dr(h,draw) ;
-EXPROC.l(h)    = exproc_dr(h,draw) ;
-hfsupzero(ft,h) = endow_dr(ft,h, draw) ;
-pibudget(g,h)  = FD.l(g,"INPUT",h)*WZ.l("INPUT") ;
-pibsh(g,h)$sum(gg,pibudget(gg,h))  = pibudget(g,h)/sum(gg,pibudget(gg,h)) ;
-
-* for those who sell part of their package onto the market
-packsold(g) = 0 ;
-
-
-
-* read the supply elasticities from the locals defined at the top of the program
-hfsupel("LABOR",h) = %hlse% ;
-*hfsupel("FL",h) = %flse% ;
-HFSUP.l(f,h)    = hfsupzero(f,h) ;
-hfsnewref(ft,h) = 0 ;
-
-* closures: fixed wages and prices on world-market-integrated factors and goods (ftw & gtw)
-WZ.fx(ftw) = WZ.l(ftw);
-PZ.fx(gtw) = PZ.l(gtw) ;
-
-display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, CPI.l, RY.l, SAV.l, EXPROC.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l;
-
-*---------------------------------
-* RE-CALIBRATION
-*---------------------------------
-* set iterlim to 2 when using nlp, to 1 when using mcp. It's all about a difference between CONPT and PATH solvers.
-option iterlim = 1 ;
-solve genCD using mcp ;
-*solve genCDnlp using nlp maximizing USELESS ;
-option iterlim=1000;
-ABORT$(genCD.modelstat ne 1) "NOT WELL CALIBRATED IN THIS DRAW - CHECK THE DATA INPUTS" ;
-display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, Y.l, CPI.l, RY.l, SAV.l, EXPROC.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l;
-display CPI.l ;
-
-acobb1(g,h,draw)    = acobb(g,h) ;
-shcobb1(g,f,h,draw) = shcobb(g,f,h) ;
-
-pv1(g,v,draw)       = PV.l(g,v) ;
-pz1(g,draw)         = PZ.l(g) ;
-ph1(g,h,draw)       = PH.l(g,h) ;
-qva1(g,h,draw)      = QVA.l(g,h) ;
-fd1(g,f,h,draw)     = FD.l(g,f,h) ;
-id1(gg,g,h,draw)    = ID.l(gg,g,h) ;
-r1(g,fk,h,draw)     = R.l(g,fk,h) ;
-wv1(f,v,draw)       = WV.l(f,v) ;
-wz1(f,draw)         = WZ.l(f) ;
-qp1(g,h,draw)       = QP.l(g,h) ;
-fixfac1(g,fk,h,draw) = fixfac(g,fk,h) ;
-pva1(g,h,draw)      = PVA.l(g,h) ;
-vash1(g,h,draw)     = vash(g,h) ;
-idsh1(g,gg,h,draw)  = idsh(g,gg,h) ;
-tidsh1(g,h,draw)    = tidsh(g,h) ;
-exinc1(h,draw)      = exinc(h) ;
-endow1(f,h,draw)    = endow(f,h) ;
-y1(h,draw)          = Y.l(h) ;
-qc1(g,h,draw)       = QC.l(g,h) ;
-cpi1(h,draw)        = CPI.l(h) ;
-vqc1(v,g,draw)      = sum(h$maphv(h,v), qc1(g,h,draw));
-* village cpi is weighted sum of prices
-vcpi1(v,draw)       = sum((h,g)$maphv(h,v), (ph1(g,h,draw)**2)*qc1(g,h,draw)) / sum((h,g)$maphv(h,v),ph1(g,h,draw)*qc1(g,h,draw)) ;
-cri1(v,f,draw)      = sum((g,h)$maphv(h,v), r1(g,f,h,draw)*fd1(g,f,h,draw)/sum((gg,hh)$maphv(hh,v),fd1(gg,f,hh,draw)) ) ;
-
-ry1(h,draw)         = RY.l(h) ;
-ty1(draw)           = sum(h,y1(h,draw));
-try1(draw)          = sum(h,ry1(h,draw));
-trin1(h,draw)       = TRIN.l(h) ;
-trout1(h,draw)      = TROUT.l(h) ;
-trinsh1(h,draw)     = trinsh(h) ;
-sav1(h,draw)        = SAV.l(h) ;
-exproc1(h,draw)     = EXPROC.l(h) ;
-alpha1(g,h,draw)    = alpha(g,h) ;
-cmin1(g,h,draw)     = cmin(g,h) ;
-troutsh1(h,draw)    = troutsh(h) ;
-hfd1(f,h,draw)      = HFD.l(f,h) ;
-vfd1(f,v,draw)      = VFD.l(f,v) ;
-zfd1(f,draw)        = ZFD.l(f) ;
-hms1(g,h,draw)      = HMS.l(g,h) ;
-vms1(g,v,draw)      = VMS.l(g,v) ;
-zms1(g,draw)        = ZMS.l(g) ;
-hfms1(ft,h,draw)    = HFMS.l(ft,h) ;
-vfms1(ft,v,draw)    = VFMS.l(ft,v) ;
-zfms1(ft,draw)      = ZFMS.l(ft) ;
-hfsup1(ft,h,draw)   = HFSUP.l(ft,h) ;
-
-vfmsfix1(ft,v,draw) = vfmsfix_dr(ft,v,draw) ;
-zfmsfix1(ft,draw)   = zfmsfix_dr(ft,draw) ;
-
-* more params
-tqp1(g,draw)        = sum(h,qp1(g,h,draw)) ;
-ttqp1(draw)        = sum(g,tqp1(g,draw)) ;
-hqp1(h,draw)        = sum(g, qp1(g,h,draw)) ;
-
-
-
-*------------------------------------
-* SIMULATION FOR EACH CALIBRATED DRAW
-*------------------------------------
-$include includes/generic_simulation.gms
-
-
-* help the program reach a solution by re-initializing pva
-PVA.l(g,h) = PH.l(g,h) - sum(gg,idsh(gg,g,h)*PH.l(gg,h))
-
-*solve genCD using mcp ;
-*solve genCDnlp using nlp maximizing USELESS ;
-ABORT$(genCD.modelstat ne 1) "NO OPTIMAL SOLUTION REACHED" ;
-
-display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l, fd.l;
-display CPI.l ;
-
-acobb2(g,h,draw)    = acobb(g,h) ;
-shcobb2(g,f,h,draw) = shcobb(g,f,h) ;
-
-pv2(g,v,draw)       = PV.l(g,v) ;
-pz2(g,draw)         = PZ.l(g) ;
-ph2(g,h,draw)       = PH.l(g,h) ;
-qva2(g,h,draw)      = QVA.l(g,h) ;
-fd2(g,f,h,draw)     = FD.l(g,f,h) ;
-id2(gg,g,h,draw)    = ID.l(gg,g,h) ;
-r2(g,fk,h,draw)     = R.l(g,fk,h) ;
-wv2(f,v,draw)       = WV.l(f,v) ;
-wz2(f,draw)         = WZ.l(f) ;
-qp2(g,h,draw)       = QP.l(g,h) ;
-tqp2(g,draw)        = sum(h,qp2(g,h,draw)) ;
-ttqp2(draw)        = sum(g,tqp2(g,draw)) ;
-hqp2(h,draw)        = sum(g, qp2(g,h,draw)) ;
-
-fixfac2(g,fk,h,draw) = fixfac(g,fk,h) ;
-pva2(g,h,draw)      = PVA.l(g,h) ;
-vash2(g,h,draw)      = vash(g,h) ;
-exinc2(h,draw)      = exinc(h) ;
-endow2(f,h,draw)    = endow(f,h) ;
-y2(h,draw)          = Y.l(h) ;
-qc2(g,h,draw)       = QC.l(g,h) ;
-cpi2(h,draw)        = CPI.l(h) ;
-vqc2(v,g,draw)      = sum(h$maphv(h,v), qc2(g,h,draw));
-* village cpi is weighted sum of prices
-vcpi2(v,draw)       = sum((h,g)$maphv(h,v), (ph2(g,h,draw)**2)*qc2(g,h,draw)) / sum((h,g)$maphv(h,v),ph2(g,h,draw)*qc2(g,h,draw)) ;
-* wieghted capital rent in the village
-cri2(v,f,draw)          = sum((g,h)$maphv(h,v), r2(g,f,h,draw)*fd2(g,f,h,draw)/sum((gg,hh)$maphv(hh,v),fd2(gg,f,hh,draw)) ) ;
-
-ry2(h,draw)         = RY.l(h) ;
-ty2(draw)           = sum(h,y2(h,draw));
-try2(draw)          = sum(h,ry2(h,draw));
-trinsh2(h,draw)     = trinsh(h) ;
-alpha2(g,h,draw)    = alpha(g,h) ;
-troutsh2(h,draw)    = troutsh(h) ;
-hfd2(f,h,draw)      = HFD.l(f,h) ;
-vfd2(f,v,draw)      = VFD.l(f,v) ;
-zfd2(f,draw)        = ZFD.l(f) ;
-hms2(g,h,draw)      = HMS.l(g,h) ;
-vms2(g,v,draw)      = VMS.l(g,v) ;
-zms2(g,draw)        = ZMS.l(g) ;
-hfms2(ft,h,draw)    = HFMS.l(ft,h) ;
-vfms2(ft,v,draw)    = VFMS.l(ft,v) ;
-zfms2(ft,draw)      = ZFMS.l(ft) ;
-trin2(h,draw)       = TRIN.l(h) ;
-trout2(h,draw)      = TROUT.l(h) ;
-sav2(h,draw)        = SAV.l(h) ;
-exproc2(h,draw)     = EXPROC.l(h) ;
-
-
-hfsup2(ft,h,draw)   = HFSUP.l(ft,h) ;
-
-
-* ================================================================================================
-* ===================== LOOP ENDS HERE    ========================================================
-* ================================================================================================
-);
-
-$exit
-
-* Output : compute all the parameters
-$include includes/3_Output_Parameters.gms
-
-* Output : create a formatted text file with a series of "put" statements
-$include includes/4_Output_to_text_file.gms

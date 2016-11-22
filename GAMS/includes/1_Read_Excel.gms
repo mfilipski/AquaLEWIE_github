@@ -1,3 +1,5 @@
+* This part of the code just reads in the data from the excel spreadsheet
+* and makes it into a set of parameters to be used in the model
 
 * Name the sets that will be used:
 sets
@@ -52,26 +54,31 @@ alias (g,gg,ggg)
 
 * Get raw values for input variables and some parameter values
 parameter
-     xlID(gg,g,h)          intermediate demand for of gg for production of g by h
-     xlFD(g,f,h)           factor demand in g production by h
-     xlbeta(g,f,h)         exponent on factor f in produciton of g
-     xlbetase(g,f,h)       standard error on beta(gfh)
-     xlacobb(g,h)          shift parameter on production of g
-     xlacobbse(g,h)        standard error on acobb
-     xlalpha(g,h)          consumption share of income
-     xlalphase(g,h)          consumption share of income
-     xlcmin(g,h)           incompressible consumption
+* expenditure function parameters:
+     xleshare(g,h)         expenditure share of good g by household h
+     xleshare_se(g,h)        expenditure share standard error
+     xlemin(g,h)           minimum expenditure on g
+
+* production function parameters:
+     xlidsh(gg,g,h)        intermediate demand share for of gg for production of g by h
+*     xlFD(g,f,h)           factor demand in g production by h
+     xlqp(g,h)             quantity of g produced by household h
+     xlfshare(g,f,h)       exponent on factor f in produciton of g
+     xlfshare_se(g,f,h)    standard error on beta (gfh)
+     xlpshift(g,h)         shift parameter on production of g
+     xlpshift_se(g,h)      standard error on acobb
+
+* other parameters:
+
      xlendow(f,h)          endowment of factors in the economy
      xlROCendow(f,h)       endowment of factors outside the economy
      xlROWendow(f,h)       endowment of factors outside the country
      xlTRINsh(h)           cash transfers given to other households (share of income)
      xlTROUTsh(h)          cash transfers received from other households  (share of expenditures)
-     xlTRINshse(h)         standard error of cash transfers given to other households (share of income)
-     xlTROUTshse(h)        standard error of cash transfers received from other households  (share of expenditures)
-     xlSAVinfsh(h)         share of income going to informal savings
-     xlSAVinfshse(h)       standard error of share of income going to informal savings
-     xlSAVformsh(h)        share of income going to formal savings
-     xlSAVformshse(h)      standard error of share of income going to formal savings
+     xlTRINsh_se(h)         standard error of cash transfers given to other households (share of income)
+     xlTROUTsh_se(h)        standard error of cash transfers received from other households  (share of expenditures)
+     xlsavsh(h)         share of income going to informal savings
+     xlsavsh_se(h)       standard error of share of income going to informal savings
      xllabexp(h)           not sure what this is and why there's a negative value
      xlexpoutsh(h)         share of expenditures on outside goods
      xlremit(h)            level of remittances
@@ -87,37 +94,38 @@ parameter
      xlVA2IDsh(g,gg,h)     for each dollar of VA how much ID was consumed
 ;
 
-xlIDsh(gg,g,h) = alldata("INTDsh",g,gg,"",h) ;
-xlFD(g,f,h) = alldata("FD",g,"",f,h) ;
-xlbeta(g,f,h) = alldata("beta",g,"",f,h) ;
-xlbeta_se(g,f,h) = alldata("se",g,"",f,h) ;
-
-* note: the A is actually log(A) because of the log-log regression
-*xlacobb(g,h) = exp(alldata("acobb",g,"","",h)) ;
-*xlacobbse(g,h) = exp(alldata("acobbse",g,"","",h)) ;
-xlfshare(g,h) = (alldata("fshare",g,"","",h)) ;
-xlfshare_se(g,h) = (alldata("fshare_se",g,"","",h)) ;
-
+* expenditure parameters
 xleshare(g,h) = alldata("eshare",g,"","",h) ;
 xleshare_se(g,h) = alldata("eshare_se",g,"","",h) ;
 xlemin(g,h) = alldata("emin",g,"","",h) ;
 
+* production parameters
+xlqp(g,h)        = alldata("qp",g,"","",h) ;
+xlidsh(gg,g,h) = alldata("idsh",g,gg,"",h) ;
+* note: the A is actually log(A) because of the log-log regression
+xlpshift(g,h) = (alldata("pshift",g,"","",h)) ;
+xlpshift_se(g,h) = (alldata("pshift_se",g,"","",h)) ;
+
+xlfshare(g,f,h) = alldata("fshare",g,"",f,h) ;
+xlfshare_se(g,f,h) = alldata("fshare_se",g,"",f,h) ;
+
+* transfers and savings
+xlTROUTsh(h) = alldata("transfout","","","",h) ;
+xlTRINsh(h) = alldata("transfin","","","",h) ;
+xlTROUTsh_se(h) = alldata("transfout_se","","","",h) ;
+xlTRINsh_se(h) = alldata("transfin_se","","","",h) ;
+
+xlsavsh(h) = alldata("savsh","","","",h) ;
+xlSAVsh_se(h) = alldata("savsh_se","","","",h) ;
+
 xlendow(f,h) = alldata("endow","","",f,h) + alldata("zoiendow","","",f,h) ;
-xlendow("LABOR",h) = sum(g, xlFD(g,"LABOR",h));
-xlendow("LAND",h) = sum(g, xlFD(g,"LAND",h));
-xlendow("CAPITAL",h) = sum(g, xlFD(g,"CAPITAL",h));
+*xlendow("LABOR",h) = sum(g, xlFD(g,"LABOR",h));
+*xlendow("LAND",h) = sum(g, xlFD(g,"LAND",h));
+*xlendow("CAPITAL",h) = sum(g, xlFD(g,"CAPITAL",h));
 xlROCendow(f,h) = alldata("ROCendow","","",f,h) ;
 xlROWendow(f,h) = alldata("ROWendow","","",f,h) ;
 
-xlTROUTsh(h) = alldata("TRANSFOUT","","","",h) ;
-xlTRINsh(h) = alldata("TRANSFIN","","","",h) ;
-xlTROUTshse(h) = alldata("TRANSFOUTse","","","",h) ;
-xlTRINshse(h) = alldata("TRANSFINse","","","",h) ;
 
-xlSAVinfsh(h) = alldata("savinformal","","","",h) ;
-xlSAVinfshse(h) = alldata("savinformalse","","","",h) ;
-xlSAVformsh(h) = alldata("savinformal","","","",h)   ;
-xlSAVformshse(h) = alldata("savinformalse","","","",h) ;
 
 xlexpoutsh(h) = alldata("exproles","","","",h) ;
 
@@ -138,7 +146,8 @@ xlrevsh_row(g,h) = alldata("revsh_row",g,"","",h) ;
 xlVA2IDsh(gg,g,h) = alldata("VA2IDsh",g,gg,"",h) ;
 
 
-display xlID, xlFD, xlbeta, xlbetase, xlacobb, xlacobbse, xlalpha, xlcmin, xlendow, xlROCendow, xlROWendow,
-     xlTROUTsh, xlTRINsh, xlTROUTshse, xlTRINshse, xlSAVinfsh, xlSAVinfshse, xlSAVformsh, xlSAVformshse,
+display xlidsh, xlfshare, xlfshare_se, xlpshift, xlpshift_se, xleshare, xlemin, xlendow, xlROCendow, xlROWendow,
+     xlTROUTsh, xlTRINsh, xlTROUTsh_se, xlTRINsh_se, xlSAVsh, xlSAVsh_se,
      xlexpoutsh, xlremit, xlothertransfers, xlnhh, xlhhinc, xlhhexp, xlhhsize, xlrevsh_vil, xlrevsh_zoi,
      xlrevsh_rol, xlrevsh_row, xlVA2IDsh ;
+
