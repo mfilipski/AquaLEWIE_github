@@ -41,7 +41,7 @@ exinc_dr(h,draw)      drawn or computed from draw exogenous income
 endow_dr(f,h,draw)    drawn or computed from draw endowment
 qc_dr(g,h,draw)       drawn or computed from draw level of consumption
 tqc_dr(g,draw)        drawn or computed from draw total qc
-alpha_dr(g,h,draw)    drawn or computed from draw consumption shares
+eshare_dr(g,h,draw)    drawn or computed from draw consumption shares
 y_dr(h,draw)          drawn or computed from draw nominal hh income
 cpi_dr(h,draw)        drawn or computed from draw consumer price index of hh
 ry_dr(h,draw)         drawn or computed from draw real hh income
@@ -92,7 +92,7 @@ fixfac1(g,f,h,draw) calibrated fixed factor demand
 exinc1(h,draw)      calibrated exogenous income
 endow1(f,h,draw)    calibrated endowment
 qc1(g,h,draw)       calibrated level of consumption
-alpha1(g,h,draw)    calibrated consumption shares
+eshare1(g,h,draw)    calibrated consumption shares
 y1(h,draw)          calibrated income of household
 cpi1(h,draw)        calibrated cpi
 vqc1(v,g,draw)      calibrated village consumption
@@ -149,7 +149,7 @@ fixfac2(g,f,h,draw) simulated fixed factor demand
 exinc2(h,draw)      simulated exogenous income
 endow2(f,h,draw)    simulated endowment
 qc2(g,h,draw)       simulated level of consumption
-alpha2(g,h,draw)    simulated consumption shares
+eshare2(g,h,draw)    simulated consumption shares
 y2(h,draw)          simulated income of household
 cpi2(h,draw)        simulated cpi
 cri2(v,f,draw)          simulated capital rent index (cap rent in activity*weight of activity)
@@ -204,7 +204,7 @@ fixfacD(g,f,h,draw) delta fixed factor demand
 exincD(h,draw)      delta exogenous income
 endowD(f,h,draw)    delta endowment
 qcD(g,h,draw)       delta level of consumption
-alphaD(g,h,draw)    delta consumption shares
+eshareD(g,h,draw)    delta consumption shares
 yD(h,draw)          delta income of household
 cpiD(h,draw)        delta cpi
 criD(v,f,draw)        delta capital rent index (cap rent in activity*weight of activity)
@@ -258,7 +258,7 @@ fixfacPC(g,f,h,draw) % change fixed factor demand
 exincPC(h,draw)      % change exogenous income
 endowPC(f,h,draw)    % change endowment
 qcPC(g,h,draw)       % change level of consumption
-alphaPC(g,h,draw)    % change consumption shares
+esharePC(g,h,draw)    % change consumption shares
 yPC(h,draw)          % change income of household
 cpiPC(h,draw)        % change in cpi
 criPC(v,f,draw)        % change capital rent index (cap rent in activity*weight of activity)

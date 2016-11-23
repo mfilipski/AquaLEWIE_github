@@ -9,7 +9,6 @@ parameter
 * meta-parameters with parameter draws
 fshare_t(g,f,h,draw)  unscaled draw the cobb-douglas factor shares
 eshare_t(g,h,draw)    unscaled draw of expenditure shares
-alpha_t_deleteme
 
 * drawn parameters:
 pv_dr(g,v,draw)       drawn or computed from draw price at village level

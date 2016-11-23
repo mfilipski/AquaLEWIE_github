@@ -1,5 +1,5 @@
 
---- Job AQ_LEWIE_main.gms Start 11/23/16 12:53:21 24.5.4 r54492 WEX-WEI x86 64bit/MS Windows
+--- Job AQ_LEWIE_main.gms Start 11/23/16 16:08:17 24.5.4 r54492 WEX-WEI x86 64bit/MS Windows
 GAMS 24.5.4   Copyright (C) 1987-2015 GAMS Development. All rights reserved
 Licensee: Computer Services                              G150407:1601CO-GEN
           International Food Policy Research Institute               DC2119
@@ -12,7 +12,7 @@ GDXXRW           24.5.4 r54492 Released Oct 15, 2015 VS8 x86 32bit/MS Windows
 Input file : D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v1.xlsx
 Output file: D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v1.gdx
 Substituting Index
-Total time = 702 Ms
+Total time = 795 Ms
 --- .includes/1_Read_Excel.gms(36) 3 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v1.gdx
 --- .includes/1_Read_Excel.gms(153) 3 Mb
@@ -22,15 +22,8 @@ Total time = 702 Ms
 --- .includes/3_Model.gms(365) 3 Mb
 --- AQ_LEWIE_main.gms(109) 3 Mb
 --- .includes/4a_DefineAllParameters.gms(289) 3 Mb
---- AQ_LEWIE_main.gms(145) 3 Mb 1 Error
-*** Error 140 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
-    Unknown symbol
---- AQ_LEWIE_main.gms(149) 3 Mb 3 Errors
-*** Error 140 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
-    Unknown symbol
-*** Error 140 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
-    Unknown symbol
---- AQ_LEWIE_main.gms(151) 3 Mb 3 Errors
-*** Status: Compilation error(s)
---- Job AQ_LEWIE_main.gms Stop 11/23/16 12:53:21 elapsed 0:00:00.805
-Exit code = 2
+--- AQ_LEWIE_main.gms(209) 3 Mb
+--- Starting execution: elapsed 0:00:00.866
+--- AQ_LEWIE_main.gms(1075) 4 Mb
+*** Status: Normal completion
+--- Job AQ_LEWIE_main.gms Stop 11/23/16 16:08:18 elapsed 0:00:00.876

@@ -49,9 +49,9 @@ $setglobal new_land 0
 * = Parameters with a "_dr" suffix are the inputs to each round of simulation. They were either
 * drawn from a distribution, or are computed so that the economy is at equilibrium (given the drawn parameters)
 * The first draw is "dr0" and corresponds to the mean values of the parameter distributions.
-* ex: shcobb_dr(g,f,h,draw) is the cobb douglas factor share drawn from the known distributions of factor shares
-*     shcobb_dr(g,f,h,"dr0") is the mean of that cobb douglas factor share known distribution
-*     endow_dr(f,h,draw) is the household endowment of factor that is consistent with the draws of shcobb_dr
+* ex: fshare_dr(g,f,h,draw) is the cobb douglas factor share drawn from the known distributions of factor shares
+*     fshare_dr(g,f,h,"dr0") is the mean of that cobb douglas factor share known distribution
+*     endow_dr(f,h,draw) is the household endowment of factor that is consistent with the draws of fshare_dr
 
 * = Parameters with a "1" suffix are the values generated from the calibration run of each drawns model. In theory
 * they should be identical to the _dr parameters, because those were chosen to satisfy the model equations.
@@ -117,23 +117,21 @@ $include includes/4a_DefineAllParameters.gms
 
 * PARAMETERS THAT ARE DRAWN
 * =================================================================================
-* default at initial values
+* temporary values for parameters that get drawn but need to be corrected if negative
+fshare_t(g,f,h,draw) = xlfshare(g,f,h) ;
+eshare_t(g,h,draw)   = xleshare(g,h)   ;
+
+* default values for parameters that were drawn
+fshare_dr(g,f,h,draw) = xlfshare(g,f,h) ;
+eshare_dr(g,h,draw)   = xleshare(g,h)   ;
 pshift_dr(g,h,draw)  = xlpshift(g,h) ;
+
+* Those are actually not drawn unless they have _se versions
 troutsh_dr(h,draw)   = xltroutsh(h)  ;
 savsh_dr(h,draw)     = xlSAVsh(h)    ;
 exprocsh_dr(h,draw)  = xlexpoutsh(h) ;
 
-* temporary values for parameters that get drawn:
-fshare_t(g,f,h,draw) = xlfshare(g,f,h) ;
-eshare_t(g,h,draw)   = xleshare(g,h)   ;
-
-*FIGURE OUT WHERE PSHIFT_T (ALPHA_T) WAS DEFINED BEFORE.
-*FIGURE OUT WHICH PARAMETERS I ACTUALLY NEED.
-*ONCE CALIBRATION RUNS, EXTRACT IT BACK INTO 4-CALIBRATION FILE
-
 * pshift_t(g,h,draw)   = xlpshift(g,h)   ;
-
-
 * draw all values once - except for dr0 wich will be the xl base
 *fshare_t(g,f,h,"dr0") = xlfshare(g,f,h);
 *eshare_t(g,h,"dr0")   = eshare(g,h) ;
@@ -142,74 +140,73 @@ eshare_t(g,h,draw)   = xleshare(g,h)   ;
 *exprocsh_dr(h,"dr0")  = xlexpoutsh(h) ;
 
 fshare_t(g,f,h,draw)$(not sameas(draw,"dr0")) = normal(xlfshare(g,f,h),xlfshare_se(g,f,h));
-pshift_t(g,h,draw)$(not sameas(draw,"dr0"))    = normal(xlpshift(g,h),xlpshift_se(g,h));
+eshare_t(g,h,draw)$(not sameas(draw,"dr0"))    = normal(xleshare(g,h),xleshare_se(g,h));
 savsh_dr(h,draw)$(not sameas(draw,"dr0"))     = normal(xlSAVsh(h),xlSAVsh_se(h));
 troutsh_dr(h,draw)$(not sameas(draw,"dr0"))   = normal(xltroutsh(h),xltroutsh_se(h));
 
-display shcobb_t, alpha_t, troutsh_dr, savsh_dr, exprocsh_dr;
+display fshare_t, eshare_t, troutsh_dr, savsh_dr, exprocsh_dr;
 
-$exit
 
 * ### DATA CHECKPOINT: avoid negative values
-* correct the factor shares that were drawn negative
-* -------------------------------------------------------------
 
+* a- correct the factor shares that were drawn negative
+* -------------------------------------------------------------
 * just for info, display the negatives:
-parameter negshcobb_t(g,f,h,draw) ;
-negshcobb_t(g,f,h,draw)$((shcobb_t(g,f,h,draw) le 0) or (shcobb_t(g,f,h,draw) ge 1)) = shcobb_t(g,f,h,draw);
-display negshcobb_t;
+parameter negfshare_t(g,f,h,draw) ;
+negfshare_t(g,f,h,draw)$((fshare_t(g,f,h,draw) le 0) or (fshare_t(g,f,h,draw) ge 1)) = fshare_t(g,f,h,draw);
+display negfshare_t;
 * and correct with a while structure
-loop((g,f,h,draw)$(xlFD(g,f,h)*((shcobb_t(g,f,h,draw) le 0) or (shcobb_t(g,f,h,draw) ge 1))),
-     while((shcobb_t(g,f,h,draw) le 0) or (shcobb_t(g,f,h,draw) ge 1),
-            shcobb_t(g,f,h,draw) = normal(xlbeta(g,f,h),xlbetase(g,f,h));
+loop((g,f,h,draw)$(xlfshare(g,f,h)*((fshare_t(g,f,h,draw) le 0) or (fshare_t(g,f,h,draw) ge 1))),
+     while((fshare_t(g,f,h,draw) le 0) or (fshare_t(g,f,h,draw) ge 1),
+            fshare_t(g,f,h,draw) = normal(xlfshare(g,f,h),xlfshare_se(g,f,h));
      );
 );
-display shcobb_t;
+display fshare_t;
 * finally, we can use that as our parameter draw:
-shcobb_dr(g,f,h,draw)$shcobb_t(g,f,h,draw) = shcobb_t(g,f,h,draw)/sum(fa,shcobb_t(g,fa,h,draw)) ;
-display shcobb_t, shcobb_dr ;
+fshare_dr(g,f,h,draw)$fshare_t(g,f,h,draw) = fshare_t(g,f,h,draw)/sum(fa,fshare_t(g,fa,h,draw)) ;
+display fshare_t, fshare_dr ;
 
 
-* now correct the expenditure shares that were drawn negative
+
+
+* b- correct the expenditure shares that were drawn negative
 * ------------------------------------------------------------
 * just for info, display the negatives
-parameter negalpha_t(g,h,draw) ;
-negalpha_t(g,h,draw)$((alpha_t(g,h,draw) le 0) or (alpha_t(g,h,draw) ge 1)) = alpha_t(g,h,draw) ;
-display negalpha_t;
-* and correct with a while
-loop((g,h,draw)$(xlalpha(g,h)*((alpha_t(g,h,draw) le 0) or (alpha_t(g,h,draw) ge 1))) ,
-     while( (alpha_t(g,h,draw) le 0) or (alpha_t(g,h,draw) ge 1),
-           alpha_t(g,h,draw) = normal(xlalpha(g,h),xlalphase(g,h));
+parameter negeshare_t(g,h,draw) ;
+negeshare_t(g,h,draw)$((eshare_t(g,h,draw) le 0) or (eshare_t(g,h,draw) ge 1)) = eshare_t(g,h,draw) ;
+display negeshare_t;
+* and correct with a while loop (while negative, keep drawing)
+loop((g,h,draw)$(xleshare(g,h)*((eshare_t(g,h,draw) le 0) or (eshare_t(g,h,draw) ge 1))) ,
+     while( (eshare_t(g,h,draw) le 0) or (eshare_t(g,h,draw) ge 1),
+           eshare_t(g,h,draw) = normal(xleshare(g,h),xleshare_se(g,h));
      );
 );
-display alpha_t;
-* finally we can use that as our parameter draw
-alpha_dr(g,h,draw)  = alpha_t(g,h,draw)/sum(gg,alpha_t(gg,h,draw)) ;
-parameter alch(h,draw) ;
-alch(h,draw) = sum(gg,alpha_dr(gg,h,draw))
-display alpha_dr, alch ;
+display eshare_t;
+* once all were drawn positive, use that as the draw
+eshare_dr(g,h,draw)  = eshare_t(g,h,draw)/sum(gg,eshare_t(gg,h,draw)) ;
+parameter escheck(h,draw) ;
+escheck(h,draw) = sum(gg,eshare_dr(gg,h,draw))
+display eshare_dr, escheck ;
 
-* now correct the rest-of world expenditure shares.  They cannot be negative, and they cannot add up to more than 1
+* c- correct the rest-of world expenditure shares.  They cannot be negative, and they cannot add up to more than 1
 * (really, maybe they shouldn't add up to more than 0.3 or something)
-
-*now correct the exogenous expenditures that were drawn negative OR that add up to a larger number than 1 ;
 * so we make a loop in the loop:
 expzoish_dr(h,draw) = 1-(troutsh_dr(h,draw)+savsh_dr(h,draw)+exprocsh_dr(h,draw)) ;
 
 display troutsh_dr, savsh_dr, exprocsh_dr, expzoish_dr ;
 * TROUTSHARE NEEDS TO BE RESCALED TO A 0<X<1 NUMBER
 loop((h,draw),
-     while( ((troutsh_dr(h,draw) le 0) or (troutsh_dr(h,draw) ge 1))
-            or ((savsh_dr(h,draw) le 0) or (savsh_dr(h,draw) ge 1))
-            or (expzoish_dr(h,draw) le 0),
-               troutsh_dr(h,draw)$(not sameas(draw,"dr0")) = normal(xltroutsh(h),xltroutshse(h));
-               savsh_dr(h,draw)$(not sameas(draw,"dr0")) = normal(xlSAVinfsh(h),xlSAVinfshse(h))
-                                        + normal(xlSAVformsh(h),xlSAVformshse(h));
+     while( ((troutsh_dr(h,draw) < 0) or (troutsh_dr(h,draw) ge 1))
+            or ((savsh_dr(h,draw) < 0) or (savsh_dr(h,draw) ge 1))
+            or (expzoish_dr(h,draw) < 0),
+               troutsh_dr(h,draw)$(not sameas(draw,"dr0")) = normal(xltroutsh(h),xltroutsh_se(h));
+               savsh_dr(h,draw)$(not sameas(draw,"dr0")) = normal(xlSAVsh(h),xlSAVsh_se(h));
                expzoish_dr(h,draw) = 1-(troutsh_dr(h,draw)+savsh_dr(h,draw)+exprocsh_dr(h,draw)) ;
      );
 );
 display troutsh_dr, savsh_dr, exprocsh_dr, expzoish_dr;
 
+$exit
 
 * THOSE WERE THE PARAMETERS THAT ARE ACTUALLY DRAWN FROM A DISTRIBUTION
 * ALL OTHER PARAMETERS EITHER FOLLOW FROM THOSE DRAWS (RATHER THAN DRAWN DIRECTLY)
@@ -259,7 +256,7 @@ smallzoi_dr(h,draw)$(expzoish_dr(h,draw) < 0.5) = yes ;
 ABORT$(card(smallzoi_dr)) "These household spend over 10% of income on transfers", smallzoi_dr ;
 
 * LEVELS OF CONSUMPTION:
-qc_dr(g,h,draw) = (y_dr(h,draw)-sav_dr(h,draw)-trout_dr(h,draw)-exproc_dr(h,draw))*alpha_dr(g,h,draw)/ph_dr(g,h,draw) ;
+qc_dr(g,h,draw) = (y_dr(h,draw)-sav_dr(h,draw)-trout_dr(h,draw)-exproc_dr(h,draw))*eshare_dr(g,h,draw)/ph_dr(g,h,draw) ;
 
 display qc_dr ;
 parameter qcshare(h,g) share of household h in total consumption of g ;
@@ -383,14 +380,14 @@ display IDTEMP.l, QPTEMP.l, TQPTEMP.l, NETEXPTEMP.l ;
 * The model should have solved for a balanced system of production, consumption and intermediate demands:
 qp_dr(g,h,draw) = QPTEMP.l(g,h,draw) ;
 id_dr(gg,g,h,draw) = IDTEMP.l(gg,g,h,draw) ;
-display qp_dr, id_dr, shcobb_dr ;
+display qp_dr, id_dr, fshare_dr ;
 
 * We can figure out the rest from there:
 * Factor demands derived from factor shares
-fd_dr(g,f,h,draw)  = (qp_dr(g,h,draw) - sum(gg,id_dr(gg,g,h,draw))) * shcobb_dr(g,f,h,draw)  ;
+fd_dr(g,f,h,draw)  = (qp_dr(g,h,draw) - sum(gg,id_dr(gg,g,h,draw))) * fshare_dr(g,f,h,draw)  ;
 display fd_dr ;
 qva_dr(g,h,draw)   = sum(f, fd_dr(g,f,h,draw)) ;
-acobb_dr(g,h,draw)$(qva_dr(g,h,draw))    = qva_dr(g,h,draw)/prod(f,fd_dr(g,f,h,draw)**shcobb_dr(g,f,h,draw)) ;
+acobb_dr(g,h,draw)$(qva_dr(g,h,draw))    = qva_dr(g,h,draw)/prod(f,fd_dr(g,f,h,draw)**fshare_dr(g,f,h,draw)) ;
 
 * and compute value added share for all activities
 vash_dr(g,h,draw)$qp_dr(g,h,draw) = (qp_dr(g,h,draw)-sum(gg, id_dr(gg,g,h,draw))) / qp_dr(g,h,draw) ;
@@ -476,8 +473,8 @@ exincsh2(h,draw) = exinc_dr2(h,draw) / y_dr(h,draw) ;
 display feinc_dr, fecomp_dr, exinc_dr1, exinc_dr2, exincsh1, exincsh2 ;
 exinc_dr(h,draw) = exinc_dr2(h,draw) ;
 
-display acobb_dr, shcobb_dr, pv_dr, pz_dr, ph_dr, pva_dr, qva_dr, fd_dr, id_dr, r_dr, wz_dr, qp_dr, fixfac_dr, pva_dr,
-        exinc_dr, endow_dr, y_dr, trinsh_dr, qc_dr, alpha_dr, troutsh_dr, hfd_dr, vfd_dr, zfd_dr,
+display acobb_dr, fshare_dr, pv_dr, pz_dr, ph_dr, pva_dr, qva_dr, fd_dr, id_dr, r_dr, wz_dr, qp_dr, fixfac_dr, pva_dr,
+        exinc_dr, endow_dr, y_dr, trinsh_dr, qc_dr, eshare_dr, troutsh_dr, hfd_dr, vfd_dr, zfd_dr,
         hms_dr, vms_dr, zms_dr, hfms_dr, vfms_dr, zfms_dr ;
 
 * TOGETHER, THE "_DR" PARAMETERS CONTAIN INITIAL VALUES FOR ALL THE ECONOMIC VARIABLES IN LEWIE
@@ -565,7 +562,7 @@ loop(draw,
 * but this time not at the I levels - rather, at the _dr levels
 cmin(g,h)      = cmin_dr(g,h,draw) ;
 acobb(g,h)     = acobb_dr(g,h,draw) ;
-shcobb(g,f,h)  = shcobb_dr(g,f,h,draw) ;
+fshare(g,f,h)  = fshare_dr(g,f,h,draw) ;
 PZ.l(g)        = pz_dr(g,draw) ;
 PV.l(g,v)      = pv_dr(g,v,draw) ;
 PH.l(g,h)      = ph_dr(g,h,draw) ;
@@ -591,7 +588,7 @@ RY.l(h)        = ry_dr(h,draw) ;
 TRIN.l(h)      = trin_dr(h,draw) ;
 trinsh(h)      = trinsh_dr(h,draw) ;
 QC.l(g,h)      = qc_dr(g,h,draw) ;
-alpha(g,h)     = alpha_dr(g,h,draw) ;
+eshare(g,h)     = eshare_dr(g,h,draw) ;
 troutsh(h)     = troutsh_dr(h,draw) ;
 TROUT.l(h)     = trout_dr(h,draw) ;
 HFD.l(f,h)     = hfd_dr(f,h,draw);
@@ -643,7 +640,7 @@ display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, Y.l, CPI.l,
 display CPI.l ;
 
 acobb1(g,h,draw)    = acobb(g,h) ;
-shcobb1(g,f,h,draw) = shcobb(g,f,h) ;
+fshare1(g,f,h,draw) = fshare(g,f,h) ;
 
 pv1(g,v,draw)       = PV.l(g,v) ;
 pz1(g,draw)         = PZ.l(g) ;
@@ -678,7 +675,7 @@ trout1(h,draw)      = TROUT.l(h) ;
 trinsh1(h,draw)     = trinsh(h) ;
 sav1(h,draw)        = SAV.l(h) ;
 exproc1(h,draw)     = EXPROC.l(h) ;
-alpha1(g,h,draw)    = alpha(g,h) ;
+eshare1(g,h,draw)    = eshare(g,h) ;
 cmin1(g,h,draw)     = cmin(g,h) ;
 troutsh1(h,draw)    = troutsh(h) ;
 hfd1(f,h,draw)      = HFD.l(f,h) ;
@@ -719,7 +716,7 @@ display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, HMS.l, VMS.
 display CPI.l ;
 
 acobb2(g,h,draw)    = acobb(g,h) ;
-shcobb2(g,f,h,draw) = shcobb(g,f,h) ;
+fshare2(g,f,h,draw) = fshare(g,f,h) ;
 
 pv2(g,v,draw)       = PV.l(g,v) ;
 pz2(g,draw)         = PZ.l(g) ;
@@ -753,7 +750,7 @@ ry2(h,draw)         = RY.l(h) ;
 ty2(draw)           = sum(h,y2(h,draw));
 try2(draw)          = sum(h,ry2(h,draw));
 trinsh2(h,draw)     = trinsh(h) ;
-alpha2(g,h,draw)    = alpha(g,h) ;
+eshare2(g,h,draw)    = eshare(g,h) ;
 troutsh2(h,draw)    = troutsh(h) ;
 hfd2(f,h,draw)      = HFD.l(f,h) ;
 vfd2(f,v,draw)      = VFD.l(f,v) ;
