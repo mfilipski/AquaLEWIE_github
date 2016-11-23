@@ -42,15 +42,13 @@ set
      gnag(g)   non ag goods /prod, ret, ser/
 
 * household subsets
-     ht(h)     treated recipients in this simulation (can be a or b or both) / null
-/
-*     hc(h)     households in the camp / rrc, rrf
-*/
-*     hnc(h)    households outside of the camp / rlo
-*/
+     ht(h)     treated recipients in this simulation (can be a or b or both) / null/
+
+*     hc(h)     households in the camp / rrc, rrf/
+*     hnc(h)    households outside of the camp / rlo/
 *     hfood(h)     households getting inkind aid /rrf /
 *     hcash(h)    households getting cash aid    /rrc/
-*;
+;
 
 * accounts not in the matrix
 sets

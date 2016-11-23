@@ -51,6 +51,10 @@ Stata/madedata/
 Stata/temp/
 Stata/archives/
 GAMS/archives/
+**/*~*
+**/*.lst
+**/*.lxi
+**/*.log
 
 
 

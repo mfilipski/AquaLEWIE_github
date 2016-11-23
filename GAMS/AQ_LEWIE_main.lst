@@ -1,4 +1,4 @@
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/22/16 18:26:42 Page 1
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 12:52:24 Page 1
 MYANMAR AQUACULTURE LEWIE MODEL
 C o m p i l a t i o n
 
@@ -352,828 +352,831 @@ INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/2_Ma
  288   
  289  * household subsets
  290       ht(h)     treated recipients in this simulation (can be a or b or bot
-      h) / null
- 291  /
- 292  *     hc(h)     households in the camp / rrc, rrf
- 293  */
- 294  *     hnc(h)    households outside of the camp / rlo
- 295  */
- 296  *     hfood(h)     households getting inkind aid /rrf /
- 297  *     hcash(h)    households getting cash aid    /rrc/
- 298  *;
- 299   
- 300  * accounts not in the matrix
- 301  sets
- 302       v        villages / AQUA Aqua Cluster/
- 303   
- 304       maphv mapping household to their village / (AqFSm,AqFBg,AqAg).AQUA
- 305  /
- 306  ;
+      h) / null/
+ 291   
+ 292  *     hc(h)     households in the camp / rrc, rrf/
+ 293  *     hnc(h)    households outside of the camp / rlo/
+ 294  *     hfood(h)     households getting inkind aid /rrf /
+ 295  *     hcash(h)    households getting cash aid    /rrc/
+ 296  ;
+ 297   
+ 298  * accounts not in the matrix
+ 299  sets
+ 300       v        villages / AQUA Aqua Cluster/
+ 301   
+ 302       maphv mapping household to their village / (AqFSm,AqFBg,AqAg).AQUA
+ 303  /
+ 304  ;
+ 305   
+ 306  display g, f, h, fk, ft, ftv, ftz, ftw, gtv, gtz, gtw, gp, v, mapHv ;
  307   
- 308  display g, f, h, fk, ft, ftv, ftz, ftw, gtv, gtz, gtw, gp, v, mapHv ;
- 309   
- 310   
- 311  * ========================================================================
+ 308   
+ 309  * ========================================================================
+      ========================
+ 310  * ========================================================================
+      ========================
+ 311  * ========================= STEP 3 - MODEL   =============================
       ========================
  312  * ========================================================================
       ========================
- 313  * ========================= STEP 3 - MODEL   =============================
+ 313  * ========================================================================
       ========================
- 314  * ========================================================================
-      ========================
- 315  * ========================================================================
-      ========================
- 316   
+ 314   
 INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/3_Mo
            del.gms
- 318  * ========================================================================
+ 316  * ========================================================================
+      ========================
+ 317  * ========================================================================
+      ========================
+ 318  * ========================= STEP 2 - WRITE THE CORE MODEL ================
       ========================
  319  * ========================================================================
       ========================
- 320  * ========================= STEP 2 - WRITE THE CORE MODEL ================
+ 320  * ========================================================================
       ========================
- 321  * ========================================================================
-      ========================
- 322  * ========================================================================
-      ========================
- 323   
- 324   
- 325  * MODEL STARTS HERE
- 326  * ======================================================
- 327  * Now variables and parameters
- 328  * ---------------------------------
- 329  nonnegative variables
- 330  * production
- 331       QP(g,h)        quantity produced of a good by a household
- 332       FD(g,f,h)      factor demand of f in production of g
- 333       ID(g,gg,h)     intermediate demand for production of g
- 334       QVA(g,h)       quantity of value added created in the production proc
+ 321   
+ 322   
+ 323  * MODEL STARTS HERE
+ 324  * ======================================================
+ 325  * Now variables and parameters
+ 326  * ---------------------------------
+ 327  nonnegative variables
+ 328  * production
+ 329       QP(g,h)        quantity produced of a good by a household
+ 330       FD(g,f,h)      factor demand of f in production of g
+ 331       ID(g,gg,h)     intermediate demand for production of g
+ 332       QVA(g,h)       quantity of value added created in the production proc
       ess
- 335   
- 336       HFD(f,h)       factor demand in the household
- 337       UNEMP(f,h)     unemployment in the household
- 338       HFSUP(f,h)    labor supply from the household (elastic endowment)
- 339       VFD(f,v)       initial factor demand in the village
- 340       ZFD(f)         initial factor demand in the economy
- 341   
- 342       R(g,f,h)       rent for fixed factors
- 343       WV(f,v)        wage at the village level
- 344       WZ(f)          wage at the zoi level
- 345   
- 346  * consumption
- 347       QC(g,h)        quantity consumed of g by h
- 348       Y(h)           nominal household income
- 349       RY(h)          real household income
- 350       CPI(h)         consumer price index
- 351   
- 352  * values
- 353       PV(g,v)        price of a good at the village level
- 354       PZ(g)          price of a good at the zoi level
- 355       PH(g,h)        price as seen by household h (zoi or village price dep
+ 333   
+ 334       HFD(f,h)       factor demand in the household
+ 335       UNEMP(f,h)     unemployment in the household
+ 336       HFSUP(f,h)    labor supply from the household (elastic endowment)
+ 337       VFD(f,v)       initial factor demand in the village
+ 338       ZFD(f)         initial factor demand in the economy
+ 339   
+ 340       R(g,f,h)       rent for fixed factors
+ 341       WV(f,v)        wage at the village level
+ 342       WZ(f)          wage at the zoi level
+ 343   
+ 344  * consumption
+ 345       QC(g,h)        quantity consumed of g by h
+ 346       Y(h)           nominal household income
+ 347       RY(h)          real household income
+ 348       CPI(h)         consumer price index
+ 349   
+ 350  * values
+ 351       PV(g,v)        price of a good at the village level
+ 352       PZ(g)          price of a good at the zoi level
+ 353       PH(g,h)        price as seen by household h (zoi or village price dep
       ending on good)
- 356       PVA(g,h)       price of value added net of intermediate inputs as see
+ 354       PVA(g,h)       price of value added net of intermediate inputs as see
       n by the household
- 357   
- 358   
- 359  * transfers
- 360       TRIN(h)        tranfered in - received by a household
- 361       TROUT(h)       transfers out - given by a household
- 362       SAV(h)         household savings
- 363       EXPROC(h)      household expenditures out of the zoi
- 364  ;
- 365   
- 366  variables
- 367  * trade
- 368       HMS(g,h)  household marketed surplus of good g
- 369       VMS(g,v)  village marketed surplus of good g
- 370       ZMS(g)     ZOI marketed surplus of a good
- 371   
- 372       HFMS(f,h) factor marketed surplus from the household
- 373       VFMS(f,v) factor marketed surplus out of the village
- 374       ZFMS(f)   factor marketed surplus out of the zoi
- 375       USELESS   trick variable to make gams think it's maximising in the nl
+ 355   
+ 356   
+ 357  * transfers
+ 358       TRIN(h)        tranfered in - received by a household
+ 359       TROUT(h)       transfers out - given by a household
+ 360       SAV(h)         household savings
+ 361       EXPROC(h)      household expenditures out of the zoi
+ 362  ;
+ 363   
+ 364  variables
+ 365  * trade
+ 366       HMS(g,h)  household marketed surplus of good g
+ 367       VMS(g,v)  village marketed surplus of good g
+ 368       ZMS(g)     ZOI marketed surplus of a good
+ 369   
+ 370       HFMS(f,h) factor marketed surplus from the household
+ 371       VFMS(f,v) factor marketed surplus out of the village
+ 372       ZFMS(f)   factor marketed surplus out of the zoi
+ 373       USELESS   trick variable to make gams think it's maximising in the nl
       p
- 376  ;
- 377  USELESS.l = 1 ;
- 378   
- 379  parameters
- 380  *Production - Cobb-douglas
- 381       acobb(g,h) production shift parameter for the CD
- 382       shcobb(g,f,h) factor share parameter for the CD
- 383       vash(g,h) share of value added
- 384       idsh(gg,g,h) intermediate input share
- 385       tidsh(g,h) total intermediate input share (1-vash)
- 386   
- 387  *Consumption
- 388       alpha(g,h) consumption share parameters in the LES
- 389       cmin(g,h)  minimal consumption in the LES
- 390       exinc(h)   exogenous income of household
- 391       vmsfix(g,v) fixed marketed surplus at the village level
- 392       zmsfix(g)  fixed marketed surplus at the zoi level
- 393   
- 394  * factor endowments for fixed factors
- 395       fixfac(g,f,h) fixed factors
- 396       unempsh(f,h)  household's share of total unemployment
- 397       vfmsfix(f,v)  factors fixed at the Village level (family labor)
- 398       zfmsfix(f)    factors fixed at the zoi level (hired labor)
- 399       endow(f,h)    endowment of factors
- 400       hfsupzero(f,h) initial labor supply
- 401   
- 402  * Factor supply
- 403       hfsupel(f,h) factor supply elasticity from household
- 404   
- 405  * Budget for purchased inputs - if we want to have a constraint
- 406       pibudget(g,h) budget available for input purchases
- 407       pibsh(g,h)    share of total pibudget going to good g
- 408   
- 409  * Transfers
- 410       troutsh(h) share of transfers in the households expenditures
- 411       exprocsh(h)  share of expenditures outside of the zoi
- 412       savsh(h)  share of income saved
- 413       trinsh(h) share of total transfers received by a given household
- 414   
- 415  * Experiment (either directly in cash or in kind)
- 416       newremits(h) new remittances received by a new refugee
- 417       infood(h)   transfer received in-kind
- 418       incash(h)   transfer received in cash
- 419       transfer(h) effective value of transfer as perceived by the household
- 420       packsold(g) quantity of in-kind package sold on the market (increase 
+ 374  ;
+ 375  USELESS.l = 1 ;
+ 376   
+ 377  parameters
+ 378  *Production - Cobb-douglas
+ 379       acobb(g,h) production shift parameter for the CD
+ 380       shcobb(g,f,h) factor share parameter for the CD
+ 381       vash(g,h) share of value added
+ 382       idsh(gg,g,h) intermediate input share
+ 383       tidsh(g,h) total intermediate input share (1-vash)
+ 384   
+ 385  *Consumption
+ 386       alpha(g,h) consumption share parameters in the LES
+ 387       cmin(g,h)  minimal consumption in the LES
+ 388       exinc(h)   exogenous income of household
+ 389       vmsfix(g,v) fixed marketed surplus at the village level
+ 390       zmsfix(g)  fixed marketed surplus at the zoi level
+ 391   
+ 392  * factor endowments for fixed factors
+ 393       fixfac(g,f,h) fixed factors
+ 394       unempsh(f,h)  household's share of total unemployment
+ 395       vfmsfix(f,v)  factors fixed at the Village level (family labor)
+ 396       zfmsfix(f)    factors fixed at the zoi level (hired labor)
+ 397       endow(f,h)    endowment of factors
+ 398       hfsupzero(f,h) initial labor supply
+ 399   
+ 400  * Factor supply
+ 401       hfsupel(f,h) factor supply elasticity from household
+ 402   
+ 403  * Budget for purchased inputs - if we want to have a constraint
+ 404       pibudget(g,h) budget available for input purchases
+ 405       pibsh(g,h)    share of total pibudget going to good g
+ 406   
+ 407  * Transfers
+ 408       troutsh(h) share of transfers in the households expenditures
+ 409       exprocsh(h)  share of expenditures outside of the zoi
+ 410       savsh(h)  share of income saved
+ 411       trinsh(h) share of total transfers received by a given household
+ 412   
+ 413  * Experiment (either directly in cash or in kind)
+ 414       newremits(h) new remittances received by a new refugee
+ 415       infood(h)   transfer received in-kind
+ 416       incash(h)   transfer received in cash
+ 417       transfer(h) effective value of transfer as perceived by the household
+ 418       packsold(g) quantity of in-kind package sold on the market (increase 
       village supply)
- 421       hfsnewref(ft,h) new refugees factor (labor) supply
- 422       wfpcost(h)  cost of the transfer to WFP (cash or kind)
- 423  ;
- 424   
- 425  Equations
- 426  * prices
- 427       EQ_PVA(g,h)         prive value added equation
- 428       EQ_PH(g,h)          market price as seen from household h
- 429   
- 430  * production
- 431       EQ_FDCOBB(g,f,h)    factor demands cobb douglas
- 432       EQ_FDPURCH(g,f,h)   factor demands for purchased inputs - constrained
+ 419       hfsnewref(ft,h) new refugees factor (labor) supply
+ 420       wfpcost(h)  cost of the transfer to WFP (cash or kind)
+ 421  ;
+ 422   
+ 423  Equations
+ 424  * prices
+ 425       EQ_PVA(g,h)         prive value added equation
+ 426       EQ_PH(g,h)          market price as seen from household h
+ 427   
+ 428  * production
+ 429       EQ_FDCOBB(g,f,h)    factor demands cobb douglas
+ 430       EQ_FDPURCH(g,f,h)   factor demands for purchased inputs - constrained
        or not
- 433       EQ_QVACOBB(g,h)     quantity VA produced cobb douglas
- 434       EQ_QP(g,h)          quantity produced from QVA and ID
- 435       EQ_ID(gg,g,h)       quantity of ID needed for QP
- 436   
- 437  * consumption
- 438       EQ_QC(g,h)          quantity consumed
- 439   
- 440  * income
- 441       EQ_Y(h)             full income constraint for the household
- 442       EQ_CPI(h)           consumer price index equation
- 443       EQ_RY(h)            real household income equation
- 444   
- 445  * transfers
- 446       EQ_TRIN(h)          inter household transfers in (received)
- 447       EQ_TROUT(h)         interhousehold transfers out (given)
- 448   
- 449  * exogenous expenditures
- 450       EQ_SAV(h)           savings (exogenous rate)
- 451       EQ_EXPROC(h)        expenditures outside of the zoi (exogenous rate)
- 452   
- 453  * goods market clearing
- 454       EQ_HMKT(g,h)        qty clearing in each household
- 455       EQ_VMKT(g,v)        market clearing in the village
- 456       EQ_ZMKT(g)          market clearing in the zoi
- 457       EQ_VMKTfix(g,v)     price definition in the village
- 458       EQ_ZMKTfix(g)       price definition in the zoi
- 459   
- 460  * factor market clearing
- 461       EQ_HFD(f,h)         total household demand for a given factor
- 462       EQ_FCSTR(g,f,h)     fixed factors constraint
- 463       EQ_HFSUP(f,h)       household elastic supply
- 464       EQ_HFMKT(f,h)       tradable factor clearing in the household
- 465       EQ_VFMKT(f,v)       tradable factors clearing in the village
- 466       EQ_ZFMKT(f)         tradable factor clearing in the zoi
- 467       EQ_VFMKTfix(f,v)    wage determination for tradable factors clearing 
+ 431       EQ_QVACOBB(g,h)     quantity VA produced cobb douglas
+ 432       EQ_QP(g,h)          quantity produced from QVA and ID
+ 433       EQ_ID(gg,g,h)       quantity of ID needed for QP
+ 434   
+ 435  * consumption
+ 436       EQ_QC(g,h)          quantity consumed
+ 437   
+ 438  * income
+ 439       EQ_Y(h)             full income constraint for the household
+ 440       EQ_CPI(h)           consumer price index equation
+ 441       EQ_RY(h)            real household income equation
+ 442   
+ 443  * transfers
+ 444       EQ_TRIN(h)          inter household transfers in (received)
+ 445       EQ_TROUT(h)         interhousehold transfers out (given)
+ 446   
+ 447  * exogenous expenditures
+ 448       EQ_SAV(h)           savings (exogenous rate)
+ 449       EQ_EXPROC(h)        expenditures outside of the zoi (exogenous rate)
+ 450   
+ 451  * goods market clearing
+ 452       EQ_HMKT(g,h)        qty clearing in each household
+ 453       EQ_VMKT(g,v)        market clearing in the village
+ 454       EQ_ZMKT(g)          market clearing in the zoi
+ 455       EQ_VMKTfix(g,v)     price definition in the village
+ 456       EQ_ZMKTfix(g)       price definition in the zoi
+ 457   
+ 458  * factor market clearing
+ 459       EQ_HFD(f,h)         total household demand for a given factor
+ 460       EQ_FCSTR(g,f,h)     fixed factors constraint
+ 461       EQ_HFSUP(f,h)       household elastic supply
+ 462       EQ_HFMKT(f,h)       tradable factor clearing in the household
+ 463       EQ_VFMKT(f,v)       tradable factors clearing in the village
+ 464       EQ_ZFMKT(f)         tradable factor clearing in the zoi
+ 465       EQ_VFMKTfix(f,v)    wage determination for tradable factors clearing 
       in the village
- 468       EQ_ZFMKTfix(f)      wage determination for tradable factors clearing 
+ 466       EQ_ZFMKTfix(f)      wage determination for tradable factors clearing 
       in the zoi
- 469   
- 470   
- 471  * In case of nlp solve
- 472       EQ_USELESS          trick to make gams think it's maximizing somethin
+ 467   
+ 468   
+ 469  * In case of nlp solve
+ 470       EQ_USELESS          trick to make gams think it's maximizing somethin
       g
- 473  ;
- 474   
+ 471  ;
+ 472   
+ 473  *=========================================================================
+      ====================
+ 474  *==================== MODEL STATEMENT ====================================
+      ====================
  475  *=========================================================================
       ====================
- 476  *==================== MODEL STATEMENT ====================================
-      ====================
- 477  *=========================================================================
-      ====================
- 478   
- 479  * PRICE BLOCK
- 480  EQ_PH(g,h)..
- 481       PH(g,h) =E= PZ(g)$(gtz(g)+gtw(g)) + sum(v$maphv(h,v),PV(g,v))$gtv(g) 
+ 476   
+ 477  * PRICE BLOCK
+ 478  EQ_PH(g,h)..
+ 479       PH(g,h) =E= PZ(g)$(gtz(g)+gtw(g)) + sum(v$maphv(h,v),PV(g,v))$gtv(g) 
       ;
- 482   
- 483  EQ_PVA(g,h)..
- 484       PVA(g,h) =E= PH(g,h)- sum(gg,idsh(gg,g,h)*PH(gg,h)) ;
- 485   
- 486  * PRODUCTION BLOCK
- 487  EQ_QVACOBB(g,h)..
- 488       QVA(g,h) =E= acobb(g,h)*prod(f,FD(g,f,h)**(shcobb(g,f,h)))
- 489  ;
- 490   
- 491  EQ_FDCOBB(g,f,h)$(not fpurch(f))..
- 492       FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),
+ 480   
+ 481  EQ_PVA(g,h)..
+ 482       PVA(g,h) =E= PH(g,h)- sum(gg,idsh(gg,g,h)*PH(gg,h)) ;
+ 483   
+ 484  * PRODUCTION BLOCK
+ 485  EQ_QVACOBB(g,h)..
+ 486       QVA(g,h) =E= acobb(g,h)*prod(f,FD(g,f,h)**(shcobb(g,f,h)))
+ 487  ;
+ 488   
+ 489  EQ_FDCOBB(g,f,h)$(not fpurch(f))..
+ 490       FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),
       WV(f,v))$ftv(f) )
- 493        =E= PVA(g,h)*QP(g,h)*shcobb(g,f,h)
- 494  ;
- 495   
- 496  * If the dummy is 0 the FD of purchased inputs is of the same form as all 
+ 491        =E= PVA(g,h)*QP(g,h)*shcobb(g,f,h)
+ 492  ;
+ 493   
+ 494  * If the dummy is 0 the FD of purchased inputs is of the same form as all 
       other factors
- 497  * If the dummy is 1 then the FD is limited by the budget constraint
- 498  EQ_FDPURCH(g,f,h)$fpurch(f)..
- 499       FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),
+ 495  * If the dummy is 1 then the FD is limited by the budget constraint
+ 496  EQ_FDPURCH(g,f,h)$fpurch(f)..
+ 497       FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),
       WV(f,v))$ftv(f))
- 500        =E= (PVA(g,h)*QP(g,h)*shcobb(g,f,h))$(0 = 0)
- 501           +(pibudget(g,h))$(0 = 1)
- 502  ;
- 503   
- 504   
- 505  EQ_QP(g,h)$vash(g,h)..
- 506       QP(g,h) =E= QVA(g,h)/vash(g,h) ;
- 507   
- 508  EQ_ID(gg,g,h)..
- 509       ID(gg,g,h) =E= QP(g,h)*idsh(gg,g,h)
- 510  ;
- 511   
- 512  * CONSUMPTION AND INCOME
- 513  EQ_QC(g,h)..
- 514       QC(g,h) =E= alpha(g,h)/PH(g,h)*[(Y(h)-TROUT(h)-SAV(h)-EXPROC(h))-sum(
+ 498        =E= (PVA(g,h)*QP(g,h)*shcobb(g,f,h))$(0 = 0)
+ 499           +(pibudget(g,h))$(0 = 1)
+ 500  ;
+ 501   
+ 502   
+ 503  EQ_QP(g,h)$vash(g,h)..
+ 504       QP(g,h) =E= QVA(g,h)/vash(g,h) ;
+ 505   
+ 506  EQ_ID(gg,g,h)..
+ 507       ID(gg,g,h) =E= QP(g,h)*idsh(gg,g,h)
+ 508  ;
+ 509   
+ 510  * CONSUMPTION AND INCOME
+ 511  EQ_QC(g,h)..
+ 512       QC(g,h) =E= alpha(g,h)/PH(g,h)*[(Y(h)-TROUT(h)-SAV(h)-EXPROC(h))-sum(
       gg, PH(gg,h)*cmin(gg,h))] + cmin(g,h)
- 515  ;
- 516   
- 517  * Full income (value of factor endowments)
- 518  EQ_Y(h)..
- 519       Y(h) =E= sum((g,fk),R(g,fk,h)*FD(g,fk,h))
- 520              + sum(ftz, WZ(ftz)*HFSUP(ftz,h))
- 521              + sum(ftv, sum(v$maphv(h,v), WV(ftv,v))*HFSUP(ftv,h))
- 522              + sum(ftw, WZ(ftw)*HFSUP(ftw,h))
- 523              + exinc(h)
- 524  ;
- 525   
- 526  EQ_CPI(h)..
- 527  *     CPI(h) =e= sum(g,PH(g,h)*alpha(g,h))
- 528       CPI(h) =e= sum(g,PH(g,h)*[PH(g,h)*QC(g,h)/Y(h)])
- 529                      +1*troutsh(h)+savsh(h)+exprocsh(h) ;
- 530  ;
- 531   
- 532  EQ_RY(h)..
- 533       RY(h) =e= Y(h) / CPI(h)
- 534  ;
- 535   
- 536  * Transfers given away - exogenous in this version of the model
- 537  EQ_TROUT(h)..
- 538       TROUT(h) =E= troutsh(h)*Y(h) ;
- 539  ;
- 540   
- 541  EQ_SAV(h)..
- 542       SAV(h) =E= savsh(h)*Y(h) ;
- 543  ;
- 544  EQ_EXPROC(h)..
- 545       EXPROC(h) =E= exprocsh(h)*Y(h) ;
- 546  ;
- 547   
- 548  * MARKET CLEARING FOR GOODS
- 549  EQ_HMKT(g,h)..
- 550       HMS(g,h) =E= QP(g,h)$vash(g,h) - QC(g,h) - sum(gg,ID(g,gg,h)) ;
- 551   
- 552  EQ_VMKT(g,v)..
- 553       VMS(g,v) =E= sum(h$maphv(h,v),HMS(g,h)) + packsold(g) ;
- 554  ;
- 555   
- 556  EQ_ZMKT(g)..
- 557       ZMS(g) =E= sum(v, VMS(g,v))
- 558  ;
- 559   
- 560  EQ_VMKTfix(gtv,v)..
- 561       VMS(gtv,v) =E= vmsfix(gtv,v)
- 562  ;
- 563   
- 564  EQ_ZMKTfix(gtz)..
- 565       ZMS(gtz) =E= zmsfix(gtz)
- 566  ;
- 567   
- 568  * FACTOR MARKET CLEARING
- 569  EQ_HFD(f,h)..
- 570       HFD(f,h) =e= sum(g, FD(g,f,h))
- 571  ;
- 572   
- 573  EQ_FCSTR(g,fk,h)..
- 574       FD(g,fk,h) =E= fixfac(g,fk,h)
- 575  ;
- 576   
- 577  EQ_HFMKT(ft,h)..
- 578       HFMS(ft,h) =E= HFSUP(ft,h) - sum(g, FD(g,ft,h))
- 579  ;
- 580   
- 581  EQ_HFSUP(ft,h)..
- 582       HFSUP(ft,h)$(not hfsupzero(ft,h))
- 583       +
- 584  * Choose v1 or v2
- 585  *     (HFSUP(ft,h)/(hfsupzero(ft,h)) - hfsnewref(ft,h)/(hfsupzero(ft,h)) -
+ 513  ;
+ 514   
+ 515  * Full income (value of factor endowments)
+ 516  EQ_Y(h)..
+ 517       Y(h) =E= sum((g,fk),R(g,fk,h)*FD(g,fk,h))
+ 518              + sum(ftz, WZ(ftz)*HFSUP(ftz,h))
+ 519              + sum(ftv, sum(v$maphv(h,v), WV(ftv,v))*HFSUP(ftv,h))
+ 520              + sum(ftw, WZ(ftw)*HFSUP(ftw,h))
+ 521              + exinc(h)
+ 522  ;
+ 523   
+ 524  EQ_CPI(h)..
+ 525  *     CPI(h) =e= sum(g,PH(g,h)*alpha(g,h))
+ 526       CPI(h) =e= sum(g,PH(g,h)*[PH(g,h)*QC(g,h)/Y(h)])
+ 527                      +1*troutsh(h)+savsh(h)+exprocsh(h) ;
+ 528  ;
+ 529   
+ 530  EQ_RY(h)..
+ 531       RY(h) =e= Y(h) / CPI(h)
+ 532  ;
+ 533   
+ 534  * Transfers given away - exogenous in this version of the model
+ 535  EQ_TROUT(h)..
+ 536       TROUT(h) =E= troutsh(h)*Y(h) ;
+ 537  ;
+ 538   
+ 539  EQ_SAV(h)..
+ 540       SAV(h) =E= savsh(h)*Y(h) ;
+ 541  ;
+ 542  EQ_EXPROC(h)..
+ 543       EXPROC(h) =E= exprocsh(h)*Y(h) ;
+ 544  ;
+ 545   
+ 546  * MARKET CLEARING FOR GOODS
+ 547  EQ_HMKT(g,h)..
+ 548       HMS(g,h) =E= QP(g,h)$vash(g,h) - QC(g,h) - sum(gg,ID(g,gg,h)) ;
+ 549   
+ 550  EQ_VMKT(g,v)..
+ 551       VMS(g,v) =E= sum(h$maphv(h,v),HMS(g,h)) + packsold(g) ;
+ 552  ;
+ 553   
+ 554  EQ_ZMKT(g)..
+ 555       ZMS(g) =E= sum(v, VMS(g,v))
+ 556  ;
+ 557   
+ 558  EQ_VMKTfix(gtv,v)..
+ 559       VMS(gtv,v) =E= vmsfix(gtv,v)
+ 560  ;
+ 561   
+ 562  EQ_ZMKTfix(gtz)..
+ 563       ZMS(gtz) =E= zmsfix(gtz)
+ 564  ;
+ 565   
+ 566  * FACTOR MARKET CLEARING
+ 567  EQ_HFD(f,h)..
+ 568       HFD(f,h) =e= sum(g, FD(g,f,h))
+ 569  ;
+ 570   
+ 571  EQ_FCSTR(g,fk,h)..
+ 572       FD(g,fk,h) =E= fixfac(g,fk,h)
+ 573  ;
+ 574   
+ 575  EQ_HFMKT(ft,h)..
+ 576       HFMS(ft,h) =E= HFSUP(ft,h) - sum(g, FD(g,ft,h))
+ 577  ;
+ 578   
+ 579  EQ_HFSUP(ft,h)..
+ 580       HFSUP(ft,h)$(not hfsupzero(ft,h))
+ 581       +
+ 582  * Choose v1 or v2
+ 583  *     (HFSUP(ft,h)/(hfsupzero(ft,h)) - hfsnewref(ft,h)/(hfsupzero(ft,h)) -
        [sum(v$maphv(h,v),WV(ft,v)**hfsupel(ft,h))$ftv(ft)
- 586       (HFSUP(ft,h)/(hfsupzero(ft,h)+hfsnewref(ft,h))  - [sum(v$maphv(h,v),W
+ 584       (HFSUP(ft,h)/(hfsupzero(ft,h)+hfsnewref(ft,h))  - [sum(v$maphv(h,v),W
       V(ft,v)**hfsupel(ft,h))$ftv(ft)
- 587                                      + (WZ(ft)**hfsupel(ft,h))$(ftz(ft)+ftw
+ 585                                      + (WZ(ft)**hfsupel(ft,h))$(ftz(ft)+ftw
       (ft))] )$hfsupzero(ft,h)
- 588       =e= 0
- 589  ;
- 590   
- 591  EQ_VFMKT(ft,v)..
- 592       VFMS(ft,v) =E= sum(h$maphv(h,v), HFMS(ft,h))
- 593  ;
- 594   
- 595  EQ_ZFMKT(ft)..
- 596       sum(v, VFMS(ft,v)) =E= ZFMS(ft)
- 597  ;
- 598   
- 599  * FACTOR WAGE DETERMINATION
- 600  EQ_VFMKTFIX(ftv,v)..
- 601       VFMS(ftv,v) =E= vfmsfix(ftv,v)
- 602  ;
- 603   
- 604  EQ_ZFMKTFIX(ftz)..
- 605       ZFMS(ftz) =E= zfmsfix(ftz)
- 606  ;
- 607   
- 608  * In case of NLP solve:
- 609  EQ_USELESS..
- 610       USELESS =e= 1 ;
+ 586       =e= 0
+ 587  ;
+ 588   
+ 589  EQ_VFMKT(ft,v)..
+ 590       VFMS(ft,v) =E= sum(h$maphv(h,v), HFMS(ft,h))
+ 591  ;
+ 592   
+ 593  EQ_ZFMKT(ft)..
+ 594       sum(v, VFMS(ft,v)) =E= ZFMS(ft)
+ 595  ;
+ 596   
+ 597  * FACTOR WAGE DETERMINATION
+ 598  EQ_VFMKTFIX(ftv,v)..
+ 599       VFMS(ftv,v) =E= vfmsfix(ftv,v)
+ 600  ;
+ 601   
+ 602  EQ_ZFMKTFIX(ftz)..
+ 603       ZFMS(ftz) =E= zfmsfix(ftz)
+ 604  ;
+ 605   
+ 606  * In case of NLP solve:
+ 607  EQ_USELESS..
+ 608       USELESS =e= 1 ;
+ 609   
+ 610   
  611   
- 612   
- 613   
+ 612  *-------------------------------------------------------------------------
+      ------------------------
+ 613  *--------------------------------------- ALTERNATIVE MODELS --------------
+      ------------------------
  614  *-------------------------------------------------------------------------
       ------------------------
- 615  *--------------------------------------- ALTERNATIVE MODELS --------------
-      ------------------------
- 616  *-------------------------------------------------------------------------
-      ------------------------
- 617   
- 618  model genCD Model with Cobb Douglas production /
- 619  EQ_PVA.PVA
- 620  EQ_PH.PH
- 621  EQ_QVACOBB.QVA
- 622  EQ_FDCOBB.FD
- 623  EQ_FDPURCH.FD
- 624  EQ_QP.QP
- 625  EQ_ID.ID
- 626  EQ_QC.QC
- 627  EQ_Y.Y
- 628  EQ_HMKT.HMS
- 629  EQ_VMKT.VMS
- 630  EQ_ZMKT.ZMS
- 631  EQ_VMKTfix.PV
- 632  EQ_ZMKTfix.PZ
- 633  EQ_HFD.HFD
- 634  EQ_FCSTR.R
- 635  EQ_HFMKT.HFMS
- 636  EQ_VFMKT.VFMS
- 637  EQ_ZFMKT.ZFMS
- 638  EQ_VFMKTfix.WV
- 639  EQ_ZFMKTfix.WZ
- 640  EQ_TROUT.TROUT
- 641  EQ_SAV.SAV
- 642  EQ_EXPROC.EXPROC
- 643   
- 644  * elastic factor supply from the household
- 645  EQ_HFSUP.HFSUP
- 646  EQ_CPI.CPI
- 647  EQ_RY.RY
- 648  /;
- 649   
- 650   
- 651  model genCDnlp Model with Cobb Douglas production /
- 652  EQ_PVA
- 653  EQ_PH
- 654  EQ_QVACOBB
- 655  EQ_FDCOBB
- 656  EQ_FDPURCH
- 657  EQ_QP
- 658  EQ_ID
- 659  EQ_QC
- 660  EQ_Y
- 661  EQ_HMKT
- 662  EQ_VMKT
- 663  EQ_ZMKT
- 664  EQ_VMKTfix
- 665  EQ_ZMKTfix
- 666  EQ_HFD
- 667  EQ_FCSTR
- 668  EQ_HFMKT
- 669  EQ_VFMKT
- 670  EQ_ZFMKT
- 671  EQ_VFMKTfix
- 672  EQ_ZFMKTfix
- 673  EQ_TROUT
- 674  EQ_SAV
- 675  EQ_EXPROC
- 676  * elastic factor supply from the household
- 677  EQ_HFSUP
- 678  EQ_USELESS
- 679  EQ_CPI
- 680  EQ_RY
- 681  /;
- 682   
- 683   
- 684  * ========================================================================
+ 615   
+ 616  model genCD Model with Cobb Douglas production /
+ 617  EQ_PVA.PVA
+ 618  EQ_PH.PH
+ 619  EQ_QVACOBB.QVA
+ 620  EQ_FDCOBB.FD
+ 621  EQ_FDPURCH.FD
+ 622  EQ_QP.QP
+ 623  EQ_ID.ID
+ 624  EQ_QC.QC
+ 625  EQ_Y.Y
+ 626  EQ_HMKT.HMS
+ 627  EQ_VMKT.VMS
+ 628  EQ_ZMKT.ZMS
+ 629  EQ_VMKTfix.PV
+ 630  EQ_ZMKTfix.PZ
+ 631  EQ_HFD.HFD
+ 632  EQ_FCSTR.R
+ 633  EQ_HFMKT.HFMS
+ 634  EQ_VFMKT.VFMS
+ 635  EQ_ZFMKT.ZFMS
+ 636  EQ_VFMKTfix.WV
+ 637  EQ_ZFMKTfix.WZ
+ 638  EQ_TROUT.TROUT
+ 639  EQ_SAV.SAV
+ 640  EQ_EXPROC.EXPROC
+ 641   
+ 642  * elastic factor supply from the household
+ 643  EQ_HFSUP.HFSUP
+ 644  EQ_CPI.CPI
+ 645  EQ_RY.RY
+ 646  /;
+ 647   
+ 648   
+ 649  model genCDnlp Model with Cobb Douglas production /
+ 650  EQ_PVA
+ 651  EQ_PH
+ 652  EQ_QVACOBB
+ 653  EQ_FDCOBB
+ 654  EQ_FDPURCH
+ 655  EQ_QP
+ 656  EQ_ID
+ 657  EQ_QC
+ 658  EQ_Y
+ 659  EQ_HMKT
+ 660  EQ_VMKT
+ 661  EQ_ZMKT
+ 662  EQ_VMKTfix
+ 663  EQ_ZMKTfix
+ 664  EQ_HFD
+ 665  EQ_FCSTR
+ 666  EQ_HFMKT
+ 667  EQ_VFMKT
+ 668  EQ_ZFMKT
+ 669  EQ_VFMKTfix
+ 670  EQ_ZFMKTfix
+ 671  EQ_TROUT
+ 672  EQ_SAV
+ 673  EQ_EXPROC
+ 674  * elastic factor supply from the household
+ 675  EQ_HFSUP
+ 676  EQ_USELESS
+ 677  EQ_CPI
+ 678  EQ_RY
+ 679  /;
+ 680   
+ 681   
+ 682  * ========================================================================
+      ========================
+ 683  * ========================================================================
+      ========================
+ 684  * ========================= STEP 4 - CALIBRATION  ========================
       ========================
  685  * ========================================================================
       ========================
- 686  * ========================= STEP 4 - CALIBRATION  ========================
+ 686  * ========================================================================
       ========================
- 687  * ========================================================================
-      ========================
- 688  * ========================================================================
-      ========================
- 689   
+ 687   
 INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/4a_D
            efineAllParameters.gms
- 691  * ========================================================================
+ 689  * ========================================================================
+      ========================
+ 690  * ========================================================================
+      ========================
+ 691  * ====================== STEP 4 - CALIBRATE THE MODEL  ===================
       ========================
  692  * ========================================================================
       ========================
- 693  * ====================== STEP 4 - CALIBRATE THE MODEL  ===================
+ 693  * ========================================================================
       ========================
- 694  * ========================================================================
-      ========================
- 695  * ========================================================================
-      ========================
- 696   
- 697   
- 698  parameter
- 699  * meta-parameters with parameter draws
- 700  fshare_t(g,f,h,draw)  unscaled draw the cobb-douglas factor shares
- 701  eshare_t(g,h,draw)    unscaled draw of expenditure shares
- 702   
- 703  * drawn parameters:
- 704  pv_dr(g,v,draw)       drawn or computed from draw price at village level
- 705  pz_dr(g,draw)         drawn or computed from draw price at zoi level
- 706  ph_dr(g,h,draw)       drawn or computed from draw price as seen from house
+ 694   
+ 695   
+ 696  parameter
+ 697  * meta-parameters with parameter draws
+ 698  fshare_t(g,f,h,draw)  unscaled draw the cobb-douglas factor shares
+ 699  eshare_t(g,h,draw)    unscaled draw of expenditure shares
+ 700   
+ 701  * drawn parameters:
+ 702  pv_dr(g,v,draw)       drawn or computed from draw price at village level
+ 703  pz_dr(g,draw)         drawn or computed from draw price at zoi level
+ 704  ph_dr(g,h,draw)       drawn or computed from draw price as seen from house
       hold
- 707  pva_dr(g,h,draw)      drawn or computed from draw price of value added
- 708  qva_dr(g,h,draw)      drawn or computed from draw quantity of value added
- 709  qp_dr(g,h,draw)       drawn or computed from draw quantity produced
- 710  tqp_dr(g,draw)        drawn or computed total qty produced in the zoi
- 711  ttqp_dr(draw)         drawn or computed total output of the zoi
- 712  fd_dr(g,f,h,draw)     drawn or computed from draw factor demand
- 713  id_dr(g,gg,h,draw)    drawn or computed from draw intermediate demand
- 714  pshift_dr(g,h,draw)   drawn or computed from draw cobb-douglas production 
+ 705  pva_dr(g,h,draw)      drawn or computed from draw price of value added
+ 706  qva_dr(g,h,draw)      drawn or computed from draw quantity of value added
+ 707  qp_dr(g,h,draw)       drawn or computed from draw quantity produced
+ 708  tqp_dr(g,draw)        drawn or computed total qty produced in the zoi
+ 709  ttqp_dr(draw)         drawn or computed total output of the zoi
+ 710  fd_dr(g,f,h,draw)     drawn or computed from draw factor demand
+ 711  id_dr(g,gg,h,draw)    drawn or computed from draw intermediate demand
+ 712  pshift_dr(g,h,draw)   drawn or computed from draw cobb-douglas production 
       shifter
- 715  fshare_dr(g,f,h,draw) drawn or computed from draw cobb-douglas factor shar
+ 713  fshare_dr(g,f,h,draw) drawn or computed from draw cobb-douglas factor shar
       es
- 716  r_dr(g,f,h,draw)      drawn or computed from draw rent for fixed factors
- 717  wv_dr(f,v,draw)       drawn or computed from draw village-wide wage for tr
+ 714  r_dr(g,f,h,draw)      drawn or computed from draw rent for fixed factors
+ 715  wv_dr(f,v,draw)       drawn or computed from draw village-wide wage for tr
       adable factors
- 718  wz_dr(f,draw)         drawn or computed from draw zoi-wide wage for tradab
+ 716  wz_dr(f,draw)         drawn or computed from draw zoi-wide wage for tradab
       le factors
- 719  vash_dr(g,h,draw)     drawn or computed from draw value-added share
- 720  idsh_dr(gg,g,h,draw)  drawn or computed from draw intermediate demand shar
+ 717  vash_dr(g,h,draw)     drawn or computed from draw value-added share
+ 718  idsh_dr(gg,g,h,draw)  drawn or computed from draw intermediate demand shar
       e
- 721  tidsh_dr(gg,h,draw)   drawn or computed from draw total intermediate input
+ 719  tidsh_dr(gg,h,draw)   drawn or computed from draw total intermediate input
        share (1-vash)
- 722  fixfac_dr(g,f,h,draw) drawn or computed from draw fixed factor demand
- 723  unemp_dr(f,h,draw)    drawn or computed from draw unemployment
- 724  unempsh_dr(f,h,draw)  drawn or computed from draw hh share of total unempl
+ 720  fixfac_dr(g,f,h,draw) drawn or computed from draw fixed factor demand
+ 721  unemp_dr(f,h,draw)    drawn or computed from draw unemployment
+ 722  unempsh_dr(f,h,draw)  drawn or computed from draw hh share of total unempl
       oyment
- 725  vfmsfix_dr(f,v,draw)  drawn or computed from draw factors fixed at the Vil
+ 723  vfmsfix_dr(f,v,draw)  drawn or computed from draw factors fixed at the Vil
       lage level
- 726  zfmsfix_dr(f,draw)    drawn or computed from draw factors fixed at the zoi
+ 724  zfmsfix_dr(f,draw)    drawn or computed from draw factors fixed at the zoi
        level
- 727  vmsfix_dr(g,v,draw)   drawn or computed from draw goods fixed at the Villa
+ 725  vmsfix_dr(g,v,draw)   drawn or computed from draw goods fixed at the Villa
       ge level
- 728  zmsfix_dr(g,draw)     drawn or computed from draw goods fixed at the zoi l
+ 726  zmsfix_dr(g,draw)     drawn or computed from draw goods fixed at the zoi l
       evel
- 729   
- 730  exinc_dr(h,draw)      drawn or computed from draw exogenous income
- 731  endow_dr(f,h,draw)    drawn or computed from draw endowment
- 732  qc_dr(g,h,draw)       drawn or computed from draw level of consumption
- 733  tqc_dr(g,draw)        drawn or computed from draw total qc
- 734  alpha_dr(g,h,draw)    drawn or computed from draw consumption shares
- 735  y_dr(h,draw)          drawn or computed from draw nominal hh income
- 736  cpi_dr(h,draw)        drawn or computed from draw consumer price index of 
+ 727   
+ 728  exinc_dr(h,draw)      drawn or computed from draw exogenous income
+ 729  endow_dr(f,h,draw)    drawn or computed from draw endowment
+ 730  qc_dr(g,h,draw)       drawn or computed from draw level of consumption
+ 731  tqc_dr(g,draw)        drawn or computed from draw total qc
+ 732  alpha_dr(g,h,draw)    drawn or computed from draw consumption shares
+ 733  y_dr(h,draw)          drawn or computed from draw nominal hh income
+ 734  cpi_dr(h,draw)        drawn or computed from draw consumer price index of 
       hh
- 737  ry_dr(h,draw)         drawn or computed from draw real hh income
- 738  cmin_dr(g,h,draw)     drawn or computed from draw incompressible demand
- 739  trin_dr(h,draw)       drawn or computed from draw transfers in - received
- 740  trout_dr(h,draw)      drawn or computed from draw transfers out - given
- 741  trinsh_dr(h,draw)     drawn or computed from draw share of all transfers i
+ 735  ry_dr(h,draw)         drawn or computed from draw real hh income
+ 736  cmin_dr(g,h,draw)     drawn or computed from draw incompressible demand
+ 737  trin_dr(h,draw)       drawn or computed from draw transfers in - received
+ 738  trout_dr(h,draw)      drawn or computed from draw transfers out - given
+ 739  trinsh_dr(h,draw)     drawn or computed from draw share of all transfers i
       n the eco going to h
- 742  troutsh_dr(h,draw)    drawn or computed from draw share of yousehold h's i
+ 740  troutsh_dr(h,draw)    drawn or computed from draw share of yousehold h's i
       ncome being given as transfers
- 743  hfd_dr(f,h,draw)      drawn or computed from draw factor demand of househo
+ 741  hfd_dr(f,h,draw)      drawn or computed from draw factor demand of househo
       ld h for factor f
- 744  vfd_dr(f,v,draw)      drawn or computed from draw village demand for facto
+ 742  vfd_dr(f,v,draw)      drawn or computed from draw village demand for facto
       r f
- 745  zfd_dr(f,draw)        drawn or computed from draw zoi demand for factor f
- 746  hms_dr(g,h,draw)      drawn or computed from draw household marketed surpl
+ 743  zfd_dr(f,draw)        drawn or computed from draw zoi demand for factor f
+ 744  hms_dr(g,h,draw)      drawn or computed from draw household marketed surpl
       us of good g
- 747  vms_dr(g,v,draw)      drawn or computed from draw village marketed surplus
+ 745  vms_dr(g,v,draw)      drawn or computed from draw village marketed surplus
        of good g
- 748  zms_dr(g,draw)        drawn or computed from draw household marketed surpl
+ 746  zms_dr(g,draw)        drawn or computed from draw household marketed surpl
       us of good g
- 749  hfms_dr(f,h,draw)     drawn or computed from draw household factor markete
+ 747  hfms_dr(f,h,draw)     drawn or computed from draw household factor markete
       d surplus
- 750  vfms_dr(f,v,draw)     drawn or computed from draw village factor marketed 
+ 748  vfms_dr(f,v,draw)     drawn or computed from draw village factor marketed 
       surplus
- 751  zfms_dr(f,draw)       drawn or computed from draw zoi factor marketed surp
+ 749  zfms_dr(f,draw)       drawn or computed from draw zoi factor marketed surp
       lus
- 752   
- 753  savsh_dr(h,draw)      drawn or computed savings rate
- 754  sav_dr(h,draw)        drawn or computed savings level
- 755  exprocsh_dr(h,draw)   drawn or computed outside-of-zoi expenditures rate
- 756  exproc_dr(h,draw)     drawn or computed outside-of-zoi expenditures level
- 757  expzoish_dr(h,draw)   drawn or computed outside-of-zoi expenditures level
- 758   
- 759   
- 760  * calibration values in each draw
- 761  *pm1(g,draw)         calibrated market price
- 762  pv1(g,v,draw)       calibrated price at village level
- 763  pz1(g,draw)         calibrated price at zoi level
- 764  ph1(g,h,draw)       calibrated price as seen by household
- 765  pva1(g,h,draw)      calibrated price of value added
- 766  qva1(g,h,draw)      calibrated quantity of value added
- 767  qp1(g,h,draw)       calibrated quantity produced
- 768  tqp1(g,draw)        calibrated total quantity produced
- 769  ttqp1(draw)
- 770  hqp1(h,draw)        calibrated total qty produced by a household
- 771  fd1(g,f,h,draw)     calibrated factor demand
- 772  id1(g,gg,h,draw)    calibrated intermediate demand
- 773  pshift1(g,h,draw)   calibrated cobb-douglas shifter
- 774  fshare1(g,f,h,draw) calibrated cobb-douglas shares
- 775  r1(g,f,h,draw)      calibrated rent for fixed factors
- 776  wv1(f,v,draw)       calibrated village-wide wage for tradable factors
- 777  wz1(f,draw)         calibrated zoi-wide wage for tradable factors
- 778  vash1(g,h,draw)     calibrated value-added share
- 779  idsh1(gg,g,h,draw)  calibrated intermediate demand share
- 780  tidsh1(gg,h,draw)   calibrated total intermediate input share (1-vash)
- 781  fixfac1(g,f,h,draw) calibrated fixed factor demand
- 782  exinc1(h,draw)      calibrated exogenous income
- 783  endow1(f,h,draw)    calibrated endowment
- 784  qc1(g,h,draw)       calibrated level of consumption
- 785  alpha1(g,h,draw)    calibrated consumption shares
- 786  y1(h,draw)          calibrated income of household
- 787  cpi1(h,draw)        calibrated cpi
- 788  vqc1(v,g,draw)      calibrated village consumption
- 789  vcpi1(v,draw)       calibrated village cpi
- 790  cri1(v,f,draw)      calibrated rent weighted index
- 791   
- 792  ry1(h,draw)         calibrated real income
- 793  ty1(draw)           calibrated income total
- 794  try1(draw)          calibrated real income total
- 795  cmin1(g,h,draw)     calibrated incompressible demand
- 796  trin1(h,draw)       calibrated transfers in - received
- 797  trout1(h,draw)      calibrated transfers out - given
- 798  sav1(h,draw)        calibrated savings
- 799  exproc1(h,draw)     calibrated expenditure rest of country
- 800  trinsh1(h,draw)     calibrated share of all transfers in the eco going to 
+ 750   
+ 751  savsh_dr(h,draw)      drawn or computed savings rate
+ 752  sav_dr(h,draw)        drawn or computed savings level
+ 753  exprocsh_dr(h,draw)   drawn or computed outside-of-zoi expenditures rate
+ 754  exproc_dr(h,draw)     drawn or computed outside-of-zoi expenditures level
+ 755  expzoish_dr(h,draw)   drawn or computed outside-of-zoi expenditures level
+ 756   
+ 757   
+ 758  * calibration values in each draw
+ 759  *pm1(g,draw)         calibrated market price
+ 760  pv1(g,v,draw)       calibrated price at village level
+ 761  pz1(g,draw)         calibrated price at zoi level
+ 762  ph1(g,h,draw)       calibrated price as seen by household
+ 763  pva1(g,h,draw)      calibrated price of value added
+ 764  qva1(g,h,draw)      calibrated quantity of value added
+ 765  qp1(g,h,draw)       calibrated quantity produced
+ 766  tqp1(g,draw)        calibrated total quantity produced
+ 767  ttqp1(draw)
+ 768  hqp1(h,draw)        calibrated total qty produced by a household
+ 769  fd1(g,f,h,draw)     calibrated factor demand
+ 770  id1(g,gg,h,draw)    calibrated intermediate demand
+ 771  pshift1(g,h,draw)   calibrated cobb-douglas shifter
+ 772  fshare1(g,f,h,draw) calibrated cobb-douglas shares
+ 773  r1(g,f,h,draw)      calibrated rent for fixed factors
+ 774  wv1(f,v,draw)       calibrated village-wide wage for tradable factors
+ 775  wz1(f,draw)         calibrated zoi-wide wage for tradable factors
+ 776  vash1(g,h,draw)     calibrated value-added share
+ 777  idsh1(gg,g,h,draw)  calibrated intermediate demand share
+ 778  tidsh1(gg,h,draw)   calibrated total intermediate input share (1-vash)
+ 779  fixfac1(g,f,h,draw) calibrated fixed factor demand
+ 780  exinc1(h,draw)      calibrated exogenous income
+ 781  endow1(f,h,draw)    calibrated endowment
+ 782  qc1(g,h,draw)       calibrated level of consumption
+ 783  alpha1(g,h,draw)    calibrated consumption shares
+ 784  y1(h,draw)          calibrated income of household
+ 785  cpi1(h,draw)        calibrated cpi
+ 786  vqc1(v,g,draw)      calibrated village consumption
+ 787  vcpi1(v,draw)       calibrated village cpi
+ 788  cri1(v,f,draw)      calibrated rent weighted index
+ 789   
+ 790  ry1(h,draw)         calibrated real income
+ 791  ty1(draw)           calibrated income total
+ 792  try1(draw)          calibrated real income total
+ 793  cmin1(g,h,draw)     calibrated incompressible demand
+ 794  trin1(h,draw)       calibrated transfers in - received
+ 795  trout1(h,draw)      calibrated transfers out - given
+ 796  sav1(h,draw)        calibrated savings
+ 797  exproc1(h,draw)     calibrated expenditure rest of country
+ 798  trinsh1(h,draw)     calibrated share of all transfers in the eco going to 
       h
- 801  troutsh1(h,draw)    calibrated share of yousehold h's income being given a
+ 799  troutsh1(h,draw)    calibrated share of yousehold h's income being given a
       s transfers
- 802  hfd1(f,h,draw)      calibrated factor demand of household h for factor f
- 803  vfd1(f,v,draw)      calibrated village demand for factor f
- 804  zfd1(f,draw)        calibrated zoi demand for factor f
- 805  hms1(g,h,draw)      calibrated household marketed surplus of good g
- 806  vms1(g,v,draw)      calibrated village marketed surplus of good g
- 807  zms1(g,draw)        calibrated household marketed surplus of good g
- 808  *unemp1(f,h,draw)    calibrated unemployement in the household
- 809  hfms1(f,h,draw)     calibrated household factor marketed surplus
- 810  vfms1(f,v,draw)     calibrated village factor marketed surplus
- 811  zfms1(f,draw)       calibrated zoi factor marketed surplus
- 812  vfmsfix1(f,v,draw)    calibrated factors fixed at the Village level (famil
+ 800  hfd1(f,h,draw)      calibrated factor demand of household h for factor f
+ 801  vfd1(f,v,draw)      calibrated village demand for factor f
+ 802  zfd1(f,draw)        calibrated zoi demand for factor f
+ 803  hms1(g,h,draw)      calibrated household marketed surplus of good g
+ 804  vms1(g,v,draw)      calibrated village marketed surplus of good g
+ 805  zms1(g,draw)        calibrated household marketed surplus of good g
+ 806  *unemp1(f,h,draw)    calibrated unemployement in the household
+ 807  hfms1(f,h,draw)     calibrated household factor marketed surplus
+ 808  vfms1(f,v,draw)     calibrated village factor marketed surplus
+ 809  zfms1(f,draw)       calibrated zoi factor marketed surplus
+ 810  vfmsfix1(f,v,draw)    calibrated factors fixed at the Village level (famil
       y labor)
- 813  zfmsfix1(f,draw)      calibrated factors fixed at the zoi level (hired lab
+ 811  zfmsfix1(f,draw)      calibrated factors fixed at the zoi level (hired lab
       or)
- 814  hfsup1(f,h,draw)    calibrated factor supply by the household
- 815   
- 816   
- 817  * after a simulation for each draw
- 818  *pm2(g,draw)         simulated market price
- 819  pv2(g,v,draw)       simulated price at village level
- 820  pz2(g,draw)         simulated price at zoi level
- 821  ph2(g,h,draw)       simulated price as seen by household
- 822  pva2(g,h,draw)      simulated price of value added
- 823  qva2(g,h,draw)      simulated quantity of value added
- 824  qp2(g,h,draw)       simulated quantity produced
- 825  tqp2(g,draw)        simulated total quantity produced in the economy
- 826  ttqp2(draw)
- 827  hqp2(h,draw)         sim total qty produced by a household
- 828  fd2(g,f,h,draw)     simulated factor demand
- 829  id2(g,gg,h,draw)    simulated intermediate demand
- 830  pshift2(g,h,draw)    simulated cobb-douglas shifter
- 831  fshift2(g,f,h,draw) simulated cobb-douglas shares
- 832  r2(g,f,h,draw)      simulated rent for fixed factors
- 833  wv2(f,v,draw)       simulated village-wide wage for tradable factors
- 834  wz2(f,draw)         simulated zoi-wide wage for tradable factors
- 835  vash2(g,h,draw)     simulated value-added share
- 836  idsh2(gg,g,h,draw)  simulated intermediate demand share
- 837  tidsh2(gg,h,draw)   simulated total intermediate input share (2-vash)
- 838  fixfac2(g,f,h,draw) simulated fixed factor demand
- 839  exinc2(h,draw)      simulated exogenous income
- 840  endow2(f,h,draw)    simulated endowment
- 841  qc2(g,h,draw)       simulated level of consumption
- 842  alpha2(g,h,draw)    simulated consumption shares
- 843  y2(h,draw)          simulated income of household
- 844  cpi2(h,draw)        simulated cpi
- 845  cri2(v,f,draw)          simulated capital rent index (cap rent in activity
+ 812  hfsup1(f,h,draw)    calibrated factor supply by the household
+ 813   
+ 814   
+ 815  * after a simulation for each draw
+ 816  *pm2(g,draw)         simulated market price
+ 817  pv2(g,v,draw)       simulated price at village level
+ 818  pz2(g,draw)         simulated price at zoi level
+ 819  ph2(g,h,draw)       simulated price as seen by household
+ 820  pva2(g,h,draw)      simulated price of value added
+ 821  qva2(g,h,draw)      simulated quantity of value added
+ 822  qp2(g,h,draw)       simulated quantity produced
+ 823  tqp2(g,draw)        simulated total quantity produced in the economy
+ 824  ttqp2(draw)
+ 825  hqp2(h,draw)         sim total qty produced by a household
+ 826  fd2(g,f,h,draw)     simulated factor demand
+ 827  id2(g,gg,h,draw)    simulated intermediate demand
+ 828  pshift2(g,h,draw)    simulated cobb-douglas shifter
+ 829  fshift2(g,f,h,draw) simulated cobb-douglas shares
+ 830  r2(g,f,h,draw)      simulated rent for fixed factors
+ 831  wv2(f,v,draw)       simulated village-wide wage for tradable factors
+ 832  wz2(f,draw)         simulated zoi-wide wage for tradable factors
+ 833  vash2(g,h,draw)     simulated value-added share
+ 834  idsh2(gg,g,h,draw)  simulated intermediate demand share
+ 835  tidsh2(gg,h,draw)   simulated total intermediate input share (2-vash)
+ 836  fixfac2(g,f,h,draw) simulated fixed factor demand
+ 837  exinc2(h,draw)      simulated exogenous income
+ 838  endow2(f,h,draw)    simulated endowment
+ 839  qc2(g,h,draw)       simulated level of consumption
+ 840  alpha2(g,h,draw)    simulated consumption shares
+ 841  y2(h,draw)          simulated income of household
+ 842  cpi2(h,draw)        simulated cpi
+ 843  cri2(v,f,draw)          simulated capital rent index (cap rent in activity
       *weight of activity)
- 846  vqc2(v,g,draw)      simulated village consumption
- 847  vcpi2(v,draw)       simulated village cpi
- 848   
- 849   
- 850  ry2(h,draw)         simulated real income
- 851  ty2(draw)           simulated income total
- 852  try2(draw)          simulated real income total
- 853  cmin2(g,h,draw)     simulated incompressible demand
- 854  trin2(h,draw)       simulated transfers in - received
- 855  trout2(h,draw)      simulated transfers out - given
- 856  sav2(h,draw)        simulated savings
- 857  exproc2(h,draw)     simulated expenditure rest of country
- 858  trinsh2(h,draw)     simulated share of all transfers in the eco going to h
- 859  troutsh2(h,draw)    simulated share of yousehold h's income being given as
+ 844  vqc2(v,g,draw)      simulated village consumption
+ 845  vcpi2(v,draw)       simulated village cpi
+ 846   
+ 847   
+ 848  ry2(h,draw)         simulated real income
+ 849  ty2(draw)           simulated income total
+ 850  try2(draw)          simulated real income total
+ 851  cmin2(g,h,draw)     simulated incompressible demand
+ 852  trin2(h,draw)       simulated transfers in - received
+ 853  trout2(h,draw)      simulated transfers out - given
+ 854  sav2(h,draw)        simulated savings
+ 855  exproc2(h,draw)     simulated expenditure rest of country
+ 856  trinsh2(h,draw)     simulated share of all transfers in the eco going to h
+ 857  troutsh2(h,draw)    simulated share of yousehold h's income being given as
        transfers
- 860  hfd2(f,h,draw)      simulated factor demand of household h for factor f
- 861  vfd2(f,v,draw)      simulated village demand for factor f
- 862  zfd2(f,draw)        simulated zoi demand for factor f
- 863  hms2(g,h,draw)      simulated household marketed surplus of good g
- 864  vms2(g,v,draw)      simulated village marketed surplus of good g
- 865  zms2(g,draw)        simulated household marketed surplus of good g
- 866  *unemp2(f,h,draw)    calibrated unemployement in the households
- 867  hfms2(f,h,draw)     simulated household factor marketed surplus
- 868  vfms2(f,v,draw)     simulated village factor marketed surplus
- 869  zfms2(f,draw)       simulated zoi factor marketed surplus
- 870  hfsup2(f,h,draw)    simulated factor supply by the household
- 871   
- 872  * delta calibration /simulation
- 873  pvD(g,v,draw)       delta price at village level
- 874  pzD(g,draw)         delta price at zoi level
- 875  phD(g,h,draw)       delta price as seen by household
- 876   
- 877  pvaD(g,h,draw)      delta price of value added
- 878  qvaD(g,h,draw)      delta quantity of value added
- 879  qpD(g,h,draw)       delta quantity produced
- 880  tqpD(g,draw)        delta total qp
- 881  ttqpD(draw)
- 882  hqpD(h,draw)          delta hqp
- 883  fdD(g,f,h,draw)     delta factor demand
- 884  idD(g,gg,h,draw)    delta intermediate demand
- 885  pshiftD(g,h,draw)    delta cobb-douglas shifter
- 886  fshareD(g,f,h,draw) delta cobb-douglas shares
- 887  rD(g,f,h,draw)      delta rent for fixed factors
- 888  wvD(f,v,draw)       delta village-wide wage for tradable factors
- 889  wzD(f,draw)         delta zoi-wide wage for tradable factors
- 890  vashD(g,h,draw)     delta value-added share
- 891  idshD(gg,g,h,draw)  delta intermediate demand share
- 892  tidshD(gg,h,draw)   delta total intermediate input share (1-vash)
- 893  fixfacD(g,f,h,draw) delta fixed factor demand
- 894  exincD(h,draw)      delta exogenous income
- 895  endowD(f,h,draw)    delta endowment
- 896  qcD(g,h,draw)       delta level of consumption
- 897  alphaD(g,h,draw)    delta consumption shares
- 898  yD(h,draw)          delta income of household
- 899  cpiD(h,draw)        delta cpi
- 900  criD(v,f,draw)        delta capital rent index (cap rent in activity*weigh
+ 858  hfd2(f,h,draw)      simulated factor demand of household h for factor f
+ 859  vfd2(f,v,draw)      simulated village demand for factor f
+ 860  zfd2(f,draw)        simulated zoi demand for factor f
+ 861  hms2(g,h,draw)      simulated household marketed surplus of good g
+ 862  vms2(g,v,draw)      simulated village marketed surplus of good g
+ 863  zms2(g,draw)        simulated household marketed surplus of good g
+ 864  *unemp2(f,h,draw)    calibrated unemployement in the households
+ 865  hfms2(f,h,draw)     simulated household factor marketed surplus
+ 866  vfms2(f,v,draw)     simulated village factor marketed surplus
+ 867  zfms2(f,draw)       simulated zoi factor marketed surplus
+ 868  hfsup2(f,h,draw)    simulated factor supply by the household
+ 869   
+ 870  * delta calibration /simulation
+ 871  pvD(g,v,draw)       delta price at village level
+ 872  pzD(g,draw)         delta price at zoi level
+ 873  phD(g,h,draw)       delta price as seen by household
+ 874   
+ 875  pvaD(g,h,draw)      delta price of value added
+ 876  qvaD(g,h,draw)      delta quantity of value added
+ 877  qpD(g,h,draw)       delta quantity produced
+ 878  tqpD(g,draw)        delta total qp
+ 879  ttqpD(draw)
+ 880  hqpD(h,draw)          delta hqp
+ 881  fdD(g,f,h,draw)     delta factor demand
+ 882  idD(g,gg,h,draw)    delta intermediate demand
+ 883  pshiftD(g,h,draw)    delta cobb-douglas shifter
+ 884  fshareD(g,f,h,draw) delta cobb-douglas shares
+ 885  rD(g,f,h,draw)      delta rent for fixed factors
+ 886  wvD(f,v,draw)       delta village-wide wage for tradable factors
+ 887  wzD(f,draw)         delta zoi-wide wage for tradable factors
+ 888  vashD(g,h,draw)     delta value-added share
+ 889  idshD(gg,g,h,draw)  delta intermediate demand share
+ 890  tidshD(gg,h,draw)   delta total intermediate input share (1-vash)
+ 891  fixfacD(g,f,h,draw) delta fixed factor demand
+ 892  exincD(h,draw)      delta exogenous income
+ 893  endowD(f,h,draw)    delta endowment
+ 894  qcD(g,h,draw)       delta level of consumption
+ 895  alphaD(g,h,draw)    delta consumption shares
+ 896  yD(h,draw)          delta income of household
+ 897  cpiD(h,draw)        delta cpi
+ 898  criD(v,f,draw)        delta capital rent index (cap rent in activity*weigh
       t of activity)
- 901  vqcD(v,g,draw)      delta village consumption
- 902  vcpiD(v,draw)       delta village cpi
- 903   
- 904  ryD(h,draw)         delta real income
- 905  tyD(draw)           delta income total
- 906  tryD(draw)          delta real income total
- 907  cminD(g,h,draw)     delta incompressible demand
- 908  trinD(h,draw)       delta transfers in - received
- 909  troutD(h,draw)      delta transfers out - given
- 910  savD(h,draw)        delta savings
- 911  exprocD(h,draw)     delta expenditure rest of country
- 912  trinshD(h,draw)     delta share of all transfers in the eco going to h
- 913  troutshD(h,draw)    delta share of yousehold h's income being given as tra
+ 899  vqcD(v,g,draw)      delta village consumption
+ 900  vcpiD(v,draw)       delta village cpi
+ 901   
+ 902  ryD(h,draw)         delta real income
+ 903  tyD(draw)           delta income total
+ 904  tryD(draw)          delta real income total
+ 905  cminD(g,h,draw)     delta incompressible demand
+ 906  trinD(h,draw)       delta transfers in - received
+ 907  troutD(h,draw)      delta transfers out - given
+ 908  savD(h,draw)        delta savings
+ 909  exprocD(h,draw)     delta expenditure rest of country
+ 910  trinshD(h,draw)     delta share of all transfers in the eco going to h
+ 911  troutshD(h,draw)    delta share of yousehold h's income being given as tra
       nsfers
- 914  hfdD(f,h,draw)      delta factor demand of household h for factor f
- 915  vfdD(f,v,draw)      delta village demand for factor f
- 916  zfdD(f,draw)        delta zoi demand for factor f
- 917  hmsD(g,h,draw)      delta household marketed surplus of good g
- 918  vmsD(g,v,draw)      delta village marketed surplus of good g
- 919  zmsD(g,draw)        delta household marketed surplus of good g
- 920  hfmsD(f,h,draw)     delta household factor marketed surplus
- 921  vfmsD(f,v,draw)     delta village factor marketed surplus
- 922  zfmsD(f,draw)       delta zoi factor marketed surplus
- 923  hfsupD(f,h,draw)    delta factor supply by the household
- 924   
- 925  * percent change calibration/simulation
- 926  pvPC(g,v,draw)        % change price at village level
- 927  pzPC(g,draw)          % chage price at zoi level
- 928  phPC(g,h,draw)        % change price as seen by household
- 929   
- 930  pvaPC(g,h,draw)      % change price of value added
- 931  qvaPC(g,h,draw)      % change quantity of value added
- 932  qpPC(g,h,draw)       % change quantity produced
- 933  tqpPC(g,draw)        % change in total qp
- 934  ttqpPC(draw)
- 935  hqpPC(h,draw)          % change in hqp
- 936   
- 937  fdPC(g,f,h,draw)     % change factor demand
- 938  idPC(g,gg,h,draw)    % change intermediate demand
- 939  pshiftPC(g,h,draw)    % change cobb-douglas shifter
- 940  fsharePC(g,f,h,draw) % change cobb-douglas shares
- 941  rPC(g,f,h,draw)      % change rent for fixed factors
- 942  wvPC(f,v,draw)       % change village-wide wage for tradable factors
- 943  wzPC(f,draw)         % change zoi-wide wage for tradable factors
- 944  vashPC(g,h,draw)     % change value-added share
- 945  idshPC(gg,g,h,draw)  % change intermediate demand share
- 946  tidshPC(gg,h,draw)   % change total intermediate input share (1-vash)
- 947  fixfacPC(g,f,h,draw) % change fixed factor demand
- 948  exincPC(h,draw)      % change exogenous income
- 949  endowPC(f,h,draw)    % change endowment
- 950  qcPC(g,h,draw)       % change level of consumption
- 951  alphaPC(g,h,draw)    % change consumption shares
- 952  yPC(h,draw)          % change income of household
- 953  cpiPC(h,draw)        % change in cpi
- 954  criPC(v,f,draw)        % change capital rent index (cap rent in activity*w
+ 912  hfdD(f,h,draw)      delta factor demand of household h for factor f
+ 913  vfdD(f,v,draw)      delta village demand for factor f
+ 914  zfdD(f,draw)        delta zoi demand for factor f
+ 915  hmsD(g,h,draw)      delta household marketed surplus of good g
+ 916  vmsD(g,v,draw)      delta village marketed surplus of good g
+ 917  zmsD(g,draw)        delta household marketed surplus of good g
+ 918  hfmsD(f,h,draw)     delta household factor marketed surplus
+ 919  vfmsD(f,v,draw)     delta village factor marketed surplus
+ 920  zfmsD(f,draw)       delta zoi factor marketed surplus
+ 921  hfsupD(f,h,draw)    delta factor supply by the household
+ 922   
+ 923  * percent change calibration/simulation
+ 924  pvPC(g,v,draw)        % change price at village level
+ 925  pzPC(g,draw)          % chage price at zoi level
+ 926  phPC(g,h,draw)        % change price as seen by household
+ 927   
+ 928  pvaPC(g,h,draw)      % change price of value added
+ 929  qvaPC(g,h,draw)      % change quantity of value added
+ 930  qpPC(g,h,draw)       % change quantity produced
+ 931  tqpPC(g,draw)        % change in total qp
+ 932  ttqpPC(draw)
+ 933  hqpPC(h,draw)          % change in hqp
+ 934   
+ 935  fdPC(g,f,h,draw)     % change factor demand
+ 936  idPC(g,gg,h,draw)    % change intermediate demand
+ 937  pshiftPC(g,h,draw)    % change cobb-douglas shifter
+ 938  fsharePC(g,f,h,draw) % change cobb-douglas shares
+ 939  rPC(g,f,h,draw)      % change rent for fixed factors
+ 940  wvPC(f,v,draw)       % change village-wide wage for tradable factors
+ 941  wzPC(f,draw)         % change zoi-wide wage for tradable factors
+ 942  vashPC(g,h,draw)     % change value-added share
+ 943  idshPC(gg,g,h,draw)  % change intermediate demand share
+ 944  tidshPC(gg,h,draw)   % change total intermediate input share (1-vash)
+ 945  fixfacPC(g,f,h,draw) % change fixed factor demand
+ 946  exincPC(h,draw)      % change exogenous income
+ 947  endowPC(f,h,draw)    % change endowment
+ 948  qcPC(g,h,draw)       % change level of consumption
+ 949  alphaPC(g,h,draw)    % change consumption shares
+ 950  yPC(h,draw)          % change income of household
+ 951  cpiPC(h,draw)        % change in cpi
+ 952  criPC(v,f,draw)        % change capital rent index (cap rent in activity*w
       eight of activity)
- 955  vqcPC(v,g,draw)      % change village consumption
- 956  vcpiPC(v,draw)       % change village cpi
- 957   
- 958   
- 959  ryPC(h,draw)         % change in real income
- 960  tyPC(draw)           % change income total
- 961  tryPC(draw)          % change real income total
- 962  cminPC(g,h,draw)     % change incompressible demand
- 963  trinPC(h,draw)       % change transfers in - received
- 964  troutPC(h,draw)      % change transfers out - given
- 965  savPC(h,draw)        % change savings
- 966  exprocPC(h,draw)     % change expenditure rest of country
- 967  trinshPC(h,draw)     % change share of all transfers in the eco going to h
- 968  troutshPC(h,draw)    % change share of yousehold h's income being given as
+ 953  vqcPC(v,g,draw)      % change village consumption
+ 954  vcpiPC(v,draw)       % change village cpi
+ 955   
+ 956   
+ 957  ryPC(h,draw)         % change in real income
+ 958  tyPC(draw)           % change income total
+ 959  tryPC(draw)          % change real income total
+ 960  cminPC(g,h,draw)     % change incompressible demand
+ 961  trinPC(h,draw)       % change transfers in - received
+ 962  troutPC(h,draw)      % change transfers out - given
+ 963  savPC(h,draw)        % change savings
+ 964  exprocPC(h,draw)     % change expenditure rest of country
+ 965  trinshPC(h,draw)     % change share of all transfers in the eco going to h
+ 966  troutshPC(h,draw)    % change share of yousehold h's income being given as
        transfers
- 969  hfdPC(f,h,draw)      % change factor demand of household h for factor f
- 970  vfdPC(f,v,draw)      % change village demand for factor f
- 971  zfdPC(f,draw)        % change zoi demand for factor f
- 972  hmsPC(g,h,draw)      % change household marketed surplus of good g
- 973  vmsPC(g,v,draw)      % change village marketed surplus of good g
- 974  zmsPC(g,draw)        % change household marketed surplus of good g
- 975  hfmsPC(f,h,draw)     % change household factor marketed surplus
- 976  vfmsPC(f,v,draw)     % change village factor marketed surplus
- 977  zfmsPC(f,draw)       % change zoi factor marketed surplus
- 978  hfsupPC(f,h,draw)    % change factor supply by the household
- 979  ;
- 980   
- 981   
- 982  * ========================================================================
+ 967  hfdPC(f,h,draw)      % change factor demand of household h for factor f
+ 968  vfdPC(f,v,draw)      % change village demand for factor f
+ 969  zfdPC(f,draw)        % change zoi demand for factor f
+ 970  hmsPC(g,h,draw)      % change household marketed surplus of good g
+ 971  vmsPC(g,v,draw)      % change village marketed surplus of good g
+ 972  zmsPC(g,draw)        % change household marketed surplus of good g
+ 973  hfmsPC(f,h,draw)     % change household factor marketed surplus
+ 974  vfmsPC(f,v,draw)     % change village factor marketed surplus
+ 975  zfmsPC(f,draw)       % change zoi factor marketed surplus
+ 976  hfsupPC(f,h,draw)    % change factor supply by the household
+ 977  ;
+ 978   
+ 979   
+ 980  * ========================================================================
+      ========================
+ 981  * ========================================================================
+      ========================
+ 982  * ====================== STEP 4 - CALIBRATE THE MODEL  ===================
       ========================
  983  * ========================================================================
       ========================
- 984  * ====================== STEP 4 - CALIBRATE THE MODEL  ===================
+ 984  * ========================================================================
       ========================
- 985  * ========================================================================
-      ========================
- 986  * ========================================================================
-      ========================
- 987   
- 988  * PARAMETERS THAT ARE DRAWN
- 989  * ========================================================================
+ 985   
+ 986  * PARAMETERS THAT ARE DRAWN
+ 987  * ========================================================================
       =========
- 990  * default at initial values
- 991  pshift_dr(g,h,draw)  = xlpshift(g,h) ;
- 992  troutsh_dr(h,draw)   = xltroutsh(h)  ;
- 993  savsh_dr(h,draw)     = xlSAVsh(h)    ;
- 994  exprocsh_dr(h,draw)  = xlexpoutsh(h) ;
- 995   
- 996  * temporary values for parameters that get drawn:
- 997  fshare_t(g,f,h,draw) = xlfshare(g,f,h) ;
- 998  eshare_t(g,h,draw)   = xleshare(g,h)   ;
- 999  pshift_t(g,h,draw)   = xlpshift(g,h)   ;
-****         $140
-**** LINE    129 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
-                             GAMS\AQ_LEWIE_main.gms
-1000   
+ 988  * default at initial values
+ 989  pshift_dr(g,h,draw)  = xlpshift(g,h) ;
+ 990  troutsh_dr(h,draw)   = xltroutsh(h)  ;
+ 991  savsh_dr(h,draw)     = xlSAVsh(h)    ;
+ 992  exprocsh_dr(h,draw)  = xlexpoutsh(h) ;
+ 993   
+ 994  * temporary values for parameters that get drawn:
+ 995  fshare_t(g,f,h,draw) = xlfshare(g,f,h) ;
+ 996  eshare_t(g,h,draw)   = xleshare(g,h)   ;
+ 997   
+ 998  *FIGURE OUT WHERE PSHIFT_T (ALPHA_T) WAS DEFINED BEFORE.
+ 999  *FIGURE OUT WHICH PARAMETERS I ACTUALLY NEED.
+1000  *ONCE CALIBRATION RUNS, EXTRACT IT BACK INTO 4-CALIBRATION FILE
 1001   
-1002  * draw all values once - except for dr0 wich will be the xl base
-1003  *fshare_t(g,f,h,"dr0") = xlfshare(g,f,h);
-1004  *eshare_t(g,h,"dr0")   = eshare(g,h) ;
-1005  *troutsh_dr(h,"dr0")   = xltroutsh(h) ;
-1006  *savsh_dr(h,"dr0")     = xlSAVinfsh(h) ;
-1007  *exprocsh_dr(h,"dr0")  = xlexpoutsh(h) ;
-1008   
-1009  fshare_t(g,f,h,draw)$(not sameas(draw,"dr0")) = normal(xlfshare(g,f,h),xlf
+1002  * pshift_t(g,h,draw)   = xlpshift(g,h)   ;
+1003   
+1004   
+1005  * draw all values once - except for dr0 wich will be the xl base
+1006  *fshare_t(g,f,h,"dr0") = xlfshare(g,f,h);
+1007  *eshare_t(g,h,"dr0")   = eshare(g,h) ;
+1008  *troutsh_dr(h,"dr0")   = xltroutsh(h) ;
+1009  *savsh_dr(h,"dr0")     = xlSAVinfsh(h) ;
+1010  *exprocsh_dr(h,"dr0")  = xlexpoutsh(h) ;
+1011   
+1012  fshare_t(g,f,h,draw)$(not sameas(draw,"dr0")) = normal(xlfshare(g,f,h),xlf
       share_se(g,f,h));
-1010  pshift_t(g,h,draw)$(not sameas(draw,"dr0"))    = normal(xlpshift(g,h),xlps
+1013  pshift_t(g,h,draw)$(not sameas(draw,"dr0"))    = normal(xlpshift(g,h),xlps
+****         $140
       hift_se(g,h));
-1011  savsh_dr(h,draw)$(not sameas(draw,"dr0"))     = normal(xlSAVsh(h),xlSAVsh_
-      se(h));
-1012  troutsh_dr(h,draw)$(not sameas(draw,"dr0"))   = normal(xltroutsh(h),xltrou
-      tsh_se(h));
-1013   
-1014  display shcobb_t, alpha_t, troutsh_dr, savsh_dr, exprocsh_dr;
-****                 $140     $140
-**** LINE    144 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+**** LINE    145 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
                              GAMS\AQ_LEWIE_main.gms
-1015   
+1014  savsh_dr(h,draw)$(not sameas(draw,"dr0"))     = normal(xlSAVsh(h),xlSAVsh_
+      se(h));
+1015  troutsh_dr(h,draw)$(not sameas(draw,"dr0"))   = normal(xltroutsh(h),xltrou
+      tsh_se(h));
+1016   
+1017  display shcobb_t, alpha_t, troutsh_dr, savsh_dr, exprocsh_dr;
+****                 $140     $140
+**** LINE    149 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+1018   
 EXIT D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/22/16 18:26:42 Page 2
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 12:52:24 Page 2
 MYANMAR AQUACULTURE LEWIE MODEL
 Error Messages
 
@@ -1181,7 +1184,7 @@ Error Messages
 140  Unknown symbol
 
 **** 3 ERROR(S)   0 WARNING(S)
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/22/16 18:26:42 Page 3
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 12:52:24 Page 3
 MYANMAR AQUACULTURE LEWIE MODEL
 Include File Summary
 
@@ -1202,17 +1205,17 @@ Include File Summary
      5      245 INCLUDE        1      92  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
                                            aLEWIE_github\GAMS\includes/2_MarketA
                                            ssumptions.gms
-     6      317 INCLUDE        1     101  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
+     6      315 INCLUDE        1     101  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
                                            aLEWIE_github\GAMS\includes/3_Model.g
                                            ms
-     7      690 INCLUDE        1     109  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
+     7      688 INCLUDE        1     109  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
                                            aLEWIE_github\GAMS\includes/4a_Define
                                            AllParameters.gms
-     8     1016 EXIT           1     146  D:\Docs\Myanmar\AquaAgri\Analysis\Aqua
+     8     1019 EXIT           1     151  D:\Docs\Myanmar\AquaAgri\Analysis\Aqua
                                           LEWIE_github\GAMS\AQ_LEWIE_main.gms
 
 
-COMPILATION TIME     =        0.795 SECONDS      3 MB  24.5.4 r54492 WEX-WEI
+COMPILATION TIME     =        0.811 SECONDS      3 MB  24.5.4 r54492 WEX-WEI
 
 
 USER: Computer Services                              G150407:1601CO-GEN

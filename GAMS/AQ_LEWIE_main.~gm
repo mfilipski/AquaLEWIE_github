@@ -126,7 +126,12 @@ exprocsh_dr(h,draw)  = xlexpoutsh(h) ;
 * temporary values for parameters that get drawn:
 fshare_t(g,f,h,draw) = xlfshare(g,f,h) ;
 eshare_t(g,h,draw)   = xleshare(g,h)   ;
-pshift_t(g,h,draw)   = xlpshift(g,h)   ;
+
+FIGURE OUT WHERE PSHIFT_T (ALPHA_T) WAS DEFINED BEFORE.
+FIGURE OUT WHICH PARAMETERS I ACTUALLY NEED.
+ONCE CALIBRATION RUNS, EXTRACT IT BACK INTO 4-CALIBRATION FILE
+
+* pshift_t(g,h,draw)   = xlpshift(g,h)   ;
 
 
 * draw all values once - except for dr0 wich will be the xl base
