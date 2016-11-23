@@ -51,11 +51,6 @@ Stata/madedata/
 Stata/temp/
 Stata/archives/
 GAMS/archives/
-*.~gm
-*.lst
-*.lxi
-*.log
-
 
 
 # Added manually in Github
@@ -68,3 +63,7 @@ Stata/do/Aqlw02_NonFarm_comments4aunghtun.do
 GAMS/~$AQ_LEWIE_InputSheet_v0.xlsx
 GAMS/UG_LEWIE_Rmj_OneDol_Food.gms
 *.log
+*.~gm
+*.lst
+*.lxi
+
