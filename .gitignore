@@ -47,12 +47,11 @@ Temporary Items
 .apdisk
 
 # My added Gitignores 
-Stata/madedata/*
-Stata/temp/*
-Stata/archives/*
-GAMS/archives/*
-~*
-*/~*
+Stata/madedata/
+Stata/temp/
+Stata/archives/
+GAMS/archives/
+
 
 
 # Added manually in Github

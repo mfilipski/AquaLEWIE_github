@@ -1,5 +1,5 @@
 * This part of the code just reads in the data from the excel spreadsheet
-* and makes it into a set of parameters to be used in the model  
+* and makes it into a set of parameters to be used in the model
 
 * Name the sets that will be used:
 sets
