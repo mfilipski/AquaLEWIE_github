@@ -1,4 +1,4 @@
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 12:52:24 Page 1
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 12:53:21 Page 1
 MYANMAR AQUACULTURE LEWIE MODEL
 C o m p i l a t i o n
 
@@ -1176,7 +1176,7 @@ INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/4a_D
                              GAMS\AQ_LEWIE_main.gms
 1018   
 EXIT D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 12:52:24 Page 2
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 12:53:21 Page 2
 MYANMAR AQUACULTURE LEWIE MODEL
 Error Messages
 
@@ -1184,7 +1184,7 @@ Error Messages
 140  Unknown symbol
 
 **** 3 ERROR(S)   0 WARNING(S)
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 12:52:24 Page 3
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 12:53:21 Page 3
 MYANMAR AQUACULTURE LEWIE MODEL
 Include File Summary
 
@@ -1215,7 +1215,7 @@ Include File Summary
                                           LEWIE_github\GAMS\AQ_LEWIE_main.gms
 
 
-COMPILATION TIME     =        0.811 SECONDS      3 MB  24.5.4 r54492 WEX-WEI
+COMPILATION TIME     =        0.796 SECONDS      3 MB  24.5.4 r54492 WEX-WEI
 
 
 USER: Computer Services                              G150407:1601CO-GEN
