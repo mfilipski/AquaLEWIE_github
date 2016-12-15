@@ -40,16 +40,17 @@ tabstat wrkage , by(lwgroup) s(count) save
 
 collapse (sum) wrkage , by(lwgroup)
 list 
-levelsof groupname, local(names)
-mkmat wrk, matrix(m) 
-mat list wrk
-crash 
 
-rownames(names)
+decode lwgroup , gen(groupname)
+levelsof groupname, local(names)
+mkmat wrkage, matrix(m) 
+mat list m
+
 matrix list m
 di `names'
-matrix colnames m =  `names'
+matrix rownames m =  `names'
 matrix list m 
+
 crash 
 egen wrksum = sum(wrkage)
 list
