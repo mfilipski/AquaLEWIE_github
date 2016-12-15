@@ -64,7 +64,7 @@ parameters
      acobb(g,h) production shift parameter for the CD
      shcobb(g,f,h) factor share parameter for the CD
      vash(g,h) share of value added
-     idsh(gg,g,h) intermediate input share
+     idsh(g,gg,h) intermediate input share
      tidsh(g,h) total intermediate input share (1-vash)
 
 *Consumption
@@ -115,7 +115,7 @@ Equations
      EQ_FDPURCH(g,f,h)   factor demands for purchased inputs - constrained or not
      EQ_QVACOBB(g,h)     quantity VA produced cobb douglas
      EQ_QP(g,h)          quantity produced from QVA and ID
-     EQ_ID(gg,g,h)       quantity of ID needed for QP
+     EQ_ID(gg,g,h)       quantity of g ID needed for QP of gg
 
 * consumption
      EQ_QC(g,h)          quantity consumed
@@ -164,7 +164,7 @@ EQ_PH(g,h)..
      PH(g,h) =E= PZ(g)$(gtz(g)+gtw(g)) + sum(v$maphv(h,v),PV(g,v))$gtv(g) ;
 
 EQ_PVA(g,h)..
-     PVA(g,h) =E= PH(g,h)- sum(gg,idsh(gg,g,h)*PH(gg,h)) ;
+     PVA(g,h) =E= PH(g,h)- sum(gg,idsh(g,gg,h)*PH(gg,h)) ;
 
 * PRODUCTION BLOCK
 EQ_QVACOBB(g,h)..
@@ -188,8 +188,9 @@ EQ_FDPURCH(g,f,h)$fpurch(f)..
 EQ_QP(g,h)$vash(g,h)..
      QP(g,h) =E= QVA(g,h)/vash(g,h) ;
 
+* "gg production requires intermediate demand for g"
 EQ_ID(gg,g,h)..
-     ID(gg,g,h) =E= QP(g,h)*idsh(gg,g,h)
+     ID(gg,g,h) =E= QP(gg,h)*idsh(gg,g,h)
 ;
 
 * CONSUMPTION AND INCOME
@@ -230,7 +231,7 @@ EQ_EXPROC(h)..
 
 * MARKET CLEARING FOR GOODS
 EQ_HMKT(g,h)..
-     HMS(g,h) =E= QP(g,h)$vash(g,h) - QC(g,h) - sum(gg,ID(g,gg,h)) ;
+     HMS(g,h) =E= QP(g,h)$vash(g,h) - QC(g,h) - sum(gg,ID(gg,g,h)) ;
 
 EQ_VMKT(g,v)..
      VMS(g,v) =E= sum(h$maphv(h,v),HMS(g,h)) + packsold(g) ;

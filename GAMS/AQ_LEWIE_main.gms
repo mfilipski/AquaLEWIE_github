@@ -14,7 +14,7 @@ option limcol=30 ;
 
 
 * name of the excel file (WITHOUT .xlsx extension):
-$setglobal data_input "AQ_LEWIE_InputSheet_v1"
+$setglobal data_input "AQ_LEWIE_InputSheet_v2"
 * name of index sheet (village-specific):
 $setglobal input_sheet_index "Index!A2"
 * name of include file containing village-specific assumptions
@@ -124,7 +124,7 @@ eshare_t(g,h,draw)   = xleshare(g,h)   ;
 * default values for parameters that were drawn
 fshare_dr(g,f,h,draw) = xlfshare(g,f,h) ;
 eshare_dr(g,h,draw)   = xleshare(g,h)   ;
-pshift_dr(g,h,draw)  = xlpshift(g,h) ;
+*pshift_dr(g,h,draw)  = xlpshift(g,h) ;
 
 * Those are actually not drawn unless they have _se versions
 troutsh_dr(h,draw)   = xltroutsh(h)  ;
@@ -188,7 +188,9 @@ parameter escheck(h,draw) ;
 escheck(h,draw) = sum(gg,eshare_dr(gg,h,draw))
 display eshare_dr, escheck ;
 
-* c- correct the rest-of world expenditure shares.  They cannot be negative, and they cannot add up to more than 1
+* c- correct the rest-of world expenditure shares.
+* ---------------------------------------------------------------
+* They cannot be negative, and they cannot add up to more than 1
 * (really, maybe they shouldn't add up to more than 0.3 or something)
 * so we make a loop in the loop:
 expzoish_dr(h,draw) = 1-(troutsh_dr(h,draw)+savsh_dr(h,draw)+exprocsh_dr(h,draw)) ;
@@ -206,35 +208,42 @@ loop((h,draw),
 );
 display troutsh_dr, savsh_dr, exprocsh_dr, expzoish_dr;
 
-$exit
 
 * THOSE WERE THE PARAMETERS THAT ARE ACTUALLY DRAWN FROM A DISTRIBUTION
 * ALL OTHER PARAMETERS EITHER FOLLOW FROM THOSE DRAWS (RATHER THAN DRAWN DIRECTLY)
 * OR RESULT FROM ASSUMPTIONS OR CLOSURE RULES
 
 * set wages and prices to 1:
-*pm_dr(g,draw) = 1 ;
 pv_dr(gtv,v,draw) = 1 ;
 pz_dr(g,draw) = 1 ;
 ph_dr(g,h,draw) = [pz_dr(g,draw)$(gtz(g)+gtw(g)) + sum(v$maphv(h,v),pv_dr(g,v,draw))$gtv(g)] ;
 display pv_dr, pz_dr, ph_dr ;
+
+
+
+
 r_dr(g,fk,h,draw)     = 1 ;
 wv_dr(ftv,v,draw)     = 1 ;
 wz_dr(ft,draw)        = 1 ;
 
-* START FROM INCOME - TWO PORRIBILITIES:
+
+* START FROM INCOME - TWO POSSIBILITIES:
 option decimals = 2 ;
 parameter y_dr1(h,draw) income reported directly in data
-          y_dr2(h,draw) income computed from factor values + reported earnings;
+          y_dr2(h,draw) income computed from factor values + reported earnings
+          y_dr3(h,draw) income computed from total expenditures ;
 
-y_dr1(h,draw) = xlhhinc(h)*xlnhh(h) ;
-y_dr2(h,draw) = sum(f,xlendow(f,h)+xlROCendow(f,h)+xlROWendow(f,h))+xlremit(h)+xlothertransfers(h) ;
+*y_dr1(h,draw) = xlhhinc(h)*xlnhh(h) ;
+*y_dr2(h,draw) = sum(f,xlendow(f,h)+xlROCendow(f,h)+xlROWendow(f,h))+xlremit(h)+xlothertransfers(h) ;
+y_dr3(h,draw) = xlhhinc(h)*xlnhh(h) ;
 
-display y_dr1, y_dr2;
+* display y_dr1, y_dr2;
+display y_dr3 ;
 
 * now pick the one we prefer and see how it fares at creating a nice-looking matrix of the economy:
 * (y_dr2 is almost equal to the former version of Y)
-y_dr(h,draw) = y_dr1(h,draw) ;
+*y_dr(h,draw) = y_dr1(h,draw) ;
+y_dr(h,draw) = y_dr3(h,draw) ;
 * all prices are 1 so cpi is 1
 cpi_dr(h,draw) = 1 ;
 ry_dr(h,draw) = y_dr(h,draw) ;
@@ -276,34 +285,41 @@ display netexpsh ;
 * intermediate demand requirements
 * NEW WAY OF COMPUTING THEM:
 *idsh_dr(g,gg,h,draw) = xlVA2IDsh(gg,g,h)/(1+xlVA2IDsh(gg,g,h));
-display xlFD, xlID ;
-idsh_dr(gg,g,h,draw)$xlID(gg,g,h) = xlID(gg,g,h) / (sum(f,xlFD(g,f,h))+sum(ggg,xlID(ggg,g,h))) ;
-tidsh_dr(g,h,draw) = sum(gg,idsh_dr(gg,g,h,draw));
-display idsh_dr, tidsh_dr;
+*display xlFD, xlID ;
+display xlQP;
+*idsh_dr(gg,g,h,draw)$xlID(gg,g,h) = xlID(gg,g,h) / (sum(f,xlFD(g,f,h))+sum(ggg,xlID(ggg,g,h))) ;
 
+idsh_dr(gg,g,h,draw) = xlidsh(gg,g,h) ;
+
+tidsh_dr(g,h,draw) = sum(gg,idsh_dr(g,gg,h,draw));
+display idsh_dr, tidsh_dr;
 
 tqc_dr(g,draw) = sum(h,qc_dr(g,h,draw)) ;
 display tqc_dr ;
 parameter tempid_dr(g,draw) temporary total intermediate demand;
-*  id = qc*s/(1-s)
 tempid_dr(g,draw) = sum((gg,h),
                      qc_dr(gg,h,draw)*(idsh_dr(g,gg,h,draw)/(1-idsh_dr(g,gg,h,draw)))) ;
 display tempid_dr ;
 
-* now determine total QP
-tqp_dr(g,draw) = [sum(h, qc_dr(g,h,draw)) + tempid_dr(g,draw) ]
-                         /(1-netexpsh(g)) ;
-ttqp_dr(draw)= sum(g,tqp_dr(g,draw));
 
+display qp_dr ;
+* now determine total QP
+*tqp_dr(g,draw) = [sum(h, qc_dr(g,h,draw)) + tempid_dr(g,draw) ]
+*                         /(1-netexpsh(g)) ;
+tqp_dr(g,draw) = sum(h, qp_dr(g,h,draw))  ;
+ttqp_dr(draw)= sum(g,tqp_dr(g,draw));
 display tqp_dr, ttqp_dr ;
 
+
 * split qp in each household according to their capital shares:
-parameter qpshare(h,g) share of household h in production of g ;
-qpshare(h,g)$gnag(g) = xlFD(g,"Capital",h) / sum(hh,xlFD(g,"Capital",hh)) ;
+*parameter qpshare(h,g) share of household h in production of g ;
+*qpshare(h,g)$gnag(g) = xlFD(g,"Capital",h) / sum(hh,xlFD(g,"Capital",hh)) ;
 *qpshare(h,g)$gag(g) = xlFD(g,"LAND",h) / sum(hh,xlFD(g,"LAND",hh)) ;   -- makes huge exinc
-display qpshare ;
-qp_dr(g,h,draw) = tqp_dr(g,draw) * qpshare(h,g) ;
-display qp_dr ;
+*display qpshare ;
+*qp_dr(g,h,draw) = tqp_dr(g,draw) * qpshare(h,g) ;
+*display qp_dr ;
+
+$exit
 
 
 * several possibilities for crop/livestock closures.  Pick the one that makes a nice matrix:

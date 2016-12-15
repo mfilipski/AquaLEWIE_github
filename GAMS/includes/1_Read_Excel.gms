@@ -100,14 +100,15 @@ xleshare_se(g,h) = alldata("eshare_se",g,"","",h) ;
 xlemin(g,h) = alldata("emin",g,"","",h) ;
 
 * production parameters
-xlqp(g,h)        = alldata("qp",g,"","",h) ;
-xlidsh(gg,g,h) = alldata("idsh",g,gg,"",h) ;
-* note: the A is actually log(A) because of the log-log regression
-xlpshift(g,h) = (alldata("pshift",g,"","",h)) ;
-xlpshift_se(g,h) = (alldata("pshift_se",g,"","",h)) ;
-
+xlqp(g,h)      = alldata("qp",g,"","",h) ;
+* G and gg are in the order of G and f for fshare - like in the spreadsheet
+xlidsh(g,gg,h) = alldata("idsh",g,gg,"",h) ;
 xlfshare(g,f,h) = alldata("fshare",g,"",f,h) ;
 xlfshare_se(g,f,h) = alldata("fshare_se",g,"",f,h) ;
+* note: the A is actually log(A) because of the log-log regression
+* Do we even need the pshift? or does that get computed out of facshares and total qp?
+*xlpshift(g,h) = (alldata("pshift",g,"","",h)) ;
+*xlpshift_se(g,h) = (alldata("pshift_se",g,"","",h)) ;
 
 * transfers and savings
 xlTROUTsh(h) = alldata("transfout","","","",h) ;
@@ -133,7 +134,7 @@ xlremit(h)  =  alldata("remits","","","",h) ;
 xlothertransfers(h)  =  alldata("NONSCtransfers","","","",h) ;
 
 
-xlnhh(h) = alldata("NumberHH","","","",h) ;
+xlnhh(h) = alldata("HHNum","","","",h) ;
 xlhhinc(h) = alldata("HHinc","","","",h) ;
 xlhhexp(h) = alldata("HHexp","","","",h) ;
 xlhhsize(h) = alldata("HHsize","","","",h) ;
@@ -146,8 +147,8 @@ xlrevsh_row(g,h) = alldata("revsh_row",g,"","",h) ;
 xlVA2IDsh(gg,g,h) = alldata("VA2IDsh",g,gg,"",h) ;
 
 
-display xlidsh, xlfshare, xlfshare_se, xlpshift, xlpshift_se, xleshare, xlemin, xlendow, xlROCendow, xlROWendow,
+display xlidsh, xlfshare, xlfshare_se,  xleshare, xlemin, xlendow, xlROCendow, xlROWendow,
      xlTROUTsh, xlTRINsh, xlTROUTsh_se, xlTRINsh_se, xlSAVsh, xlSAVsh_se,
      xlexpoutsh, xlremit, xlothertransfers, xlnhh, xlhhinc, xlhhexp, xlhhsize, xlrevsh_vil, xlrevsh_zoi,
      xlrevsh_rol, xlrevsh_row, xlVA2IDsh ;
-
+*xlpshift, xlpshift_se,

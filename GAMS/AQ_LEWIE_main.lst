@@ -1,4 +1,4 @@
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 16:08:17 Page 1
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 12/15/16 15:18:07 Page 1
 MYANMAR AQUACULTURE LEWIE MODEL
 C o m p i l a t i o n
 
@@ -143,7 +143,7 @@ INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/1_Re
  116  * the $gdxin opens the data loading procedure and calls the .gdx file we j
       ust made
 GDXIN   D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSh
-        eet_v1.gdx
+        eet_v2.gdx
 --- LOAD  ac = 1:ac
 --- LOAD  g = 4:g
 --- LOAD  f = 5:f
@@ -222,1025 +222,1177 @@ GDXIN   D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSh
  181  xlemin(g,h) = alldata("emin",g,"","",h) ;
  182   
  183  * production parameters
- 184  xlqp(g,h)        = alldata("qp",g,"","",h) ;
- 185  xlidsh(gg,g,h) = alldata("idsh",g,gg,"",h) ;
- 186  * note: the A is actually log(A) because of the log-log regression
- 187  xlpshift(g,h) = (alldata("pshift",g,"","",h)) ;
- 188  xlpshift_se(g,h) = (alldata("pshift_se",g,"","",h)) ;
- 189   
- 190  xlfshare(g,f,h) = alldata("fshare",g,"",f,h) ;
- 191  xlfshare_se(g,f,h) = alldata("fshare_se",g,"",f,h) ;
- 192   
- 193  * transfers and savings
- 194  xlTROUTsh(h) = alldata("transfout","","","",h) ;
- 195  xlTRINsh(h) = alldata("transfin","","","",h) ;
- 196  xlTROUTsh_se(h) = alldata("transfout_se","","","",h) ;
- 197  xlTRINsh_se(h) = alldata("transfin_se","","","",h) ;
- 198   
- 199  xlsavsh(h) = alldata("savsh","","","",h) ;
- 200  xlSAVsh_se(h) = alldata("savsh_se","","","",h) ;
- 201   
- 202  xlendow(f,h) = alldata("endow","","",f,h) + alldata("zoiendow","","",f,h) 
+ 184  xlqp(g,h)      = alldata("qp",g,"","",h) ;
+ 185  * G and gg are in the order of G and f for fshare - like in the spreadshee
+      t
+ 186  xlidsh(g,gg,h) = alldata("idsh",g,gg,"",h) ;
+ 187  xlfshare(g,f,h) = alldata("fshare",g,"",f,h) ;
+ 188  xlfshare_se(g,f,h) = alldata("fshare_se",g,"",f,h) ;
+ 189  * note: the A is actually log(A) because of the log-log regression
+ 190  * Do we even need the pshift? or does that get computed out of facshares a
+      nd total qp?
+ 191  *xlpshift(g,h) = (alldata("pshift",g,"","",h)) ;
+ 192  *xlpshift_se(g,h) = (alldata("pshift_se",g,"","",h)) ;
+ 193   
+ 194  * transfers and savings
+ 195  xlTROUTsh(h) = alldata("transfout","","","",h) ;
+ 196  xlTRINsh(h) = alldata("transfin","","","",h) ;
+ 197  xlTROUTsh_se(h) = alldata("transfout_se","","","",h) ;
+ 198  xlTRINsh_se(h) = alldata("transfin_se","","","",h) ;
+ 199   
+ 200  xlsavsh(h) = alldata("savsh","","","",h) ;
+ 201  xlSAVsh_se(h) = alldata("savsh_se","","","",h) ;
+ 202   
+ 203  xlendow(f,h) = alldata("endow","","",f,h) + alldata("zoiendow","","",f,h) 
       ;
- 203  *xlendow("LABOR",h) = sum(g, xlFD(g,"LABOR",h));
- 204  *xlendow("LAND",h) = sum(g, xlFD(g,"LAND",h));
- 205  *xlendow("CAPITAL",h) = sum(g, xlFD(g,"CAPITAL",h));
- 206  xlROCendow(f,h) = alldata("ROCendow","","",f,h) ;
- 207  xlROWendow(f,h) = alldata("ROWendow","","",f,h) ;
- 208   
+ 204  *xlendow("LABOR",h) = sum(g, xlFD(g,"LABOR",h));
+ 205  *xlendow("LAND",h) = sum(g, xlFD(g,"LAND",h));
+ 206  *xlendow("CAPITAL",h) = sum(g, xlFD(g,"CAPITAL",h));
+ 207  xlROCendow(f,h) = alldata("ROCendow","","",f,h) ;
+ 208  xlROWendow(f,h) = alldata("ROWendow","","",f,h) ;
  209   
  210   
- 211  xlexpoutsh(h) = alldata("exproles","","","",h) ;
- 212   
- 213  xlremit(h)  =  alldata("remits","","","",h) ;
- 214  xlothertransfers(h)  =  alldata("NONSCtransfers","","","",h) ;
- 215   
+ 211   
+ 212  xlexpoutsh(h) = alldata("exproles","","","",h) ;
+ 213   
+ 214  xlremit(h)  =  alldata("remits","","","",h) ;
+ 215  xlothertransfers(h)  =  alldata("NONSCtransfers","","","",h) ;
  216   
- 217  xlnhh(h) = alldata("NumberHH","","","",h) ;
- 218  xlhhinc(h) = alldata("HHinc","","","",h) ;
- 219  xlhhexp(h) = alldata("HHexp","","","",h) ;
- 220  xlhhsize(h) = alldata("HHsize","","","",h) ;
- 221   
- 222  xlrevsh_vil(g,h) = alldata("revsh_vil",g,"","",h) ;
- 223  xlrevsh_zoi(g,h) = alldata("revsh_zoi",g,"","",h) ;
- 224  xlrevsh_rol(g,h) = alldata("revsh_rol",g,"","",h) ;
- 225  xlrevsh_row(g,h) = alldata("revsh_row",g,"","",h) ;
- 226   
- 227  xlVA2IDsh(gg,g,h) = alldata("VA2IDsh",g,gg,"",h) ;
- 228   
+ 217   
+ 218  xlnhh(h) = alldata("HHNum","","","",h) ;
+ 219  xlhhinc(h) = alldata("HHinc","","","",h) ;
+ 220  xlhhexp(h) = alldata("HHexp","","","",h) ;
+ 221  xlhhsize(h) = alldata("HHsize","","","",h) ;
+ 222   
+ 223  xlrevsh_vil(g,h) = alldata("revsh_vil",g,"","",h) ;
+ 224  xlrevsh_zoi(g,h) = alldata("revsh_zoi",g,"","",h) ;
+ 225  xlrevsh_rol(g,h) = alldata("revsh_rol",g,"","",h) ;
+ 226  xlrevsh_row(g,h) = alldata("revsh_row",g,"","",h) ;
+ 227   
+ 228  xlVA2IDsh(gg,g,h) = alldata("VA2IDsh",g,gg,"",h) ;
  229   
- 230  display xlidsh, xlfshare, xlfshare_se, xlpshift, xlpshift_se, xleshare, xl
-      emin, xlendow, xlROCendow, xlROWendow,
- 231       xlTROUTsh, xlTRINsh, xlTROUTsh_se, xlTRINsh_se, xlSAVsh, xlSAVsh_se,
- 232       xlexpoutsh, xlremit, xlothertransfers, xlnhh, xlhhinc, xlhhexp, xlhhs
+ 230   
+ 231  display xlidsh, xlfshare, xlfshare_se,  xleshare, xlemin, xlendow, xlROCen
+      dow, xlROWendow,
+ 232       xlTROUTsh, xlTRINsh, xlTROUTsh_se, xlTRINsh_se, xlSAVsh, xlSAVsh_se,
+ 233       xlexpoutsh, xlremit, xlothertransfers, xlnhh, xlhhinc, xlhhexp, xlhhs
       ize, xlrevsh_vil, xlrevsh_zoi,
- 233       xlrevsh_rol, xlrevsh_row, xlVA2IDsh ;
- 234   
- 235   
+ 234       xlrevsh_rol, xlrevsh_row, xlVA2IDsh ;
+ 235  *xlpshift, xlpshift_se,
  236   
  237   
- 238  * ========================================================================
-      ========================
+ 238   
  239  * ========================================================================
       ========================
- 240  * ==================== STEP 2 - MAKE ASSUMPTIONS FOR THE ECONOMY (village-
-      specific) ==============
- 241  * ========================================================================
+ 240  * ========================================================================
       ========================
+ 241  * ==================== STEP 2 - MAKE ASSUMPTIONS FOR THE ECONOMY (village-
+      specific) ==============
  242  * ========================================================================
       ========================
- 243  * This file is defined as a macro for convenience:
- 244  * that way sub-sets of simulations can easily be edited
+ 243  * ========================================================================
+      ========================
+ 244  * This file is defined as a macro for convenience:
+ 245  * that way sub-sets of simulations can easily be edited
 INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/2_Ma
            rketAssumptions.gms
- 246  * ########################################################################
+ 247  * ########################################################################
       ######################
- 247  * HERE YOU CAN CHOOSE ASSUMPTIONS FOR GIVEN SIMULATION RUNS:
- 248  * ( in theory , there is no need to change anything else in the model but 
+ 248  * HERE YOU CAN CHOOSE ASSUMPTIONS FOR GIVEN SIMULATION RUNS:
+ 249  * ( in theory , there is no need to change anything else in the model but 
       these following 6 items )
- 249   
- 250  * 1) Choose the number of draws in the "set draw" command.  Minimum 10 dra
+ 250   
+ 251  * 1) Choose the number of draws in the "set draw" command.  Minimum 10 dra
       ws if you want GAMS to compute percentiles.
- 251   
- 252  * 2) Choose the elasticity of labor supply with the hlse and flse locals.
- 253   
- 254  * 3) Choose whether or not to have a budget constraint on agricultural inp
+ 252   
+ 253  * 2) Choose the elasticity of labor supply with the hlse and flse locals.
+ 254   
+ 255  * 3) Choose whether or not to have a budget constraint on agricultural inp
       ut purchases using the $setglobal
- 255   
- 256  * 4) Choose which factors are traded at what level using the FTV FTZ and F
+ 256   
+ 257  * 4) Choose which factors are traded at what level using the FTV FTZ and F
       TW subsets
- 257  * for instance, if FL(family labor) is part of the FTV subset, each villag
+ 258  * for instance, if FL(family labor) is part of the FTV subset, each villag
       e has its own FL market
- 258  * and the price of FL (shadow wage) will be an endogenous VILLAGE paramete
+ 259  * and the price of FL (shadow wage) will be an endogenous VILLAGE paramete
       r.
- 259  * If FL is in the FTZ subset, there is a ZOI-wide market and a ZOI-wide pr
+ 260  * If FL is in the FTZ subset, there is a ZOI-wide market and a ZOI-wide pr
       ice for FL.
- 260  * If FL is in the FTW subset, family labor is in perfectly elastic supply 
+ 261  * If FL is in the FTW subset, family labor is in perfectly elastic supply 
       at exogenously fixed world prices.
- 261  * note - always leave at least the "null" element in any subset to avoid e
+ 262  * note - always leave at least the "null" element in any subset to avoid e
       rrors
- 262   
- 263  * 5) Choose which goods are traded at what level using the GTV GTZ and GTW
+ 263   
+ 264  * 5) Choose which goods are traded at what level using the GTV GTZ and GTW
        - same principles as with factors.
- 264   
- 265  * 6) Choose which households receive their transfer.  The PILOT model give
+ 265   
+ 266  * 6) Choose which households receive their transfer.  The PILOT model give
       s a transfer to A only.
- 266  * The SCALE-UP would give it to both A and B.  C and D wouldn't receive a 
+ 267  * The SCALE-UP would give it to both A and B.  C and D wouldn't receive a 
       transfer.
- 267  * ########################################################################
+ 268  * ########################################################################
       ######################
- 268   
  269   
- 270  * subsets and aliases
- 271  *=====================
- 272  set
- 273  * factor subsets
- 274       fk(f)     fixed factors / CAPITAL, LAND /
- 275       ft(f)     tradable inputs / LABOR, INPUT /
- 276       ftv(f)    factors tradable in the village /LABOR,  null /
- 277       ftz(f)    factors tradable in the whole zoi  / null /
- 278       ftw(f)    factors tradables in the rest of the world /  INPUT /
- 279       fpurch(f) purchased factors /INPUT/
- 280   
- 281  * goods subsets
- 282       gtv(g)    goods tradable in the village / ret, crop, ser ,  null  /
- 283       gtz(g)    goods tradable in the zoi   /null /
- 284       gtw(g)    goods tradable with the rest of the world / out/
- 285       gp(g)     goods that are produces / crop, fish, prod, ret, ser /
- 286       gag(g)    ag goods /crop, meat, fish/
- 287       gnag(g)   non ag goods /prod, ret, ser/
- 288   
- 289  * household subsets
- 290       ht(h)     treated recipients in this simulation (can be a or b or bot
+ 270   
+ 271  * subsets and aliases
+ 272  *=====================
+ 273  set
+ 274  * factor subsets
+ 275       fk(f)     fixed factors / CAPITAL, LAND /
+ 276       ft(f)     tradable inputs / LABOR, INPUT /
+ 277       ftv(f)    factors tradable in the village /LABOR,  null /
+ 278       ftz(f)    factors tradable in the whole zoi  / null /
+ 279       ftw(f)    factors tradables in the rest of the world /  INPUT /
+ 280       fpurch(f) purchased factors /INPUT/
+ 281   
+ 282  * goods subsets
+ 283       gtv(g)    goods tradable in the village / ret, crop, ser ,  null  /
+ 284       gtz(g)    goods tradable in the zoi   /null /
+ 285       gtw(g)    goods tradable with the rest of the world /meat, fish, prod
+      , out/
+ 286       gp(g)     goods that are produces / crop, fish, prod, ret, ser /
+ 287       gag(g)    ag goods /crop, meat, fish/
+ 288       gnag(g)   non ag goods /prod, ret, ser/
+ 289   
+ 290  * household subsets
+ 291       ht(h)     treated recipients in this simulation (can be a or b or bot
       h) / null/
- 291   
- 292  *     hc(h)     households in the camp / rrc, rrf/
- 293  *     hnc(h)    households outside of the camp / rlo/
- 294  *     hfood(h)     households getting inkind aid /rrf /
- 295  *     hcash(h)    households getting cash aid    /rrc/
- 296  ;
- 297   
- 298  * accounts not in the matrix
- 299  sets
- 300       v        villages / AQUA Aqua Cluster/
- 301   
- 302       maphv mapping household to their village / (AqFSm,AqFBg,AqAg).AQUA
- 303  /
- 304  ;
- 305   
- 306  display g, f, h, fk, ft, ftv, ftz, ftw, gtv, gtz, gtw, gp, v, mapHv ;
- 307   
+ 292   
+ 293  *     hc(h)     households in the camp / rrc, rrf/
+ 294  *     hnc(h)    households outside of the camp / rlo/
+ 295  *     hfood(h)     households getting inkind aid /rrf /
+ 296  *     hcash(h)    households getting cash aid    /rrc/
+ 297  ;
+ 298   
+ 299  * accounts not in the matrix
+ 300  sets
+ 301       v        villages / AQUA Aqua Cluster
+ 302                           AGRI Agri Cluster/
+ 303   
+ 304       maphv mapping household to their village / (AqFSm,AqFBg,AqAg, AqLL).A
+      QUA
+ 305                                                  (AgAg, AgLL).AGRI
+ 306  /
+ 307  ;
  308   
- 309  * ========================================================================
-      ========================
- 310  * ========================================================================
-      ========================
- 311  * ========================= STEP 3 - MODEL   =============================
-      ========================
+ 309  display g, f, h, fk, ft, ftv, ftz, ftw, gtv, gtz, gtw, gp, v, mapHv ;
+ 310   
+ 311   
  312  * ========================================================================
       ========================
  313  * ========================================================================
       ========================
- 314   
-INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/3_Mo
-           del.gms
+ 314  * ========================= STEP 3 - MODEL   =============================
+      ========================
+ 315  * ========================================================================
+      ========================
  316  * ========================================================================
       ========================
- 317  * ========================================================================
-      ========================
- 318  * ========================= STEP 2 - WRITE THE CORE MODEL ================
-      ========================
+ 317   
+INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/3_Mo
+           del.gms
  319  * ========================================================================
       ========================
  320  * ========================================================================
       ========================
- 321   
- 322   
- 323  * MODEL STARTS HERE
- 324  * ======================================================
- 325  * Now variables and parameters
- 326  * ---------------------------------
- 327  nonnegative variables
- 328  * production
- 329       QP(g,h)        quantity produced of a good by a household
- 330       FD(g,f,h)      factor demand of f in production of g
- 331       ID(g,gg,h)     intermediate demand for production of g
- 332       QVA(g,h)       quantity of value added created in the production proc
+ 321  * ========================= STEP 2 - WRITE THE CORE MODEL ================
+      ========================
+ 322  * ========================================================================
+      ========================
+ 323  * ========================================================================
+      ========================
+ 324   
+ 325   
+ 326  * MODEL STARTS HERE
+ 327  * ======================================================
+ 328  * Now variables and parameters
+ 329  * ---------------------------------
+ 330  nonnegative variables
+ 331  * production
+ 332       QP(g,h)        quantity produced of a good by a household
+ 333       FD(g,f,h)      factor demand of f in production of g
+ 334       ID(g,gg,h)     intermediate demand for production of g
+ 335       QVA(g,h)       quantity of value added created in the production proc
       ess
- 333   
- 334       HFD(f,h)       factor demand in the household
- 335       UNEMP(f,h)     unemployment in the household
- 336       HFSUP(f,h)    labor supply from the household (elastic endowment)
- 337       VFD(f,v)       initial factor demand in the village
- 338       ZFD(f)         initial factor demand in the economy
- 339   
- 340       R(g,f,h)       rent for fixed factors
- 341       WV(f,v)        wage at the village level
- 342       WZ(f)          wage at the zoi level
- 343   
- 344  * consumption
- 345       QC(g,h)        quantity consumed of g by h
- 346       Y(h)           nominal household income
- 347       RY(h)          real household income
- 348       CPI(h)         consumer price index
- 349   
- 350  * values
- 351       PV(g,v)        price of a good at the village level
- 352       PZ(g)          price of a good at the zoi level
- 353       PH(g,h)        price as seen by household h (zoi or village price dep
+ 336   
+ 337       HFD(f,h)       factor demand in the household
+ 338       UNEMP(f,h)     unemployment in the household
+ 339       HFSUP(f,h)    labor supply from the household (elastic endowment)
+ 340       VFD(f,v)       initial factor demand in the village
+ 341       ZFD(f)         initial factor demand in the economy
+ 342   
+ 343       R(g,f,h)       rent for fixed factors
+ 344       WV(f,v)        wage at the village level
+ 345       WZ(f)          wage at the zoi level
+ 346   
+ 347  * consumption
+ 348       QC(g,h)        quantity consumed of g by h
+ 349       Y(h)           nominal household income
+ 350       RY(h)          real household income
+ 351       CPI(h)         consumer price index
+ 352   
+ 353  * values
+ 354       PV(g,v)        price of a good at the village level
+ 355       PZ(g)          price of a good at the zoi level
+ 356       PH(g,h)        price as seen by household h (zoi or village price dep
       ending on good)
- 354       PVA(g,h)       price of value added net of intermediate inputs as see
+ 357       PVA(g,h)       price of value added net of intermediate inputs as see
       n by the household
- 355   
- 356   
- 357  * transfers
- 358       TRIN(h)        tranfered in - received by a household
- 359       TROUT(h)       transfers out - given by a household
- 360       SAV(h)         household savings
- 361       EXPROC(h)      household expenditures out of the zoi
- 362  ;
- 363   
- 364  variables
- 365  * trade
- 366       HMS(g,h)  household marketed surplus of good g
- 367       VMS(g,v)  village marketed surplus of good g
- 368       ZMS(g)     ZOI marketed surplus of a good
- 369   
- 370       HFMS(f,h) factor marketed surplus from the household
- 371       VFMS(f,v) factor marketed surplus out of the village
- 372       ZFMS(f)   factor marketed surplus out of the zoi
- 373       USELESS   trick variable to make gams think it's maximising in the nl
+ 358   
+ 359   
+ 360  * transfers
+ 361       TRIN(h)        tranfered in - received by a household
+ 362       TROUT(h)       transfers out - given by a household
+ 363       SAV(h)         household savings
+ 364       EXPROC(h)      household expenditures out of the zoi
+ 365  ;
+ 366   
+ 367  variables
+ 368  * trade
+ 369       HMS(g,h)  household marketed surplus of good g
+ 370       VMS(g,v)  village marketed surplus of good g
+ 371       ZMS(g)     ZOI marketed surplus of a good
+ 372   
+ 373       HFMS(f,h) factor marketed surplus from the household
+ 374       VFMS(f,v) factor marketed surplus out of the village
+ 375       ZFMS(f)   factor marketed surplus out of the zoi
+ 376       USELESS   trick variable to make gams think it's maximising in the nl
       p
- 374  ;
- 375  USELESS.l = 1 ;
- 376   
- 377  parameters
- 378  *Production - Cobb-douglas
- 379       acobb(g,h) production shift parameter for the CD
- 380       shcobb(g,f,h) factor share parameter for the CD
- 381       vash(g,h) share of value added
- 382       idsh(gg,g,h) intermediate input share
- 383       tidsh(g,h) total intermediate input share (1-vash)
- 384   
- 385  *Consumption
- 386       alpha(g,h) consumption share parameters in the LES
- 387       cmin(g,h)  minimal consumption in the LES
- 388       exinc(h)   exogenous income of household
- 389       vmsfix(g,v) fixed marketed surplus at the village level
- 390       zmsfix(g)  fixed marketed surplus at the zoi level
- 391   
- 392  * factor endowments for fixed factors
- 393       fixfac(g,f,h) fixed factors
- 394       unempsh(f,h)  household's share of total unemployment
- 395       vfmsfix(f,v)  factors fixed at the Village level (family labor)
- 396       zfmsfix(f)    factors fixed at the zoi level (hired labor)
- 397       endow(f,h)    endowment of factors
- 398       hfsupzero(f,h) initial labor supply
- 399   
- 400  * Factor supply
- 401       hfsupel(f,h) factor supply elasticity from household
+ 377  ;
+ 378  USELESS.l = 1 ;
+ 379   
+ 380  parameters
+ 381  *Production - Cobb-douglas
+ 382       acobb(g,h) production shift parameter for the CD
+ 383       shcobb(g,f,h) factor share parameter for the CD
+ 384       vash(g,h) share of value added
+ 385       idsh(g,gg,h) intermediate input share
+ 386       tidsh(g,h) total intermediate input share (1-vash)
+ 387   
+ 388  *Consumption
+ 389       alpha(g,h) consumption share parameters in the LES
+ 390       cmin(g,h)  minimal consumption in the LES
+ 391       exinc(h)   exogenous income of household
+ 392       vmsfix(g,v) fixed marketed surplus at the village level
+ 393       zmsfix(g)  fixed marketed surplus at the zoi level
+ 394   
+ 395  * factor endowments for fixed factors
+ 396       fixfac(g,f,h) fixed factors
+ 397       unempsh(f,h)  household's share of total unemployment
+ 398       vfmsfix(f,v)  factors fixed at the Village level (family labor)
+ 399       zfmsfix(f)    factors fixed at the zoi level (hired labor)
+ 400       endow(f,h)    endowment of factors
+ 401       hfsupzero(f,h) initial labor supply
  402   
- 403  * Budget for purchased inputs - if we want to have a constraint
- 404       pibudget(g,h) budget available for input purchases
- 405       pibsh(g,h)    share of total pibudget going to good g
- 406   
- 407  * Transfers
- 408       troutsh(h) share of transfers in the households expenditures
- 409       exprocsh(h)  share of expenditures outside of the zoi
- 410       savsh(h)  share of income saved
- 411       trinsh(h) share of total transfers received by a given household
- 412   
- 413  * Experiment (either directly in cash or in kind)
- 414       newremits(h) new remittances received by a new refugee
- 415       infood(h)   transfer received in-kind
- 416       incash(h)   transfer received in cash
- 417       transfer(h) effective value of transfer as perceived by the household
- 418       packsold(g) quantity of in-kind package sold on the market (increase 
+ 403  * Factor supply
+ 404       hfsupel(f,h) factor supply elasticity from household
+ 405   
+ 406  * Budget for purchased inputs - if we want to have a constraint
+ 407       pibudget(g,h) budget available for input purchases
+ 408       pibsh(g,h)    share of total pibudget going to good g
+ 409   
+ 410  * Transfers
+ 411       troutsh(h) share of transfers in the households expenditures
+ 412       exprocsh(h)  share of expenditures outside of the zoi
+ 413       savsh(h)  share of income saved
+ 414       trinsh(h) share of total transfers received by a given household
+ 415   
+ 416  * Experiment (either directly in cash or in kind)
+ 417       newremits(h) new remittances received by a new refugee
+ 418       infood(h)   transfer received in-kind
+ 419       incash(h)   transfer received in cash
+ 420       transfer(h) effective value of transfer as perceived by the household
+ 421       packsold(g) quantity of in-kind package sold on the market (increase 
       village supply)
- 419       hfsnewref(ft,h) new refugees factor (labor) supply
- 420       wfpcost(h)  cost of the transfer to WFP (cash or kind)
- 421  ;
- 422   
- 423  Equations
- 424  * prices
- 425       EQ_PVA(g,h)         prive value added equation
- 426       EQ_PH(g,h)          market price as seen from household h
- 427   
- 428  * production
- 429       EQ_FDCOBB(g,f,h)    factor demands cobb douglas
- 430       EQ_FDPURCH(g,f,h)   factor demands for purchased inputs - constrained
+ 422       hfsnewref(ft,h) new refugees factor (labor) supply
+ 423       wfpcost(h)  cost of the transfer to WFP (cash or kind)
+ 424  ;
+ 425   
+ 426  Equations
+ 427  * prices
+ 428       EQ_PVA(g,h)         prive value added equation
+ 429       EQ_PH(g,h)          market price as seen from household h
+ 430   
+ 431  * production
+ 432       EQ_FDCOBB(g,f,h)    factor demands cobb douglas
+ 433       EQ_FDPURCH(g,f,h)   factor demands for purchased inputs - constrained
        or not
- 431       EQ_QVACOBB(g,h)     quantity VA produced cobb douglas
- 432       EQ_QP(g,h)          quantity produced from QVA and ID
- 433       EQ_ID(gg,g,h)       quantity of ID needed for QP
- 434   
- 435  * consumption
- 436       EQ_QC(g,h)          quantity consumed
+ 434       EQ_QVACOBB(g,h)     quantity VA produced cobb douglas
+ 435       EQ_QP(g,h)          quantity produced from QVA and ID
+ 436       EQ_ID(gg,g,h)       quantity of g ID needed for QP of gg
  437   
- 438  * income
- 439       EQ_Y(h)             full income constraint for the household
- 440       EQ_CPI(h)           consumer price index equation
- 441       EQ_RY(h)            real household income equation
- 442   
- 443  * transfers
- 444       EQ_TRIN(h)          inter household transfers in (received)
- 445       EQ_TROUT(h)         interhousehold transfers out (given)
- 446   
- 447  * exogenous expenditures
- 448       EQ_SAV(h)           savings (exogenous rate)
- 449       EQ_EXPROC(h)        expenditures outside of the zoi (exogenous rate)
- 450   
- 451  * goods market clearing
- 452       EQ_HMKT(g,h)        qty clearing in each household
- 453       EQ_VMKT(g,v)        market clearing in the village
- 454       EQ_ZMKT(g)          market clearing in the zoi
- 455       EQ_VMKTfix(g,v)     price definition in the village
- 456       EQ_ZMKTfix(g)       price definition in the zoi
- 457   
- 458  * factor market clearing
- 459       EQ_HFD(f,h)         total household demand for a given factor
- 460       EQ_FCSTR(g,f,h)     fixed factors constraint
- 461       EQ_HFSUP(f,h)       household elastic supply
- 462       EQ_HFMKT(f,h)       tradable factor clearing in the household
- 463       EQ_VFMKT(f,v)       tradable factors clearing in the village
- 464       EQ_ZFMKT(f)         tradable factor clearing in the zoi
- 465       EQ_VFMKTfix(f,v)    wage determination for tradable factors clearing 
+ 438  * consumption
+ 439       EQ_QC(g,h)          quantity consumed
+ 440   
+ 441  * income
+ 442       EQ_Y(h)             full income constraint for the household
+ 443       EQ_CPI(h)           consumer price index equation
+ 444       EQ_RY(h)            real household income equation
+ 445   
+ 446  * transfers
+ 447       EQ_TRIN(h)          inter household transfers in (received)
+ 448       EQ_TROUT(h)         interhousehold transfers out (given)
+ 449   
+ 450  * exogenous expenditures
+ 451       EQ_SAV(h)           savings (exogenous rate)
+ 452       EQ_EXPROC(h)        expenditures outside of the zoi (exogenous rate)
+ 453   
+ 454  * goods market clearing
+ 455       EQ_HMKT(g,h)        qty clearing in each household
+ 456       EQ_VMKT(g,v)        market clearing in the village
+ 457       EQ_ZMKT(g)          market clearing in the zoi
+ 458       EQ_VMKTfix(g,v)     price definition in the village
+ 459       EQ_ZMKTfix(g)       price definition in the zoi
+ 460   
+ 461  * factor market clearing
+ 462       EQ_HFD(f,h)         total household demand for a given factor
+ 463       EQ_FCSTR(g,f,h)     fixed factors constraint
+ 464       EQ_HFSUP(f,h)       household elastic supply
+ 465       EQ_HFMKT(f,h)       tradable factor clearing in the household
+ 466       EQ_VFMKT(f,v)       tradable factors clearing in the village
+ 467       EQ_ZFMKT(f)         tradable factor clearing in the zoi
+ 468       EQ_VFMKTfix(f,v)    wage determination for tradable factors clearing 
       in the village
- 466       EQ_ZFMKTfix(f)      wage determination for tradable factors clearing 
+ 469       EQ_ZFMKTfix(f)      wage determination for tradable factors clearing 
       in the zoi
- 467   
- 468   
- 469  * In case of nlp solve
- 470       EQ_USELESS          trick to make gams think it's maximizing somethin
+ 470   
+ 471   
+ 472  * In case of nlp solve
+ 473       EQ_USELESS          trick to make gams think it's maximizing somethin
       g
- 471  ;
- 472   
- 473  *=========================================================================
+ 474  ;
+ 475   
+ 476  *=========================================================================
       ====================
- 474  *==================== MODEL STATEMENT ====================================
+ 477  *==================== MODEL STATEMENT ====================================
       ====================
- 475  *=========================================================================
+ 478  *=========================================================================
       ====================
- 476   
- 477  * PRICE BLOCK
- 478  EQ_PH(g,h)..
- 479       PH(g,h) =E= PZ(g)$(gtz(g)+gtw(g)) + sum(v$maphv(h,v),PV(g,v))$gtv(g) 
+ 479   
+ 480  * PRICE BLOCK
+ 481  EQ_PH(g,h)..
+ 482       PH(g,h) =E= PZ(g)$(gtz(g)+gtw(g)) + sum(v$maphv(h,v),PV(g,v))$gtv(g) 
       ;
- 480   
- 481  EQ_PVA(g,h)..
- 482       PVA(g,h) =E= PH(g,h)- sum(gg,idsh(gg,g,h)*PH(gg,h)) ;
  483   
- 484  * PRODUCTION BLOCK
- 485  EQ_QVACOBB(g,h)..
- 486       QVA(g,h) =E= acobb(g,h)*prod(f,FD(g,f,h)**(shcobb(g,f,h)))
- 487  ;
- 488   
- 489  EQ_FDCOBB(g,f,h)$(not fpurch(f))..
- 490       FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),
+ 484  EQ_PVA(g,h)..
+ 485       PVA(g,h) =E= PH(g,h)- sum(gg,idsh(g,gg,h)*PH(gg,h)) ;
+ 486   
+ 487  * PRODUCTION BLOCK
+ 488  EQ_QVACOBB(g,h)..
+ 489       QVA(g,h) =E= acobb(g,h)*prod(f,FD(g,f,h)**(shcobb(g,f,h)))
+ 490  ;
+ 491   
+ 492  EQ_FDCOBB(g,f,h)$(not fpurch(f))..
+ 493       FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),
       WV(f,v))$ftv(f) )
- 491        =E= PVA(g,h)*QP(g,h)*shcobb(g,f,h)
- 492  ;
- 493   
- 494  * If the dummy is 0 the FD of purchased inputs is of the same form as all 
+ 494        =E= PVA(g,h)*QP(g,h)*shcobb(g,f,h)
+ 495  ;
+ 496   
+ 497  * If the dummy is 0 the FD of purchased inputs is of the same form as all 
       other factors
- 495  * If the dummy is 1 then the FD is limited by the budget constraint
- 496  EQ_FDPURCH(g,f,h)$fpurch(f)..
- 497       FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),
+ 498  * If the dummy is 1 then the FD is limited by the budget constraint
+ 499  EQ_FDPURCH(g,f,h)$fpurch(f)..
+ 500       FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),
       WV(f,v))$ftv(f))
- 498        =E= (PVA(g,h)*QP(g,h)*shcobb(g,f,h))$(0 = 0)
- 499           +(pibudget(g,h))$(0 = 1)
- 500  ;
- 501   
- 502   
- 503  EQ_QP(g,h)$vash(g,h)..
- 504       QP(g,h) =E= QVA(g,h)/vash(g,h) ;
+ 501        =E= (PVA(g,h)*QP(g,h)*shcobb(g,f,h))$(0 = 0)
+ 502           +(pibudget(g,h))$(0 = 1)
+ 503  ;
+ 504   
  505   
- 506  EQ_ID(gg,g,h)..
- 507       ID(gg,g,h) =E= QP(g,h)*idsh(gg,g,h)
- 508  ;
- 509   
- 510  * CONSUMPTION AND INCOME
- 511  EQ_QC(g,h)..
- 512       QC(g,h) =E= alpha(g,h)/PH(g,h)*[(Y(h)-TROUT(h)-SAV(h)-EXPROC(h))-sum(
+ 506  EQ_QP(g,h)$vash(g,h)..
+ 507       QP(g,h) =E= QVA(g,h)/vash(g,h) ;
+ 508   
+ 509  * "gg production requires intermediate demand for g"
+ 510  EQ_ID(gg,g,h)..
+ 511       ID(gg,g,h) =E= QP(gg,h)*idsh(gg,g,h)
+ 512  ;
+ 513   
+ 514  * CONSUMPTION AND INCOME
+ 515  EQ_QC(g,h)..
+ 516       QC(g,h) =E= alpha(g,h)/PH(g,h)*[(Y(h)-TROUT(h)-SAV(h)-EXPROC(h))-sum(
       gg, PH(gg,h)*cmin(gg,h))] + cmin(g,h)
- 513  ;
- 514   
- 515  * Full income (value of factor endowments)
- 516  EQ_Y(h)..
- 517       Y(h) =E= sum((g,fk),R(g,fk,h)*FD(g,fk,h))
- 518              + sum(ftz, WZ(ftz)*HFSUP(ftz,h))
- 519              + sum(ftv, sum(v$maphv(h,v), WV(ftv,v))*HFSUP(ftv,h))
- 520              + sum(ftw, WZ(ftw)*HFSUP(ftw,h))
- 521              + exinc(h)
- 522  ;
- 523   
- 524  EQ_CPI(h)..
- 525  *     CPI(h) =e= sum(g,PH(g,h)*alpha(g,h))
- 526       CPI(h) =e= sum(g,PH(g,h)*[PH(g,h)*QC(g,h)/Y(h)])
- 527                      +1*troutsh(h)+savsh(h)+exprocsh(h) ;
- 528  ;
- 529   
- 530  EQ_RY(h)..
- 531       RY(h) =e= Y(h) / CPI(h)
+ 517  ;
+ 518   
+ 519  * Full income (value of factor endowments)
+ 520  EQ_Y(h)..
+ 521       Y(h) =E= sum((g,fk),R(g,fk,h)*FD(g,fk,h))
+ 522              + sum(ftz, WZ(ftz)*HFSUP(ftz,h))
+ 523              + sum(ftv, sum(v$maphv(h,v), WV(ftv,v))*HFSUP(ftv,h))
+ 524              + sum(ftw, WZ(ftw)*HFSUP(ftw,h))
+ 525              + exinc(h)
+ 526  ;
+ 527   
+ 528  EQ_CPI(h)..
+ 529  *     CPI(h) =e= sum(g,PH(g,h)*alpha(g,h))
+ 530       CPI(h) =e= sum(g,PH(g,h)*[PH(g,h)*QC(g,h)/Y(h)])
+ 531                      +1*troutsh(h)+savsh(h)+exprocsh(h) ;
  532  ;
  533   
- 534  * Transfers given away - exogenous in this version of the model
- 535  EQ_TROUT(h)..
- 536       TROUT(h) =E= troutsh(h)*Y(h) ;
- 537  ;
- 538   
- 539  EQ_SAV(h)..
- 540       SAV(h) =E= savsh(h)*Y(h) ;
+ 534  EQ_RY(h)..
+ 535       RY(h) =e= Y(h) / CPI(h)
+ 536  ;
+ 537   
+ 538  * Transfers given away - exogenous in this version of the model
+ 539  EQ_TROUT(h)..
+ 540       TROUT(h) =E= troutsh(h)*Y(h) ;
  541  ;
- 542  EQ_EXPROC(h)..
- 543       EXPROC(h) =E= exprocsh(h)*Y(h) ;
- 544  ;
- 545   
- 546  * MARKET CLEARING FOR GOODS
- 547  EQ_HMKT(g,h)..
- 548       HMS(g,h) =E= QP(g,h)$vash(g,h) - QC(g,h) - sum(gg,ID(g,gg,h)) ;
+ 542   
+ 543  EQ_SAV(h)..
+ 544       SAV(h) =E= savsh(h)*Y(h) ;
+ 545  ;
+ 546  EQ_EXPROC(h)..
+ 547       EXPROC(h) =E= exprocsh(h)*Y(h) ;
+ 548  ;
  549   
- 550  EQ_VMKT(g,v)..
- 551       VMS(g,v) =E= sum(h$maphv(h,v),HMS(g,h)) + packsold(g) ;
- 552  ;
+ 550  * MARKET CLEARING FOR GOODS
+ 551  EQ_HMKT(g,h)..
+ 552       HMS(g,h) =E= QP(g,h)$vash(g,h) - QC(g,h) - sum(gg,ID(gg,g,h)) ;
  553   
- 554  EQ_ZMKT(g)..
- 555       ZMS(g) =E= sum(v, VMS(g,v))
+ 554  EQ_VMKT(g,v)..
+ 555       VMS(g,v) =E= sum(h$maphv(h,v),HMS(g,h)) + packsold(g) ;
  556  ;
  557   
- 558  EQ_VMKTfix(gtv,v)..
- 559       VMS(gtv,v) =E= vmsfix(gtv,v)
+ 558  EQ_ZMKT(g)..
+ 559       ZMS(g) =E= sum(v, VMS(g,v))
  560  ;
  561   
- 562  EQ_ZMKTfix(gtz)..
- 563       ZMS(gtz) =E= zmsfix(gtz)
+ 562  EQ_VMKTfix(gtv,v)..
+ 563       VMS(gtv,v) =E= vmsfix(gtv,v)
  564  ;
  565   
- 566  * FACTOR MARKET CLEARING
- 567  EQ_HFD(f,h)..
- 568       HFD(f,h) =e= sum(g, FD(g,f,h))
- 569  ;
- 570   
- 571  EQ_FCSTR(g,fk,h)..
- 572       FD(g,fk,h) =E= fixfac(g,fk,h)
+ 566  EQ_ZMKTfix(gtz)..
+ 567       ZMS(gtz) =E= zmsfix(gtz)
+ 568  ;
+ 569   
+ 570  * FACTOR MARKET CLEARING
+ 571  EQ_HFD(f,h)..
+ 572       HFD(f,h) =e= sum(g, FD(g,f,h))
  573  ;
  574   
- 575  EQ_HFMKT(ft,h)..
- 576       HFMS(ft,h) =E= HFSUP(ft,h) - sum(g, FD(g,ft,h))
+ 575  EQ_FCSTR(g,fk,h)..
+ 576       FD(g,fk,h) =E= fixfac(g,fk,h)
  577  ;
  578   
- 579  EQ_HFSUP(ft,h)..
- 580       HFSUP(ft,h)$(not hfsupzero(ft,h))
- 581       +
- 582  * Choose v1 or v2
- 583  *     (HFSUP(ft,h)/(hfsupzero(ft,h)) - hfsnewref(ft,h)/(hfsupzero(ft,h)) -
+ 579  EQ_HFMKT(ft,h)..
+ 580       HFMS(ft,h) =E= HFSUP(ft,h) - sum(g, FD(g,ft,h))
+ 581  ;
+ 582   
+ 583  EQ_HFSUP(ft,h)..
+ 584       HFSUP(ft,h)$(not hfsupzero(ft,h))
+ 585       +
+ 586  * Choose v1 or v2
+ 587  *     (HFSUP(ft,h)/(hfsupzero(ft,h)) - hfsnewref(ft,h)/(hfsupzero(ft,h)) -
        [sum(v$maphv(h,v),WV(ft,v)**hfsupel(ft,h))$ftv(ft)
- 584       (HFSUP(ft,h)/(hfsupzero(ft,h)+hfsnewref(ft,h))  - [sum(v$maphv(h,v),W
+ 588       (HFSUP(ft,h)/(hfsupzero(ft,h)+hfsnewref(ft,h))  - [sum(v$maphv(h,v),W
       V(ft,v)**hfsupel(ft,h))$ftv(ft)
- 585                                      + (WZ(ft)**hfsupel(ft,h))$(ftz(ft)+ftw
+ 589                                      + (WZ(ft)**hfsupel(ft,h))$(ftz(ft)+ftw
       (ft))] )$hfsupzero(ft,h)
- 586       =e= 0
- 587  ;
- 588   
- 589  EQ_VFMKT(ft,v)..
- 590       VFMS(ft,v) =E= sum(h$maphv(h,v), HFMS(ft,h))
+ 590       =e= 0
  591  ;
  592   
- 593  EQ_ZFMKT(ft)..
- 594       sum(v, VFMS(ft,v)) =E= ZFMS(ft)
+ 593  EQ_VFMKT(ft,v)..
+ 594       VFMS(ft,v) =E= sum(h$maphv(h,v), HFMS(ft,h))
  595  ;
  596   
- 597  * FACTOR WAGE DETERMINATION
- 598  EQ_VFMKTFIX(ftv,v)..
- 599       VFMS(ftv,v) =E= vfmsfix(ftv,v)
- 600  ;
- 601   
- 602  EQ_ZFMKTFIX(ftz)..
- 603       ZFMS(ftz) =E= zfmsfix(ftz)
+ 597  EQ_ZFMKT(ft)..
+ 598       sum(v, VFMS(ft,v)) =E= ZFMS(ft)
+ 599  ;
+ 600   
+ 601  * FACTOR WAGE DETERMINATION
+ 602  EQ_VFMKTFIX(ftv,v)..
+ 603       VFMS(ftv,v) =E= vfmsfix(ftv,v)
  604  ;
  605   
- 606  * In case of NLP solve:
- 607  EQ_USELESS..
- 608       USELESS =e= 1 ;
+ 606  EQ_ZFMKTFIX(ftz)..
+ 607       ZFMS(ftz) =E= zfmsfix(ftz)
+ 608  ;
  609   
- 610   
- 611   
- 612  *-------------------------------------------------------------------------
-      ------------------------
- 613  *--------------------------------------- ALTERNATIVE MODELS --------------
-      ------------------------
- 614  *-------------------------------------------------------------------------
-      ------------------------
+ 610  * In case of NLP solve:
+ 611  EQ_USELESS..
+ 612       USELESS =e= 1 ;
+ 613   
+ 614   
  615   
- 616  model genCD Model with Cobb Douglas production /
- 617  EQ_PVA.PVA
- 618  EQ_PH.PH
- 619  EQ_QVACOBB.QVA
- 620  EQ_FDCOBB.FD
- 621  EQ_FDPURCH.FD
- 622  EQ_QP.QP
- 623  EQ_ID.ID
- 624  EQ_QC.QC
- 625  EQ_Y.Y
- 626  EQ_HMKT.HMS
- 627  EQ_VMKT.VMS
- 628  EQ_ZMKT.ZMS
- 629  EQ_VMKTfix.PV
- 630  EQ_ZMKTfix.PZ
- 631  EQ_HFD.HFD
- 632  EQ_FCSTR.R
- 633  EQ_HFMKT.HFMS
- 634  EQ_VFMKT.VFMS
- 635  EQ_ZFMKT.ZFMS
- 636  EQ_VFMKTfix.WV
- 637  EQ_ZFMKTfix.WZ
- 638  EQ_TROUT.TROUT
- 639  EQ_SAV.SAV
- 640  EQ_EXPROC.EXPROC
- 641   
- 642  * elastic factor supply from the household
- 643  EQ_HFSUP.HFSUP
- 644  EQ_CPI.CPI
- 645  EQ_RY.RY
- 646  /;
- 647   
- 648   
- 649  model genCDnlp Model with Cobb Douglas production /
- 650  EQ_PVA
- 651  EQ_PH
- 652  EQ_QVACOBB
- 653  EQ_FDCOBB
- 654  EQ_FDPURCH
- 655  EQ_QP
- 656  EQ_ID
- 657  EQ_QC
- 658  EQ_Y
- 659  EQ_HMKT
- 660  EQ_VMKT
- 661  EQ_ZMKT
- 662  EQ_VMKTfix
- 663  EQ_ZMKTfix
- 664  EQ_HFD
- 665  EQ_FCSTR
- 666  EQ_HFMKT
- 667  EQ_VFMKT
- 668  EQ_ZFMKT
- 669  EQ_VFMKTfix
- 670  EQ_ZFMKTfix
- 671  EQ_TROUT
- 672  EQ_SAV
- 673  EQ_EXPROC
- 674  * elastic factor supply from the household
- 675  EQ_HFSUP
- 676  EQ_USELESS
- 677  EQ_CPI
- 678  EQ_RY
- 679  /;
- 680   
- 681   
- 682  * ========================================================================
-      ========================
- 683  * ========================================================================
-      ========================
- 684  * ========================= STEP 4 - CALIBRATION  ========================
-      ========================
- 685  * ========================================================================
-      ========================
+ 616  *-------------------------------------------------------------------------
+      ------------------------
+ 617  *--------------------------------------- ALTERNATIVE MODELS --------------
+      ------------------------
+ 618  *-------------------------------------------------------------------------
+      ------------------------
+ 619   
+ 620  model genCD Model with Cobb Douglas production /
+ 621  EQ_PVA.PVA
+ 622  EQ_PH.PH
+ 623  EQ_QVACOBB.QVA
+ 624  EQ_FDCOBB.FD
+ 625  EQ_FDPURCH.FD
+ 626  EQ_QP.QP
+ 627  EQ_ID.ID
+ 628  EQ_QC.QC
+ 629  EQ_Y.Y
+ 630  EQ_HMKT.HMS
+ 631  EQ_VMKT.VMS
+ 632  EQ_ZMKT.ZMS
+ 633  EQ_VMKTfix.PV
+ 634  EQ_ZMKTfix.PZ
+ 635  EQ_HFD.HFD
+ 636  EQ_FCSTR.R
+ 637  EQ_HFMKT.HFMS
+ 638  EQ_VFMKT.VFMS
+ 639  EQ_ZFMKT.ZFMS
+ 640  EQ_VFMKTfix.WV
+ 641  EQ_ZFMKTfix.WZ
+ 642  EQ_TROUT.TROUT
+ 643  EQ_SAV.SAV
+ 644  EQ_EXPROC.EXPROC
+ 645   
+ 646  * elastic factor supply from the household
+ 647  EQ_HFSUP.HFSUP
+ 648  EQ_CPI.CPI
+ 649  EQ_RY.RY
+ 650  /;
+ 651   
+ 652   
+ 653  model genCDnlp Model with Cobb Douglas production /
+ 654  EQ_PVA
+ 655  EQ_PH
+ 656  EQ_QVACOBB
+ 657  EQ_FDCOBB
+ 658  EQ_FDPURCH
+ 659  EQ_QP
+ 660  EQ_ID
+ 661  EQ_QC
+ 662  EQ_Y
+ 663  EQ_HMKT
+ 664  EQ_VMKT
+ 665  EQ_ZMKT
+ 666  EQ_VMKTfix
+ 667  EQ_ZMKTfix
+ 668  EQ_HFD
+ 669  EQ_FCSTR
+ 670  EQ_HFMKT
+ 671  EQ_VFMKT
+ 672  EQ_ZFMKT
+ 673  EQ_VFMKTfix
+ 674  EQ_ZFMKTfix
+ 675  EQ_TROUT
+ 676  EQ_SAV
+ 677  EQ_EXPROC
+ 678  * elastic factor supply from the household
+ 679  EQ_HFSUP
+ 680  EQ_USELESS
+ 681  EQ_CPI
+ 682  EQ_RY
+ 683  /;
+ 684   
+ 685   
  686  * ========================================================================
       ========================
- 687   
-INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/4a_D
-           efineAllParameters.gms
+ 687  * ========================================================================
+      ========================
+ 688  * ========================= STEP 4 - CALIBRATION  ========================
+      ========================
  689  * ========================================================================
       ========================
  690  * ========================================================================
       ========================
- 691  * ====================== STEP 4 - CALIBRATE THE MODEL  ===================
-      ========================
- 692  * ========================================================================
-      ========================
+ 691   
+INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/4a_D
+           efineAllParameters.gms
  693  * ========================================================================
       ========================
- 694   
- 695   
- 696  parameter
- 697  * meta-parameters with parameter draws
- 698  fshare_t(g,f,h,draw)  unscaled draw the cobb-douglas factor shares
- 699  eshare_t(g,h,draw)    unscaled draw of expenditure shares
- 700   
- 701  * drawn parameters:
- 702  pv_dr(g,v,draw)       drawn or computed from draw price at village level
- 703  pz_dr(g,draw)         drawn or computed from draw price at zoi level
- 704  ph_dr(g,h,draw)       drawn or computed from draw price as seen from house
+ 694  * ========================================================================
+      ========================
+ 695  * ====================== STEP 4 - CALIBRATE THE MODEL  ===================
+      ========================
+ 696  * ========================================================================
+      ========================
+ 697  * ========================================================================
+      ========================
+ 698   
+ 699   
+ 700  parameter
+ 701  * meta-parameters with parameter draws
+ 702  fshare_t(g,f,h,draw)  unscaled draw the cobb-douglas factor shares
+ 703  eshare_t(g,h,draw)    unscaled draw of expenditure shares
+ 704   
+ 705  * drawn parameters:
+ 706  pv_dr(g,v,draw)       drawn or computed from draw price at village level
+ 707  pz_dr(g,draw)         drawn or computed from draw price at zoi level
+ 708  ph_dr(g,h,draw)       drawn or computed from draw price as seen from house
       hold
- 705  pva_dr(g,h,draw)      drawn or computed from draw price of value added
- 706  qva_dr(g,h,draw)      drawn or computed from draw quantity of value added
- 707  qp_dr(g,h,draw)       drawn or computed from draw quantity produced
- 708  tqp_dr(g,draw)        drawn or computed total qty produced in the zoi
- 709  ttqp_dr(draw)         drawn or computed total output of the zoi
- 710  fd_dr(g,f,h,draw)     drawn or computed from draw factor demand
- 711  id_dr(g,gg,h,draw)    drawn or computed from draw intermediate demand
- 712  pshift_dr(g,h,draw)   drawn or computed from draw cobb-douglas production 
+ 709  pva_dr(g,h,draw)      drawn or computed from draw price of value added
+ 710  qva_dr(g,h,draw)      drawn or computed from draw quantity of value added
+ 711  qp_dr(g,h,draw)       drawn or computed from draw quantity produced
+ 712  tqp_dr(g,draw)        drawn or computed total qty produced in the zoi
+ 713  ttqp_dr(draw)         drawn or computed total output of the zoi
+ 714  fd_dr(g,f,h,draw)     drawn or computed from draw factor demand
+ 715  id_dr(g,gg,h,draw)    drawn or computed from draw intermediate demand
+ 716  pshift_dr(g,h,draw)   drawn or computed from draw cobb-douglas production 
       shifter
- 713  fshare_dr(g,f,h,draw) drawn or computed from draw cobb-douglas factor shar
+ 717  fshare_dr(g,f,h,draw) drawn or computed from draw cobb-douglas factor shar
       es
- 714  r_dr(g,f,h,draw)      drawn or computed from draw rent for fixed factors
- 715  wv_dr(f,v,draw)       drawn or computed from draw village-wide wage for tr
+ 718  r_dr(g,f,h,draw)      drawn or computed from draw rent for fixed factors
+ 719  wv_dr(f,v,draw)       drawn or computed from draw village-wide wage for tr
       adable factors
- 716  wz_dr(f,draw)         drawn or computed from draw zoi-wide wage for tradab
+ 720  wz_dr(f,draw)         drawn or computed from draw zoi-wide wage for tradab
       le factors
- 717  vash_dr(g,h,draw)     drawn or computed from draw value-added share
- 718  idsh_dr(gg,g,h,draw)  drawn or computed from draw intermediate demand shar
+ 721  vash_dr(g,h,draw)     drawn or computed from draw value-added share
+ 722  idsh_dr(gg,g,h,draw)  drawn or computed from draw intermediate demand shar
       e
- 719  tidsh_dr(gg,h,draw)   drawn or computed from draw total intermediate input
+ 723  tidsh_dr(gg,h,draw)   drawn or computed from draw total intermediate input
        share (1-vash)
- 720  fixfac_dr(g,f,h,draw) drawn or computed from draw fixed factor demand
- 721  unemp_dr(f,h,draw)    drawn or computed from draw unemployment
- 722  unempsh_dr(f,h,draw)  drawn or computed from draw hh share of total unempl
+ 724  fixfac_dr(g,f,h,draw) drawn or computed from draw fixed factor demand
+ 725  unemp_dr(f,h,draw)    drawn or computed from draw unemployment
+ 726  unempsh_dr(f,h,draw)  drawn or computed from draw hh share of total unempl
       oyment
- 723  vfmsfix_dr(f,v,draw)  drawn or computed from draw factors fixed at the Vil
+ 727  vfmsfix_dr(f,v,draw)  drawn or computed from draw factors fixed at the Vil
       lage level
- 724  zfmsfix_dr(f,draw)    drawn or computed from draw factors fixed at the zoi
+ 728  zfmsfix_dr(f,draw)    drawn or computed from draw factors fixed at the zoi
        level
- 725  vmsfix_dr(g,v,draw)   drawn or computed from draw goods fixed at the Villa
+ 729  vmsfix_dr(g,v,draw)   drawn or computed from draw goods fixed at the Villa
       ge level
- 726  zmsfix_dr(g,draw)     drawn or computed from draw goods fixed at the zoi l
+ 730  zmsfix_dr(g,draw)     drawn or computed from draw goods fixed at the zoi l
       evel
- 727   
- 728  exinc_dr(h,draw)      drawn or computed from draw exogenous income
- 729  endow_dr(f,h,draw)    drawn or computed from draw endowment
- 730  qc_dr(g,h,draw)       drawn or computed from draw level of consumption
- 731  tqc_dr(g,draw)        drawn or computed from draw total qc
- 732  eshare_dr(g,h,draw)    drawn or computed from draw consumption shares
- 733  y_dr(h,draw)          drawn or computed from draw nominal hh income
- 734  cpi_dr(h,draw)        drawn or computed from draw consumer price index of 
+ 731   
+ 732  exinc_dr(h,draw)      drawn or computed from draw exogenous income
+ 733  endow_dr(f,h,draw)    drawn or computed from draw endowment
+ 734  qc_dr(g,h,draw)       drawn or computed from draw level of consumption
+ 735  tqc_dr(g,draw)        drawn or computed from draw total qc
+ 736  eshare_dr(g,h,draw)    drawn or computed from draw consumption shares
+ 737  y_dr(h,draw)          drawn or computed from draw nominal hh income
+ 738  cpi_dr(h,draw)        drawn or computed from draw consumer price index of 
       hh
- 735  ry_dr(h,draw)         drawn or computed from draw real hh income
- 736  cmin_dr(g,h,draw)     drawn or computed from draw incompressible demand
- 737  trin_dr(h,draw)       drawn or computed from draw transfers in - received
- 738  trout_dr(h,draw)      drawn or computed from draw transfers out - given
- 739  trinsh_dr(h,draw)     drawn or computed from draw share of all transfers i
+ 739  ry_dr(h,draw)         drawn or computed from draw real hh income
+ 740  cmin_dr(g,h,draw)     drawn or computed from draw incompressible demand
+ 741  trin_dr(h,draw)       drawn or computed from draw transfers in - received
+ 742  trout_dr(h,draw)      drawn or computed from draw transfers out - given
+ 743  trinsh_dr(h,draw)     drawn or computed from draw share of all transfers i
       n the eco going to h
- 740  troutsh_dr(h,draw)    drawn or computed from draw share of yousehold h's i
+ 744  troutsh_dr(h,draw)    drawn or computed from draw share of yousehold h's i
       ncome being given as transfers
- 741  hfd_dr(f,h,draw)      drawn or computed from draw factor demand of househo
+ 745  hfd_dr(f,h,draw)      drawn or computed from draw factor demand of househo
       ld h for factor f
- 742  vfd_dr(f,v,draw)      drawn or computed from draw village demand for facto
+ 746  vfd_dr(f,v,draw)      drawn or computed from draw village demand for facto
       r f
- 743  zfd_dr(f,draw)        drawn or computed from draw zoi demand for factor f
- 744  hms_dr(g,h,draw)      drawn or computed from draw household marketed surpl
+ 747  zfd_dr(f,draw)        drawn or computed from draw zoi demand for factor f
+ 748  hms_dr(g,h,draw)      drawn or computed from draw household marketed surpl
       us of good g
- 745  vms_dr(g,v,draw)      drawn or computed from draw village marketed surplus
+ 749  vms_dr(g,v,draw)      drawn or computed from draw village marketed surplus
        of good g
- 746  zms_dr(g,draw)        drawn or computed from draw household marketed surpl
+ 750  zms_dr(g,draw)        drawn or computed from draw household marketed surpl
       us of good g
- 747  hfms_dr(f,h,draw)     drawn or computed from draw household factor markete
+ 751  hfms_dr(f,h,draw)     drawn or computed from draw household factor markete
       d surplus
- 748  vfms_dr(f,v,draw)     drawn or computed from draw village factor marketed 
+ 752  vfms_dr(f,v,draw)     drawn or computed from draw village factor marketed 
       surplus
- 749  zfms_dr(f,draw)       drawn or computed from draw zoi factor marketed surp
+ 753  zfms_dr(f,draw)       drawn or computed from draw zoi factor marketed surp
       lus
- 750   
- 751  savsh_dr(h,draw)      drawn or computed savings rate
- 752  sav_dr(h,draw)        drawn or computed savings level
- 753  exprocsh_dr(h,draw)   drawn or computed outside-of-zoi expenditures rate
- 754  exproc_dr(h,draw)     drawn or computed outside-of-zoi expenditures level
- 755  expzoish_dr(h,draw)   drawn or computed outside-of-zoi expenditures level
- 756   
- 757   
- 758  * calibration values in each draw
- 759  *pm1(g,draw)         calibrated market price
- 760  pv1(g,v,draw)       calibrated price at village level
- 761  pz1(g,draw)         calibrated price at zoi level
- 762  ph1(g,h,draw)       calibrated price as seen by household
- 763  pva1(g,h,draw)      calibrated price of value added
- 764  qva1(g,h,draw)      calibrated quantity of value added
- 765  qp1(g,h,draw)       calibrated quantity produced
- 766  tqp1(g,draw)        calibrated total quantity produced
- 767  ttqp1(draw)
- 768  hqp1(h,draw)        calibrated total qty produced by a household
- 769  fd1(g,f,h,draw)     calibrated factor demand
- 770  id1(g,gg,h,draw)    calibrated intermediate demand
- 771  pshift1(g,h,draw)   calibrated cobb-douglas shifter
- 772  fshare1(g,f,h,draw) calibrated cobb-douglas shares
- 773  r1(g,f,h,draw)      calibrated rent for fixed factors
- 774  wv1(f,v,draw)       calibrated village-wide wage for tradable factors
- 775  wz1(f,draw)         calibrated zoi-wide wage for tradable factors
- 776  vash1(g,h,draw)     calibrated value-added share
- 777  idsh1(gg,g,h,draw)  calibrated intermediate demand share
- 778  tidsh1(gg,h,draw)   calibrated total intermediate input share (1-vash)
- 779  fixfac1(g,f,h,draw) calibrated fixed factor demand
- 780  exinc1(h,draw)      calibrated exogenous income
- 781  endow1(f,h,draw)    calibrated endowment
- 782  qc1(g,h,draw)       calibrated level of consumption
- 783  eshare1(g,h,draw)    calibrated consumption shares
- 784  y1(h,draw)          calibrated income of household
- 785  cpi1(h,draw)        calibrated cpi
- 786  vqc1(v,g,draw)      calibrated village consumption
- 787  vcpi1(v,draw)       calibrated village cpi
- 788  cri1(v,f,draw)      calibrated rent weighted index
- 789   
- 790  ry1(h,draw)         calibrated real income
- 791  ty1(draw)           calibrated income total
- 792  try1(draw)          calibrated real income total
- 793  cmin1(g,h,draw)     calibrated incompressible demand
- 794  trin1(h,draw)       calibrated transfers in - received
- 795  trout1(h,draw)      calibrated transfers out - given
- 796  sav1(h,draw)        calibrated savings
- 797  exproc1(h,draw)     calibrated expenditure rest of country
- 798  trinsh1(h,draw)     calibrated share of all transfers in the eco going to 
+ 754   
+ 755  savsh_dr(h,draw)      drawn or computed savings rate
+ 756  sav_dr(h,draw)        drawn or computed savings level
+ 757  exprocsh_dr(h,draw)   drawn or computed outside-of-zoi expenditures rate
+ 758  exproc_dr(h,draw)     drawn or computed outside-of-zoi expenditures level
+ 759  expzoish_dr(h,draw)   drawn or computed outside-of-zoi expenditures level
+ 760   
+ 761   
+ 762  * calibration values in each draw
+ 763  *pm1(g,draw)         calibrated market price
+ 764  pv1(g,v,draw)       calibrated price at village level
+ 765  pz1(g,draw)         calibrated price at zoi level
+ 766  ph1(g,h,draw)       calibrated price as seen by household
+ 767  pva1(g,h,draw)      calibrated price of value added
+ 768  qva1(g,h,draw)      calibrated quantity of value added
+ 769  qp1(g,h,draw)       calibrated quantity produced
+ 770  tqp1(g,draw)        calibrated total quantity produced
+ 771  ttqp1(draw)
+ 772  hqp1(h,draw)        calibrated total qty produced by a household
+ 773  fd1(g,f,h,draw)     calibrated factor demand
+ 774  id1(g,gg,h,draw)    calibrated intermediate demand
+ 775  pshift1(g,h,draw)   calibrated cobb-douglas shifter
+ 776  fshare1(g,f,h,draw) calibrated cobb-douglas shares
+ 777  r1(g,f,h,draw)      calibrated rent for fixed factors
+ 778  wv1(f,v,draw)       calibrated village-wide wage for tradable factors
+ 779  wz1(f,draw)         calibrated zoi-wide wage for tradable factors
+ 780  vash1(g,h,draw)     calibrated value-added share
+ 781  idsh1(gg,g,h,draw)  calibrated intermediate demand share
+ 782  tidsh1(gg,h,draw)   calibrated total intermediate input share (1-vash)
+ 783  fixfac1(g,f,h,draw) calibrated fixed factor demand
+ 784  exinc1(h,draw)      calibrated exogenous income
+ 785  endow1(f,h,draw)    calibrated endowment
+ 786  qc1(g,h,draw)       calibrated level of consumption
+ 787  eshare1(g,h,draw)    calibrated consumption shares
+ 788  y1(h,draw)          calibrated income of household
+ 789  cpi1(h,draw)        calibrated cpi
+ 790  vqc1(v,g,draw)      calibrated village consumption
+ 791  vcpi1(v,draw)       calibrated village cpi
+ 792  cri1(v,f,draw)      calibrated rent weighted index
+ 793   
+ 794  ry1(h,draw)         calibrated real income
+ 795  ty1(draw)           calibrated income total
+ 796  try1(draw)          calibrated real income total
+ 797  cmin1(g,h,draw)     calibrated incompressible demand
+ 798  trin1(h,draw)       calibrated transfers in - received
+ 799  trout1(h,draw)      calibrated transfers out - given
+ 800  sav1(h,draw)        calibrated savings
+ 801  exproc1(h,draw)     calibrated expenditure rest of country
+ 802  trinsh1(h,draw)     calibrated share of all transfers in the eco going to 
       h
- 799  troutsh1(h,draw)    calibrated share of yousehold h's income being given a
+ 803  troutsh1(h,draw)    calibrated share of yousehold h's income being given a
       s transfers
- 800  hfd1(f,h,draw)      calibrated factor demand of household h for factor f
- 801  vfd1(f,v,draw)      calibrated village demand for factor f
- 802  zfd1(f,draw)        calibrated zoi demand for factor f
- 803  hms1(g,h,draw)      calibrated household marketed surplus of good g
- 804  vms1(g,v,draw)      calibrated village marketed surplus of good g
- 805  zms1(g,draw)        calibrated household marketed surplus of good g
- 806  *unemp1(f,h,draw)    calibrated unemployement in the household
- 807  hfms1(f,h,draw)     calibrated household factor marketed surplus
- 808  vfms1(f,v,draw)     calibrated village factor marketed surplus
- 809  zfms1(f,draw)       calibrated zoi factor marketed surplus
- 810  vfmsfix1(f,v,draw)    calibrated factors fixed at the Village level (famil
+ 804  hfd1(f,h,draw)      calibrated factor demand of household h for factor f
+ 805  vfd1(f,v,draw)      calibrated village demand for factor f
+ 806  zfd1(f,draw)        calibrated zoi demand for factor f
+ 807  hms1(g,h,draw)      calibrated household marketed surplus of good g
+ 808  vms1(g,v,draw)      calibrated village marketed surplus of good g
+ 809  zms1(g,draw)        calibrated household marketed surplus of good g
+ 810  *unemp1(f,h,draw)    calibrated unemployement in the household
+ 811  hfms1(f,h,draw)     calibrated household factor marketed surplus
+ 812  vfms1(f,v,draw)     calibrated village factor marketed surplus
+ 813  zfms1(f,draw)       calibrated zoi factor marketed surplus
+ 814  vfmsfix1(f,v,draw)    calibrated factors fixed at the Village level (famil
       y labor)
- 811  zfmsfix1(f,draw)      calibrated factors fixed at the zoi level (hired lab
+ 815  zfmsfix1(f,draw)      calibrated factors fixed at the zoi level (hired lab
       or)
- 812  hfsup1(f,h,draw)    calibrated factor supply by the household
- 813   
- 814   
- 815  * after a simulation for each draw
- 816  *pm2(g,draw)         simulated market price
- 817  pv2(g,v,draw)       simulated price at village level
- 818  pz2(g,draw)         simulated price at zoi level
- 819  ph2(g,h,draw)       simulated price as seen by household
- 820  pva2(g,h,draw)      simulated price of value added
- 821  qva2(g,h,draw)      simulated quantity of value added
- 822  qp2(g,h,draw)       simulated quantity produced
- 823  tqp2(g,draw)        simulated total quantity produced in the economy
- 824  ttqp2(draw)
- 825  hqp2(h,draw)         sim total qty produced by a household
- 826  fd2(g,f,h,draw)     simulated factor demand
- 827  id2(g,gg,h,draw)    simulated intermediate demand
- 828  pshift2(g,h,draw)    simulated cobb-douglas shifter
- 829  fshift2(g,f,h,draw) simulated cobb-douglas shares
- 830  r2(g,f,h,draw)      simulated rent for fixed factors
- 831  wv2(f,v,draw)       simulated village-wide wage for tradable factors
- 832  wz2(f,draw)         simulated zoi-wide wage for tradable factors
- 833  vash2(g,h,draw)     simulated value-added share
- 834  idsh2(gg,g,h,draw)  simulated intermediate demand share
- 835  tidsh2(gg,h,draw)   simulated total intermediate input share (2-vash)
- 836  fixfac2(g,f,h,draw) simulated fixed factor demand
- 837  exinc2(h,draw)      simulated exogenous income
- 838  endow2(f,h,draw)    simulated endowment
- 839  qc2(g,h,draw)       simulated level of consumption
- 840  eshare2(g,h,draw)    simulated consumption shares
- 841  y2(h,draw)          simulated income of household
- 842  cpi2(h,draw)        simulated cpi
- 843  cri2(v,f,draw)          simulated capital rent index (cap rent in activity
+ 816  hfsup1(f,h,draw)    calibrated factor supply by the household
+ 817   
+ 818   
+ 819  * after a simulation for each draw
+ 820  *pm2(g,draw)         simulated market price
+ 821  pv2(g,v,draw)       simulated price at village level
+ 822  pz2(g,draw)         simulated price at zoi level
+ 823  ph2(g,h,draw)       simulated price as seen by household
+ 824  pva2(g,h,draw)      simulated price of value added
+ 825  qva2(g,h,draw)      simulated quantity of value added
+ 826  qp2(g,h,draw)       simulated quantity produced
+ 827  tqp2(g,draw)        simulated total quantity produced in the economy
+ 828  ttqp2(draw)
+ 829  hqp2(h,draw)         sim total qty produced by a household
+ 830  fd2(g,f,h,draw)     simulated factor demand
+ 831  id2(g,gg,h,draw)    simulated intermediate demand
+ 832  pshift2(g,h,draw)    simulated cobb-douglas shifter
+ 833  fshift2(g,f,h,draw) simulated cobb-douglas shares
+ 834  r2(g,f,h,draw)      simulated rent for fixed factors
+ 835  wv2(f,v,draw)       simulated village-wide wage for tradable factors
+ 836  wz2(f,draw)         simulated zoi-wide wage for tradable factors
+ 837  vash2(g,h,draw)     simulated value-added share
+ 838  idsh2(gg,g,h,draw)  simulated intermediate demand share
+ 839  tidsh2(gg,h,draw)   simulated total intermediate input share (2-vash)
+ 840  fixfac2(g,f,h,draw) simulated fixed factor demand
+ 841  exinc2(h,draw)      simulated exogenous income
+ 842  endow2(f,h,draw)    simulated endowment
+ 843  qc2(g,h,draw)       simulated level of consumption
+ 844  eshare2(g,h,draw)    simulated consumption shares
+ 845  y2(h,draw)          simulated income of household
+ 846  cpi2(h,draw)        simulated cpi
+ 847  cri2(v,f,draw)          simulated capital rent index (cap rent in activity
       *weight of activity)
- 844  vqc2(v,g,draw)      simulated village consumption
- 845  vcpi2(v,draw)       simulated village cpi
- 846   
- 847   
- 848  ry2(h,draw)         simulated real income
- 849  ty2(draw)           simulated income total
- 850  try2(draw)          simulated real income total
- 851  cmin2(g,h,draw)     simulated incompressible demand
- 852  trin2(h,draw)       simulated transfers in - received
- 853  trout2(h,draw)      simulated transfers out - given
- 854  sav2(h,draw)        simulated savings
- 855  exproc2(h,draw)     simulated expenditure rest of country
- 856  trinsh2(h,draw)     simulated share of all transfers in the eco going to h
- 857  troutsh2(h,draw)    simulated share of yousehold h's income being given as
+ 848  vqc2(v,g,draw)      simulated village consumption
+ 849  vcpi2(v,draw)       simulated village cpi
+ 850   
+ 851   
+ 852  ry2(h,draw)         simulated real income
+ 853  ty2(draw)           simulated income total
+ 854  try2(draw)          simulated real income total
+ 855  cmin2(g,h,draw)     simulated incompressible demand
+ 856  trin2(h,draw)       simulated transfers in - received
+ 857  trout2(h,draw)      simulated transfers out - given
+ 858  sav2(h,draw)        simulated savings
+ 859  exproc2(h,draw)     simulated expenditure rest of country
+ 860  trinsh2(h,draw)     simulated share of all transfers in the eco going to h
+ 861  troutsh2(h,draw)    simulated share of yousehold h's income being given as
        transfers
- 858  hfd2(f,h,draw)      simulated factor demand of household h for factor f
- 859  vfd2(f,v,draw)      simulated village demand for factor f
- 860  zfd2(f,draw)        simulated zoi demand for factor f
- 861  hms2(g,h,draw)      simulated household marketed surplus of good g
- 862  vms2(g,v,draw)      simulated village marketed surplus of good g
- 863  zms2(g,draw)        simulated household marketed surplus of good g
- 864  *unemp2(f,h,draw)    calibrated unemployement in the households
- 865  hfms2(f,h,draw)     simulated household factor marketed surplus
- 866  vfms2(f,v,draw)     simulated village factor marketed surplus
- 867  zfms2(f,draw)       simulated zoi factor marketed surplus
- 868  hfsup2(f,h,draw)    simulated factor supply by the household
- 869   
- 870  * delta calibration /simulation
- 871  pvD(g,v,draw)       delta price at village level
- 872  pzD(g,draw)         delta price at zoi level
- 873  phD(g,h,draw)       delta price as seen by household
- 874   
- 875  pvaD(g,h,draw)      delta price of value added
- 876  qvaD(g,h,draw)      delta quantity of value added
- 877  qpD(g,h,draw)       delta quantity produced
- 878  tqpD(g,draw)        delta total qp
- 879  ttqpD(draw)
- 880  hqpD(h,draw)          delta hqp
- 881  fdD(g,f,h,draw)     delta factor demand
- 882  idD(g,gg,h,draw)    delta intermediate demand
- 883  pshiftD(g,h,draw)    delta cobb-douglas shifter
- 884  fshareD(g,f,h,draw) delta cobb-douglas shares
- 885  rD(g,f,h,draw)      delta rent for fixed factors
- 886  wvD(f,v,draw)       delta village-wide wage for tradable factors
- 887  wzD(f,draw)         delta zoi-wide wage for tradable factors
- 888  vashD(g,h,draw)     delta value-added share
- 889  idshD(gg,g,h,draw)  delta intermediate demand share
- 890  tidshD(gg,h,draw)   delta total intermediate input share (1-vash)
- 891  fixfacD(g,f,h,draw) delta fixed factor demand
- 892  exincD(h,draw)      delta exogenous income
- 893  endowD(f,h,draw)    delta endowment
- 894  qcD(g,h,draw)       delta level of consumption
- 895  eshareD(g,h,draw)    delta consumption shares
- 896  yD(h,draw)          delta income of household
- 897  cpiD(h,draw)        delta cpi
- 898  criD(v,f,draw)        delta capital rent index (cap rent in activity*weigh
+ 862  hfd2(f,h,draw)      simulated factor demand of household h for factor f
+ 863  vfd2(f,v,draw)      simulated village demand for factor f
+ 864  zfd2(f,draw)        simulated zoi demand for factor f
+ 865  hms2(g,h,draw)      simulated household marketed surplus of good g
+ 866  vms2(g,v,draw)      simulated village marketed surplus of good g
+ 867  zms2(g,draw)        simulated household marketed surplus of good g
+ 868  *unemp2(f,h,draw)    calibrated unemployement in the households
+ 869  hfms2(f,h,draw)     simulated household factor marketed surplus
+ 870  vfms2(f,v,draw)     simulated village factor marketed surplus
+ 871  zfms2(f,draw)       simulated zoi factor marketed surplus
+ 872  hfsup2(f,h,draw)    simulated factor supply by the household
+ 873   
+ 874  * delta calibration /simulation
+ 875  pvD(g,v,draw)       delta price at village level
+ 876  pzD(g,draw)         delta price at zoi level
+ 877  phD(g,h,draw)       delta price as seen by household
+ 878   
+ 879  pvaD(g,h,draw)      delta price of value added
+ 880  qvaD(g,h,draw)      delta quantity of value added
+ 881  qpD(g,h,draw)       delta quantity produced
+ 882  tqpD(g,draw)        delta total qp
+ 883  ttqpD(draw)
+ 884  hqpD(h,draw)          delta hqp
+ 885  fdD(g,f,h,draw)     delta factor demand
+ 886  idD(g,gg,h,draw)    delta intermediate demand
+ 887  pshiftD(g,h,draw)    delta cobb-douglas shifter
+ 888  fshareD(g,f,h,draw) delta cobb-douglas shares
+ 889  rD(g,f,h,draw)      delta rent for fixed factors
+ 890  wvD(f,v,draw)       delta village-wide wage for tradable factors
+ 891  wzD(f,draw)         delta zoi-wide wage for tradable factors
+ 892  vashD(g,h,draw)     delta value-added share
+ 893  idshD(gg,g,h,draw)  delta intermediate demand share
+ 894  tidshD(gg,h,draw)   delta total intermediate input share (1-vash)
+ 895  fixfacD(g,f,h,draw) delta fixed factor demand
+ 896  exincD(h,draw)      delta exogenous income
+ 897  endowD(f,h,draw)    delta endowment
+ 898  qcD(g,h,draw)       delta level of consumption
+ 899  eshareD(g,h,draw)    delta consumption shares
+ 900  yD(h,draw)          delta income of household
+ 901  cpiD(h,draw)        delta cpi
+ 902  criD(v,f,draw)        delta capital rent index (cap rent in activity*weigh
       t of activity)
- 899  vqcD(v,g,draw)      delta village consumption
- 900  vcpiD(v,draw)       delta village cpi
- 901   
- 902  ryD(h,draw)         delta real income
- 903  tyD(draw)           delta income total
- 904  tryD(draw)          delta real income total
- 905  cminD(g,h,draw)     delta incompressible demand
- 906  trinD(h,draw)       delta transfers in - received
- 907  troutD(h,draw)      delta transfers out - given
- 908  savD(h,draw)        delta savings
- 909  exprocD(h,draw)     delta expenditure rest of country
- 910  trinshD(h,draw)     delta share of all transfers in the eco going to h
- 911  troutshD(h,draw)    delta share of yousehold h's income being given as tra
+ 903  vqcD(v,g,draw)      delta village consumption
+ 904  vcpiD(v,draw)       delta village cpi
+ 905   
+ 906  ryD(h,draw)         delta real income
+ 907  tyD(draw)           delta income total
+ 908  tryD(draw)          delta real income total
+ 909  cminD(g,h,draw)     delta incompressible demand
+ 910  trinD(h,draw)       delta transfers in - received
+ 911  troutD(h,draw)      delta transfers out - given
+ 912  savD(h,draw)        delta savings
+ 913  exprocD(h,draw)     delta expenditure rest of country
+ 914  trinshD(h,draw)     delta share of all transfers in the eco going to h
+ 915  troutshD(h,draw)    delta share of yousehold h's income being given as tra
       nsfers
- 912  hfdD(f,h,draw)      delta factor demand of household h for factor f
- 913  vfdD(f,v,draw)      delta village demand for factor f
- 914  zfdD(f,draw)        delta zoi demand for factor f
- 915  hmsD(g,h,draw)      delta household marketed surplus of good g
- 916  vmsD(g,v,draw)      delta village marketed surplus of good g
- 917  zmsD(g,draw)        delta household marketed surplus of good g
- 918  hfmsD(f,h,draw)     delta household factor marketed surplus
- 919  vfmsD(f,v,draw)     delta village factor marketed surplus
- 920  zfmsD(f,draw)       delta zoi factor marketed surplus
- 921  hfsupD(f,h,draw)    delta factor supply by the household
- 922   
- 923  * percent change calibration/simulation
- 924  pvPC(g,v,draw)        % change price at village level
- 925  pzPC(g,draw)          % chage price at zoi level
- 926  phPC(g,h,draw)        % change price as seen by household
- 927   
- 928  pvaPC(g,h,draw)      % change price of value added
- 929  qvaPC(g,h,draw)      % change quantity of value added
- 930  qpPC(g,h,draw)       % change quantity produced
- 931  tqpPC(g,draw)        % change in total qp
- 932  ttqpPC(draw)
- 933  hqpPC(h,draw)          % change in hqp
- 934   
- 935  fdPC(g,f,h,draw)     % change factor demand
- 936  idPC(g,gg,h,draw)    % change intermediate demand
- 937  pshiftPC(g,h,draw)    % change cobb-douglas shifter
- 938  fsharePC(g,f,h,draw) % change cobb-douglas shares
- 939  rPC(g,f,h,draw)      % change rent for fixed factors
- 940  wvPC(f,v,draw)       % change village-wide wage for tradable factors
- 941  wzPC(f,draw)         % change zoi-wide wage for tradable factors
- 942  vashPC(g,h,draw)     % change value-added share
- 943  idshPC(gg,g,h,draw)  % change intermediate demand share
- 944  tidshPC(gg,h,draw)   % change total intermediate input share (1-vash)
- 945  fixfacPC(g,f,h,draw) % change fixed factor demand
- 946  exincPC(h,draw)      % change exogenous income
- 947  endowPC(f,h,draw)    % change endowment
- 948  qcPC(g,h,draw)       % change level of consumption
- 949  esharePC(g,h,draw)    % change consumption shares
- 950  yPC(h,draw)          % change income of household
- 951  cpiPC(h,draw)        % change in cpi
- 952  criPC(v,f,draw)        % change capital rent index (cap rent in activity*w
+ 916  hfdD(f,h,draw)      delta factor demand of household h for factor f
+ 917  vfdD(f,v,draw)      delta village demand for factor f
+ 918  zfdD(f,draw)        delta zoi demand for factor f
+ 919  hmsD(g,h,draw)      delta household marketed surplus of good g
+ 920  vmsD(g,v,draw)      delta village marketed surplus of good g
+ 921  zmsD(g,draw)        delta household marketed surplus of good g
+ 922  hfmsD(f,h,draw)     delta household factor marketed surplus
+ 923  vfmsD(f,v,draw)     delta village factor marketed surplus
+ 924  zfmsD(f,draw)       delta zoi factor marketed surplus
+ 925  hfsupD(f,h,draw)    delta factor supply by the household
+ 926   
+ 927  * percent change calibration/simulation
+ 928  pvPC(g,v,draw)        % change price at village level
+ 929  pzPC(g,draw)          % chage price at zoi level
+ 930  phPC(g,h,draw)        % change price as seen by household
+ 931   
+ 932  pvaPC(g,h,draw)      % change price of value added
+ 933  qvaPC(g,h,draw)      % change quantity of value added
+ 934  qpPC(g,h,draw)       % change quantity produced
+ 935  tqpPC(g,draw)        % change in total qp
+ 936  ttqpPC(draw)
+ 937  hqpPC(h,draw)          % change in hqp
+ 938   
+ 939  fdPC(g,f,h,draw)     % change factor demand
+ 940  idPC(g,gg,h,draw)    % change intermediate demand
+ 941  pshiftPC(g,h,draw)    % change cobb-douglas shifter
+ 942  fsharePC(g,f,h,draw) % change cobb-douglas shares
+ 943  rPC(g,f,h,draw)      % change rent for fixed factors
+ 944  wvPC(f,v,draw)       % change village-wide wage for tradable factors
+ 945  wzPC(f,draw)         % change zoi-wide wage for tradable factors
+ 946  vashPC(g,h,draw)     % change value-added share
+ 947  idshPC(gg,g,h,draw)  % change intermediate demand share
+ 948  tidshPC(gg,h,draw)   % change total intermediate input share (1-vash)
+ 949  fixfacPC(g,f,h,draw) % change fixed factor demand
+ 950  exincPC(h,draw)      % change exogenous income
+ 951  endowPC(f,h,draw)    % change endowment
+ 952  qcPC(g,h,draw)       % change level of consumption
+ 953  esharePC(g,h,draw)    % change consumption shares
+ 954  yPC(h,draw)          % change income of household
+ 955  cpiPC(h,draw)        % change in cpi
+ 956  criPC(v,f,draw)        % change capital rent index (cap rent in activity*w
       eight of activity)
- 953  vqcPC(v,g,draw)      % change village consumption
- 954  vcpiPC(v,draw)       % change village cpi
- 955   
- 956   
- 957  ryPC(h,draw)         % change in real income
- 958  tyPC(draw)           % change income total
- 959  tryPC(draw)          % change real income total
- 960  cminPC(g,h,draw)     % change incompressible demand
- 961  trinPC(h,draw)       % change transfers in - received
- 962  troutPC(h,draw)      % change transfers out - given
- 963  savPC(h,draw)        % change savings
- 964  exprocPC(h,draw)     % change expenditure rest of country
- 965  trinshPC(h,draw)     % change share of all transfers in the eco going to h
- 966  troutshPC(h,draw)    % change share of yousehold h's income being given as
+ 957  vqcPC(v,g,draw)      % change village consumption
+ 958  vcpiPC(v,draw)       % change village cpi
+ 959   
+ 960   
+ 961  ryPC(h,draw)         % change in real income
+ 962  tyPC(draw)           % change income total
+ 963  tryPC(draw)          % change real income total
+ 964  cminPC(g,h,draw)     % change incompressible demand
+ 965  trinPC(h,draw)       % change transfers in - received
+ 966  troutPC(h,draw)      % change transfers out - given
+ 967  savPC(h,draw)        % change savings
+ 968  exprocPC(h,draw)     % change expenditure rest of country
+ 969  trinshPC(h,draw)     % change share of all transfers in the eco going to h
+ 970  troutshPC(h,draw)    % change share of yousehold h's income being given as
        transfers
- 967  hfdPC(f,h,draw)      % change factor demand of household h for factor f
- 968  vfdPC(f,v,draw)      % change village demand for factor f
- 969  zfdPC(f,draw)        % change zoi demand for factor f
- 970  hmsPC(g,h,draw)      % change household marketed surplus of good g
- 971  vmsPC(g,v,draw)      % change village marketed surplus of good g
- 972  zmsPC(g,draw)        % change household marketed surplus of good g
- 973  hfmsPC(f,h,draw)     % change household factor marketed surplus
- 974  vfmsPC(f,v,draw)     % change village factor marketed surplus
- 975  zfmsPC(f,draw)       % change zoi factor marketed surplus
- 976  hfsupPC(f,h,draw)    % change factor supply by the household
- 977  ;
- 978   
- 979   
- 980  * ========================================================================
-      ========================
- 981  * ========================================================================
-      ========================
- 982  * ====================== STEP 4 - CALIBRATE THE MODEL  ===================
-      ========================
- 983  * ========================================================================
-      ========================
+ 971  hfdPC(f,h,draw)      % change factor demand of household h for factor f
+ 972  vfdPC(f,v,draw)      % change village demand for factor f
+ 973  zfdPC(f,draw)        % change zoi demand for factor f
+ 974  hmsPC(g,h,draw)      % change household marketed surplus of good g
+ 975  vmsPC(g,v,draw)      % change village marketed surplus of good g
+ 976  zmsPC(g,draw)        % change household marketed surplus of good g
+ 977  hfmsPC(f,h,draw)     % change household factor marketed surplus
+ 978  vfmsPC(f,v,draw)     % change village factor marketed surplus
+ 979  zfmsPC(f,draw)       % change zoi factor marketed surplus
+ 980  hfsupPC(f,h,draw)    % change factor supply by the household
+ 981  ;
+ 982   
+ 983   
  984  * ========================================================================
       ========================
- 985   
- 986  * PARAMETERS THAT ARE DRAWN
+ 985  * ========================================================================
+      ========================
+ 986  * ====================== STEP 4 - CALIBRATE THE MODEL  ===================
+      ========================
  987  * ========================================================================
+      ========================
+ 988  * ========================================================================
+      ========================
+ 989   
+ 990  * PARAMETERS THAT ARE DRAWN
+ 991  * ========================================================================
       =========
- 988  * temporary values for parameters that get drawn but need to be corrected 
+ 992  * temporary values for parameters that get drawn but need to be corrected 
       if negative
- 989  fshare_t(g,f,h,draw) = xlfshare(g,f,h) ;
- 990  eshare_t(g,h,draw)   = xleshare(g,h)   ;
- 991   
- 992  * default values for parameters that were drawn
- 993  fshare_dr(g,f,h,draw) = xlfshare(g,f,h) ;
- 994  eshare_dr(g,h,draw)   = xleshare(g,h)   ;
- 995  pshift_dr(g,h,draw)  = xlpshift(g,h) ;
- 996   
- 997  * Those are actually not drawn unless they have _se versions
- 998  troutsh_dr(h,draw)   = xltroutsh(h)  ;
- 999  savsh_dr(h,draw)     = xlSAVsh(h)    ;
-1000  exprocsh_dr(h,draw)  = xlexpoutsh(h) ;
-1001   
-1002  * pshift_t(g,h,draw)   = xlpshift(g,h)   ;
-1003  * draw all values once - except for dr0 wich will be the xl base
-1004  *fshare_t(g,f,h,"dr0") = xlfshare(g,f,h);
-1005  *eshare_t(g,h,"dr0")   = eshare(g,h) ;
-1006  *troutsh_dr(h,"dr0")   = xltroutsh(h) ;
-1007  *savsh_dr(h,"dr0")     = xlSAVinfsh(h) ;
-1008  *exprocsh_dr(h,"dr0")  = xlexpoutsh(h) ;
-1009   
-1010  fshare_t(g,f,h,draw)$(not sameas(draw,"dr0")) = normal(xlfshare(g,f,h),xlf
+ 993  fshare_t(g,f,h,draw) = xlfshare(g,f,h) ;
+ 994  eshare_t(g,h,draw)   = xleshare(g,h)   ;
+ 995   
+ 996  * default values for parameters that were drawn
+ 997  fshare_dr(g,f,h,draw) = xlfshare(g,f,h) ;
+ 998  eshare_dr(g,h,draw)   = xleshare(g,h)   ;
+ 999  *pshift_dr(g,h,draw)  = xlpshift(g,h) ;
+1000   
+1001  * Those are actually not drawn unless they have _se versions
+1002  troutsh_dr(h,draw)   = xltroutsh(h)  ;
+1003  savsh_dr(h,draw)     = xlSAVsh(h)    ;
+1004  exprocsh_dr(h,draw)  = xlexpoutsh(h) ;
+1005   
+1006  * pshift_t(g,h,draw)   = xlpshift(g,h)   ;
+1007  * draw all values once - except for dr0 wich will be the xl base
+1008  *fshare_t(g,f,h,"dr0") = xlfshare(g,f,h);
+1009  *eshare_t(g,h,"dr0")   = eshare(g,h) ;
+1010  *troutsh_dr(h,"dr0")   = xltroutsh(h) ;
+1011  *savsh_dr(h,"dr0")     = xlSAVinfsh(h) ;
+1012  *exprocsh_dr(h,"dr0")  = xlexpoutsh(h) ;
+1013   
+1014  fshare_t(g,f,h,draw)$(not sameas(draw,"dr0")) = normal(xlfshare(g,f,h),xlf
       share_se(g,f,h));
-1011  eshare_t(g,h,draw)$(not sameas(draw,"dr0"))    = normal(xleshare(g,h),xles
+1015  eshare_t(g,h,draw)$(not sameas(draw,"dr0"))    = normal(xleshare(g,h),xles
       hare_se(g,h));
-1012  savsh_dr(h,draw)$(not sameas(draw,"dr0"))     = normal(xlSAVsh(h),xlSAVsh_
+1016  savsh_dr(h,draw)$(not sameas(draw,"dr0"))     = normal(xlSAVsh(h),xlSAVsh_
       se(h));
-1013  troutsh_dr(h,draw)$(not sameas(draw,"dr0"))   = normal(xltroutsh(h),xltrou
+1017  troutsh_dr(h,draw)$(not sameas(draw,"dr0"))   = normal(xltroutsh(h),xltrou
       tsh_se(h));
-1014   
-1015  display fshare_t, eshare_t, troutsh_dr, savsh_dr, exprocsh_dr;
-1016   
-1017   
-1018  * ### DATA CHECKPOINT: avoid negative values
-1019   
-1020  * a- correct the factor shares that were drawn negative
-1021  * -------------------------------------------------------------
-1022  * just for info, display the negatives:
-1023  parameter negfshare_t(g,f,h,draw) ;
-1024  negfshare_t(g,f,h,draw)$((fshare_t(g,f,h,draw) le 0) or (fshare_t(g,f,h,dr
+1018   
+1019  display fshare_t, eshare_t, troutsh_dr, savsh_dr, exprocsh_dr;
+1020   
+1021   
+1022  * ### DATA CHECKPOINT: avoid negative values
+1023   
+1024  * a- correct the factor shares that were drawn negative
+1025  * -------------------------------------------------------------
+1026  * just for info, display the negatives:
+1027  parameter negfshare_t(g,f,h,draw) ;
+1028  negfshare_t(g,f,h,draw)$((fshare_t(g,f,h,draw) le 0) or (fshare_t(g,f,h,dr
       aw) ge 1)) = fshare_t(g,f,h,draw);
-1025  display negfshare_t;
-1026  * and correct with a while structure
-1027  loop((g,f,h,draw)$(xlfshare(g,f,h)*((fshare_t(g,f,h,draw) le 0) or (fshare
+1029  display negfshare_t;
+1030  * and correct with a while structure
+1031  loop((g,f,h,draw)$(xlfshare(g,f,h)*((fshare_t(g,f,h,draw) le 0) or (fshare
       _t(g,f,h,draw) ge 1))),
-1028       while((fshare_t(g,f,h,draw) le 0) or (fshare_t(g,f,h,draw) ge 1),
-1029              fshare_t(g,f,h,draw) = normal(xlfshare(g,f,h),xlfshare_se(g,f,
+1032       while((fshare_t(g,f,h,draw) le 0) or (fshare_t(g,f,h,draw) ge 1),
+1033              fshare_t(g,f,h,draw) = normal(xlfshare(g,f,h),xlfshare_se(g,f,
       h));
-1030       );
-1031  );
-1032  display fshare_t;
-1033  * finally, we can use that as our parameter draw:
-1034  fshare_dr(g,f,h,draw)$fshare_t(g,f,h,draw) = fshare_t(g,f,h,draw)/sum(fa,f
+1034       );
+1035  );
+1036  display fshare_t;
+1037  * finally, we can use that as our parameter draw:
+1038  fshare_dr(g,f,h,draw)$fshare_t(g,f,h,draw) = fshare_t(g,f,h,draw)/sum(fa,f
       share_t(g,fa,h,draw)) ;
-1035  display fshare_t, fshare_dr ;
-1036   
-1037   
-1038   
-1039   
-1040  * b- correct the expenditure shares that were drawn negative
-1041  * ------------------------------------------------------------
-1042  * just for info, display the negatives
-1043  parameter negeshare_t(g,h,draw) ;
-1044  negeshare_t(g,h,draw)$((eshare_t(g,h,draw) le 0) or (eshare_t(g,h,draw) ge
+1039  display fshare_t, fshare_dr ;
+1040   
+1041   
+1042   
+1043   
+1044  * b- correct the expenditure shares that were drawn negative
+1045  * ------------------------------------------------------------
+1046  * just for info, display the negatives
+1047  parameter negeshare_t(g,h,draw) ;
+1048  negeshare_t(g,h,draw)$((eshare_t(g,h,draw) le 0) or (eshare_t(g,h,draw) ge
        1)) = eshare_t(g,h,draw) ;
-1045  display negeshare_t;
-1046  * and correct with a while loop (while negative, keep drawing)
-1047  loop((g,h,draw)$(xleshare(g,h)*((eshare_t(g,h,draw) le 0) or (eshare_t(g,h
+1049  display negeshare_t;
+1050  * and correct with a while loop (while negative, keep drawing)
+1051  loop((g,h,draw)$(xleshare(g,h)*((eshare_t(g,h,draw) le 0) or (eshare_t(g,h
       ,draw) ge 1))) ,
-1048       while( (eshare_t(g,h,draw) le 0) or (eshare_t(g,h,draw) ge 1),
-1049             eshare_t(g,h,draw) = normal(xleshare(g,h),xleshare_se(g,h));
-1050       );
-1051  );
-1052  display eshare_t;
-1053  * once all were drawn positive, use that as the draw
-1054  eshare_dr(g,h,draw)  = eshare_t(g,h,draw)/sum(gg,eshare_t(gg,h,draw)) ;
-1055  parameter escheck(h,draw) ;
-1056  escheck(h,draw) = sum(gg,eshare_dr(gg,h,draw))
-1057  display eshare_dr, escheck ;
-1058   
-1059  * c- correct the rest-of world expenditure shares.  They cannot be negativ
-      e, and they cannot add up to more than 1
-1060  * (really, maybe they shouldn't add up to more than 0.3 or something)
-1061  * so we make a loop in the loop:
-1062  expzoish_dr(h,draw) = 1-(troutsh_dr(h,draw)+savsh_dr(h,draw)+exprocsh_dr(h
+1052       while( (eshare_t(g,h,draw) le 0) or (eshare_t(g,h,draw) ge 1),
+1053             eshare_t(g,h,draw) = normal(xleshare(g,h),xleshare_se(g,h));
+1054       );
+1055  );
+1056  display eshare_t;
+1057  * once all were drawn positive, use that as the draw
+1058  eshare_dr(g,h,draw)  = eshare_t(g,h,draw)/sum(gg,eshare_t(gg,h,draw)) ;
+1059  parameter escheck(h,draw) ;
+1060  escheck(h,draw) = sum(gg,eshare_dr(gg,h,draw))
+1061  display eshare_dr, escheck ;
+1062   
+1063  * c- correct the rest-of world expenditure shares.
+1064  * ---------------------------------------------------------------
+1065  * They cannot be negative, and they cannot add up to more than 1
+1066  * (really, maybe they shouldn't add up to more than 0.3 or something)
+1067  * so we make a loop in the loop:
+1068  expzoish_dr(h,draw) = 1-(troutsh_dr(h,draw)+savsh_dr(h,draw)+exprocsh_dr(h
       ,draw)) ;
-1063   
-1064  display troutsh_dr, savsh_dr, exprocsh_dr, expzoish_dr ;
-1065  * TROUTSHARE NEEDS TO BE RESCALED TO A 0<X<1 NUMBER
-1066  loop((h,draw),
-1067       while( ((troutsh_dr(h,draw) < 0) or (troutsh_dr(h,draw) ge 1))
-1068              or ((savsh_dr(h,draw) < 0) or (savsh_dr(h,draw) ge 1))
-1069              or (expzoish_dr(h,draw) < 0),
-1070                 troutsh_dr(h,draw)$(not sameas(draw,"dr0")) = normal(xltrou
+1069   
+1070  display troutsh_dr, savsh_dr, exprocsh_dr, expzoish_dr ;
+1071  * TROUTSHARE NEEDS TO BE RESCALED TO A 0<X<1 NUMBER
+1072  loop((h,draw),
+1073       while( ((troutsh_dr(h,draw) < 0) or (troutsh_dr(h,draw) ge 1))
+1074              or ((savsh_dr(h,draw) < 0) or (savsh_dr(h,draw) ge 1))
+1075              or (expzoish_dr(h,draw) < 0),
+1076                 troutsh_dr(h,draw)$(not sameas(draw,"dr0")) = normal(xltrou
       tsh(h),xltroutsh_se(h));
-1071                 savsh_dr(h,draw)$(not sameas(draw,"dr0")) = normal(xlSAVsh(
+1077                 savsh_dr(h,draw)$(not sameas(draw,"dr0")) = normal(xlSAVsh(
       h),xlSAVsh_se(h));
-1072                 expzoish_dr(h,draw) = 1-(troutsh_dr(h,draw)+savsh_dr(h,draw
+1078                 expzoish_dr(h,draw) = 1-(troutsh_dr(h,draw)+savsh_dr(h,draw
       )+exprocsh_dr(h,draw)) ;
-1073       );
-1074  );
-1075  display troutsh_dr, savsh_dr, exprocsh_dr, expzoish_dr;
-1076   
+1079       );
+1080  );
+1081  display troutsh_dr, savsh_dr, exprocsh_dr, expzoish_dr;
+1082   
+1083   
+1084  * THOSE WERE THE PARAMETERS THAT ARE ACTUALLY DRAWN FROM A DISTRIBUTION
+1085  * ALL OTHER PARAMETERS EITHER FOLLOW FROM THOSE DRAWS (RATHER THAN DRAWN D
+      IRECTLY)
+1086  * OR RESULT FROM ASSUMPTIONS OR CLOSURE RULES
+1087   
+1088  * set wages and prices to 1:
+1089  pv_dr(gtv,v,draw) = 1 ;
+1090  pz_dr(g,draw) = 1 ;
+1091  ph_dr(g,h,draw) = [pz_dr(g,draw)$(gtz(g)+gtw(g)) + sum(v$maphv(h,v),pv_dr(
+      g,v,draw))$gtv(g)] ;
+1092  display pv_dr, pz_dr, ph_dr ;
+1093   
+1094   
+1095   
+1096   
+1097  r_dr(g,fk,h,draw)     = 1 ;
+1098  wv_dr(ftv,v,draw)     = 1 ;
+1099  wz_dr(ft,draw)        = 1 ;
+1100   
+1101   
+1102  * START FROM INCOME - TWO POSSIBILITIES:
+1103  option decimals = 2 ;
+1104  parameter y_dr1(h,draw) income reported directly in data
+1105            y_dr2(h,draw) income computed from factor values + reported earn
+      ings
+1106            y_dr3(h,draw) income computed from total expenditures ;
+1107   
+1108  *y_dr1(h,draw) = xlhhinc(h)*xlnhh(h) ;
+1109  *y_dr2(h,draw) = sum(f,xlendow(f,h)+xlROCendow(f,h)+xlROWendow(f,h))+xlrem
+      it(h)+xlothertransfers(h) ;
+1110  y_dr3(h,draw) = xlhhinc(h)*xlnhh(h) ;
+1111   
+1112  * display y_dr1, y_dr2;
+1113  display y_dr3 ;
+1114   
+1115  * now pick the one we prefer and see how it fares at creating a nice-looki
+      ng matrix of the economy:
+1116  * (y_dr2 is almost equal to the former version of Y)
+1117  *y_dr(h,draw) = y_dr1(h,draw) ;
+1118  y_dr(h,draw) = y_dr3(h,draw) ;
+1119  * all prices are 1 so cpi is 1
+1120  cpi_dr(h,draw) = 1 ;
+1121  ry_dr(h,draw) = y_dr(h,draw) ;
+1122   
+1123  * levels of expenditures on everything outside of the economy:
+1124  trout_dr(h,draw) = y_dr(h,draw)*troutsh_dr(h,draw) ;
+1125  sav_dr(h,draw) = y_dr(h,draw)*savsh_dr(h,draw) ;
+1126  exproc_dr(h,draw) = y_dr(h,draw)*exprocsh_dr(h,draw) ;
+1127  display troutsh_dr, savsh_dr, exprocsh_dr, trout_dr, sav_dr, exproc_dr ;
+1128   
+1129   
+1130  * ## DATA CHECKPOINT
+1131  * an abort statement if tansfers represent too much of income - means some
+      thing is wrong with the data
+1132  set bigtr_dr(h,draw);
+1133  bigtr_dr(h,draw)$(troutsh_dr(h,draw) > 0.1) = yes ;
+1134  ABORT$(card(bigtr_dr)) "These household spend over 10% of income on transf
+      ers", bigtr_dr ;
+1135  set smallzoi_dr(h,draw);
+1136  smallzoi_dr(h,draw)$(expzoish_dr(h,draw) < 0.5) = yes ;
+1137  ABORT$(card(smallzoi_dr)) "These household spend over 10% of income on tra
+      nsfers", smallzoi_dr ;
+1138   
+1139  * LEVELS OF CONSUMPTION:
+1140  qc_dr(g,h,draw) = (y_dr(h,draw)-sav_dr(h,draw)-trout_dr(h,draw)-exproc_dr(
+      h,draw))*eshare_dr(g,h,draw)/ph_dr(g,h,draw) ;
+1141   
+1142  display qc_dr ;
+1143  parameter qcshare(h,g) share of household h in total consumption of g ;
+1144  qcshare(h,g)$qc_dr(g,h,"dr0") = qc_dr(g,h,"dr0") / sum(hh,qc_dr(g,hh,"dr0"
+      )) ;
+1145  display qcshare;
+1146   
+1147  * PRODUCTION: we can compute the output to equal local demand + net export
+      s
+1148  * total qp must equal qc + net exports + use as intermediate demands:
+1149  * NB: We initialise QP and ID at plausible values, but then we use an NLP 
+      solve
+1150  * to refine them.
+1151   
+1152  parameter netexpsh(g) net export share of a good out of the zoi;
+1153  netexpsh(g)$gnag(g) = 1-(1/card(h)*(sum(h,xlrevsh_vil(g,h)+xlrevsh_zoi(g,h
+      )))) ;
+1154  *netexpsh(g)$gnag(g) = 0;
+1155  display netexpsh ;
+1156   
+1157  * intermediate demand requirements
+1158  * NEW WAY OF COMPUTING THEM:
+1159  *idsh_dr(g,gg,h,draw) = xlVA2IDsh(gg,g,h)/(1+xlVA2IDsh(gg,g,h));
+1160  *display xlFD, xlID ;
+1161  display xlQP;
+1162  *idsh_dr(gg,g,h,draw)$xlID(gg,g,h) = xlID(gg,g,h) / (sum(f,xlFD(g,f,h))+su
+      m(ggg,xlID(ggg,g,h))) ;
+1163   
+1164  idsh_dr(gg,g,h,draw) = xlidsh(gg,g,h) ;
+1165   
+1166  tidsh_dr(g,h,draw) = sum(gg,idsh_dr(g,gg,h,draw));
+1167  display idsh_dr, tidsh_dr;
+1168   
+1169  tqc_dr(g,draw) = sum(h,qc_dr(g,h,draw)) ;
+1170  display tqc_dr ;
+1171  parameter tempid_dr(g,draw) temporary total intermediate demand;
+1172  tempid_dr(g,draw) = sum((gg,h),
+1173                       qc_dr(gg,h,draw)*(idsh_dr(g,gg,h,draw)/(1-idsh_dr(g,g
+      g,h,draw)))) ;
+1174  display tempid_dr ;
+1175   
+1176   
+1177  display qp_dr ;
+****              $141
+**** LINE    305 INPUT       D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\
+                             GAMS\AQ_LEWIE_main.gms
+1178  * now determine total QP
+1179  *tqp_dr(g,draw) = [sum(h, qc_dr(g,h,draw)) + tempid_dr(g,draw) ]
+1180  *                         /(1-netexpsh(g)) ;
+1181  tqp_dr(g,draw) = sum(h, qp_dr(g,h,draw))  ;
+1182  ttqp_dr(draw)= sum(g,tqp_dr(g,draw));
+1183  display tqp_dr, ttqp_dr ;
+1184   
+1185   
+1186  * split qp in each household according to their capital shares:
+1187  *parameter qpshare(h,g) share of household h in production of g ;
+1188  *qpshare(h,g)$gnag(g) = xlFD(g,"Capital",h) / sum(hh,xlFD(g,"Capital",hh))
+       ;
+1189  *qpshare(h,g)$gag(g) = xlFD(g,"LAND",h) / sum(hh,xlFD(g,"LAND",hh)) ;   --
+       makes huge exinc
+1190  *display qpshare ;
+1191  *qp_dr(g,h,draw) = tqp_dr(g,draw) * qpshare(h,g) ;
+1192  *display qp_dr ;
+1193   
 EXIT D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 16:08:17 Page 2
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 12/15/16 15:18:07 Page 2
+MYANMAR AQUACULTURE LEWIE MODEL
+Error Messages
+
+
+141  Symbol declared but no values have been assigned. Check for missing
+        data definition, assignment, data loading or implicit assignment
+        via a solve statement.
+        A wild shot: You may have spurious commas in the explanatory
+        text of a declaration. Check symbol reference list.
+
+**** 1 ERROR(S)   0 WARNING(S)
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 12/15/16 15:18:07 Page 3
 MYANMAR AQUACULTURE LEWIE MODEL
 Include File Summary
 
@@ -1252,2155 +1404,26 @@ Include File Summary
      2       81 INCLUDE        1      81  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
                                            aLEWIE_github\GAMS\includes/1_Read_Ex
                                            cel.gms
-     3       98 CALL           2      17  .gdxxrw input=AQ_LEWIE_InputSheet_v1.x
-                                           lsx output=AQ_LEWIE_InputSheet_v1.gdx
+     3       98 CALL           2      17  .gdxxrw input=AQ_LEWIE_InputSheet_v2.x
+                                           lsx output=AQ_LEWIE_InputSheet_v2.gdx
                                            index=Index!A2
      4      117 GDXIN          2      36  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
                                            aLEWIE_github\GAMS\AQ_LEWIE_InputShee
-                                           t_v1.gdx
-     5      245 INCLUDE        1      92  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
+                                           t_v2.gdx
+     5      246 INCLUDE        1      92  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
                                            aLEWIE_github\GAMS\includes/2_MarketA
                                            ssumptions.gms
-     6      315 INCLUDE        1     101  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
+     6      318 INCLUDE        1     101  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
                                            aLEWIE_github\GAMS\includes/3_Model.g
                                            ms
-     7      688 INCLUDE        1     109  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
+     7      692 INCLUDE        1     109  .D:\Docs\Myanmar\AquaAgri\Analysis\Aqu
                                            aLEWIE_github\GAMS\includes/4a_Define
                                            AllParameters.gms
-     8     1077 EXIT           1     209  D:\Docs\Myanmar\AquaAgri\Analysis\Aqua
+     8     1194 EXIT           1     322  D:\Docs\Myanmar\AquaAgri\Analysis\Aqua
                                           LEWIE_github\GAMS\AQ_LEWIE_main.gms
 
 
-COMPILATION TIME     =        0.858 SECONDS      3 MB  24.5.4 r54492 WEX-WEI
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 11/23/16 16:08:17 Page 3
-MYANMAR AQUACULTURE LEWIE MODEL
-E x e c u t i o n
-
-
-----    119 SET ac  all accounts
-
-Land   ,    Labor  ,    Capital,    Input  ,    crop   ,    meat   ,    fish   
-prod   ,    ret    ,    ser    ,    OUT    ,    AqFSm  ,    AqFBg  ,    AqAq   
-AqLL   ,    AgAg   ,    AgLL   ,    empty  
-
-
-----    119 SET g  goods
-
-crop,    meat,    fish,    prod,    ret ,    ser ,    OUT 
-
-
-----    119 SET f  factors
-
-Land   ,    Labor  ,    Capital,    Input  
-
-
-----    119 SET h  households
-
-AqFSm,    AqFBg,    AqAq ,    AqLL ,    AgAg ,    AgLL 
-
-
-----    119 SET var  variable names
-
-HHNUM         ,    eshare        ,    eshare_se     ,    emin          
-transfout     ,    transfout_se  ,    transfin      ,    transfin_se   
-savsh         ,    savsh_se      ,    QP            ,    idsh          
-fshare        ,    fshare_se     ,    pshift        ,    pshift_se     
-endow         ,    ZOIENDOW      ,    ROCENDOW      ,    ROWendow      
-labexp        ,    labexpse      ,    EXPZOI        ,    EXPROLES      
-NONSCtransfers,    remits        ,    NumberHH      ,    HHsize        
-HHinc         ,    HHexp         ,    revsh_zoi     ,    revsh_row     
-revsh_vil     ,    revsh_rol     ,    VA2IDsh       
-
-
-----    119 PARAMETER Alldata  
-
-INDEX 1 = HHNUM  INDEX 2 = 
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        1.000       1.000       1.000       1.000       1.000       1.000
-
-INDEX 1 = eshare  INDEX 2 = crop
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.121       0.042       0.195       0.216       0.189       0.255
-
-INDEX 1 = eshare  INDEX 2 = meat
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.084       0.043       0.096       0.106       0.090       0.100
-
-INDEX 1 = eshare  INDEX 2 = fish
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.040       0.024       0.049       0.060       0.054       0.062
-
-INDEX 1 = eshare  INDEX 2 = prod
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.019       0.023       0.005       0.014       0.003       0.003
-
-INDEX 1 = eshare  INDEX 2 = ret
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.257       0.303       0.415       0.330       0.331       0.343
-
-INDEX 1 = eshare  INDEX 2 = ser
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.130       0.095       0.082       0.085       0.108       0.112
-
-INDEX 1 = eshare  INDEX 2 = OUT
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.349       0.468       0.158       0.190       0.225       0.125
-
-INDEX 1 = eshare_se  INDEX 2 = crop
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.012       0.004       0.019       0.022       0.019       0.026
-
-INDEX 1 = eshare_se  INDEX 2 = meat
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.008       0.004       0.010       0.011       0.009       0.010
-
-INDEX 1 = eshare_se  INDEX 2 = fish
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.004       0.002       0.005       0.006       0.005       0.006
-
-INDEX 1 = eshare_se  INDEX 2 = prod
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.002       0.002 4.952091E-4       0.001 2.851146E-4 2.708518E-4
-
-INDEX 1 = eshare_se  INDEX 2 = ret
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.026       0.030       0.042       0.033       0.033       0.034
-
-INDEX 1 = eshare_se  INDEX 2 = ser
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.013       0.010       0.008       0.009       0.011       0.011
-
-INDEX 1 = eshare_se  INDEX 2 = OUT
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .        0.035       0.047       0.016       0.019       0.022       0.013
-
-INDEX 1 = QP  INDEX 2 = crop
-
-           AqAq        AgAg
-
- .      397.240     997.740
-
-INDEX 1 = QP  INDEX 2 = fish
-
-          AqFSm       AqFBg
-
- .    20994.604   61609.917
-
-INDEX 1 = QP  INDEX 2 = prod
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .      426.900       6.000     267.000    1032.200     276.767     285.790
-
-INDEX 1 = QP  INDEX 2 = ret
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .    11361.660     911.636    1602.260    4521.730    7168.767    1858.490
-
-INDEX 1 = QP  INDEX 2 = ser
-
-          AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .      448.000     426.000     152.460     588.850     853.267     278.490
-
-INDEX 1 = idsh  INDEX 2 = prod
-
-            AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
-ret.        0.156       0.156       0.156       0.156       0.156       0.156
-OUT.        0.167       0.167       0.167       0.167       0.167       0.167
-
-INDEX 1 = idsh  INDEX 2 = ret
-
-            AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
-ret.        0.466       0.466       0.466       0.466       0.466       0.466
-OUT.        0.579       0.579       0.579       0.579       0.579       0.579
-
-INDEX 1 = idsh  INDEX 2 = ser
-
-            AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
-ret.        0.251       0.251       0.251       0.251       0.251       0.251
-OUT.        0.155       0.155       0.155       0.155       0.155       0.155
-
-INDEX 1 = fshare  INDEX 2 = crop
-
-                 AqAq        AgAg
-
- .Land          0.278       0.159
- .Labor         0.093       0.162
- .Capital       0.251       0.307
- .Input         0.378       0.372
-
-INDEX 1 = fshare  INDEX 2 = fish
-
-                AqFSm       AqFBg
-
- .Land          0.479       0.270
- .Labor         0.094       0.134
- .Capital       0.017       0.077
- .Input         0.410       0.518
-
-INDEX 1 = fshare  INDEX 2 = prod
-
-                AqFSm       AqFBg        AqAq        AqLL        AgAg
-
- .Labor         0.420       0.420       0.420       0.420       0.420
- .Capital       0.580       0.580       0.580       0.580       0.580
-
-        +        AgLL
-
- .Labor         0.420
- .Capital       0.580
-
-INDEX 1 = fshare  INDEX 2 = ret
-
-                AqFSm       AqFBg        AqAq        AqLL        AgAg
-
- .Labor         0.415       0.415       0.415       0.415       0.415
- .Capital       0.585       0.585       0.585       0.585       0.585
-
-        +        AgLL
-
- .Labor         0.415
- .Capital       0.585
-
-INDEX 1 = fshare  INDEX 2 = ser
-
-                AqFSm       AqFBg        AqAq        AqLL        AgAg
-
- .Labor         0.411       0.411       0.411       0.411       0.411
- .Capital       0.589       0.589       0.589       0.589       0.589
-
-        +        AgLL
-
- .Labor         0.411
- .Capital       0.589
-
-INDEX 1 = fshare_se  INDEX 2 = crop
-
-                 AqAq        AgAg
-
- .Land          0.108       0.061
- .Labor         0.037       0.033
- .Capital       0.062       0.071
- .Input         0.091       0.079
-
-INDEX 1 = fshare_se  INDEX 2 = fish
-
-                AqFSm       AqFBg
-
- .Land          0.055       0.085
- .Labor         0.072       0.114
- .Capital       0.045       0.102
- .Input         0.059       0.085
-
-INDEX 1 = fshare_se  INDEX 2 = prod
-
-              AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .Labor       0.446       0.446       0.446       0.446       0.446       0.446
-
-INDEX 1 = fshare_se  INDEX 2 = ret
-
-              AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .Labor       0.209       0.209       0.209       0.209       0.209       0.209
-
-INDEX 1 = fshare_se  INDEX 2 = ser
-
-              AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
- .Labor       0.270       0.270       0.270       0.270       0.270       0.270
-
-INDEX 1 = pshift  INDEX 2 = crop
-
-           AqAq        AgAg
-
- .        4.739       3.585
-
-INDEX 1 = pshift  INDEX 2 = fish
-
-          AqFSm       AqFBg
-
- .        2.141       1.943
-
-INDEX 1 = pshift_se  INDEX 2 = crop
-
-           AqAq        AgAg
-
- .        0.987       0.576
-
-INDEX 1 = pshift_se  INDEX 2 = fish
-
-          AqFSm       AqFBg
-
- .        0.128       0.159
-
-
-----    123 PARAMETER Alldata  
-
-                                 AqFSm       AqFBg        AqAq        AqLL
-
-HHNUM    .    .   .               1.00        1.00        1.00        1.00
-eshare   .crop.   .               0.12        0.04        0.19        0.22
-eshare   .meat.   .               0.08        0.04        0.10        0.11
-eshare   .fish.   .               0.04        0.02        0.05        0.06
-eshare   .prod.   .               0.02        0.02 4.952091E-3        0.01
-eshare   .ret .   .               0.26        0.30        0.42        0.33
-eshare   .ser .   .               0.13        0.10        0.08        0.09
-eshare   .OUT .   .               0.35        0.47        0.16        0.19
-eshare_se.crop.   .               0.01 4.241579E-3        0.02        0.02
-eshare_se.meat.   .        8.361058E-3 4.340816E-3 9.591683E-3        0.01
-eshare_se.fish.   .        4.009685E-3 2.444346E-3 4.932983E-3 5.966987E-3
-eshare_se.prod.   .        1.910506E-3 2.305208E-3 4.952091E-4 1.358994E-3
-eshare_se.ret .   .               0.03        0.03        0.04        0.03
-eshare_se.ser .   .               0.01 9.515629E-3 8.179170E-3 8.505257E-3
-eshare_se.OUT .   .               0.03        0.05        0.02        0.02
-QP       .crop.   .                                     397.24
-QP       .fish.   .           20994.60    61609.92
-QP       .prod.   .             426.90        6.00      267.00     1032.20
-QP       .ret .   .           11361.66      911.64     1602.26     4521.73
-QP       .ser .   .             448.00      426.00      152.46      588.85
-idsh     .prod.ret.               0.16        0.16        0.16        0.16
-idsh     .prod.OUT.               0.17        0.17        0.17        0.17
-idsh     .ret .ret.               0.47        0.47        0.47        0.47
-idsh     .ret .OUT.               0.58        0.58        0.58        0.58
-idsh     .ser .ret.               0.25        0.25        0.25        0.25
-idsh     .ser .OUT.               0.15        0.15        0.15        0.15
-fshare   .crop.   .Land                                   0.28
-fshare   .crop.   .Labor                                  0.09
-fshare   .crop.   .Capital                                0.25
-fshare   .crop.   .Input                                  0.38
-fshare   .fish.   .Land           0.48        0.27
-fshare   .fish.   .Labor          0.09        0.13
-fshare   .fish.   .Capital        0.02        0.08
-fshare   .fish.   .Input          0.41        0.52
-fshare   .prod.   .Labor          0.42        0.42        0.42        0.42
-fshare   .prod.   .Capital        0.58        0.58        0.58        0.58
-fshare   .ret .   .Labor          0.41        0.41        0.41        0.41
-fshare   .ret .   .Capital        0.59        0.59        0.59        0.59
-fshare   .ser .   .Labor          0.41        0.41        0.41        0.41
-fshare   .ser .   .Capital        0.59        0.59        0.59        0.59
-fshare_se.crop.   .Land                                   0.11
-fshare_se.crop.   .Labor                                  0.04
-fshare_se.crop.   .Capital                                0.06
-fshare_se.crop.   .Input                                  0.09
-fshare_se.fish.   .Land           0.06        0.09
-fshare_se.fish.   .Labor          0.07        0.11
-fshare_se.fish.   .Capital        0.04        0.10
-fshare_se.fish.   .Input          0.06        0.08
-fshare_se.prod.   .Labor          0.45        0.45        0.45        0.45
-fshare_se.ret .   .Labor          0.21        0.21        0.21        0.21
-fshare_se.ser .   .Labor          0.27        0.27        0.27        0.27
-pshift   .crop.   .                                       4.74
-pshift   .fish.   .               2.14        1.94
-pshift_se.crop.   .                                       0.99
-pshift_se.fish.   .               0.13        0.16
-
-                         +        AgAg        AgLL
-
-HHNUM    .    .   .               1.00        1.00
-eshare   .crop.   .               0.19        0.26
-eshare   .meat.   .               0.09        0.10
-eshare   .fish.   .               0.05        0.06
-eshare   .prod.   .        2.851146E-3 2.708518E-3
-eshare   .ret .   .               0.33        0.34
-eshare   .ser .   .               0.11        0.11
-eshare   .OUT .   .               0.22        0.13
-eshare_se.crop.   .               0.02        0.03
-eshare_se.meat.   .        9.043483E-3        0.01
-eshare_se.fish.   .        5.435669E-3 6.230071E-3
-eshare_se.prod.   .        2.851146E-4 2.708518E-4
-eshare_se.ret .   .               0.03        0.03
-eshare_se.ser .   .               0.01        0.01
-eshare_se.OUT .   .               0.02        0.01
-QP       .crop.   .             997.74
-QP       .prod.   .             276.77      285.79
-QP       .ret .   .            7168.77     1858.49
-QP       .ser .   .             853.27      278.49
-idsh     .prod.ret.               0.16        0.16
-idsh     .prod.OUT.               0.17        0.17
-idsh     .ret .ret.               0.47        0.47
-idsh     .ret .OUT.               0.58        0.58
-idsh     .ser .ret.               0.25        0.25
-idsh     .ser .OUT.               0.15        0.15
-fshare   .crop.   .Land           0.16
-fshare   .crop.   .Labor          0.16
-fshare   .crop.   .Capital        0.31
-fshare   .crop.   .Input          0.37
-fshare   .prod.   .Labor          0.42        0.42
-fshare   .prod.   .Capital        0.58        0.58
-fshare   .ret .   .Labor          0.41        0.41
-fshare   .ret .   .Capital        0.59        0.59
-fshare   .ser .   .Labor          0.41        0.41
-fshare   .ser .   .Capital        0.59        0.59
-fshare_se.crop.   .Land           0.06
-fshare_se.crop.   .Labor          0.03
-fshare_se.crop.   .Capital        0.07
-fshare_se.crop.   .Input          0.08
-fshare_se.prod.   .Labor          0.45        0.45
-fshare_se.ret .   .Labor          0.21        0.21
-fshare_se.ser .   .Labor          0.27        0.27
-pshift   .crop.   .               3.58
-pshift_se.crop.   .               0.58
-
-
-----    230 PARAMETER xlidsh  intermediate demand share for of gg for production
-                              of g by h
-
-               AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
-ret.prod       0.156       0.156       0.156       0.156       0.156       0.156
-ret.ret        0.466       0.466       0.466       0.466       0.466       0.466
-ret.ser        0.251       0.251       0.251       0.251       0.251       0.251
-OUT.prod       0.167       0.167       0.167       0.167       0.167       0.167
-OUT.ret        0.579       0.579       0.579       0.579       0.579       0.579
-OUT.ser        0.155       0.155       0.155       0.155       0.155       0.155
-
-
-----    230 PARAMETER xlfshare  exponent on factor f in produciton of g
-
-                   AqFSm       AqFBg        AqAq        AqLL        AgAg
-
-crop.Land                                  0.278                   0.159
-crop.Labor                                 0.093                   0.162
-crop.Capital                               0.251                   0.307
-crop.Input                                 0.378                   0.372
-fish.Land          0.479       0.270
-fish.Labor         0.094       0.134
-fish.Capital       0.017       0.077
-fish.Input         0.410       0.518
-prod.Labor         0.420       0.420       0.420       0.420       0.420
-prod.Capital       0.580       0.580       0.580       0.580       0.580
-ret .Labor         0.415       0.415       0.415       0.415       0.415
-ret .Capital       0.585       0.585       0.585       0.585       0.585
-ser .Labor         0.411       0.411       0.411       0.411       0.411
-ser .Capital       0.589       0.589       0.589       0.589       0.589
-
-           +        AgLL
-
-prod.Labor         0.420
-prod.Capital       0.580
-ret .Labor         0.415
-ret .Capital       0.585
-ser .Labor         0.411
-ser .Capital       0.589
-
-
-----    230 PARAMETER xlfshare_se  standard error on beta (gfh)
-
-                   AqFSm       AqFBg        AqAq        AqLL        AgAg
-
-crop.Land                                  0.108                   0.061
-crop.Labor                                 0.037                   0.033
-crop.Capital                               0.062                   0.071
-crop.Input                                 0.091                   0.079
-fish.Land          0.055       0.085
-fish.Labor         0.072       0.114
-fish.Capital       0.045       0.102
-fish.Input         0.059       0.085
-prod.Labor         0.446       0.446       0.446       0.446       0.446
-ret .Labor         0.209       0.209       0.209       0.209       0.209
-ser .Labor         0.270       0.270       0.270       0.270       0.270
-
-           +        AgLL
-
-prod.Labor         0.446
-ret .Labor         0.209
-ser .Labor         0.270
-
-
-----    230 PARAMETER xlpshift  shift parameter on production of g
-
-           AqFSm       AqFBg        AqAq        AgAg
-
-crop                               4.739       3.585
-fish       2.141       1.943
-
-
-----    230 PARAMETER xlpshift_se  standard error on acobb
-
-           AqFSm       AqFBg        AqAq        AgAg
-
-crop                               0.987       0.576
-fish       0.128       0.159
-
-
-----    230 PARAMETER xleshare  expenditure share of good g by household h
-
-           AqFSm       AqFBg        AqAq        AqLL        AgAg        AgLL
-
-crop       0.121       0.042       0.195       0.216       0.189       0.255
-meat       0.084       0.043       0.096       0.106       0.090       0.100
-fish       0.040       0.024       0.049       0.060       0.054       0.062
-prod       0.019       0.023       0.005       0.014       0.003       0.003
-ret        0.257       0.303       0.415       0.330       0.331       0.343
-ser        0.130       0.095       0.082       0.085       0.108       0.112
-OUT        0.349       0.468       0.158       0.190       0.225       0.125
-
-
-----    230 PARAMETER xlemin  minimum expenditure on g
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlendow  endowment of factors in the economy
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlROCendow  endowment of factors outside the economy
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlROWendow  endowment of factors outside the country
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlTROUTsh  cash transfers received from other households  
-                                 (share of expenditures)
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlTRINsh  cash transfers given to other households (share 
-                                of income)
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlTROUTsh_se  standard error of cash transfers received fr
-                                    om other households  (share of expenditures)
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlTRINsh_se  standard error of cash transfers given to oth
-                                   er households (share of income)
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlsavsh  share of income going to informal savings
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlsavsh_se  standard error of share of income going to inf
-                                  ormal savings
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlexpoutsh  share of expenditures on outside goods
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlremit  level of remittances
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlothertransfers  level of exogenous transfers
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlnhh  number of households represented by this
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlhhinc  mean household income
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlhhexp  mean household expenditures
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlhhsize  mean household size
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlrevsh_vil  share of business in the village
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlrevsh_zoi  share of business in the zoi
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlrevsh_rol  share of business in the rest of lesotho
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlrevsh_row  share of business in the row
-
-                      ( ALL       0.000 )
-
-
-----    230 PARAMETER xlVA2IDsh  for each dollar of VA how much ID was consumed
-
-                      ( ALL       0.000 )
-
-
-----    306 SET g  goods
-
-crop,    meat,    fish,    prod,    ret ,    ser ,    OUT 
-
-
-----    306 SET f  factors
-
-Land   ,    Labor  ,    Capital,    Input  
-
-
-----    306 SET h  households
-
-AqFSm,    AqFBg,    AqAq ,    AqLL ,    AgAg ,    AgLL 
-
-
-----    306 SET fk  fixed factors
-
-Land   ,    Capital
-
-
-----    306 SET ft  tradable inputs
-
-Labor,    Input
-
-
-----    306 SET ftv  factors tradable in the village
-
-Labor
-
-
-----    306 SET ftz  factors tradable in the whole zoi
-
-                                                      ( EMPTY )
-
-
-----    306 SET ftw  factors tradables in the rest of the world
-
-Input
-
-
-----    306 SET gtv  goods tradable in the village
-
-crop,    ret ,    ser 
-
-
-----    306 SET gtz  goods tradable in the zoi
-
-                                                      ( EMPTY )
-
-
-----    306 SET gtw  goods tradable with the rest of the world
-
-OUT
-
-
-----    306 SET gp  goods that are produces
-
-crop,    fish,    prod,    ret ,    ser 
-
-
-----    306 SET v  villages
-
-AQUA
-
-
-----    306 SET maphv  mapping household to their village
-
-             AQUA
-
-AqFSm         YES
-AqFBg         YES
-AqAg          YES
-
-
-----   1015 PARAMETER fshare_t  unscaled draw the cobb-douglas factor shares
-
-INDEX 1 = crop
-
-                     dr0         dr1         dr2         dr3         dr4
-
-Land   .AqAq       0.278       0.388       0.200       0.170       0.279
-Land   .AgAg       0.159       0.210       0.072       0.286       0.200
-Labor  .AqAq       0.093       0.059       0.070       0.066       0.086
-Labor  .AgAg       0.162       0.186       0.199       0.141       0.131
-Capital.AqAq       0.251       0.122       0.320       0.286       0.239
-Capital.AgAg       0.307       0.383       0.383       0.399       0.342
-Input  .AqAq       0.378       0.335       0.405       0.364       0.214
-Input  .AgAg       0.372       0.387       0.589       0.463       0.448
-
-           +         dr5         dr6         dr7         dr8         dr9
-
-Land   .AqAq       0.171       0.180       0.350       0.448       0.517
-Land   .AgAg       0.169       0.259       0.236       0.268       0.083
-Labor  .AqAq       0.062       0.084       0.071       0.055       0.058
-Labor  .AgAg       0.120       0.187       0.169       0.149       0.124
-Capital.AqAq       0.301       0.137       0.269       0.177       0.329
-Capital.AgAg       0.259       0.306       0.288       0.316       0.260
-Input  .AqAq       0.389       0.406       0.465       0.352       0.379
-Input  .AgAg       0.410       0.309       0.459       0.498       0.280
-
-           +        dr10        dr11
-
-Land   .AqAq       0.211       0.255
-Land   .AgAg       0.062       0.110
-Labor  .AqAq       0.101       0.093
-Labor  .AgAg       0.155       0.131
-Capital.AqAq       0.167       0.358
-Capital.AgAg       0.265       0.376
-Input  .AqAq       0.495       0.394
-Input  .AgAg       0.331       0.432
-
-INDEX 1 = fish
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Land   .AqFSm       0.479       0.389       0.461       0.503       0.470
-Land   .AqFBg       0.270       0.343       0.278       0.313       0.305
-Labor  .AqFSm       0.094       0.124       0.106       0.079       0.111
-Labor  .AqFBg       0.134       0.223       0.208       0.064       0.152
-Capital.AqFSm       0.017       0.084       0.092       0.023       0.036
-Capital.AqFBg       0.077      -0.074       0.097       0.071       0.064
-Input  .AqFSm       0.410       0.399       0.371       0.472       0.468
-Input  .AqFBg       0.518       0.548       0.665       0.480       0.606
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Land   .AqFSm       0.490       0.498       0.444       0.419       0.434
-Land   .AqFBg       0.491       0.276       0.232       0.306       0.278
-Labor  .AqFSm       0.007       0.076       0.148       0.185       0.111
-Labor  .AqFBg       0.220       0.145       0.084       0.231       0.150
-Capital.AqFSm       0.046       0.083       0.061      -0.001       0.030
-Capital.AqFBg       0.143       0.100       0.164       0.003      -0.019
-Input  .AqFSm       0.343       0.357       0.466       0.423       0.405
-Input  .AqFBg       0.511       0.465       0.331       0.582       0.559
-
-            +        dr10        dr11
-
-Land   .AqFSm       0.506       0.403
-Land   .AqFBg       0.211       0.276
-Labor  .AqFSm       0.235       0.123
-Labor  .AqFBg      -0.048       0.020
-Capital.AqFSm       0.052      -0.015
-Capital.AqFBg       0.356       0.113
-Input  .AqFSm       0.428       0.418
-Input  .AqFBg       0.548       0.510
-
-INDEX 1 = prod
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.420       0.257       0.407       0.789       1.065
-Labor  .AqFBg       0.420       0.393       1.503      -0.203       0.505
-Labor  .AqAq        0.420       0.537       0.189       0.303      -0.044
-Labor  .AqLL        0.420       1.001       0.901       1.151       0.929
-Labor  .AgAg        0.420       0.331       0.571      -0.085       0.863
-Labor  .AgLL        0.420       0.487      -0.224       0.772       0.636
-Capital.AqFSm       0.580       0.580       0.580       0.580       0.580
-Capital.AqFBg       0.580       0.580       0.580       0.580       0.580
-Capital.AqAq        0.580       0.580       0.580       0.580       0.580
-Capital.AqLL        0.580       0.580       0.580       0.580       0.580
-Capital.AgAg        0.580       0.580       0.580       0.580       0.580
-Capital.AgLL        0.580       0.580       0.580       0.580       0.580
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm      -0.217      -0.164      -0.094       0.157       0.329
-Labor  .AqFBg      -0.158      -0.642       0.536       0.644       0.470
-Labor  .AqAq        1.105       0.691       0.328       0.144       0.688
-Labor  .AqLL        0.674       0.204       0.568       0.616       0.904
-Labor  .AgAg       -0.247       0.095       0.340       0.364       0.530
-Labor  .AgLL        0.454      -0.324      -0.033       0.469      -0.253
-Capital.AqFSm       0.580       0.580       0.580       0.580       0.580
-Capital.AqFBg       0.580       0.580       0.580       0.580       0.580
-Capital.AqAq        0.580       0.580       0.580       0.580       0.580
-Capital.AqLL        0.580       0.580       0.580       0.580       0.580
-Capital.AgAg        0.580       0.580       0.580       0.580       0.580
-Capital.AgLL        0.580       0.580       0.580       0.580       0.580
-
-            +        dr10        dr11
-
-Labor  .AqFSm       1.409       0.078
-Labor  .AqFBg       0.220       1.260
-Labor  .AqAq        0.985       0.270
-Labor  .AqLL        0.209       0.563
-Labor  .AgAg        0.530       1.155
-Labor  .AgLL        1.023      -0.018
-Capital.AqFSm       0.580       0.580
-Capital.AqFBg       0.580       0.580
-Capital.AqAq        0.580       0.580
-Capital.AqLL        0.580       0.580
-Capital.AgAg        0.580       0.580
-Capital.AgLL        0.580       0.580
-
-INDEX 1 = ret
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.415      -0.069       0.862       0.478      -0.124
-Labor  .AqFBg       0.415       0.562       0.474       0.155       0.324
-Labor  .AqAq        0.415       0.384       0.410       0.428       0.737
-Labor  .AqLL        0.415       0.490       0.288       0.572       0.508
-Labor  .AgAg        0.415       0.231       0.533       0.396       0.271
-Labor  .AgLL        0.415       0.600       0.574       0.364       0.637
-Capital.AqFSm       0.585       0.585       0.585       0.585       0.585
-Capital.AqFBg       0.585       0.585       0.585       0.585       0.585
-Capital.AqAq        0.585       0.585       0.585       0.585       0.585
-Capital.AqLL        0.585       0.585       0.585       0.585       0.585
-Capital.AgAg        0.585       0.585       0.585       0.585       0.585
-Capital.AgLL        0.585       0.585       0.585       0.585       0.585
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm       0.619      -0.105       0.470       0.140       0.622
-Labor  .AqFBg       0.461       0.778       0.525      -0.048       0.358
-Labor  .AqAq        0.767       0.567       0.615       0.840       0.457
-Labor  .AqLL        0.320       0.195       0.711       0.792       0.361
-Labor  .AgAg        0.586      -0.108       0.403       0.290       0.402
-Labor  .AgLL        0.364       0.295       0.235       0.549       0.713
-Capital.AqFSm       0.585       0.585       0.585       0.585       0.585
-Capital.AqFBg       0.585       0.585       0.585       0.585       0.585
-Capital.AqAq        0.585       0.585       0.585       0.585       0.585
-Capital.AqLL        0.585       0.585       0.585       0.585       0.585
-Capital.AgAg        0.585       0.585       0.585       0.585       0.585
-Capital.AgLL        0.585       0.585       0.585       0.585       0.585
-
-            +        dr10        dr11
-
-Labor  .AqFSm       0.587       0.234
-Labor  .AqFBg       0.462       0.428
-Labor  .AqAq        0.419       0.585
-Labor  .AqLL        0.682       0.536
-Labor  .AgAg        0.220       0.299
-Labor  .AgLL        0.643       0.346
-Capital.AqFSm       0.585       0.585
-Capital.AqFBg       0.585       0.585
-Capital.AqAq        0.585       0.585
-Capital.AqLL        0.585       0.585
-Capital.AgAg        0.585       0.585
-Capital.AgLL        0.585       0.585
-
-INDEX 1 = ser
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.411       0.334       0.611       0.702      -0.207
-Labor  .AqFBg       0.411       0.554       0.820       0.775       1.022
-Labor  .AqAq        0.411       0.537       0.404       0.018       0.504
-Labor  .AqLL        0.411       0.581       0.554       0.324       0.738
-Labor  .AgAg        0.411       0.444       0.462       0.781       0.395
-Labor  .AgLL        0.411       0.277       0.356       0.338       0.501
-Capital.AqFSm       0.589       0.589       0.589       0.589       0.589
-Capital.AqFBg       0.589       0.589       0.589       0.589       0.589
-Capital.AqAq        0.589       0.589       0.589       0.589       0.589
-Capital.AqLL        0.589       0.589       0.589       0.589       0.589
-Capital.AgAg        0.589       0.589       0.589       0.589       0.589
-Capital.AgLL        0.589       0.589       0.589       0.589       0.589
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm       0.005       0.670       0.292       0.296       0.528
-Labor  .AqFBg       0.192       0.016       0.416       0.237       0.115
-Labor  .AqAq        0.291       0.206       0.607       0.282       0.492
-Labor  .AqLL        0.563       0.132       0.427       0.240       0.247
-Labor  .AgAg        0.356      -0.024       0.702       0.311       0.374
-Labor  .AgLL        0.577       0.351       0.305       0.690       0.619
-Capital.AqFSm       0.589       0.589       0.589       0.589       0.589
-Capital.AqFBg       0.589       0.589       0.589       0.589       0.589
-Capital.AqAq        0.589       0.589       0.589       0.589       0.589
-Capital.AqLL        0.589       0.589       0.589       0.589       0.589
-Capital.AgAg        0.589       0.589       0.589       0.589       0.589
-Capital.AgLL        0.589       0.589       0.589       0.589       0.589
-
-            +        dr10        dr11
-
-Labor  .AqFSm       0.500       0.168
-Labor  .AqFBg       0.293       0.350
-Labor  .AqAq        0.299       0.578
-Labor  .AqLL        0.286       0.212
-Labor  .AgAg        0.298       0.859
-Labor  .AgLL       -0.132       0.301
-Capital.AqFSm       0.589       0.589
-Capital.AqFBg       0.589       0.589
-Capital.AqAq        0.589       0.589
-Capital.AqLL        0.589       0.589
-Capital.AgAg        0.589       0.589
-Capital.AgLL        0.589       0.589
-
-
-----   1015 PARAMETER eshare_t  unscaled draw of expenditure shares
-
-                   dr0         dr1         dr2         dr3         dr4
-
-crop.AqFSm       0.121       0.100       0.131       0.121       0.129
-crop.AqFBg       0.042       0.049       0.038       0.040       0.043
-crop.AqAq        0.195       0.168       0.192       0.189       0.210
-crop.AqLL        0.216       0.189       0.170       0.226       0.289
-crop.AgAg        0.189       0.205       0.228       0.204       0.184
-crop.AgLL        0.255       0.217       0.252       0.286       0.292
-meat.AqFSm       0.084       0.072       0.071       0.076       0.092
-meat.AqFBg       0.043       0.042       0.039       0.043       0.044
-meat.AqAq        0.096       0.096       0.096       0.097       0.104
-meat.AqLL        0.106       0.120       0.115       0.111       0.101
-meat.AgAg        0.090       0.086       0.083       0.092       0.080
-meat.AgLL        0.100       0.082       0.109       0.090       0.103
-fish.AqFSm       0.040       0.041       0.034       0.042       0.045
-fish.AqFBg       0.024       0.026       0.026       0.025       0.022
-fish.AqAq        0.049       0.062       0.052       0.049       0.049
-fish.AqLL        0.060       0.069       0.060       0.048       0.065
-fish.AgAg        0.054       0.049       0.051       0.052       0.054
-fish.AgLL        0.062       0.062       0.071       0.069       0.057
-prod.AqFSm       0.019       0.014       0.019       0.019       0.022
-prod.AqFBg       0.023       0.023       0.026       0.024       0.020
-prod.AqAq        0.005       0.005       0.005       0.005       0.005
-prod.AqLL        0.014       0.014       0.010       0.014       0.014
-prod.AgAg        0.003       0.003       0.003       0.003       0.003
-prod.AgLL        0.003       0.003       0.003       0.003       0.003
-ret .AqFSm       0.257       0.270       0.259       0.239       0.274
-ret .AqFBg       0.303       0.289       0.298       0.331       0.358
-ret .AqAq        0.415       0.445       0.444       0.330       0.481
-ret .AqLL        0.330       0.305       0.352       0.321       0.306
-ret .AgAg        0.331       0.358       0.419       0.358       0.330
-ret .AgLL        0.343       0.294       0.406       0.331       0.344
-ser .AqFSm       0.130       0.126       0.132       0.115       0.097
-ser .AqFBg       0.095       0.091       0.085       0.087       0.090
-ser .AqAq        0.082       0.087       0.080       0.084       0.077
-ser .AqLL        0.085       0.089       0.081       0.089       0.092
-ser .AgAg        0.108       0.087       0.095       0.113       0.121
-ser .AgLL        0.112       0.120       0.131       0.104       0.118
-OUT .AqFSm       0.349       0.394       0.333       0.385       0.300
-OUT .AqFBg       0.468       0.478       0.469       0.395       0.514
-OUT .AqAq        0.158       0.157       0.165       0.174       0.166
-OUT .AqLL        0.190       0.217       0.193       0.209       0.201
-OUT .AgAg        0.225       0.235       0.230       0.225       0.240
-OUT .AgLL        0.125       0.089       0.128       0.137       0.121
-
-         +         dr5         dr6         dr7         dr8         dr9
-
-crop.AqFSm       0.082       0.137       0.119       0.100       0.129
-crop.AqFBg       0.041       0.040       0.047       0.044       0.045
-crop.AqAq        0.194       0.217       0.187       0.218       0.184
-crop.AqLL        0.190       0.166       0.203       0.223       0.253
-crop.AgAg        0.197       0.203       0.208       0.197       0.179
-crop.AgLL        0.207       0.232       0.286       0.289       0.277
-meat.AqFSm       0.081       0.090       0.078       0.086       0.078
-meat.AqFBg       0.053       0.051       0.040       0.049       0.044
-meat.AqAq        0.123       0.104       0.093       0.090       0.100
-meat.AqLL        0.096       0.124       0.117       0.109       0.094
-meat.AgAg        0.106       0.091       0.072       0.073       0.093
-meat.AgLL        0.110       0.086       0.096       0.096       0.107
-fish.AqFSm       0.039       0.042       0.041       0.037       0.045
-fish.AqFBg       0.025       0.024       0.027       0.027       0.025
-fish.AqAq        0.055       0.050       0.055       0.037       0.052
-fish.AqLL        0.060       0.067       0.047       0.060       0.054
-fish.AgAg        0.059       0.059       0.058       0.051       0.065
-fish.AgLL        0.060       0.061       0.061       0.053       0.072
-prod.AqFSm       0.022       0.015       0.020       0.018       0.016
-prod.AqFBg       0.023       0.025       0.022       0.025       0.024
-prod.AqAq        0.005       0.005       0.005       0.006       0.004
-prod.AqLL        0.015       0.012       0.016       0.013       0.013
-prod.AgAg        0.003       0.003       0.003       0.003       0.003
-prod.AgLL        0.002       0.003       0.003       0.002       0.003
-ret .AqFSm       0.229       0.279       0.260       0.275       0.217
-ret .AqFBg       0.331       0.345       0.301       0.280       0.296
-ret .AqAq        0.395       0.486       0.435       0.358       0.443
-ret .AqLL        0.303       0.356       0.369       0.399       0.332
-ret .AgAg        0.358       0.393       0.343       0.305       0.335
-ret .AgLL        0.313       0.350       0.334       0.349       0.337
-ser .AqFSm       0.121       0.126       0.143       0.133       0.140
-ser .AqFBg       0.095       0.102       0.096       0.088       0.073
-ser .AqAq        0.086       0.067       0.078       0.085       0.079
-ser .AqLL        0.074       0.095       0.092       0.082       0.080
-ser .AgAg        0.102       0.118       0.114       0.123       0.112
-ser .AgLL        0.098       0.106       0.112       0.106       0.135
-OUT .AqFSm       0.319       0.344       0.387       0.290       0.336
-OUT .AqFBg       0.464       0.376       0.511       0.496       0.396
-OUT .AqAq        0.122       0.142       0.167       0.187       0.186
-OUT .AqLL        0.202       0.213       0.176       0.177       0.214
-OUT .AgAg        0.209       0.217       0.270       0.224       0.184
-OUT .AgLL        0.118       0.141       0.137       0.130       0.138
-
-         +        dr10        dr11
-
-crop.AqFSm       0.114       0.148
-crop.AqFBg       0.047       0.045
-crop.AqAq        0.182       0.164
-crop.AqLL        0.205       0.202
-crop.AgAg        0.159       0.177
-crop.AgLL        0.205       0.248
-meat.AqFSm       0.079       0.095
-meat.AqFBg       0.044       0.045
-meat.AqAq        0.094       0.098
-meat.AqLL        0.094       0.105
-meat.AgAg        0.076       0.073
-meat.AgLL        0.081       0.119
-fish.AqFSm       0.041       0.037
-fish.AqFBg       0.030       0.029
-fish.AqAq        0.054       0.058
-fish.AqLL        0.048       0.057
-fish.AgAg        0.049       0.055
-fish.AgLL        0.074       0.058
-prod.AqFSm       0.022       0.019
-prod.AqFBg       0.023       0.023
-prod.AqAq        0.005       0.005
-prod.AqLL        0.011       0.013
-prod.AgAg        0.003       0.003
-prod.AgLL        0.003       0.003
-ret .AqFSm       0.270       0.246
-ret .AqFBg       0.258       0.266
-ret .AqAq        0.368       0.487
-ret .AqLL        0.320       0.388
-ret .AgAg        0.374       0.348
-ret .AgLL        0.369       0.300
-ser .AqFSm       0.146       0.118
-ser .AqFBg       0.081       0.104
-ser .AqAq        0.090       0.080
-ser .AqLL        0.088       0.087
-ser .AgAg        0.094       0.117
-ser .AgLL        0.108       0.102
-OUT .AqFSm       0.343       0.431
-OUT .AqFBg       0.436       0.465
-OUT .AqAq        0.176       0.146
-OUT .AqLL        0.166       0.178
-OUT .AgAg        0.199       0.258
-OUT .AgLL        0.124       0.133
-
-
-----   1015 PARAMETER troutsh_dr  drawn or computed from draw share of yousehold
-                                  h's income being given as transfers
-
-                      ( ALL       0.000 )
-
-
-----   1015 PARAMETER savsh_dr  drawn or computed savings rate
-
-                      ( ALL       0.000 )
-
-
-----   1015 PARAMETER exprocsh_dr  drawn or computed outside-of-zoi expenditures
-                                   rate
-
-                      ( ALL       0.000 )
-
-
-----   1025 PARAMETER negfshare_t  
-
-INDEX 1 = fish
-
-                      dr1         dr8         dr9        dr10        dr11
-
-Labor  .AqFBg                                          -0.048
-Capital.AqFSm                  -0.001                              -0.015
-Capital.AqFBg      -0.074                  -0.019
-
-INDEX 1 = prod
-
-                    dr1         dr2         dr3         dr4         dr5
-
-Labor.AqFSm                                           1.065      -0.217
-Labor.AqFBg                   1.503      -0.203                  -0.158
-Labor.AqAq                                           -0.044       1.105
-Labor.AqLL        1.001                   1.151
-Labor.AgAg                               -0.085                  -0.247
-Labor.AgLL                   -0.224
-
-          +         dr6         dr7         dr9        dr10        dr11
-
-Labor.AqFSm      -0.164      -0.094                   1.409
-Labor.AqFBg      -0.642                                           1.260
-Labor.AgAg                                                        1.155
-Labor.AgLL       -0.324      -0.033      -0.253       1.023      -0.018
-
-INDEX 1 = ret
-
-                    dr1         dr4         dr6         dr8
-
-Labor.AqFSm      -0.069      -0.124      -0.105
-Labor.AqFBg                                          -0.048
-Labor.AgAg                               -0.108
-
-INDEX 1 = ser
-
-                    dr4         dr6        dr10
-
-Labor.AqFSm      -0.207
-Labor.AqFBg       1.022
-Labor.AgAg                   -0.024
-Labor.AgLL                               -0.132
-
-
-----   1032 PARAMETER fshare_t  unscaled draw the cobb-douglas factor shares
-
-INDEX 1 = crop
-
-                     dr0         dr1         dr2         dr3         dr4
-
-Land   .AqAq       0.278       0.388       0.200       0.170       0.279
-Land   .AgAg       0.159       0.210       0.072       0.286       0.200
-Labor  .AqAq       0.093       0.059       0.070       0.066       0.086
-Labor  .AgAg       0.162       0.186       0.199       0.141       0.131
-Capital.AqAq       0.251       0.122       0.320       0.286       0.239
-Capital.AgAg       0.307       0.383       0.383       0.399       0.342
-Input  .AqAq       0.378       0.335       0.405       0.364       0.214
-Input  .AgAg       0.372       0.387       0.589       0.463       0.448
-
-           +         dr5         dr6         dr7         dr8         dr9
-
-Land   .AqAq       0.171       0.180       0.350       0.448       0.517
-Land   .AgAg       0.169       0.259       0.236       0.268       0.083
-Labor  .AqAq       0.062       0.084       0.071       0.055       0.058
-Labor  .AgAg       0.120       0.187       0.169       0.149       0.124
-Capital.AqAq       0.301       0.137       0.269       0.177       0.329
-Capital.AgAg       0.259       0.306       0.288       0.316       0.260
-Input  .AqAq       0.389       0.406       0.465       0.352       0.379
-Input  .AgAg       0.410       0.309       0.459       0.498       0.280
-
-           +        dr10        dr11
-
-Land   .AqAq       0.211       0.255
-Land   .AgAg       0.062       0.110
-Labor  .AqAq       0.101       0.093
-Labor  .AgAg       0.155       0.131
-Capital.AqAq       0.167       0.358
-Capital.AgAg       0.265       0.376
-Input  .AqAq       0.495       0.394
-Input  .AgAg       0.331       0.432
-
-INDEX 1 = fish
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Land   .AqFSm       0.479       0.389       0.461       0.503       0.470
-Land   .AqFBg       0.270       0.343       0.278       0.313       0.305
-Labor  .AqFSm       0.094       0.124       0.106       0.079       0.111
-Labor  .AqFBg       0.134       0.223       0.208       0.064       0.152
-Capital.AqFSm       0.017       0.084       0.092       0.023       0.036
-Capital.AqFBg       0.077       0.042       0.097       0.071       0.064
-Input  .AqFSm       0.410       0.399       0.371       0.472       0.468
-Input  .AqFBg       0.518       0.548       0.665       0.480       0.606
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Land   .AqFSm       0.490       0.498       0.444       0.419       0.434
-Land   .AqFBg       0.491       0.276       0.232       0.306       0.278
-Labor  .AqFSm       0.007       0.076       0.148       0.185       0.111
-Labor  .AqFBg       0.220       0.145       0.084       0.231       0.150
-Capital.AqFSm       0.046       0.083       0.061       0.004       0.030
-Capital.AqFBg       0.143       0.100       0.164       0.003       0.275
-Input  .AqFSm       0.343       0.357       0.466       0.423       0.405
-Input  .AqFBg       0.511       0.465       0.331       0.582       0.559
-
-            +        dr10        dr11
-
-Land   .AqFSm       0.506       0.403
-Land   .AqFBg       0.211       0.276
-Labor  .AqFSm       0.235       0.123
-Labor  .AqFBg       0.089       0.020
-Capital.AqFSm       0.052       0.006
-Capital.AqFBg       0.356       0.113
-Input  .AqFSm       0.428       0.418
-Input  .AqFBg       0.548       0.510
-
-INDEX 1 = prod
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.420       0.257       0.407       0.789       0.354
-Labor  .AqFBg       0.420       0.393       0.099       0.644       0.505
-Labor  .AqAq        0.420       0.537       0.189       0.303       0.260
-Labor  .AqLL        0.420       0.194       0.901       0.824       0.929
-Labor  .AgAg        0.420       0.331       0.571       0.069       0.863
-Labor  .AgLL        0.420       0.487       0.403       0.772       0.636
-Capital.AqFSm       0.580       0.580       0.580       0.580       0.580
-Capital.AqFBg       0.580       0.580       0.580       0.580       0.580
-Capital.AqAq        0.580       0.580       0.580       0.580       0.580
-Capital.AqLL        0.580       0.580       0.580       0.580       0.580
-Capital.AgAg        0.580       0.580       0.580       0.580       0.580
-Capital.AgLL        0.580       0.580       0.580       0.580       0.580
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm       0.729       0.940       0.915       0.157       0.329
-Labor  .AqFBg       0.226       0.673       0.536       0.644       0.470
-Labor  .AqAq        0.278       0.691       0.328       0.144       0.688
-Labor  .AqLL        0.674       0.204       0.568       0.616       0.904
-Labor  .AgAg        0.893       0.095       0.340       0.364       0.530
-Labor  .AgLL        0.454       0.703       0.267       0.469       0.274
-Capital.AqFSm       0.580       0.580       0.580       0.580       0.580
-Capital.AqFBg       0.580       0.580       0.580       0.580       0.580
-Capital.AqAq        0.580       0.580       0.580       0.580       0.580
-Capital.AqLL        0.580       0.580       0.580       0.580       0.580
-Capital.AgAg        0.580       0.580       0.580       0.580       0.580
-Capital.AgLL        0.580       0.580       0.580       0.580       0.580
-
-            +        dr10        dr11
-
-Labor  .AqFSm       0.942       0.078
-Labor  .AqFBg       0.220       0.270
-Labor  .AqAq        0.985       0.270
-Labor  .AqLL        0.209       0.563
-Labor  .AgAg        0.530       0.123
-Labor  .AgLL        0.501       0.448
-Capital.AqFSm       0.580       0.580
-Capital.AqFBg       0.580       0.580
-Capital.AqAq        0.580       0.580
-Capital.AqLL        0.580       0.580
-Capital.AgAg        0.580       0.580
-Capital.AgLL        0.580       0.580
-
-INDEX 1 = ret
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.415       0.315       0.862       0.478       0.385
-Labor  .AqFBg       0.415       0.562       0.474       0.155       0.324
-Labor  .AqAq        0.415       0.384       0.410       0.428       0.737
-Labor  .AqLL        0.415       0.490       0.288       0.572       0.508
-Labor  .AgAg        0.415       0.231       0.533       0.396       0.271
-Labor  .AgLL        0.415       0.600       0.574       0.364       0.637
-Capital.AqFSm       0.585       0.585       0.585       0.585       0.585
-Capital.AqFBg       0.585       0.585       0.585       0.585       0.585
-Capital.AqAq        0.585       0.585       0.585       0.585       0.585
-Capital.AqLL        0.585       0.585       0.585       0.585       0.585
-Capital.AgAg        0.585       0.585       0.585       0.585       0.585
-Capital.AgLL        0.585       0.585       0.585       0.585       0.585
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm       0.619       0.202       0.470       0.140       0.622
-Labor  .AqFBg       0.461       0.778       0.525       0.202       0.358
-Labor  .AqAq        0.767       0.567       0.615       0.840       0.457
-Labor  .AqLL        0.320       0.195       0.711       0.792       0.361
-Labor  .AgAg        0.586       0.125       0.403       0.290       0.402
-Labor  .AgLL        0.364       0.295       0.235       0.549       0.713
-Capital.AqFSm       0.585       0.585       0.585       0.585       0.585
-Capital.AqFBg       0.585       0.585       0.585       0.585       0.585
-Capital.AqAq        0.585       0.585       0.585       0.585       0.585
-Capital.AqLL        0.585       0.585       0.585       0.585       0.585
-Capital.AgAg        0.585       0.585       0.585       0.585       0.585
-Capital.AgLL        0.585       0.585       0.585       0.585       0.585
-
-            +        dr10        dr11
-
-Labor  .AqFSm       0.587       0.234
-Labor  .AqFBg       0.462       0.428
-Labor  .AqAq        0.419       0.585
-Labor  .AqLL        0.682       0.536
-Labor  .AgAg        0.220       0.299
-Labor  .AgLL        0.643       0.346
-Capital.AqFSm       0.585       0.585
-Capital.AqFBg       0.585       0.585
-Capital.AqAq        0.585       0.585
-Capital.AqLL        0.585       0.585
-Capital.AgAg        0.585       0.585
-Capital.AgLL        0.585       0.585
-
-INDEX 1 = ser
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.411       0.334       0.611       0.702       0.427
-Labor  .AqFBg       0.411       0.554       0.820       0.775       0.620
-Labor  .AqAq        0.411       0.537       0.404       0.018       0.504
-Labor  .AqLL        0.411       0.581       0.554       0.324       0.738
-Labor  .AgAg        0.411       0.444       0.462       0.781       0.395
-Labor  .AgLL        0.411       0.277       0.356       0.338       0.501
-Capital.AqFSm       0.589       0.589       0.589       0.589       0.589
-Capital.AqFBg       0.589       0.589       0.589       0.589       0.589
-Capital.AqAq        0.589       0.589       0.589       0.589       0.589
-Capital.AqLL        0.589       0.589       0.589       0.589       0.589
-Capital.AgAg        0.589       0.589       0.589       0.589       0.589
-Capital.AgLL        0.589       0.589       0.589       0.589       0.589
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm       0.005       0.670       0.292       0.296       0.528
-Labor  .AqFBg       0.192       0.016       0.416       0.237       0.115
-Labor  .AqAq        0.291       0.206       0.607       0.282       0.492
-Labor  .AqLL        0.563       0.132       0.427       0.240       0.247
-Labor  .AgAg        0.356       0.422       0.702       0.311       0.374
-Labor  .AgLL        0.577       0.351       0.305       0.690       0.619
-Capital.AqFSm       0.589       0.589       0.589       0.589       0.589
-Capital.AqFBg       0.589       0.589       0.589       0.589       0.589
-Capital.AqAq        0.589       0.589       0.589       0.589       0.589
-Capital.AqLL        0.589       0.589       0.589       0.589       0.589
-Capital.AgAg        0.589       0.589       0.589       0.589       0.589
-Capital.AgLL        0.589       0.589       0.589       0.589       0.589
-
-            +        dr10        dr11
-
-Labor  .AqFSm       0.500       0.168
-Labor  .AqFBg       0.293       0.350
-Labor  .AqAq        0.299       0.578
-Labor  .AqLL        0.286       0.212
-Labor  .AgAg        0.298       0.859
-Labor  .AgLL        0.338       0.301
-Capital.AqFSm       0.589       0.589
-Capital.AqFBg       0.589       0.589
-Capital.AqAq        0.589       0.589
-Capital.AqLL        0.589       0.589
-Capital.AgAg        0.589       0.589
-Capital.AgLL        0.589       0.589
-
-
-----   1035 PARAMETER fshare_t  unscaled draw the cobb-douglas factor shares
-
-INDEX 1 = crop
-
-                     dr0         dr1         dr2         dr3         dr4
-
-Land   .AqAq       0.278       0.388       0.200       0.170       0.279
-Land   .AgAg       0.159       0.210       0.072       0.286       0.200
-Labor  .AqAq       0.093       0.059       0.070       0.066       0.086
-Labor  .AgAg       0.162       0.186       0.199       0.141       0.131
-Capital.AqAq       0.251       0.122       0.320       0.286       0.239
-Capital.AgAg       0.307       0.383       0.383       0.399       0.342
-Input  .AqAq       0.378       0.335       0.405       0.364       0.214
-Input  .AgAg       0.372       0.387       0.589       0.463       0.448
-
-           +         dr5         dr6         dr7         dr8         dr9
-
-Land   .AqAq       0.171       0.180       0.350       0.448       0.517
-Land   .AgAg       0.169       0.259       0.236       0.268       0.083
-Labor  .AqAq       0.062       0.084       0.071       0.055       0.058
-Labor  .AgAg       0.120       0.187       0.169       0.149       0.124
-Capital.AqAq       0.301       0.137       0.269       0.177       0.329
-Capital.AgAg       0.259       0.306       0.288       0.316       0.260
-Input  .AqAq       0.389       0.406       0.465       0.352       0.379
-Input  .AgAg       0.410       0.309       0.459       0.498       0.280
-
-           +        dr10        dr11
-
-Land   .AqAq       0.211       0.255
-Land   .AgAg       0.062       0.110
-Labor  .AqAq       0.101       0.093
-Labor  .AgAg       0.155       0.131
-Capital.AqAq       0.167       0.358
-Capital.AgAg       0.265       0.376
-Input  .AqAq       0.495       0.394
-Input  .AgAg       0.331       0.432
-
-INDEX 1 = fish
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Land   .AqFSm       0.479       0.389       0.461       0.503       0.470
-Land   .AqFBg       0.270       0.343       0.278       0.313       0.305
-Labor  .AqFSm       0.094       0.124       0.106       0.079       0.111
-Labor  .AqFBg       0.134       0.223       0.208       0.064       0.152
-Capital.AqFSm       0.017       0.084       0.092       0.023       0.036
-Capital.AqFBg       0.077       0.042       0.097       0.071       0.064
-Input  .AqFSm       0.410       0.399       0.371       0.472       0.468
-Input  .AqFBg       0.518       0.548       0.665       0.480       0.606
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Land   .AqFSm       0.490       0.498       0.444       0.419       0.434
-Land   .AqFBg       0.491       0.276       0.232       0.306       0.278
-Labor  .AqFSm       0.007       0.076       0.148       0.185       0.111
-Labor  .AqFBg       0.220       0.145       0.084       0.231       0.150
-Capital.AqFSm       0.046       0.083       0.061       0.004       0.030
-Capital.AqFBg       0.143       0.100       0.164       0.003       0.275
-Input  .AqFSm       0.343       0.357       0.466       0.423       0.405
-Input  .AqFBg       0.511       0.465       0.331       0.582       0.559
-
-            +        dr10        dr11
-
-Land   .AqFSm       0.506       0.403
-Land   .AqFBg       0.211       0.276
-Labor  .AqFSm       0.235       0.123
-Labor  .AqFBg       0.089       0.020
-Capital.AqFSm       0.052       0.006
-Capital.AqFBg       0.356       0.113
-Input  .AqFSm       0.428       0.418
-Input  .AqFBg       0.548       0.510
-
-INDEX 1 = prod
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.420       0.257       0.407       0.789       0.354
-Labor  .AqFBg       0.420       0.393       0.099       0.644       0.505
-Labor  .AqAq        0.420       0.537       0.189       0.303       0.260
-Labor  .AqLL        0.420       0.194       0.901       0.824       0.929
-Labor  .AgAg        0.420       0.331       0.571       0.069       0.863
-Labor  .AgLL        0.420       0.487       0.403       0.772       0.636
-Capital.AqFSm       0.580       0.580       0.580       0.580       0.580
-Capital.AqFBg       0.580       0.580       0.580       0.580       0.580
-Capital.AqAq        0.580       0.580       0.580       0.580       0.580
-Capital.AqLL        0.580       0.580       0.580       0.580       0.580
-Capital.AgAg        0.580       0.580       0.580       0.580       0.580
-Capital.AgLL        0.580       0.580       0.580       0.580       0.580
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm       0.729       0.940       0.915       0.157       0.329
-Labor  .AqFBg       0.226       0.673       0.536       0.644       0.470
-Labor  .AqAq        0.278       0.691       0.328       0.144       0.688
-Labor  .AqLL        0.674       0.204       0.568       0.616       0.904
-Labor  .AgAg        0.893       0.095       0.340       0.364       0.530
-Labor  .AgLL        0.454       0.703       0.267       0.469       0.274
-Capital.AqFSm       0.580       0.580       0.580       0.580       0.580
-Capital.AqFBg       0.580       0.580       0.580       0.580       0.580
-Capital.AqAq        0.580       0.580       0.580       0.580       0.580
-Capital.AqLL        0.580       0.580       0.580       0.580       0.580
-Capital.AgAg        0.580       0.580       0.580       0.580       0.580
-Capital.AgLL        0.580       0.580       0.580       0.580       0.580
-
-            +        dr10        dr11
-
-Labor  .AqFSm       0.942       0.078
-Labor  .AqFBg       0.220       0.270
-Labor  .AqAq        0.985       0.270
-Labor  .AqLL        0.209       0.563
-Labor  .AgAg        0.530       0.123
-Labor  .AgLL        0.501       0.448
-Capital.AqFSm       0.580       0.580
-Capital.AqFBg       0.580       0.580
-Capital.AqAq        0.580       0.580
-Capital.AqLL        0.580       0.580
-Capital.AgAg        0.580       0.580
-Capital.AgLL        0.580       0.580
-
-INDEX 1 = ret
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.415       0.315       0.862       0.478       0.385
-Labor  .AqFBg       0.415       0.562       0.474       0.155       0.324
-Labor  .AqAq        0.415       0.384       0.410       0.428       0.737
-Labor  .AqLL        0.415       0.490       0.288       0.572       0.508
-Labor  .AgAg        0.415       0.231       0.533       0.396       0.271
-Labor  .AgLL        0.415       0.600       0.574       0.364       0.637
-Capital.AqFSm       0.585       0.585       0.585       0.585       0.585
-Capital.AqFBg       0.585       0.585       0.585       0.585       0.585
-Capital.AqAq        0.585       0.585       0.585       0.585       0.585
-Capital.AqLL        0.585       0.585       0.585       0.585       0.585
-Capital.AgAg        0.585       0.585       0.585       0.585       0.585
-Capital.AgLL        0.585       0.585       0.585       0.585       0.585
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm       0.619       0.202       0.470       0.140       0.622
-Labor  .AqFBg       0.461       0.778       0.525       0.202       0.358
-Labor  .AqAq        0.767       0.567       0.615       0.840       0.457
-Labor  .AqLL        0.320       0.195       0.711       0.792       0.361
-Labor  .AgAg        0.586       0.125       0.403       0.290       0.402
-Labor  .AgLL        0.364       0.295       0.235       0.549       0.713
-Capital.AqFSm       0.585       0.585       0.585       0.585       0.585
-Capital.AqFBg       0.585       0.585       0.585       0.585       0.585
-Capital.AqAq        0.585       0.585       0.585       0.585       0.585
-Capital.AqLL        0.585       0.585       0.585       0.585       0.585
-Capital.AgAg        0.585       0.585       0.585       0.585       0.585
-Capital.AgLL        0.585       0.585       0.585       0.585       0.585
-
-            +        dr10        dr11
-
-Labor  .AqFSm       0.587       0.234
-Labor  .AqFBg       0.462       0.428
-Labor  .AqAq        0.419       0.585
-Labor  .AqLL        0.682       0.536
-Labor  .AgAg        0.220       0.299
-Labor  .AgLL        0.643       0.346
-Capital.AqFSm       0.585       0.585
-Capital.AqFBg       0.585       0.585
-Capital.AqAq        0.585       0.585
-Capital.AqLL        0.585       0.585
-Capital.AgAg        0.585       0.585
-Capital.AgLL        0.585       0.585
-
-INDEX 1 = ser
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.411       0.334       0.611       0.702       0.427
-Labor  .AqFBg       0.411       0.554       0.820       0.775       0.620
-Labor  .AqAq        0.411       0.537       0.404       0.018       0.504
-Labor  .AqLL        0.411       0.581       0.554       0.324       0.738
-Labor  .AgAg        0.411       0.444       0.462       0.781       0.395
-Labor  .AgLL        0.411       0.277       0.356       0.338       0.501
-Capital.AqFSm       0.589       0.589       0.589       0.589       0.589
-Capital.AqFBg       0.589       0.589       0.589       0.589       0.589
-Capital.AqAq        0.589       0.589       0.589       0.589       0.589
-Capital.AqLL        0.589       0.589       0.589       0.589       0.589
-Capital.AgAg        0.589       0.589       0.589       0.589       0.589
-Capital.AgLL        0.589       0.589       0.589       0.589       0.589
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm       0.005       0.670       0.292       0.296       0.528
-Labor  .AqFBg       0.192       0.016       0.416       0.237       0.115
-Labor  .AqAq        0.291       0.206       0.607       0.282       0.492
-Labor  .AqLL        0.563       0.132       0.427       0.240       0.247
-Labor  .AgAg        0.356       0.422       0.702       0.311       0.374
-Labor  .AgLL        0.577       0.351       0.305       0.690       0.619
-Capital.AqFSm       0.589       0.589       0.589       0.589       0.589
-Capital.AqFBg       0.589       0.589       0.589       0.589       0.589
-Capital.AqAq        0.589       0.589       0.589       0.589       0.589
-Capital.AqLL        0.589       0.589       0.589       0.589       0.589
-Capital.AgAg        0.589       0.589       0.589       0.589       0.589
-Capital.AgLL        0.589       0.589       0.589       0.589       0.589
-
-            +        dr10        dr11
-
-Labor  .AqFSm       0.500       0.168
-Labor  .AqFBg       0.293       0.350
-Labor  .AqAq        0.299       0.578
-Labor  .AqLL        0.286       0.212
-Labor  .AgAg        0.298       0.859
-Labor  .AgLL        0.338       0.301
-Capital.AqFSm       0.589       0.589
-Capital.AqFBg       0.589       0.589
-Capital.AqAq        0.589       0.589
-Capital.AqLL        0.589       0.589
-Capital.AgAg        0.589       0.589
-Capital.AgLL        0.589       0.589
-
-
-----   1035 PARAMETER fshare_dr  drawn or computed from draw cobb-douglas factor
-                                 shares
-
-INDEX 1 = crop
-
-                     dr0         dr1         dr2         dr3         dr4
-
-Land   .AqAq       0.278       0.430       0.201       0.192       0.341
-Land   .AgAg       0.159       0.180       0.058       0.222       0.178
-Labor  .AqAq       0.093       0.065       0.071       0.074       0.106
-Labor  .AgAg       0.162       0.159       0.160       0.110       0.117
-Capital.AqAq       0.251       0.135       0.321       0.323       0.292
-Capital.AgAg       0.307       0.329       0.308       0.310       0.305
-Input  .AqAq       0.378       0.371       0.407       0.410       0.262
-Input  .AgAg       0.372       0.332       0.474       0.359       0.400
-
-           +         dr5         dr6         dr7         dr8         dr9
-
-Land   .AqAq       0.185       0.223       0.303       0.434       0.403
-Land   .AgAg       0.177       0.244       0.205       0.218       0.112
-Labor  .AqAq       0.067       0.104       0.061       0.053       0.045
-Labor  .AgAg       0.125       0.176       0.147       0.121       0.166
-Capital.AqAq       0.326       0.170       0.233       0.172       0.256
-Capital.AgAg       0.270       0.288       0.250       0.256       0.348
-Input  .AqAq       0.422       0.503       0.403       0.341       0.295
-Input  .AgAg       0.428       0.291       0.398       0.405       0.375
-
-           +        dr10        dr11
-
-Land   .AqAq       0.217       0.232
-Land   .AgAg       0.077       0.105
-Labor  .AqAq       0.104       0.085
-Labor  .AgAg       0.191       0.125
-Capital.AqAq       0.171       0.325
-Capital.AgAg       0.326       0.359
-Input  .AqAq       0.508       0.359
-Input  .AgAg       0.407       0.412
-
-INDEX 1 = fish
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Land   .AqFSm       0.479       0.390       0.447       0.467       0.433
-Land   .AqFBg       0.270       0.297       0.223       0.337       0.271
-Labor  .AqFSm       0.094       0.124       0.103       0.074       0.102
-Labor  .AqFBg       0.134       0.193       0.167       0.068       0.135
-Capital.AqFSm       0.017       0.084       0.089       0.021       0.033
-Capital.AqFBg       0.077       0.037       0.078       0.076       0.056
-Input  .AqFSm       0.410       0.401       0.361       0.438       0.432
-Input  .AqFBg       0.518       0.474       0.533       0.518       0.538
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Land   .AqFSm       0.553       0.492       0.397       0.406       0.443
-Land   .AqFBg       0.360       0.280       0.286       0.273       0.220
-Labor  .AqFSm       0.008       0.075       0.132       0.180       0.114
-Labor  .AqFBg       0.161       0.147       0.104       0.206       0.119
-Capital.AqFSm       0.052       0.082       0.054       0.003       0.030
-Capital.AqFBg       0.105       0.101       0.202       0.002       0.218
-Input  .AqFSm       0.387       0.352       0.417       0.410       0.413
-Input  .AqFBg       0.375       0.472       0.408       0.519       0.443
-
-            +        dr10        dr11
-
-Land   .AqFSm       0.414       0.424
-Land   .AqFBg       0.175       0.301
-Labor  .AqFSm       0.192       0.130
-Labor  .AqFBg       0.074       0.022
-Capital.AqFSm       0.043       0.006
-Capital.AqFBg       0.296       0.123
-Input  .AqFSm       0.351       0.440
-Input  .AqFBg       0.455       0.555
-
-INDEX 1 = prod
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.420       0.307       0.412       0.576       0.379
-Labor  .AqFBg       0.420       0.404       0.146       0.526       0.465
-Labor  .AqAq        0.420       0.481       0.246       0.343       0.310
-Labor  .AqLL        0.420       0.251       0.608       0.587       0.616
-Labor  .AgAg        0.420       0.363       0.496       0.106       0.598
-Labor  .AgLL        0.420       0.457       0.410       0.571       0.523
-Capital.AqFSm       0.580       0.693       0.588       0.424       0.621
-Capital.AqFBg       0.580       0.596       0.854       0.474       0.535
-Capital.AqAq        0.580       0.519       0.754       0.657       0.690
-Capital.AqLL        0.580       0.749       0.392       0.413       0.384
-Capital.AgAg        0.580       0.637       0.504       0.894       0.402
-Capital.AgLL        0.580       0.543       0.590       0.429       0.477
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm       0.557       0.618       0.612       0.213       0.362
-Labor  .AqFBg       0.281       0.537       0.480       0.526       0.448
-Labor  .AqAq        0.324       0.544       0.361       0.199       0.543
-Labor  .AqLL        0.538       0.260       0.495       0.515       0.609
-Labor  .AgAg        0.606       0.140       0.369       0.386       0.478
-Labor  .AgLL        0.439       0.548       0.315       0.447       0.321
-Capital.AqFSm       0.443       0.382       0.388       0.787       0.638
-Capital.AqFBg       0.719       0.463       0.520       0.474       0.552
-Capital.AqAq        0.676       0.456       0.639       0.801       0.457
-Capital.AqLL        0.462       0.740       0.505       0.485       0.391
-Capital.AgAg        0.394       0.860       0.631       0.614       0.522
-Capital.AgLL        0.561       0.452       0.685       0.553       0.679
-
-            +        dr10        dr11
-
-Labor  .AqFSm       0.619       0.119
-Labor  .AqFBg       0.275       0.318
-Labor  .AqAq        0.629       0.317
-Labor  .AqLL        0.265       0.492
-Labor  .AgAg        0.477       0.175
-Labor  .AgLL        0.463       0.436
-Capital.AqFSm       0.381       0.881
-Capital.AqFBg       0.725       0.682
-Capital.AqAq        0.371       0.683
-Capital.AqLL        0.735       0.508
-Capital.AgAg        0.523       0.825
-Capital.AgLL        0.537       0.564
-
-INDEX 1 = ret
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.415       0.350       0.595       0.450       0.397
-Labor  .AqFBg       0.415       0.490       0.447       0.209       0.356
-Labor  .AqAq        0.415       0.396       0.412       0.422       0.557
-Labor  .AqLL        0.415       0.456       0.330       0.494       0.465
-Labor  .AgAg        0.415       0.283       0.476       0.403       0.316
-Labor  .AgLL        0.415       0.506       0.495       0.384       0.521
-Capital.AqFSm       0.585       0.650       0.405       0.550       0.603
-Capital.AqFBg       0.585       0.510       0.553       0.791       0.644
-Capital.AqAq        0.585       0.604       0.588       0.578       0.443
-Capital.AqLL        0.585       0.544       0.670       0.506       0.535
-Capital.AgAg        0.585       0.717       0.524       0.597       0.684
-Capital.AgLL        0.585       0.494       0.505       0.616       0.479
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm       0.514       0.257       0.445       0.193       0.515
-Labor  .AqFBg       0.441       0.571       0.473       0.256       0.380
-Labor  .AqAq        0.567       0.492       0.512       0.589       0.438
-Labor  .AqLL        0.353       0.249       0.548       0.575       0.382
-Labor  .AgAg        0.500       0.176       0.408       0.331       0.407
-Labor  .AgLL        0.383       0.335       0.287       0.484       0.549
-Capital.AqFSm       0.486       0.743       0.555       0.807       0.485
-Capital.AqFBg       0.559       0.429       0.527       0.744       0.620
-Capital.AqAq        0.433       0.508       0.488       0.411       0.562
-Capital.AqLL        0.647       0.751       0.452       0.425       0.618
-Capital.AgAg        0.500       0.824       0.592       0.669       0.593
-Capital.AgLL        0.617       0.665       0.713       0.516       0.451
-
-            +        dr10        dr11
-
-Labor  .AqFSm       0.501       0.286
-Labor  .AqFBg       0.441       0.422
-Labor  .AqAq        0.417       0.500
-Labor  .AqLL        0.538       0.478
-Labor  .AgAg        0.273       0.338
-Labor  .AgLL        0.523       0.372
-Capital.AqFSm       0.499       0.714
-Capital.AqFBg       0.559       0.578
-Capital.AqAq        0.583       0.500
-Capital.AqLL        0.462       0.522
-Capital.AgAg        0.727       0.662
-Capital.AgLL        0.477       0.628
-
-INDEX 1 = ser
-
-                      dr0         dr1         dr2         dr3         dr4
-
-Labor  .AqFSm       0.411       0.362       0.509       0.544       0.421
-Labor  .AqFBg       0.411       0.485       0.582       0.568       0.513
-Labor  .AqAq        0.411       0.477       0.407       0.030       0.461
-Labor  .AqLL        0.411       0.497       0.485       0.355       0.556
-Labor  .AgAg        0.411       0.430       0.440       0.570       0.402
-Labor  .AgLL        0.411       0.320       0.377       0.365       0.460
-Capital.AqFSm       0.589       0.638       0.491       0.456       0.579
-Capital.AqFBg       0.589       0.515       0.418       0.432       0.487
-Capital.AqAq        0.589       0.523       0.593       0.970       0.539
-Capital.AqLL        0.589       0.503       0.515       0.645       0.444
-Capital.AgAg        0.589       0.570       0.560       0.430       0.598
-Capital.AgLL        0.589       0.680       0.623       0.635       0.540
-
-            +         dr5         dr6         dr7         dr8         dr9
-
-Labor  .AqFSm       0.008       0.532       0.332       0.335       0.473
-Labor  .AqFBg       0.246       0.027       0.414       0.287       0.163
-Labor  .AqAq        0.331       0.259       0.508       0.324       0.455
-Labor  .AqLL        0.489       0.183       0.420       0.290       0.296
-Labor  .AgAg        0.377       0.418       0.544       0.346       0.388
-Labor  .AgLL        0.495       0.373       0.341       0.540       0.512
-Capital.AqFSm       0.992       0.468       0.668       0.665       0.527
-Capital.AqFBg       0.754       0.973       0.586       0.713       0.837
-Capital.AqAq        0.669       0.741       0.492       0.676       0.545
-Capital.AqLL        0.511       0.817       0.580       0.710       0.704
-Capital.AgAg        0.623       0.582       0.456       0.654       0.612
-Capital.AgLL        0.505       0.627       0.659       0.460       0.488
-
-            +        dr10        dr11
-
-Labor  .AqFSm       0.459       0.222
-Labor  .AqFBg       0.332       0.373
-Labor  .AqAq        0.337       0.495
-Labor  .AqLL        0.327       0.265
-Labor  .AgAg        0.336       0.593
-Labor  .AgLL        0.365       0.339
-Capital.AqFSm       0.541       0.778
-Capital.AqFBg       0.668       0.627
-Capital.AqAq        0.663       0.505
-Capital.AqLL        0.673       0.735
-Capital.AgAg        0.664       0.407
-Capital.AgLL        0.635       0.661
-
-
-----   1045 PARAMETER negeshare_t  
-
-                      ( ALL       0.000 )
-
-
-----   1052 PARAMETER eshare_t  unscaled draw of expenditure shares
-
-                   dr0         dr1         dr2         dr3         dr4
-
-crop.AqFSm       0.121       0.100       0.131       0.121       0.129
-crop.AqFBg       0.042       0.049       0.038       0.040       0.043
-crop.AqAq        0.195       0.168       0.192       0.189       0.210
-crop.AqLL        0.216       0.189       0.170       0.226       0.289
-crop.AgAg        0.189       0.205       0.228       0.204       0.184
-crop.AgLL        0.255       0.217       0.252       0.286       0.292
-meat.AqFSm       0.084       0.072       0.071       0.076       0.092
-meat.AqFBg       0.043       0.042       0.039       0.043       0.044
-meat.AqAq        0.096       0.096       0.096       0.097       0.104
-meat.AqLL        0.106       0.120       0.115       0.111       0.101
-meat.AgAg        0.090       0.086       0.083       0.092       0.080
-meat.AgLL        0.100       0.082       0.109       0.090       0.103
-fish.AqFSm       0.040       0.041       0.034       0.042       0.045
-fish.AqFBg       0.024       0.026       0.026       0.025       0.022
-fish.AqAq        0.049       0.062       0.052       0.049       0.049
-fish.AqLL        0.060       0.069       0.060       0.048       0.065
-fish.AgAg        0.054       0.049       0.051       0.052       0.054
-fish.AgLL        0.062       0.062       0.071       0.069       0.057
-prod.AqFSm       0.019       0.014       0.019       0.019       0.022
-prod.AqFBg       0.023       0.023       0.026       0.024       0.020
-prod.AqAq        0.005       0.005       0.005       0.005       0.005
-prod.AqLL        0.014       0.014       0.010       0.014       0.014
-prod.AgAg        0.003       0.003       0.003       0.003       0.003
-prod.AgLL        0.003       0.003       0.003       0.003       0.003
-ret .AqFSm       0.257       0.270       0.259       0.239       0.274
-ret .AqFBg       0.303       0.289       0.298       0.331       0.358
-ret .AqAq        0.415       0.445       0.444       0.330       0.481
-ret .AqLL        0.330       0.305       0.352       0.321       0.306
-ret .AgAg        0.331       0.358       0.419       0.358       0.330
-ret .AgLL        0.343       0.294       0.406       0.331       0.344
-ser .AqFSm       0.130       0.126       0.132       0.115       0.097
-ser .AqFBg       0.095       0.091       0.085       0.087       0.090
-ser .AqAq        0.082       0.087       0.080       0.084       0.077
-ser .AqLL        0.085       0.089       0.081       0.089       0.092
-ser .AgAg        0.108       0.087       0.095       0.113       0.121
-ser .AgLL        0.112       0.120       0.131       0.104       0.118
-OUT .AqFSm       0.349       0.394       0.333       0.385       0.300
-OUT .AqFBg       0.468       0.478       0.469       0.395       0.514
-OUT .AqAq        0.158       0.157       0.165       0.174       0.166
-OUT .AqLL        0.190       0.217       0.193       0.209       0.201
-OUT .AgAg        0.225       0.235       0.230       0.225       0.240
-OUT .AgLL        0.125       0.089       0.128       0.137       0.121
-
-         +         dr5         dr6         dr7         dr8         dr9
-
-crop.AqFSm       0.082       0.137       0.119       0.100       0.129
-crop.AqFBg       0.041       0.040       0.047       0.044       0.045
-crop.AqAq        0.194       0.217       0.187       0.218       0.184
-crop.AqLL        0.190       0.166       0.203       0.223       0.253
-crop.AgAg        0.197       0.203       0.208       0.197       0.179
-crop.AgLL        0.207       0.232       0.286       0.289       0.277
-meat.AqFSm       0.081       0.090       0.078       0.086       0.078
-meat.AqFBg       0.053       0.051       0.040       0.049       0.044
-meat.AqAq        0.123       0.104       0.093       0.090       0.100
-meat.AqLL        0.096       0.124       0.117       0.109       0.094
-meat.AgAg        0.106       0.091       0.072       0.073       0.093
-meat.AgLL        0.110       0.086       0.096       0.096       0.107
-fish.AqFSm       0.039       0.042       0.041       0.037       0.045
-fish.AqFBg       0.025       0.024       0.027       0.027       0.025
-fish.AqAq        0.055       0.050       0.055       0.037       0.052
-fish.AqLL        0.060       0.067       0.047       0.060       0.054
-fish.AgAg        0.059       0.059       0.058       0.051       0.065
-fish.AgLL        0.060       0.061       0.061       0.053       0.072
-prod.AqFSm       0.022       0.015       0.020       0.018       0.016
-prod.AqFBg       0.023       0.025       0.022       0.025       0.024
-prod.AqAq        0.005       0.005       0.005       0.006       0.004
-prod.AqLL        0.015       0.012       0.016       0.013       0.013
-prod.AgAg        0.003       0.003       0.003       0.003       0.003
-prod.AgLL        0.002       0.003       0.003       0.002       0.003
-ret .AqFSm       0.229       0.279       0.260       0.275       0.217
-ret .AqFBg       0.331       0.345       0.301       0.280       0.296
-ret .AqAq        0.395       0.486       0.435       0.358       0.443
-ret .AqLL        0.303       0.356       0.369       0.399       0.332
-ret .AgAg        0.358       0.393       0.343       0.305       0.335
-ret .AgLL        0.313       0.350       0.334       0.349       0.337
-ser .AqFSm       0.121       0.126       0.143       0.133       0.140
-ser .AqFBg       0.095       0.102       0.096       0.088       0.073
-ser .AqAq        0.086       0.067       0.078       0.085       0.079
-ser .AqLL        0.074       0.095       0.092       0.082       0.080
-ser .AgAg        0.102       0.118       0.114       0.123       0.112
-ser .AgLL        0.098       0.106       0.112       0.106       0.135
-OUT .AqFSm       0.319       0.344       0.387       0.290       0.336
-OUT .AqFBg       0.464       0.376       0.511       0.496       0.396
-OUT .AqAq        0.122       0.142       0.167       0.187       0.186
-OUT .AqLL        0.202       0.213       0.176       0.177       0.214
-OUT .AgAg        0.209       0.217       0.270       0.224       0.184
-OUT .AgLL        0.118       0.141       0.137       0.130       0.138
-
-         +        dr10        dr11
-
-crop.AqFSm       0.114       0.148
-crop.AqFBg       0.047       0.045
-crop.AqAq        0.182       0.164
-crop.AqLL        0.205       0.202
-crop.AgAg        0.159       0.177
-crop.AgLL        0.205       0.248
-meat.AqFSm       0.079       0.095
-meat.AqFBg       0.044       0.045
-meat.AqAq        0.094       0.098
-meat.AqLL        0.094       0.105
-meat.AgAg        0.076       0.073
-meat.AgLL        0.081       0.119
-fish.AqFSm       0.041       0.037
-fish.AqFBg       0.030       0.029
-fish.AqAq        0.054       0.058
-fish.AqLL        0.048       0.057
-fish.AgAg        0.049       0.055
-fish.AgLL        0.074       0.058
-prod.AqFSm       0.022       0.019
-prod.AqFBg       0.023       0.023
-prod.AqAq        0.005       0.005
-prod.AqLL        0.011       0.013
-prod.AgAg        0.003       0.003
-prod.AgLL        0.003       0.003
-ret .AqFSm       0.270       0.246
-ret .AqFBg       0.258       0.266
-ret .AqAq        0.368       0.487
-ret .AqLL        0.320       0.388
-ret .AgAg        0.374       0.348
-ret .AgLL        0.369       0.300
-ser .AqFSm       0.146       0.118
-ser .AqFBg       0.081       0.104
-ser .AqAq        0.090       0.080
-ser .AqLL        0.088       0.087
-ser .AgAg        0.094       0.117
-ser .AgLL        0.108       0.102
-OUT .AqFSm       0.343       0.431
-OUT .AqFBg       0.436       0.465
-OUT .AqAq        0.176       0.146
-OUT .AqLL        0.166       0.178
-OUT .AgAg        0.199       0.258
-OUT .AgLL        0.124       0.133
-
-
-----   1057 PARAMETER eshare_dr  drawn or computed from draw consumption shares
-
-                   dr0         dr1         dr2         dr3         dr4
-
-crop.AqFSm       0.121       0.098       0.133       0.121       0.135
-crop.AqFBg       0.042       0.049       0.039       0.042       0.039
-crop.AqAq        0.195       0.164       0.186       0.204       0.192
-crop.AqLL        0.216       0.188       0.173       0.222       0.270
-crop.AgAg        0.189       0.200       0.206       0.195       0.182
-crop.AgLL        0.255       0.250       0.229       0.281       0.281
-meat.AqFSm       0.084       0.071       0.072       0.076       0.096
-meat.AqFBg       0.043       0.042       0.040       0.045       0.040
-meat.AqAq        0.096       0.094       0.092       0.104       0.095
-meat.AqLL        0.106       0.119       0.117       0.109       0.095
-meat.AgAg        0.090       0.084       0.075       0.088       0.080
-meat.AgLL        0.100       0.094       0.099       0.088       0.100
-fish.AqFSm       0.040       0.041       0.034       0.043       0.047
-fish.AqFBg       0.024       0.026       0.027       0.026       0.021
-fish.AqAq        0.049       0.061       0.051       0.053       0.045
-fish.AqLL        0.060       0.069       0.062       0.047       0.061
-fish.AgAg        0.054       0.048       0.046       0.050       0.053
-fish.AgLL        0.062       0.072       0.064       0.067       0.054
-prod.AqFSm       0.019       0.014       0.020       0.019       0.022
-prod.AqFBg       0.023       0.023       0.026       0.025       0.018
-prod.AqAq        0.005       0.005       0.004       0.005       0.004
-prod.AqLL        0.014       0.014       0.010       0.014       0.013
-prod.AgAg        0.003       0.003       0.003       0.003       0.003
-prod.AgLL        0.003       0.003       0.003       0.003       0.002
-ret .AqFSm       0.257       0.265       0.264       0.239       0.286
-ret .AqFBg       0.303       0.290       0.304       0.351       0.328
-ret .AqAq        0.415       0.436       0.430       0.356       0.440
-ret .AqLL        0.330       0.304       0.359       0.315       0.287
-ret .AgAg        0.331       0.350       0.378       0.342       0.326
-ret .AgLL        0.343       0.339       0.369       0.324       0.331
-ser .AqFSm       0.130       0.124       0.135       0.115       0.101
-ser .AqFBg       0.095       0.091       0.087       0.092       0.083
-ser .AqAq        0.082       0.086       0.077       0.091       0.070
-ser .AqLL        0.085       0.089       0.082       0.087       0.086
-ser .AgAg        0.108       0.085       0.086       0.108       0.120
-ser .AgLL        0.112       0.139       0.119       0.102       0.114
-OUT .AqFSm       0.349       0.387       0.341       0.387       0.313
-OUT .AqFBg       0.468       0.479       0.478       0.418       0.471
-OUT .AqAq        0.158       0.154       0.160       0.188       0.152
-OUT .AqLL        0.190       0.217       0.197       0.205       0.188
-OUT .AgAg        0.225       0.229       0.207       0.215       0.237
-OUT .AgLL        0.125       0.102       0.116       0.135       0.117
-
-         +         dr5         dr6         dr7         dr8         dr9
-
-crop.AqFSm       0.092       0.132       0.113       0.107       0.134
-crop.AqFBg       0.039       0.041       0.045       0.044       0.050
-crop.AqAq        0.198       0.202       0.184       0.222       0.175
-crop.AqLL        0.203       0.161       0.199       0.210       0.243
-crop.AgAg        0.191       0.187       0.195       0.202       0.184
-crop.AgLL        0.228       0.237       0.278       0.282       0.259
-meat.AqFSm       0.091       0.087       0.074       0.092       0.081
-meat.AqFBg       0.052       0.053       0.038       0.049       0.049
-meat.AqAq        0.125       0.097       0.091       0.092       0.095
-meat.AqLL        0.102       0.120       0.115       0.103       0.091
-meat.AgAg        0.102       0.084       0.068       0.074       0.096
-meat.AgLL        0.121       0.088       0.094       0.094       0.100
-fish.AqFSm       0.043       0.041       0.039       0.039       0.047
-fish.AqFBg       0.025       0.025       0.026       0.027       0.028
-fish.AqAq        0.056       0.047       0.054       0.037       0.050
-fish.AqLL        0.064       0.065       0.046       0.056       0.052
-fish.AgAg        0.058       0.055       0.054       0.053       0.067
-fish.AgLL        0.066       0.062       0.060       0.052       0.067
-prod.AqFSm       0.025       0.015       0.019       0.020       0.017
-prod.AqFBg       0.023       0.026       0.021       0.025       0.026
-prod.AqAq        0.005       0.005       0.005       0.006       0.004
-prod.AqLL        0.016       0.012       0.015       0.012       0.013
-prod.AgAg        0.003       0.003       0.003       0.003       0.003
-prod.AgLL        0.003       0.003       0.003       0.002       0.003
-ret .AqFSm       0.257       0.270       0.248       0.292       0.225
-ret .AqFBg       0.320       0.358       0.288       0.277       0.328
-ret .AqAq        0.403       0.454       0.426       0.365       0.423
-ret .AqLL        0.323       0.345       0.362       0.376       0.319
-ret .AgAg        0.346       0.362       0.321       0.313       0.345
-ret .AgLL        0.345       0.357       0.325       0.340       0.315
-ser .AqFSm       0.135       0.122       0.136       0.142       0.146
-ser .AqFBg       0.092       0.106       0.092       0.087       0.081
-ser .AqAq        0.088       0.063       0.076       0.087       0.075
-ser .AqLL        0.079       0.092       0.090       0.077       0.077
-ser .AgAg        0.098       0.109       0.107       0.126       0.115
-ser .AgLL        0.108       0.108       0.109       0.103       0.127
-OUT .AqFSm       0.357       0.333       0.370       0.308       0.349
-OUT .AqFBg       0.449       0.391       0.489       0.492       0.438
-OUT .AqAq        0.124       0.133       0.164       0.191       0.177
-OUT .AqLL        0.215       0.206       0.173       0.166       0.205
-OUT .AgAg        0.202       0.200       0.253       0.229       0.190
-OUT .AgLL        0.130       0.145       0.133       0.127       0.129
-
-         +        dr10        dr11
-
-crop.AqFSm       0.112       0.135
-crop.AqFBg       0.051       0.046
-crop.AqAq        0.188       0.158
-crop.AqLL        0.220       0.196
-crop.AgAg        0.167       0.172
-crop.AgLL        0.213       0.258
-meat.AqFSm       0.078       0.087
-meat.AqFBg       0.048       0.046
-meat.AqAq        0.097       0.094
-meat.AqLL        0.101       0.102
-meat.AgAg        0.080       0.071
-meat.AgLL        0.084       0.124
-fish.AqFSm       0.041       0.034
-fish.AqFBg       0.032       0.029
-fish.AqAq        0.056       0.056
-fish.AqLL        0.051       0.055
-fish.AgAg        0.051       0.053
-fish.AgLL        0.076       0.060
-prod.AqFSm       0.022       0.017
-prod.AqFBg       0.025       0.024
-prod.AqAq        0.006       0.005
-prod.AqLL        0.012       0.013
-prod.AgAg        0.003       0.003
-prod.AgLL        0.003       0.003
-ret .AqFSm       0.266       0.225
-ret .AqFBg       0.281       0.273
-ret .AqAq        0.379       0.469
-ret .AqLL        0.343       0.377
-ret .AgAg        0.392       0.337
-ret .AgLL        0.383       0.312
-ser .AqFSm       0.144       0.108
-ser .AqFBg       0.088       0.107
-ser .AqAq        0.093       0.077
-ser .AqLL        0.094       0.084
-ser .AgAg        0.099       0.113
-ser .AgLL        0.112       0.106
-OUT .AqFSm       0.337       0.394
-OUT .AqFBg       0.475       0.476
-OUT .AqAq        0.181       0.141
-OUT .AqLL        0.178       0.173
-OUT .AgAg        0.209       0.250
-OUT .AgLL        0.129       0.138
-
-
-----   1057 PARAMETER escheck  
-
-              dr0         dr1         dr2         dr3         dr4         dr5
-
-AqFSm       1.000       1.000       1.000       1.000       1.000       1.000
-AqFBg       1.000       1.000       1.000       1.000       1.000       1.000
-AqAq        1.000       1.000       1.000       1.000       1.000       1.000
-AqLL        1.000       1.000       1.000       1.000       1.000       1.000
-AgAg        1.000       1.000       1.000       1.000       1.000       1.000
-AgLL        1.000       1.000       1.000       1.000       1.000       1.000
-
-    +         dr6         dr7         dr8         dr9        dr10        dr11
-
-AqFSm       1.000       1.000       1.000       1.000       1.000       1.000
-AqFBg       1.000       1.000       1.000       1.000       1.000       1.000
-AqAq        1.000       1.000       1.000       1.000       1.000       1.000
-AqLL        1.000       1.000       1.000       1.000       1.000       1.000
-AgAg        1.000       1.000       1.000       1.000       1.000       1.000
-AgLL        1.000       1.000       1.000       1.000       1.000       1.000
-
-
-----   1064 PARAMETER troutsh_dr  drawn or computed from draw share of yousehold
-                                  h's income being given as transfers
-
-                      ( ALL       0.000 )
-
-
-----   1064 PARAMETER savsh_dr  drawn or computed savings rate
-
-                      ( ALL       0.000 )
-
-
-----   1064 PARAMETER exprocsh_dr  drawn or computed outside-of-zoi expenditures
-                                   rate
-
-                      ( ALL       0.000 )
-
-
-----   1064 PARAMETER expzoish_dr  drawn or computed outside-of-zoi expenditures
-                                   level
-
-              dr0         dr1         dr2         dr3         dr4         dr5
-
-AqFSm       1.000       1.000       1.000       1.000       1.000       1.000
-AqFBg       1.000       1.000       1.000       1.000       1.000       1.000
-AqAq        1.000       1.000       1.000       1.000       1.000       1.000
-AqLL        1.000       1.000       1.000       1.000       1.000       1.000
-AgAg        1.000       1.000       1.000       1.000       1.000       1.000
-AgLL        1.000       1.000       1.000       1.000       1.000       1.000
-
-    +         dr6         dr7         dr8         dr9        dr10        dr11
-
-AqFSm       1.000       1.000       1.000       1.000       1.000       1.000
-AqFBg       1.000       1.000       1.000       1.000       1.000       1.000
-AqAq        1.000       1.000       1.000       1.000       1.000       1.000
-AqLL        1.000       1.000       1.000       1.000       1.000       1.000
-AgAg        1.000       1.000       1.000       1.000       1.000       1.000
-AgLL        1.000       1.000       1.000       1.000       1.000       1.000
-
-
-----   1075 PARAMETER troutsh_dr  drawn or computed from draw share of yousehold
-                                  h's income being given as transfers
-
-                      ( ALL       0.000 )
-
-
-----   1075 PARAMETER savsh_dr  drawn or computed savings rate
-
-                      ( ALL       0.000 )
-
-
-----   1075 PARAMETER exprocsh_dr  drawn or computed outside-of-zoi expenditures
-                                   rate
-
-                      ( ALL       0.000 )
-
-
-----   1075 PARAMETER expzoish_dr  drawn or computed outside-of-zoi expenditures
-                                   level
-
-              dr0         dr1         dr2         dr3         dr4         dr5
-
-AqFSm       1.000       1.000       1.000       1.000       1.000       1.000
-AqFBg       1.000       1.000       1.000       1.000       1.000       1.000
-AqAq        1.000       1.000       1.000       1.000       1.000       1.000
-AqLL        1.000       1.000       1.000       1.000       1.000       1.000
-AgAg        1.000       1.000       1.000       1.000       1.000       1.000
-AgLL        1.000       1.000       1.000       1.000       1.000       1.000
-
-    +         dr6         dr7         dr8         dr9        dr10        dr11
-
-AqFSm       1.000       1.000       1.000       1.000       1.000       1.000
-AqFBg       1.000       1.000       1.000       1.000       1.000       1.000
-AqAq        1.000       1.000       1.000       1.000       1.000       1.000
-AqLL        1.000       1.000       1.000       1.000       1.000       1.000
-AgAg        1.000       1.000       1.000       1.000       1.000       1.000
-AgLL        1.000       1.000       1.000       1.000       1.000       1.000
-
-
-
-EXECUTION TIME       =        0.016 SECONDS      4 MB  24.5.4 r54492 WEX-WEI
+COMPILATION TIME     =        0.827 SECONDS      3 MB  24.5.4 r54492 WEX-WEI
 
 
 USER: Computer Services                              G150407:1601CO-GEN
@@ -3413,3 +1436,5 @@ Input      D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main
            .gms
 Output     D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main
            .lst
+
+**** USER ERROR(S) ENCOUNTERED
