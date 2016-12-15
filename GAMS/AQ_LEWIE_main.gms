@@ -235,15 +235,17 @@ parameter y_dr1(h,draw) income reported directly in data
 
 *y_dr1(h,draw) = xlhhinc(h)*xlnhh(h) ;
 *y_dr2(h,draw) = sum(f,xlendow(f,h)+xlROCendow(f,h)+xlROWendow(f,h))+xlremit(h)+xlothertransfers(h) ;
-y_dr3(h,draw) = xlhhinc(h)*xlnhh(h) ;
+y_dr3(h,draw) = xlhhexp(h)*xlnhh(h) ;
 
 * display y_dr1, y_dr2;
-display y_dr3 ;
+display xlhhinc, xlnhh, y_dr3 ;
 
 * now pick the one we prefer and see how it fares at creating a nice-looking matrix of the economy:
 * (y_dr2 is almost equal to the former version of Y)
 *y_dr(h,draw) = y_dr1(h,draw) ;
 y_dr(h,draw) = y_dr3(h,draw) ;
+display y_dr  ;
+
 * all prices are 1 so cpi is 1
 cpi_dr(h,draw) = 1 ;
 ry_dr(h,draw) = y_dr(h,draw) ;
@@ -290,19 +292,20 @@ display xlQP;
 *idsh_dr(gg,g,h,draw)$xlID(gg,g,h) = xlID(gg,g,h) / (sum(f,xlFD(g,f,h))+sum(ggg,xlID(ggg,g,h))) ;
 
 idsh_dr(gg,g,h,draw) = xlidsh(gg,g,h) ;
-
 tidsh_dr(g,h,draw) = sum(gg,idsh_dr(g,gg,h,draw));
 display idsh_dr, tidsh_dr;
 
 tqc_dr(g,draw) = sum(h,qc_dr(g,h,draw)) ;
 display tqc_dr ;
-parameter tempid_dr(g,draw) temporary total intermediate demand;
-tempid_dr(g,draw) = sum((gg,h),
-                     qc_dr(gg,h,draw)*(idsh_dr(g,gg,h,draw)/(1-idsh_dr(g,gg,h,draw)))) ;
-display tempid_dr ;
 
+*parameter tempid_dr(g,draw) temporary total intermediate demand;
+*tempid_dr(g,draw) = sum((gg,h),
+*                     qc_dr(gg,h,draw)*(idsh_dr(g,gg,h,draw)/(1-idsh_dr(g,gg,h,draw)))) ;
+*display tempid_dr ;
 
-display qp_dr ;
+* quantity produced
+qp_dr(g,h,draw) = xlqp(g,h) ;
+
 * now determine total QP
 *tqp_dr(g,draw) = [sum(h, qc_dr(g,h,draw)) + tempid_dr(g,draw) ]
 *                         /(1-netexpsh(g)) ;
@@ -312,24 +315,23 @@ display tqp_dr, ttqp_dr ;
 
 
 * split qp in each household according to their capital shares:
-*parameter qpshare(h,g) share of household h in production of g ;
+parameter qpshare(h,g) share of household h in production of g ;
 *qpshare(h,g)$gnag(g) = xlFD(g,"Capital",h) / sum(hh,xlFD(g,"Capital",hh)) ;
 *qpshare(h,g)$gag(g) = xlFD(g,"LAND",h) / sum(hh,xlFD(g,"LAND",hh)) ;   -- makes huge exinc
 *display qpshare ;
 *qp_dr(g,h,draw) = tqp_dr(g,draw) * qpshare(h,g) ;
 *display qp_dr ;
 
-$exit
-
 
 * several possibilities for crop/livestock closures.  Pick the one that makes a nice matrix:
 * what if they are all self - reliant on food?   -- let's go with that
 * this doesn't work for households that don't produce!!
-qp_dr(g,h,draw)$(gag(g)*hnc(h)) = qc_dr(g,h,draw) ;
-display qp_dr ;
-qp_dr(g,h,draw)$(gag(g)*hc(h))  = qc_dr(g,h,draw) ;
-qpshare(h,g)$gag(g) = qp_dr(g,h,"dr0")/sum(hh,qp_dr(g,hh,"dr0")) ;
-display qp_dr ;
+* qp_dr(g,h,draw)$(gag(g)*hnc(h)) = qc_dr(g,h,draw) ;
+* display qp_dr ;
+* qp_dr(g,h,draw)$(gag(g)*hc(h))  = qc_dr(g,h,draw) ;
+*qpshare(h,g)$gag(g) = qp_dr(g,h,"dr0")/sum(hh,qp_dr(g,hh,"dr0")) ;
+qpshare(h,g)$gp(g) = qp_dr(g,h,"dr0")/sum(hh,qp_dr(g,hh,"dr0")) ;
+display qp_dr, qpshare ;
 
 
 * what if the villages are self-reliant but hh'ds are not?   -- makes negative exinc
@@ -345,6 +347,10 @@ id_dr(gg,g,h,draw) = qp_dr(g,h,draw) * idsh_dr(gg,g,h,draw) ;
 display id_dr ;
 display idsh_dr ;
 
+
+
+
+$ontext
 * NEW APPROACH = WITH A MINI-SOLVE STATEMENT TO FIGURE OUT THE PRODUCTION SIDE
 * minisolve is just for the QP/ID balance:
 Variables
@@ -391,19 +397,25 @@ model miniQPIDsolve /MKTCLR_mini, IDTEMP_eq, QPTEMP_eq, NETEXPTEMP_eq, FAKEQ/
 solve miniQPIDsolve using nlp maximizing FAKE;
 display IDTEMP.l, QPTEMP.l, TQPTEMP.l, NETEXPTEMP.l ;
 
-
-
 * The model should have solved for a balanced system of production, consumption and intermediate demands:
 qp_dr(g,h,draw) = QPTEMP.l(g,h,draw) ;
 id_dr(gg,g,h,draw) = IDTEMP.l(gg,g,h,draw) ;
 display qp_dr, id_dr, fshare_dr ;
+$offtext
+
+
+
 
 * We can figure out the rest from there:
 * Factor demands derived from factor shares
 fd_dr(g,f,h,draw)  = (qp_dr(g,h,draw) - sum(gg,id_dr(gg,g,h,draw))) * fshare_dr(g,f,h,draw)  ;
 display fd_dr ;
+
+
 qva_dr(g,h,draw)   = sum(f, fd_dr(g,f,h,draw)) ;
-acobb_dr(g,h,draw)$(qva_dr(g,h,draw))    = qva_dr(g,h,draw)/prod(f,fd_dr(g,f,h,draw)**fshare_dr(g,f,h,draw)) ;
+
+
+pshift_dr(g,h,draw)$(qva_dr(g,h,draw))    = qva_dr(g,h,draw)/prod(f,fd_dr(g,f,h,draw)**fshare_dr(g,f,h,draw)) ;
 
 * and compute value added share for all activities
 vash_dr(g,h,draw)$qp_dr(g,h,draw) = (qp_dr(g,h,draw)-sum(gg, id_dr(gg,g,h,draw))) / qp_dr(g,h,draw) ;
@@ -416,22 +428,32 @@ tqcid_dr(g,draw) = tid_dr(g,draw) + tqc_dr(g,draw) ;
 display tqc_dr, tid_dr, tqcid_dr, tqp_dr ;
 
 
+
+
 * FACTOR ENDOWMENTS :
 * --------------------------
 * for fixed factors, endowment is just factor use:
 endow_dr(fk,h,draw) = sum(g,fd_dr(g,fk,h,draw)) ;
 fixfac_dr(g,fk,h,draw) = fd_dr(g,fk,h,draw) ;
 
+display endow_dr, fixfac_dr ;
+
+
 * for family labor, split the labor use among households in the same village
 * using karen's shares
 * for hired labor, split endowment among all households
 * using karen's shares
 
-parameter shfl(h) share of village family labor coming from a household
-          shhl(h) share of zoi hired labor coming from a household ;
-shfl(h) = xlendow("Labor",h)/sum((hh,v)$(maphv(hh,v)*maphv(h,v)),xlendow("Labor",hh)) ;
-shhl(h) = xlendow("Labor",h)/sum(hh,xlendow("Labor",hh)) ;
-display shhl , shfl ;
+parameter
+        shfl(h) share of village family labor coming from a household
+         shhl(h) share of zoi hired labor coming from a household ;
+*
+* shfl(h) = xlendow("Labor",h)/sum((hh,v)$(maphv(hh,v)*maphv(h,v)),xlendow("Labor",hh)) ;
+shfl(h) = xlwrkagepop(h)/sum((hh,v)$(maphv(hh,v)*maphv(h,v)),xlwrkagepop(hh)) ;
+*shhl(h) = xlendow("Labor",h)/sum(hh,xlendow("Labor",hh)) ;
+shhl(h) = xlwrkagepop(h)/sum(hh,xlwrkagepop(hh)) ;
+
+display shhl, shfl ;
 
 *endow_dr("FL",h,draw) = shfl(h) * sum((hh,g,v)$(maphv(hh,v)*maphv(h,v)), fd_dr(g,"FL",hh,draw)) ;
 endow_dr("Labor",h,draw) = shfl(h) * sum((hh,g), fd_dr(g,"Labor",hh,draw)) ;
@@ -468,8 +490,8 @@ cmin_dr(g,h,draw) = 0 ;
 
 pva_dr(g,h,draw) = ph_dr(g,h,draw)
                 - sum(gg,idsh_dr(gg,g,h,draw)*ph_dr(gg,h,draw)) ;
-trinsh_dr(h,draw) = y_dr(h,draw)*xltrinsh(h)/sum(hh,y_dr(hh,draw)*xltrinsh(hh))  ;
-trin_dr(h,draw) = trinsh_dr(h,draw)*sum(hh,trout_dr(hh,draw)) ;
+*trinsh_dr(h,draw) = y_dr(h,draw)*xltrinsh(h)/sum(hh,y_dr(hh,draw)*xltrinsh(hh))  ;
+*trin_dr(h,draw) = trinsh_dr(h,draw)*sum(hh,trout_dr(hh,draw)) ;
 
 * last missing: exinc_dr THAT'S WHAT HAS TO CLEAR THE MATRIX
 parameter exinc_dr1(h,draw) old exogenous income computation
@@ -489,9 +511,11 @@ exincsh2(h,draw) = exinc_dr2(h,draw) / y_dr(h,draw) ;
 display feinc_dr, fecomp_dr, exinc_dr1, exinc_dr2, exincsh1, exincsh2 ;
 exinc_dr(h,draw) = exinc_dr2(h,draw) ;
 
-display acobb_dr, fshare_dr, pv_dr, pz_dr, ph_dr, pva_dr, qva_dr, fd_dr, id_dr, r_dr, wz_dr, qp_dr, fixfac_dr, pva_dr,
-        exinc_dr, endow_dr, y_dr, trinsh_dr, qc_dr, eshare_dr, troutsh_dr, hfd_dr, vfd_dr, zfd_dr,
+display pshift_dr, fshare_dr, pv_dr, pz_dr, ph_dr, pva_dr, qva_dr, fd_dr, id_dr, r_dr, wz_dr, qp_dr, fixfac_dr, pva_dr,
+        exinc_dr, endow_dr, y_dr,  qc_dr, eshare_dr, troutsh_dr, hfd_dr, vfd_dr, zfd_dr,
         hms_dr, vms_dr, zms_dr, hfms_dr, vfms_dr, zfms_dr ;
+*trinsh_dr,
+
 
 * TOGETHER, THE "_DR" PARAMETERS CONTAIN INITIAL VALUES FOR ALL THE ECONOMIC VARIABLES IN LEWIE
 * THEY FORM AN ECONOMY THAT IS AT EQUILIBRIUM. WE CAN THUS REPRESENT THEM IN SAM FORM.
@@ -548,9 +572,9 @@ display outmat ;
 * This unloads the parameter into a .gdx data file:
 execute_unload "outmat.gdx" outmat ;
 * And this writes in an excel sheet called "MakeMeASam":
-execute "xlstalk.exe -s   MakeMeASam_V1.xlsx" ;
-execute "gdxxrw.exe outmat.gdx par=outmat o=MakeMeASam_V1.xlsx rng=a1:ab28 rdim=3 cdim=3" ;
-execute 'xlstalk.exe -O MakeMeASam_V1.xlsx' ;
+execute "xlstalk.exe -s   MakeMeASam.xlsx" ;
+execute "gdxxrw.exe outmat.gdx par=outmat o=MakeMeASam.xlsx rng=a1:aq43 rdim=3 cdim=3" ;
+execute 'xlstalk.exe -O MakeMeASam.xlsx' ;
 
 * NB: the range is important here rng=a1:am39 is the exact size of the Lesotho matrix
 * this is to prevent the gdxxrw procedure from overwriting everything on the entire xl spreadsheet

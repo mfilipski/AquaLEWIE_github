@@ -92,6 +92,7 @@ parameter
      xlrevsh_rol(g,h)        share of business in the rest of lesotho
      xlrevsh_row(g,h)        share of business in the row
      xlVA2IDsh(g,gg,h)     for each dollar of VA how much ID was consumed
+     xlwrkagepop(h)           number of working-age ppl in the household
 ;
 
 * expenditure parameters
@@ -145,6 +146,8 @@ xlrevsh_rol(g,h) = alldata("revsh_rol",g,"","",h) ;
 xlrevsh_row(g,h) = alldata("revsh_row",g,"","",h) ;
 
 xlVA2IDsh(gg,g,h) = alldata("VA2IDsh",g,gg,"",h) ;
+
+xlwrkagepop(h)      = alldata("wrkagepop", "","","",h)
 
 
 display xlidsh, xlfshare, xlfshare_se,  xleshare, xlemin, xlendow, xlROCendow, xlROWendow,
