@@ -103,6 +103,7 @@ xlemin(g,h) = alldata("emin",g,"","",h) ;
 * production parameters
 xlqp(g,h)      = alldata("qp",g,"","",h) ;
 * G and gg are in the order of G and f for fshare - like in the spreadsheet
+* ie: g is the produced good, gg is the intermediate good
 xlidsh(g,gg,h) = alldata("idsh",g,gg,"",h) ;
 xlfshare(g,f,h) = alldata("fshare",g,"",f,h) ;
 xlfshare_se(g,f,h) = alldata("fshare_se",g,"",f,h) ;

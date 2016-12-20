@@ -10,22 +10,22 @@ wfpcost(h) = 0 ;
 
 
 * Shock in cash:
-incash(hcash) = %in_cash%   ;
-newremits(hcash) = %new_remits_cash_hh% ;
+*incash(hcash) = %in_cash%   ;
+*newremits(hcash) = %new_remits_cash_hh% ;
 * Shock in kind:
-infood(hfood) = %in_food% ;
-newremits(hfood) = %new_remits_food_hh% ;
+*infood(hfood) = %in_food% ;
+*newremits(hfood) = %new_remits_food_hh% ;
 
 
-packsold("crop") = sum(hc,infood(hc))*%share_pack_sold% ;
+*packsold("crop") = sum(hc,infood(hc))*%share_pack_sold% ;
 
 * cost to wfp:
-wfpcost(hc) = incash(hc) + infood(hc) ;
+*wfpcost(hc) = incash(hc) + infood(hc) ;
 
 * perceived value for the household:
-transfer(hcash) =  incash(hcash);
-transfer(hfood) =  infood(hfood)*(1-%share_pack_sold%)
-              + infood(hfood)* %share_pack_sold% * (1-%tcost_packsale%);
+transfer(ht) = 1 ;
+*transfer(hfood) =  infood(hfood)*(1-%share_pack_sold%)
+*              + infood(hfood)* %share_pack_sold% * (1-%tcost_packsale%);
 
 display infood, transfer, packsold, newremits ;
 
@@ -36,7 +36,7 @@ display infood, transfer, packsold, newremits ;
 * Divided by the number of households to get the average endowment, then divide by 1000000 to scale
 * Rwamwanja = 9362482045/(23648*1000000)    = 0.3959101
 * Adjumani  = 10556489913.4/(21479*1000000) = 0.4914796
-hfsnewref(ft,h) = %lab_supply_one_ref% ;
+*hfsnewref(ft,h) = %lab_supply_one_ref% ;
 
 display hfsupzero;
 display HFSUP.l ;

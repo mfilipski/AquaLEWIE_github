@@ -196,6 +196,10 @@ display tqc_dr ;
 * quantity produced
 qp_dr(g,h,draw) = xlqp(g,h) ;
 
+* directly augment by the intermediate share? 
+*qp_dr(g,h,draw) = xlqp(g,h)*(1+sum(gg,idsh_dr(g,gg,h,draw))) ;
+
+
 * now determine total QP
 *tqp_dr(g,draw) = [sum(h, qc_dr(g,h,draw)) + tempid_dr(g,draw) ]
 *                         /(1-netexpsh(g)) ;
@@ -233,12 +237,12 @@ display qp_dr, qpshare ;
 
 
 * And that determines all factor demands and intermediate demands:
-id_dr(gg,g,h,draw) = qp_dr(g,h,draw) * idsh_dr(gg,g,h,draw) ;
+id_dr(gg,g,h,draw) = qp_dr(gg,h,draw) * idsh_dr(gg,g,h,draw) ;
 display id_dr ;
 display idsh_dr ;
 
-
-
+* Need the mini-solve when ID is larger than qp.  Or else find a different calibration method...
+* ID should never be larger than qp
 
 $ontext
 * NEW APPROACH = WITH A MINI-SOLVE STATEMENT TO FIGURE OUT THE PRODUCTION SIDE
@@ -298,9 +302,9 @@ $offtext
 
 * We can figure out the rest from there:
 * Factor demands derived from factor shares
-fd_dr(g,f,h,draw)  = (qp_dr(g,h,draw) - sum(gg,id_dr(gg,g,h,draw))) * fshare_dr(g,f,h,draw)  ;
+fd_dr(g,f,h,draw)  = (qp_dr(g,h,draw) - sum(gg,id_dr(g,gg,h,draw))) * fshare_dr(g,f,h,draw)  ;
 display fd_dr ;
-
+$exit
 
 qva_dr(g,h,draw)   = sum(f, fd_dr(g,f,h,draw)) ;
 
@@ -308,12 +312,12 @@ qva_dr(g,h,draw)   = sum(f, fd_dr(g,f,h,draw)) ;
 pshift_dr(g,h,draw)$(qva_dr(g,h,draw))    = qva_dr(g,h,draw)/prod(f,fd_dr(g,f,h,draw)**fshare_dr(g,f,h,draw)) ;
 
 * and compute value added share for all activities
-vash_dr(g,h,draw)$qp_dr(g,h,draw) = (qp_dr(g,h,draw)-sum(gg, id_dr(gg,g,h,draw))) / qp_dr(g,h,draw) ;
+vash_dr(g,h,draw)$qp_dr(g,h,draw) = (qp_dr(g,h,draw)-sum(gg, id_dr(g,gg,h,draw))) / qp_dr(g,h,draw) ;
 display id_dr, idsh_dr, tidsh_dr, vash_dr ;
 
 parameter tid_dr(g,draw) check of total id
           tqcid_dr(g,draw)  check of qc+id ;
-tid_dr(g,draw)= sum((gg,h),id_dr(g,gg,h,draw)) ;
+tid_dr(g,draw)= sum((gg,h),id_dr(gg,g,h,draw)) ;
 tqcid_dr(g,draw) = tid_dr(g,draw) + tqc_dr(g,draw) ;
 display tqc_dr, tid_dr, tqcid_dr, tqp_dr ;
 
@@ -377,8 +381,8 @@ emin_dr(g,h,draw) = 0 ;
 
 pva_dr(g,h,draw) = ph_dr(g,h,draw)
                 - sum(gg,idsh_dr(gg,g,h,draw)*ph_dr(gg,h,draw)) ;
-*trinsh_dr(h,draw) = y_dr(h,draw)*xltrinsh(h)/sum(hh,y_dr(hh,draw)*xltrinsh(hh))  ;
-*trin_dr(h,draw) = trinsh_dr(h,draw)*sum(hh,trout_dr(hh,draw)) ;
+trinsh_dr(h,draw)$(sum(hh,y_dr(hh,draw)*xltrinsh(hh))) = y_dr(h,draw)*xltrinsh(h)/sum(hh,y_dr(hh,draw)*xltrinsh(hh))  ;
+trin_dr(h,draw) = trinsh_dr(h,draw)*sum(hh,trout_dr(hh,draw)) ;
 
 * last missing: exinc_dr THAT'S WHAT HAS TO CLEAR THE MATRIX
 parameter exinc_dr1(h,draw) old exogenous income computation
@@ -430,7 +434,7 @@ outmat("FACT","",f,"ACT",h,g)   = fd_dr(g,f,h,"dr0") / %samdivider% ;
 
 * COMMODITY ROW
 * intermediate demand
-outmat("COMM","",g,"ACT",h,gg) = id_dr(g,gg,h,"dr0") / %samdivider%;
+outmat("COMM","",g,"ACT",h,gg) = id_dr(gg,g,h,"dr0") / %samdivider%;
 * household demand
 outmat("COMM","",g,"INST","",h) = qc_dr(g,h,"dr0") / %samdivider%;
 * exogenous demand
@@ -465,10 +469,10 @@ display outmat ;
 execute_unload "outmat.gdx" outmat ;
 * And this writes in an excel sheet called "MakeMeASam":
 execute "xlstalk.exe -s   MakeMeASam.xlsx" ;
-execute "gdxxrw.exe outmat.gdx par=outmat o=MakeMeASam.xlsx rng=a1:aq43 rdim=3 cdim=3" ;
+execute "gdxxrw.exe outmat.gdx par=outmat o=MakeMeASam.xlsx rng=a1 rdim=3 cdim=3" ;
 execute 'xlstalk.exe -O MakeMeASam.xlsx' ;
 
-* NB: the range is important here rng=a1:am39 is the exact size of the Lesotho matrix
+* NB: the range is important here rng=a1:am39 is the exact size of the Lesotho matrix  :aq43
 * this is to prevent the gdxxrw procedure from overwriting everything on the entire xl spreadsheet
 * The first time you run the program, erase rng=a1:am39,
 * then the program will put the SAM in cell a1, and from then you'll know how big your range needs to be.

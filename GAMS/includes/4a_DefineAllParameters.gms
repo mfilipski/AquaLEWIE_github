@@ -4,6 +4,8 @@
 * ================================================================================================
 * ================================================================================================
 
+* This defines all the essential parameters for calibration.
+* Additional ad-hoc parameters (for instance for checks) get added in the
 
 parameter
 * meta-parameters with parameter draws
@@ -102,7 +104,7 @@ cri1(v,f,draw)      calibrated rent weighted index
 ry1(h,draw)         calibrated real income
 ty1(draw)           calibrated income total
 try1(draw)          calibrated real income total
-cmin1(g,h,draw)     calibrated incompressible demand
+emin1(g,h,draw)     calibrated incompressible demand
 trin1(h,draw)       calibrated transfers in - received
 trout1(h,draw)      calibrated transfers out - given
 sav1(h,draw)        calibrated savings
@@ -138,7 +140,7 @@ hqp2(h,draw)         sim total qty produced by a household
 fd2(g,f,h,draw)     simulated factor demand
 id2(g,gg,h,draw)    simulated intermediate demand
 pshift2(g,h,draw)    simulated cobb-douglas shifter
-fshift2(g,f,h,draw) simulated cobb-douglas shares
+fshare2(g,f,h,draw) simulated cobb-douglas shares
 r2(g,f,h,draw)      simulated rent for fixed factors
 wv2(f,v,draw)       simulated village-wide wage for tradable factors
 wz2(f,draw)         simulated zoi-wide wage for tradable factors
@@ -160,7 +162,7 @@ vcpi2(v,draw)       simulated village cpi
 ry2(h,draw)         simulated real income
 ty2(draw)           simulated income total
 try2(draw)          simulated real income total
-cmin2(g,h,draw)     simulated incompressible demand
+emin2(g,h,draw)     simulated incompressible demand
 trin2(h,draw)       simulated transfers in - received
 trout2(h,draw)      simulated transfers out - given
 sav2(h,draw)        simulated savings
@@ -214,7 +216,7 @@ vcpiD(v,draw)       delta village cpi
 ryD(h,draw)         delta real income
 tyD(draw)           delta income total
 tryD(draw)          delta real income total
-cminD(g,h,draw)     delta incompressible demand
+eminD(g,h,draw)     delta incompressible demand
 trinD(h,draw)       delta transfers in - received
 troutD(h,draw)      delta transfers out - given
 savD(h,draw)        delta savings
@@ -269,7 +271,7 @@ vcpiPC(v,draw)       % change village cpi
 ryPC(h,draw)         % change in real income
 tyPC(draw)           % change income total
 tryPC(draw)          % change real income total
-cminPC(g,h,draw)     % change incompressible demand
+eminPC(g,h,draw)     % change incompressible demand
 trinPC(h,draw)       % change transfers in - received
 troutPC(h,draw)      % change transfers out - given
 savPC(h,draw)        % change savings

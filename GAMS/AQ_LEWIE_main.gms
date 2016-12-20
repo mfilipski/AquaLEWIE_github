@@ -117,7 +117,7 @@ $include includes/4a_DefineAllParameters.gms
 
 *$exit
 $include includes/4b_Calibration.gms
-
+$exit
 
 * ================================================================================================
 * ================================================================================================
@@ -125,8 +125,6 @@ $include includes/4b_Calibration.gms
 * ================================================================================================
 * ================================================================================================
 
-
-$exit
 
 * The zero draw is using the mean values. Starting after dr1, those values are randomely drawn.
 loop(draw,
@@ -211,7 +209,7 @@ ABORT$(genCD.modelstat ne 1) "NOT WELL CALIBRATED IN THIS DRAW - CHECK THE DATA 
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, Y.l, CPI.l, RY.l, SAV.l, EXPROC.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l;
 display CPI.l ;
 
-acobb1(g,h,draw)    = acobb(g,h) ;
+pshift1(g,h,draw)    = pshift(g,h) ;
 fshare1(g,f,h,draw) = fshare(g,f,h) ;
 
 pv1(g,v,draw)       = PV.l(g,v) ;
@@ -248,7 +246,7 @@ trinsh1(h,draw)     = trinsh(h) ;
 sav1(h,draw)        = SAV.l(h) ;
 exproc1(h,draw)     = EXPROC.l(h) ;
 eshare1(g,h,draw)    = eshare(g,h) ;
-cmin1(g,h,draw)     = cmin(g,h) ;
+emin1(g,h,draw)     = emin(g,h) ;
 troutsh1(h,draw)    = troutsh(h) ;
 hfd1(f,h,draw)      = HFD.l(f,h) ;
 vfd1(f,v,draw)      = VFD.l(f,v) ;
@@ -274,7 +272,7 @@ hqp1(h,draw)        = sum(g, qp1(g,h,draw)) ;
 *------------------------------------
 * SIMULATION FOR EACH CALIBRATED DRAW
 *------------------------------------
-$include includes/generic_simulation.gms
+$include includes/5_generic_simulation.gms
 
 
 * help the program reach a solution by re-initializing pva
@@ -287,7 +285,7 @@ ABORT$(genCD.modelstat ne 1) "NO OPTIMAL SOLUTION REACHED" ;
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l, fd.l;
 display CPI.l ;
 
-acobb2(g,h,draw)    = acobb(g,h) ;
+pshift2(g,h,draw)   = pshift(g,h) ;
 fshare2(g,f,h,draw) = fshare(g,f,h) ;
 
 pv2(g,v,draw)       = PV.l(g,v) ;

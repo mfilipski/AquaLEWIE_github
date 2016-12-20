@@ -297,6 +297,9 @@ putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("ProdSerRet") modify 
 /* 2) Figure out share of intermediate inputs:  */
 * =============================================
 gen inpsh = yrc / ysale 
+* clean and remove outliers: 
+replace inpsh = 0 if ysale!=. & yrc==. 
+replace inpsh=. if inpsh > 3 
 tabstat inpsh, by(btype)
 
 label var inpsh "itermediate inputs share"

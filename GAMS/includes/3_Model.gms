@@ -164,7 +164,7 @@ EQ_PH(g,h)..
      PH(g,h) =E= PZ(g)$(gtz(g)+gtw(g)) + sum(v$maphv(h,v),PV(g,v))$gtv(g) ;
 
 EQ_PVA(g,h)..
-     PVA(g,h) =E= PH(g,h)- sum(gg,idsh(g,gg,h)*PH(gg,h)) ;
+     PVA(g,h) =E= PH(g,h)- sum(gg,idsh(gg,g,h)*PH(gg,h)) ;
 
 * PRODUCTION BLOCK
 EQ_QVACOBB(g,h)..

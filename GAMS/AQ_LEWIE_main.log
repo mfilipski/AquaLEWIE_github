@@ -1,5 +1,5 @@
 
---- Job AQ_LEWIE_main.gms Start 12/20/16 11:55:52 24.5.4 r54492 WEX-WEI x86 64bit/MS Windows
+--- Job AQ_LEWIE_main.gms Start 12/20/16 16:09:09 24.5.4 r54492 WEX-WEI x86 64bit/MS Windows
 GAMS 24.5.4   Copyright (C) 1987-2015 GAMS Development. All rights reserved
 Licensee: Computer Services                              G150407:1601CO-GEN
           International Food Policy Research Institute               DC2119
@@ -12,29 +12,22 @@ GDXXRW           24.5.4 r54492 Released Oct 15, 2015 VS8 x86 32bit/MS Windows
 Input file : D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v2.xlsx
 Output file: D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v2.gdx
 Substituting Index
-Total time = 827 Ms
+Total time = 765 Ms
 --- .includes/1_Read_Excel.gms(36) 3 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v2.gdx
---- .includes/1_Read_Excel.gms(157) 3 Mb
+--- .includes/1_Read_Excel.gms(151) 3 Mb 1 Error
+*** Error 116 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/1_Read_Excel.gms
+    Label is unknown
+--- .includes/1_Read_Excel.gms(158) 3 Mb
 --- AQ_LEWIE_main.gms(92) 3 Mb
 --- .includes/2_MarketAssumptions.gms(63) 3 Mb
 --- AQ_LEWIE_main.gms(101) 3 Mb
 --- .includes/3_Model.gms(366) 3 Mb
 --- AQ_LEWIE_main.gms(109) 3 Mb
---- .includes/4a_DefineAllParameters.gms(289) 3 Mb
+--- .includes/4a_DefineAllParameters.gms(291) 3 Mb
 --- AQ_LEWIE_main.gms(119) 3 Mb
---- .includes/4b_Calibration.gms(474) 3 Mb
---- AQ_LEWIE_main.gms(129) 3 Mb
---- Starting execution: elapsed 0:00:00.906
---- AQ_LEWIE_main.gms(1459) 5 Mb
---- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
---- AQ_LEWIE_main.gms(1461) 5 Mb
---- AQ_LEWIE_main.gms(1462) 5 Mb
-
-GDXXRW           24.5.4 r54492 Released Oct 15, 2015 VS8 x86 32bit/MS Windows 
-Input file : D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
-Output file: D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\MakeMeASam.xlsx
-Total time = 764 Ms
---- AQ_LEWIE_main.gms(1463) 5 Mb
-*** Status: Normal completion
---- Job AQ_LEWIE_main.gms Stop 12/20/16 11:55:54 elapsed 0:00:02.199
+--- .includes/4b_Calibration.gms(307) 3 Mb
+--- AQ_LEWIE_main.gms(120) 3 Mb 1 Error
+*** Status: Compilation error(s)
+--- Job AQ_LEWIE_main.gms Stop 12/20/16 16:09:09 elapsed 0:00:00.845
+Exit code = 2
