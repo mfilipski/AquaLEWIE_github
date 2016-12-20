@@ -61,15 +61,15 @@ USELESS.l = 1 ;
 
 parameters
 *Production - Cobb-douglas
-     acobb(g,h) production shift parameter for the CD
-     shcobb(g,f,h) factor share parameter for the CD
+     pshift(g,h) production shift parameter for the CD
+     fshare(g,f,h) factor share parameter for the CD
      vash(g,h) share of value added
      idsh(g,gg,h) intermediate input share
      tidsh(g,h) total intermediate input share (1-vash)
 
 *Consumption
-     alpha(g,h) consumption share parameters in the LES
-     cmin(g,h)  minimal consumption in the LES
+     eshare(g,h) expenditure share parameters in the LES
+     emin(g,h)  minimal expenditure in the LES
      exinc(h)   exogenous income of household
      vmsfix(g,v) fixed marketed surplus at the village level
      zmsfix(g)  fixed marketed surplus at the zoi level
@@ -107,7 +107,7 @@ parameters
 
 Equations
 * prices
-     EQ_PVA(g,h)         prive value added equation
+     EQ_PVA(g,h)         privet value added equation
      EQ_PH(g,h)          market price as seen from household h
 
 * production
@@ -168,19 +168,19 @@ EQ_PVA(g,h)..
 
 * PRODUCTION BLOCK
 EQ_QVACOBB(g,h)..
-     QVA(g,h) =E= acobb(g,h)*prod(f,FD(g,f,h)**(shcobb(g,f,h)))
+     QVA(g,h) =E= pshift(g,h)*prod(f,FD(g,f,h)**(fshare(g,f,h)))
 ;
 
 EQ_FDCOBB(g,f,h)$(not fpurch(f))..
      FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),WV(f,v))$ftv(f) )
-      =E= PVA(g,h)*QP(g,h)*shcobb(g,f,h)
+      =E= PVA(g,h)*QP(g,h)*fshare(g,f,h)
 ;
 
 * If the dummy is 0 the FD of purchased inputs is of the same form as all other factors
 * If the dummy is 1 then the FD is limited by the budget constraint
 EQ_FDPURCH(g,f,h)$fpurch(f)..
      FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),WV(f,v))$ftv(f))
-      =E= (PVA(g,h)*QP(g,h)*shcobb(g,f,h))$(%budgetconstraint% = 0)
+      =E= (PVA(g,h)*QP(g,h)*fshare(g,f,h))$(%budgetconstraint% = 0)
          +(pibudget(g,h))$(%budgetconstraint% = 1)
 ;
 
@@ -195,7 +195,7 @@ EQ_ID(gg,g,h)..
 
 * CONSUMPTION AND INCOME
 EQ_QC(g,h)..
-     QC(g,h) =E= alpha(g,h)/PH(g,h)*[(Y(h)-TROUT(h)-SAV(h)-EXPROC(h))-sum(gg, PH(gg,h)*cmin(gg,h))] + cmin(g,h)
+     QC(g,h) =E= eshare(g,h)/PH(g,h)*[(Y(h)-TROUT(h)-SAV(h)-EXPROC(h))-sum(gg, PH(gg,h)*emin(gg,h))] + emin(g,h)
 ;
 
 * Full income (value of factor endowments)

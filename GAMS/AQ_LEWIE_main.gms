@@ -439,15 +439,12 @@ fixfac_dr(g,fk,h,draw) = fd_dr(g,fk,h,draw) ;
 display endow_dr, fixfac_dr ;
 
 
-* for family labor, split the labor use among households in the same village
-* using karen's shares
-* for hired labor, split endowment among all households
-* using karen's shares
+* For labor split, use the share of working age population in the households
+* Should account for incoming migrant workers somehow?
 
 parameter
         shfl(h) share of village family labor coming from a household
-         shhl(h) share of zoi hired labor coming from a household ;
-*
+        shhl(h) share of zoi hired labor coming from a household ;
 * shfl(h) = xlendow("Labor",h)/sum((hh,v)$(maphv(hh,v)*maphv(h,v)),xlendow("Labor",hh)) ;
 shfl(h) = xlwrkagepop(h)/sum((hh,v)$(maphv(hh,v)*maphv(h,v)),xlwrkagepop(hh)) ;
 *shhl(h) = xlendow("Labor",h)/sum(hh,xlendow("Labor",hh)) ;
@@ -486,7 +483,7 @@ vmsfix_dr(gtv,v,draw) = vms_dr(gtv,v,draw) ;
 zmsfix_dr(gtz,draw) = zms_dr(gtz,draw) ;
 
 * minimum consumption: zero for now.
-cmin_dr(g,h,draw) = 0 ;
+emin_dr(g,h,draw) = 0 ;
 
 pva_dr(g,h,draw) = ph_dr(g,h,draw)
                 - sum(gg,idsh_dr(gg,g,h,draw)*ph_dr(gg,h,draw)) ;
@@ -498,17 +495,21 @@ parameter exinc_dr1(h,draw) old exogenous income computation
           exinc_dr2(h,draw) new exogenous income computation
           exincsh1(h,draw)  share of income being exogenous using exinc1
           exincsh2(h,draw)  share of income being exogenous using exinc2
-          feinc_dr(h,draw) income from factor endowments in the household
+          feinc_dr(h,draw)  income from factor endowments in the household
           fecomp_dr(f,h,draw) income components ;
 * this is if we use karen's data to get exogenous income
 exinc_dr1(h,draw) = sum(f,xlROCendow(f,h)+xlROWendow(f,h)) + xlremit(h) + xlothertransfers(h) ;
 * this is if we make exogenous income the residual from Y-FD
 feinc_dr(h,draw) = sum((g,fk),r_dr(g,fk,h,draw)*fd_dr(g,fk,h,draw)) + sum(ft, wz_dr(ft,draw)*endow_dr(ft,h,draw)) ;
 fecomp_dr(f,h,draw) = sum(g,r_dr(g,f,h,draw)*fd_dr(g,f,h,draw))$fk(f) + wz_dr(f,draw)*endow_dr(f,h,draw)$ft(f) ;
+
 exinc_dr2(h,draw) = y_dr(h,draw) - feinc_dr(h,draw) ;
 exincsh1(h,draw) = exinc_dr1(h,draw) / y_dr(h,draw) ;
 exincsh2(h,draw) = exinc_dr2(h,draw) / y_dr(h,draw) ;
 display feinc_dr, fecomp_dr, exinc_dr1, exinc_dr2, exincsh1, exincsh2 ;
+
+
+* Make exogenous income / exogenous expenditures depending on what the sign is:
 exinc_dr(h,draw) = exinc_dr2(h,draw) ;
 
 display pshift_dr, fshare_dr, pv_dr, pz_dr, ph_dr, pva_dr, qva_dr, fd_dr, id_dr, r_dr, wz_dr, qp_dr, fixfac_dr, pva_dr,
@@ -563,7 +564,8 @@ outmat("FACT","",f,"ROW","","")$(signzfms(f) =  1) =   zfms_dr(f,"dr0") / %samdi
 * commodity imports or exports
 outmat("ROW","","","COMM","",g)$(signzms(g) = -1)  = -zms_dr(g,"dr0")   / %samdivider%;
 outmat("COMM","",g,"ROW","","")$(signzms(g) = 1)  = zms_dr(g,"dr0")     / %samdivider%;
-* exogenous expenditures
+
+* exogenous expenditures or ROW purchases - not needed if we already do that with exinc
 outmat("ROW","","","INST","",h)  = (sav_dr(h,"dr0")+trout_dr(h,"dr0")+exproc_dr(h,"dr0")) / %samdivider% ;
 
 option outmat:0:3:3 ;
@@ -582,9 +584,9 @@ execute 'xlstalk.exe -O MakeMeASam.xlsx' ;
 * then the program will put the SAM in cell a1, and from then you'll know how big your range needs to be.
 
 
-$exit
 
-$include includes/4b_Calibration.gms
+*$exit
+*$include includes/4b_Calibration.gms
 
 
 * ================================================================================================
@@ -594,14 +596,14 @@ $include includes/4b_Calibration.gms
 * ================================================================================================
 
 
-$exit
+*$exit
 
 * The zero draw is using the mean values. Starting after dr1, those values are randomely drawn.
 loop(draw,
 * re-initialise all the variables in the matrix
 * but this time not at the I levels - rather, at the _dr levels
-cmin(g,h)      = cmin_dr(g,h,draw) ;
-acobb(g,h)     = acobb_dr(g,h,draw) ;
+
+pshift(g,h)    = pshift_dr(g,h,draw) ;
 fshare(g,f,h)  = fshare_dr(g,f,h,draw) ;
 PZ.l(g)        = pz_dr(g,draw) ;
 PV.l(g,v)      = pv_dr(g,v,draw) ;
@@ -627,8 +629,9 @@ CPI.l(h)       = cpi_dr(h,draw) ;
 RY.l(h)        = ry_dr(h,draw) ;
 TRIN.l(h)      = trin_dr(h,draw) ;
 trinsh(h)      = trinsh_dr(h,draw) ;
+emin(g,h)      = emin_dr(g,h,draw) ;
 QC.l(g,h)      = qc_dr(g,h,draw) ;
-eshare(g,h)     = eshare_dr(g,h,draw) ;
+eshare(g,h)    = eshare_dr(g,h,draw) ;
 troutsh(h)     = troutsh_dr(h,draw) ;
 TROUT.l(h)     = trout_dr(h,draw) ;
 HFD.l(f,h)     = hfd_dr(f,h,draw);
@@ -652,7 +655,6 @@ pibsh(g,h)$sum(gg,pibudget(gg,h))  = pibudget(g,h)/sum(gg,pibudget(gg,h)) ;
 
 * for those who sell part of their package onto the market
 packsold(g) = 0 ;
-
 
 
 * read the supply elasticities from the locals defined at the top of the program

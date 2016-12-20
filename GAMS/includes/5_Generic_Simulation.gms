@@ -56,8 +56,8 @@ if(%budgetconstraint% = 1,
 
 
 * Transfer of land to the household:
-fixfac(g,"Land",hfood) = fixfac(g,"Land",hfood) * (1+ %new_land_food%);
-fixfac(g,"land",hcash) = fixfac(g,"Land",hcash) * (1+ %new_land_cash%);
+*fixfac(g,"Land",hfood) = fixfac(g,"Land",hfood) * (1+ %new_land_food%);
+*fixfac(g,"land",hcash) = fixfac(g,"Land",hcash) * (1+ %new_land_cash%);
 
 
 

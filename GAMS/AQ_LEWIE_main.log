@@ -1,5 +1,5 @@
 
---- Job AQ_LEWIE_main.gms Start 12/20/16 10:32:58 24.5.4 r54492 WEX-WEI x86 64bit/MS Windows
+--- Job AQ_LEWIE_main.gms Start 12/20/16 11:51:06 24.5.4 r54492 WEX-WEI x86 64bit/MS Windows
 GAMS 24.5.4   Copyright (C) 1987-2015 GAMS Development. All rights reserved
 Licensee: Computer Services                              G150407:1601CO-GEN
           International Food Policy Research Institute               DC2119
@@ -12,7 +12,7 @@ GDXXRW           24.5.4 r54492 Released Oct 15, 2015 VS8 x86 32bit/MS Windows
 Input file : D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v2.xlsx
 Output file: D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v2.gdx
 Substituting Index
-Total time = 858 Ms
+Total time = 780 Ms
 --- .includes/1_Read_Excel.gms(36) 3 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v2.gdx
 --- .includes/1_Read_Excel.gms(157) 3 Mb
@@ -22,17 +22,41 @@ Total time = 858 Ms
 --- .includes/3_Model.gms(366) 3 Mb
 --- AQ_LEWIE_main.gms(109) 3 Mb
 --- .includes/4a_DefineAllParameters.gms(289) 3 Mb
---- AQ_LEWIE_main.gms(585) 3 Mb
---- Starting execution: elapsed 0:00:01.083
---- AQ_LEWIE_main.gms(1448) 5 Mb
---- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
---- AQ_LEWIE_main.gms(1450) 5 Mb
---- AQ_LEWIE_main.gms(1451) 5 Mb
-
-GDXXRW           24.5.4 r54492 Released Oct 15, 2015 VS8 x86 32bit/MS Windows 
-Input file : D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
-Output file: D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\MakeMeASam.xlsx
-Total time = 780 Ms
---- AQ_LEWIE_main.gms(1452) 5 Mb
-*** Status: Normal completion
---- Job AQ_LEWIE_main.gms Stop 12/20/16 10:33:01 elapsed 0:00:03.516
+--- AQ_LEWIE_main.gms(630) 3 Mb 1 Error
+*** Error 141 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- AQ_LEWIE_main.gms(631) 3 Mb 2 Errors
+*** Error 141 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- AQ_LEWIE_main.gms(677) 3 Mb 3 Errors
+*** Error 257 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
+    Solve statement not checked because of previous errors
+--- AQ_LEWIE_main.gms(684) 3 Mb 5 Errors
+*** Error 140 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
+    Unknown symbol
+*** Error 140 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
+    Unknown symbol
+--- AQ_LEWIE_main.gms(721) 3 Mb 6 Errors
+*** Error 140 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
+    Unknown symbol
+--- AQ_LEWIE_main.gms(747) 3 Mb 7 Errors
+*** Error 282 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
+    Unable to open include file
+--- AQ_LEWIE_main.gms(760) 3 Mb 8 Errors
+*** Error 140 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
+    Unknown symbol
+--- AQ_LEWIE_main.gms(761) 3 Mb 9 Errors
+*** Error 140 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
+    Unknown symbol
+--- AQ_LEWIE_main.gms(820) 3 Mb 9 Errors
+*** Status: Compilation error(s)
+--- Job AQ_LEWIE_main.gms Stop 12/20/16 11:51:07 elapsed 0:00:00.926
+Exit code = 2

@@ -45,7 +45,7 @@ eshare_dr(g,h,draw)    drawn or computed from draw consumption shares
 y_dr(h,draw)          drawn or computed from draw nominal hh income
 cpi_dr(h,draw)        drawn or computed from draw consumer price index of hh
 ry_dr(h,draw)         drawn or computed from draw real hh income
-cmin_dr(g,h,draw)     drawn or computed from draw incompressible demand
+emin_dr(g,h,draw)     drawn or computed from draw incompressible demand
 trin_dr(h,draw)       drawn or computed from draw transfers in - received
 trout_dr(h,draw)      drawn or computed from draw transfers out - given
 trinsh_dr(h,draw)     drawn or computed from draw share of all transfers in the eco going to h
