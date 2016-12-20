@@ -1,5 +1,5 @@
 
---- Job AQ_LEWIE_main.gms Start 12/20/16 18:03:55 24.5.4 r54492 WEX-WEI x86 64bit/MS Windows
+--- Job AQ_LEWIE_main.gms Start 12/20/16 18:30:41 24.5.4 r54492 WEX-WEI x86 64bit/MS Windows
 GAMS 24.5.4   Copyright (C) 1987-2015 GAMS Development. All rights reserved
 Licensee: Computer Services                              G150407:1601CO-GEN
           International Food Policy Research Institute               DC2119
@@ -12,7 +12,7 @@ GDXXRW           24.5.4 r54492 Released Oct 15, 2015 VS8 x86 32bit/MS Windows
 Input file : D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v3.xlsx
 Output file: D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v3.gdx
 Substituting Index
-Total time = 780 Ms
+Total time = 765 Ms
 --- .includes/1_Read_Excel.gms(36) 3 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v3.gdx
 --- .includes/1_Read_Excel.gms(158) 3 Mb
@@ -25,7 +25,7 @@ Total time = 780 Ms
 --- AQ_LEWIE_main.gms(119) 3 Mb
 --- .includes/4b_Calibration.gms(478) 3 Mb
 --- AQ_LEWIE_main.gms(275) 3 Mb
---- .includes/5_generic_simulation.gms(75) 3 Mb
+--- .includes/5_generic_simulation.gms(76) 3 Mb
 --- AQ_LEWIE_main.gms(351) 3 Mb
 --- .includes/6_Output_Parameters.gms(1005) 3 Mb
 --- ..rank.gms(30) 3 Mb
@@ -99,7 +99,7 @@ Total time = 780 Ms
 --- AQ_LEWIE_main.gms(354) 3 Mb
 --- .includes/7_Output_to_text_file.gms(324) 3 Mb
 --- AQ_LEWIE_main.gms(354) 3 Mb
---- Starting execution: elapsed 0:00:01.012
+--- Starting execution: elapsed 0:00:00.981
 --- AQ_LEWIE_main.gms(1468) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
 --- AQ_LEWIE_main.gms(1470) 5 Mb
@@ -108,7 +108,7 @@ Total time = 780 Ms
 GDXXRW           24.5.4 r54492 Released Oct 15, 2015 VS8 x86 32bit/MS Windows 
 Input file : D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
 Output file: D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\MakeMeASam.xlsx
-Total time = 874 Ms
+Total time = 951 Ms
 --- AQ_LEWIE_main.gms(1472) 5 Mb
 --- AQ_LEWIE_main.gms(1488) 5 Mb
 --- Generating MCP model genCD
@@ -117,7 +117,7 @@ Total time = 874 Ms
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 5 Mb
---- Executing PATH: elapsed 0:00:02.396
+--- Executing PATH: elapsed 0:00:02.323
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -201,14 +201,55 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.031000
+Total Time. . . . . . . 0.062000
 Residual. . . . . . . . 8.319202e-012
 Postsolved residual: 8.3506e-012
 
 --- Restarting execution
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
---- Executing after solve: elapsed 0:00:02.598
+--- Executing after solve: elapsed 0:00:02.565
+--- AQ_LEWIE_main.gms(1488) 3 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 6 Mb
+--- LOOPS draw = dr0
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:02.589
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     128
+ 
+      1   0        4.5440270736E+03 (After pre-processing)
+      2   0        1.8302649298E+01 (After scaling)
+      5   0     0  3.2122843462E-02               1.0E+00      F  T
+     10   0     0  7.8384664488E-09               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     11   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     12   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:02.778
 --- AQ_LEWIE_main.gms(1488) 3 Mb
 --- Generating MCP model genCD
 --- AQ_LEWIE_main.gms(1563) 6 Mb
@@ -216,7 +257,7 @@ Postsolved residual: 8.3506e-012
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 4 Mb
---- Executing PATH: elapsed 0:00:02.624
+--- Executing PATH: elapsed 0:00:02.796
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -300,14 +341,55 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.109000
+Total Time. . . . . . . 0.015000
 Residual. . . . . . . . 8.604473e-012
 Postsolved residual: 8.7788e-012
 
 --- Restarting execution
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
---- Executing after solve: elapsed 0:00:02.831
+--- Executing after solve: elapsed 0:00:02.918
+--- AQ_LEWIE_main.gms(1488) 3 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 6 Mb
+--- LOOPS draw = dr1
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:02.939
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     128
+ 
+      1   0        4.5092896272E+03 (After pre-processing)
+      2   0        1.7750663007E+01 (After scaling)
+      5   0     0  6.3050158178E-01               1.0E+00      F  T
+     10   0     0  1.9220371092E-06               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     13   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     14   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:03.051
 --- AQ_LEWIE_main.gms(1488) 3 Mb
 --- Generating MCP model genCD
 --- AQ_LEWIE_main.gms(1563) 6 Mb
@@ -315,7 +397,7 @@ Postsolved residual: 8.7788e-012
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 4 Mb
---- Executing PATH: elapsed 0:00:02.850
+--- Executing PATH: elapsed 0:00:03.074
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -399,14 +481,56 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.016000
+Total Time. . . . . . . 0.094000
 Residual. . . . . . . . 8.449513e-012
 Postsolved residual: 8.6820e-012
 
 --- Restarting execution
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
---- Executing after solve: elapsed 0:00:02.980
+--- Executing after solve: elapsed 0:00:03.304
+--- AQ_LEWIE_main.gms(1488) 3 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 6 Mb
+--- LOOPS draw = dr2
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:03.325
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     128
+ 
+      1   0        4.5342607364E+03 (After pre-processing)
+      2   0        1.8143023468E+01 (After scaling)
+      5   0     0  6.6336520191E-02               1.0E+00      F  T
+     10   0     0  7.8700398390E-05               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     15   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     16   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     17   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:03.528
 --- AQ_LEWIE_main.gms(1488) 3 Mb
 --- Generating MCP model genCD
 --- AQ_LEWIE_main.gms(1563) 6 Mb
@@ -414,7 +538,7 @@ Postsolved residual: 8.6820e-012
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 4 Mb
---- Executing PATH: elapsed 0:00:03.000
+--- Executing PATH: elapsed 0:00:03.553
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -498,14 +622,56 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.016000
+Total Time. . . . . . . 0.109000
 Residual. . . . . . . . 1.731218e-012
 Postsolved residual: 3.2718e-012
 
 --- Restarting execution
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
---- Executing after solve: elapsed 0:00:03.136
+--- Executing after solve: elapsed 0:00:03.778
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 6 Mb
+--- LOOPS draw = dr3
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:03.805
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     129
+ 
+      1   0        4.4874945381E+03 (After pre-processing)
+      2   0        1.8315004631E+01 (After scaling)
+      5   0     0  7.7960536226E-02               1.0E+00      F  T
+     10   0     0  2.4079811114E-05               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     14   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     15   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     16   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:04.024
 --- AQ_LEWIE_main.gms(1488) 4 Mb
 --- Generating MCP model genCD
 --- AQ_LEWIE_main.gms(1563) 7 Mb
@@ -513,7 +679,7 @@ Postsolved residual: 3.2718e-012
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 4 Mb
---- Executing PATH: elapsed 0:00:03.158
+--- Executing PATH: elapsed 0:00:04.048
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -597,14 +763,58 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.093000
+Total Time. . . . . . . 0.110000
 Residual. . . . . . . . 1.041751e-011
 Postsolved residual: 1.0956e-011
 
 --- Restarting execution
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
---- Executing after solve: elapsed 0:00:03.381
+--- Executing after solve: elapsed 0:00:04.265
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 7 Mb
+--- LOOPS draw = dr4
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:04.280
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     128
+ 
+      1   0        4.4555908147E+03 (After pre-processing)
+      2   0        1.7038057021E+01 (After scaling)
+      5   0     0  9.7453629939E-01               1.0E+00      F  T
+     10   0     0  1.8985672209E-02               1.0E+00      F  T
+     15   0     0  7.6726628570E-04               1.0E+00      F  T
+     20   0     0  3.0885938908E-05               1.0E+00      F  T
+     25   0     0  1.2435058389E-06               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     28   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     29   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:04.391
 --- AQ_LEWIE_main.gms(1488) 4 Mb
 --- Generating MCP model genCD
 --- AQ_LEWIE_main.gms(1563) 7 Mb
@@ -612,7 +822,7 @@ Postsolved residual: 1.0956e-011
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 4 Mb
---- Executing PATH: elapsed 0:00:03.403
+--- Executing PATH: elapsed 0:00:04.409
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -696,7 +906,7 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.093000
+Total Time. . . . . . . 0.016000
 Residual. . . . . . . . 1.113947e-011
 Postsolved residual: 1.1148e-011
 
@@ -704,7 +914,49 @@ Postsolved residual: 1.1148e-011
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
 --- AQ_LEWIE_main.gms(1563) 3 Mb
---- Executing after solve: elapsed 0:00:03.633
+--- Executing after solve: elapsed 0:00:04.541
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 7 Mb
+--- LOOPS draw = dr5
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:04.556
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     128
+ 
+      1   0        4.5226287153E+03 (After pre-processing)
+      2   0        1.7449091132E+01 (After scaling)
+      5   0     0  6.2980156491E-01               1.0E+00      F  T
+     10   0     0  5.0319223177E-03               1.0E+00      F  T
+     15   0     0  2.3568463752E-05               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     20   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     21   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:04.652
 --- AQ_LEWIE_main.gms(1488) 4 Mb
 --- Generating MCP model genCD
 --- AQ_LEWIE_main.gms(1563) 7 Mb
@@ -712,7 +964,7 @@ Postsolved residual: 1.1148e-011
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 4 Mb
---- Executing PATH: elapsed 0:00:03.657
+--- Executing PATH: elapsed 0:00:04.670
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -796,14 +1048,55 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.093000
+Total Time. . . . . . . 0.015000
 Residual. . . . . . . . 8.236622e-012
 Postsolved residual: 8.8305e-012
 
 --- Restarting execution
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
---- Executing after solve: elapsed 0:00:03.941
+--- Executing after solve: elapsed 0:00:04.790
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 7 Mb
+--- LOOPS draw = dr6
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:04.805
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     128
+ 
+      1   0        4.6109359818E+03 (After pre-processing)
+      2   0        1.8650169822E+01 (After scaling)
+      5   0     0  4.6832704264E-02               1.0E+00      F  T
+     10   0     0  1.0480074785E-05               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     15   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     16   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:04.927
 --- AQ_LEWIE_main.gms(1488) 4 Mb
 --- Generating MCP model genCD
 --- AQ_LEWIE_main.gms(1563) 7 Mb
@@ -811,7 +1104,7 @@ Postsolved residual: 8.8305e-012
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 4 Mb
---- Executing PATH: elapsed 0:00:03.968
+--- Executing PATH: elapsed 0:00:04.946
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -895,14 +1188,55 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.047000
+Total Time. . . . . . . 0.109000
 Residual. . . . . . . . 1.540764e-012
 Postsolved residual: 1.8583e-012
 
 --- Restarting execution
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
---- Executing after solve: elapsed 0:00:04.126
+--- Executing after solve: elapsed 0:00:05.155
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 7 Mb
+--- LOOPS draw = dr7
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:05.172
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     128
+ 
+      1   0        4.5557003281E+03 (After pre-processing)
+      2   0        1.7870494336E+01 (After scaling)
+      5   0     0  5.9478951342E-02               1.0E+00      F  T
+     10   0     0  1.9930657322E-06               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     14   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     15   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:05.282
 --- AQ_LEWIE_main.gms(1488) 4 Mb
 --- Generating MCP model genCD
 --- AQ_LEWIE_main.gms(1563) 7 Mb
@@ -910,7 +1244,7 @@ Postsolved residual: 1.8583e-012
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 4 Mb
---- Executing PATH: elapsed 0:00:04.149
+--- Executing PATH: elapsed 0:00:05.300
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -994,14 +1328,55 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.094000
+Total Time. . . . . . . 0.000000
 Residual. . . . . . . . 7.505098e-012
 Postsolved residual: 7.9400e-012
 
 --- Restarting execution
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
---- Executing after solve: elapsed 0:00:04.383
+--- Executing after solve: elapsed 0:00:05.419
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 7 Mb
+--- LOOPS draw = dr8
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:05.434
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     127
+ 
+      1   0        4.5886035966E+03 (After pre-processing)
+      2   0        1.7483554628E+01 (After scaling)
+      5   0     0  1.1082719608E-01               1.0E+00      F  T
+     10   0     0  7.0550883318E-06               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     15   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     16   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:05.538
 --- AQ_LEWIE_main.gms(1488) 4 Mb
 --- Generating MCP model genCD
 --- AQ_LEWIE_main.gms(1563) 7 Mb
@@ -1009,7 +1384,7 @@ Postsolved residual: 7.9400e-012
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 4 Mb
---- Executing PATH: elapsed 0:00:04.410
+--- Executing PATH: elapsed 0:00:05.558
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -1093,14 +1468,55 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.078000
+Total Time. . . . . . . 0.016000
 Residual. . . . . . . . 1.838055e-012
 Postsolved residual: 2.1936e-012
 
 --- Restarting execution
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
---- Executing after solve: elapsed 0:00:04.612
+--- Executing after solve: elapsed 0:00:05.686
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 7 Mb
+--- LOOPS draw = dr9
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:05.703
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     128
+ 
+      1   0        4.5514834303E+03 (After pre-processing)
+      2   0        1.7240947625E+01 (After scaling)
+      5   0     0  7.1731593623E-02               1.0E+00      F  T
+     10   0     0  1.2176523824E-06               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     13   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     14   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:05.814
 --- AQ_LEWIE_main.gms(1488) 4 Mb
 --- Generating MCP model genCD
 --- AQ_LEWIE_main.gms(1563) 7 Mb
@@ -1108,7 +1524,7 @@ Postsolved residual: 2.1936e-012
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 4 Mb
---- Executing PATH: elapsed 0:00:04.634
+--- Executing PATH: elapsed 0:00:05.837
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -1192,14 +1608,55 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.016000
+Total Time. . . . . . . 0.078000
 Residual. . . . . . . . 2.222399e-012
 Postsolved residual: 3.6467e-012
 
 --- Restarting execution
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
---- Executing after solve: elapsed 0:00:04.764
+--- Executing after solve: elapsed 0:00:06.048
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 7 Mb
+--- LOOPS draw = dr10
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:06.063
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     128
+ 
+      1   0        4.6184029881E+03 (After pre-processing)
+      2   0        1.8312882354E+01 (After scaling)
+      5   0     0  5.6056151840E-02               1.0E+00      F  T
+     10   0     0  8.0671987385E-08               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     12   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     13   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:06.170
 --- AQ_LEWIE_main.gms(1488) 4 Mb
 --- Generating MCP model genCD
 --- AQ_LEWIE_main.gms(1563) 7 Mb
@@ -1207,7 +1664,7 @@ Postsolved residual: 3.6467e-012
 ---   897 rows  902 columns  2,633 non-zeroes
 ---   2,397 nl-code  1,038 nl-non-zeroes
 --- AQ_LEWIE_main.gms(1563) 4 Mb
---- Executing PATH: elapsed 0:00:04.784
+--- Executing PATH: elapsed 0:00:06.188
 Reading dictionary...
 Reading row data...
 Evaluating functions...
@@ -1291,37 +1748,78 @@ Gradient Steps. . . . . 0
 Function Evaluations. . 1
 Gradient Evaluations. . 1
 Basis Time. . . . . . . 0.000000
-Total Time. . . . . . . 0.016000
+Total Time. . . . . . . 0.000000
 Residual. . . . . . . . 9.835316e-013
 Postsolved residual: 3.6023e-012
 
 --- Restarting execution
 --- AQ_LEWIE_main.gms(1563) 3 Mb
 --- Reading solution for model genCD
---- Executing after solve: elapsed 0:00:04.905
---- AQ_LEWIE_main.gms(1973) 4 Mb
-*** Error at line 1973: division by zero (0)
---- AQ_LEWIE_main.gms(1974) 4 Mb 1 Error
+--- Executing after solve: elapsed 0:00:06.307
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating NLP model genCDnlp
+--- AQ_LEWIE_main.gms(1716) 7 Mb
+--- LOOPS draw = dr11
+---   898 rows  903 columns  2,634 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1716) 4 Mb
+--- Executing CONOPT: elapsed 0:00:06.322
+CONOPT 3         24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+ 
+ 
+    C O N O P T 3   version 3.17A
+    Copyright (C)   ARKI Consulting and Development A/S
+                    Bagsvaerdvej 246 A
+                    DK-2880 Bagsvaerd, Denmark
+ 
+ 
+   Iter Phase Ninf   Infeasibility   RGmax    NSB   Step InItr MX OK
+      0   0        2.6260240056E+03 (Input point)
+ 
+                   Pre-triangular equations:   495
+                   Post-triangular equations:  75
+                   Definitional equations:     130
+ 
+      1   0        4.5069099502E+03 (After pre-processing)
+      2   0        1.7658736348E+01 (After scaling)
+      5   0     0  1.1698016402E-01               1.0E+00      F  T
+     10   0     0  6.5505477945E-07               1.0E+00      F  T
+ 
+ ** Feasible solution. Value of objective =    1.00000000000
+ 
+   Iter Phase Ninf     Objective     RGmax    NSB   Step InItr MX OK
+     13   3        1.0000000000E+00 0.0E+00     0 0.0E+00    0 F  T
+     14   3        1.0000000000E+00 0.0E+00     0
+ 
+ ** Optimal solution. Reduced gradient less than tolerance.
+ 
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1716) 3 Mb
+--- Reading solution for model genCDnlp
+--- Executing after solve: elapsed 0:00:06.429
+--- AQ_LEWIE_main.gms(1974) 4 Mb
 *** Error at line 1974: division by zero (0)
---- AQ_LEWIE_main.gms(1977) 4 Mb 2 Errors
-*** Error at line 1977: division by zero (0)
---- AQ_LEWIE_main.gms(1978) 4 Mb 3 Errors
+--- AQ_LEWIE_main.gms(1975) 4 Mb 1 Error
+*** Error at line 1975: division by zero (0)
+--- AQ_LEWIE_main.gms(1978) 4 Mb 2 Errors
 *** Error at line 1978: division by zero (0)
---- AQ_LEWIE_main.gms(1983) 4 Mb 4 Errors
-*** Error at line 1983: division by zero (0)
---- AQ_LEWIE_main.gms(1984) 4 Mb 5 Errors
+--- AQ_LEWIE_main.gms(1979) 4 Mb 3 Errors
+*** Error at line 1979: division by zero (0)
+--- AQ_LEWIE_main.gms(1984) 4 Mb 4 Errors
 *** Error at line 1984: division by zero (0)
---- AQ_LEWIE_main.gms(1989) 4 Mb 6 Errors
-*** Error at line 1989: division by zero (0)
---- AQ_LEWIE_main.gms(1990) 4 Mb 7 Errors
+--- AQ_LEWIE_main.gms(1985) 4 Mb 5 Errors
+*** Error at line 1985: division by zero (0)
+--- AQ_LEWIE_main.gms(1990) 4 Mb 6 Errors
 *** Error at line 1990: division by zero (0)
---- AQ_LEWIE_main.gms(1991) 4 Mb 8 Errors
+--- AQ_LEWIE_main.gms(1991) 4 Mb 7 Errors
 *** Error at line 1991: division by zero (0)
---- AQ_LEWIE_main.gms(2001) 4 Mb 9 Errors
-*** Error at line 2001: division by zero (0)
---- AQ_LEWIE_main.gms(2002) 4 Mb 10 Errors
+--- AQ_LEWIE_main.gms(1992) 4 Mb 8 Errors
+*** Error at line 1992: division by zero (0)
+--- AQ_LEWIE_main.gms(2002) 5 Mb 9 Errors
 *** Error at line 2002: division by zero (0)
---- AQ_LEWIE_main.gms(2826) 4 Mb 11 Errors
+--- AQ_LEWIE_main.gms(2003) 5 Mb 10 Errors
+*** Error at line 2003: division by zero (0)
+--- AQ_LEWIE_main.gms(2827) 5 Mb 11 Errors
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1340,7 +1838,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(2922) 4 Mb
+--- AQ_LEWIE_main.gms(2923) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1359,7 +1857,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(3015) 4 Mb
+--- AQ_LEWIE_main.gms(3016) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1378,7 +1876,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(3108) 4 Mb
+--- AQ_LEWIE_main.gms(3109) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1397,7 +1895,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(3202) 4 Mb
+--- AQ_LEWIE_main.gms(3203) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1416,7 +1914,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(3295) 4 Mb
+--- AQ_LEWIE_main.gms(3296) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1435,7 +1933,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(3387) 4 Mb
+--- AQ_LEWIE_main.gms(3388) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1454,7 +1952,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(3479) 4 Mb
+--- AQ_LEWIE_main.gms(3480) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1473,7 +1971,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(3571) 4 Mb
+--- AQ_LEWIE_main.gms(3572) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1492,7 +1990,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(3663) 4 Mb
+--- AQ_LEWIE_main.gms(3664) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1511,7 +2009,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(3755) 4 Mb
+--- AQ_LEWIE_main.gms(3756) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1530,45 +2028,45 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(3848) 4 Mb
+--- AQ_LEWIE_main.gms(3849) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(3941) 4 Mb
+--- AQ_LEWIE_main.gms(3942) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(4103) 4 Mb
+--- AQ_LEWIE_main.gms(4104) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
---- AQ_LEWIE_main.gms(4106) 4 Mb
+--- AQ_LEWIE_main.gms(4107) 5 Mb
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
---- AQ_LEWIE_main.gms(4108) 4 Mb
+--- AQ_LEWIE_main.gms(4109) 5 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(4192) 4 Mb
+--- AQ_LEWIE_main.gms(4193) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
---- AQ_LEWIE_main.gms(4195) 4 Mb
+--- AQ_LEWIE_main.gms(4196) 5 Mb
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
---- AQ_LEWIE_main.gms(4197) 4 Mb
+--- AQ_LEWIE_main.gms(4198) 5 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(4282) 4 Mb
+--- AQ_LEWIE_main.gms(4283) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
---- AQ_LEWIE_main.gms(4285) 4 Mb
+--- AQ_LEWIE_main.gms(4286) 5 Mb
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
---- AQ_LEWIE_main.gms(4287) 4 Mb
+--- AQ_LEWIE_main.gms(4288) 5 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(4371) 4 Mb
+--- AQ_LEWIE_main.gms(4372) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
---- AQ_LEWIE_main.gms(4374) 4 Mb
+--- AQ_LEWIE_main.gms(4375) 5 Mb
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
---- AQ_LEWIE_main.gms(4376) 4 Mb
+--- AQ_LEWIE_main.gms(4377) 5 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(4392) 4 Mb
+--- AQ_LEWIE_main.gms(4393) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1695,7 +2193,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(4486) 4 Mb
+--- AQ_LEWIE_main.gms(4487) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1822,7 +2320,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(4581) 4 Mb
+--- AQ_LEWIE_main.gms(4582) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1865,7 +2363,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(4677) 4 Mb
+--- AQ_LEWIE_main.gms(4678) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1890,7 +2388,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(4772) 4 Mb
+--- AQ_LEWIE_main.gms(4773) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1933,7 +2431,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(4867) 4 Mb
+--- AQ_LEWIE_main.gms(4868) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1958,7 +2456,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(4963) 4 Mb
+--- AQ_LEWIE_main.gms(4964) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -1980,7 +2478,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(5055) 4 Mb
+--- AQ_LEWIE_main.gms(5056) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -2002,7 +2500,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(5147) 4 Mb
+--- AQ_LEWIE_main.gms(5148) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -2024,13 +2522,13 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(5309) 4 Mb
+--- AQ_LEWIE_main.gms(5310) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
---- AQ_LEWIE_main.gms(5312) 4 Mb
+--- AQ_LEWIE_main.gms(5313) 5 Mb
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
---- AQ_LEWIE_main.gms(5314) 4 Mb
+--- AQ_LEWIE_main.gms(5315) 5 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(5329) 4 Mb
+--- AQ_LEWIE_main.gms(5330) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -2052,19 +2550,19 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(5491) 4 Mb
+--- AQ_LEWIE_main.gms(5492) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
---- AQ_LEWIE_main.gms(5494) 4 Mb
+--- AQ_LEWIE_main.gms(5495) 5 Mb
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
---- AQ_LEWIE_main.gms(5496) 4 Mb
+--- AQ_LEWIE_main.gms(5497) 5 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(5581) 4 Mb
+--- AQ_LEWIE_main.gms(5582) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
---- AQ_LEWIE_main.gms(5584) 4 Mb
+--- AQ_LEWIE_main.gms(5585) 5 Mb
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
---- AQ_LEWIE_main.gms(5586) 4 Mb
+--- AQ_LEWIE_main.gms(5587) 5 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(5600) 4 Mb
+--- AQ_LEWIE_main.gms(5601) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -2083,7 +2581,7 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(5692) 4 Mb
+--- AQ_LEWIE_main.gms(5693) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
@@ -2102,15 +2600,15 @@ GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(5854) 4 Mb
+--- AQ_LEWIE_main.gms(5855) 5 Mb
 --- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
---- AQ_LEWIE_main.gms(5857) 4 Mb
+--- AQ_LEWIE_main.gms(5858) 5 Mb
 GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
---- AQ_LEWIE_main.gms(5859) 4 Mb
+--- AQ_LEWIE_main.gms(5860) 5 Mb
 --- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
---- AQ_LEWIE_main.gms(6160) 4 Mb
+--- AQ_LEWIE_main.gms(6161) 5 Mb
 --- Putfile AQ_LEWIE_output D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_output.txt
---- AQ_LEWIE_main.gms(6160) 4 Mb 11 Errors
+--- AQ_LEWIE_main.gms(6161) 5 Mb 11 Errors
 *** Status: Execution error(s)
---- Job AQ_LEWIE_main.gms Stop 12/20/16 18:04:08 elapsed 0:00:12.669
+--- Job AQ_LEWIE_main.gms Stop 12/20/16 18:30:55 elapsed 0:00:14.002
 Exit code = 3

@@ -71,7 +71,7 @@ put /;
 
 
 put 'Transfer in cash/kind (all households)' /;
-put 'A1'  @40'; '  sum(h,incash(h) +infood(h)):<12:3 /;
+put 'A1'  @40'; '  sum(h,transfer(h)):<12:3 /;
 *put 'A2'  @40'; '  exincD_mv("a2","mean"):<12:0 /;
 *put 'A3'  @40'; '  exincD_mv("a3","mean"):<12:0 /;
 put //;

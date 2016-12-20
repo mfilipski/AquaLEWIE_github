@@ -279,7 +279,7 @@ $include includes/5_generic_simulation.gms
 PVA.l(g,h) = PH.l(g,h) - sum(gg,idsh(gg,g,h)*PH.l(gg,h))
 
 *solve genCD using mcp ;
-*solve genCDnlp using nlp maximizing USELESS ;
+solve genCDnlp using nlp maximizing USELESS ;
 ABORT$(genCD.modelstat ne 1) "NO OPTIMAL SOLUTION REACHED" ;
 
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l, fd.l;
@@ -313,7 +313,7 @@ cpi2(h,draw)        = CPI.l(h) ;
 vqc2(v,g,draw)      = sum(h$maphv(h,v), qc2(g,h,draw));
 * village cpi is weighted sum of prices
 vcpi2(v,draw)       = sum((h,g)$maphv(h,v), (ph2(g,h,draw)**2)*qc2(g,h,draw)) / sum((h,g)$maphv(h,v),ph2(g,h,draw)*qc2(g,h,draw)) ;
-* wieghted capital rent in the village
+* weighted capital rent in the village
 cri2(v,f,draw)          = sum((g,h)$maphv(h,v), r2(g,f,h,draw)*fd2(g,f,h,draw)/sum((gg,hh)$maphv(hh,v),fd2(gg,f,hh,draw)) ) ;
 
 ry2(h,draw)         = RY.l(h) ;

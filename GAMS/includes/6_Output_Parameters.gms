@@ -172,11 +172,11 @@ parameter cvh(h,draw)   compensating variation per household
 
 * If the denominator is the total value of the wfp cost
 *denom(h,draw) = infood(h) ;
-denom(h,draw) = wfpcost(h);
+*denom(h,draw) = wfpcost(h);
 * with or without new remittances:
 *denom(h,draw) = infood(h)+newremits ;
 * If its the value net of the t-cost loss (when some of the infood is sold)
-* denom(h,draw) = transfer(h);
+denom(h,draw) = transfer(h);
 * If its the value net of the t-cost loss (when some of the infood is sold)
 * with the new remittances counted as well...
 *denom(h,draw) = transfer(h)+newremits(h);
