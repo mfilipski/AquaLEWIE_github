@@ -22,7 +22,7 @@ set kchange(g,fk,h) indicator set of capital having changed
     achange(g,h)    indicator set of CB shift having changed ;
 kchange(g,fk,h)$fixfacD_mv(g,fk,h,"mean") = yes ;
 display kchange ;
-achange(g,h)$acobbD_mv(g,h,"mean") = yes ;
+achange(g,h)$pshiftD_mv(g,h,"mean") = yes ;
 display achange ;
 *fixfac(g,"K",h)$ht(h) = fixfac(g,"k",h)*1.1 ;
 * 2) 10% increase in shift parameter (technology) for the treated household
@@ -107,7 +107,7 @@ loop(h,
 put /;
 
 put 'Production Effects (in Loti)' /;
-loop(g$(not sameas(g,"outside")),
+loop(g$(not sameas(g,"OUT")),
      put g.tl  @45';' tqpD_mv(g,"mean"):<12:3 /;
 );
 
@@ -134,7 +134,7 @@ loop(h,
 put / ;
 
 put "Production multiplier" /;
-loop(g$(not sameas(g,"outside")),
+loop(g$(not sameas(g,"OUT")),
      put g.tl ;
      put  @45';' prodmult_all_mv(g,"mean"):5.2 /;
      put @14 '(CI)'  @40';' '(' prodmult_all_mv(g,"pct5"):5:2 ',' prodmult_all_mv(g,"pct95"):5:2 ')' /;
@@ -163,7 +163,7 @@ loop(v,
 *put "All rent levels in range" @45 ';' '('rentrange1:<6:2 '%,'rentrange2:6:2 '%' ')'
 put /;
 put "Capital Rent index  - by crops and household" /;
-loop(g$(not sameas(g,"outside")),
+loop(g$(not sameas(g,"OUT")),
      loop(h,
           put g.tl 'cap. in household ' h.tl
           put  @45';' rPC_mv(g,"Capital",h,"mean"):6.2 '%':<1 /;
@@ -190,7 +190,7 @@ loop(v,
 put /;
 
 put "Change in quantity produced"
-loop(g$(not sameas(g,"outside")),
+loop(g$(not sameas(g,"OUT")),
      put g.tl ;
      put  @45';' tqpD_mv(g,"mean"):<6:2 /;
      put @40 ';' '(' tqpD_mv(g,"pct5"):<6:2 ',' tqpD_mv(g,"pct95"):<6:2 ')' /;

@@ -43,6 +43,8 @@ set
 
 * household subsets
      ht(h)     treated recipients in this simulation (can be a or b or both) / null/
+     haq(h)    aquaculture households / AqFSm, AqFBg/
+     hag(h)    agriculture households / AqAg /
 
 *     hc(h)     households in the camp / rrc, rrf/
 *     hnc(h)    households outside of the camp / rlo/

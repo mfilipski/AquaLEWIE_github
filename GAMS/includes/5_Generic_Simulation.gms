@@ -23,7 +23,7 @@ wfpcost(h) = 0 ;
 *wfpcost(hc) = incash(hc) + infood(hc) ;
 
 * perceived value for the household:
-transfer(ht) = 1 ;
+*transfer(ht) = 1 ;
 *transfer(hfood) =  infood(hfood)*(1-%share_pack_sold%)
 *              + infood(hfood)* %share_pack_sold% * (1-%tcost_packsale%);
 
@@ -58,8 +58,8 @@ if(%budgetconstraint% = 1,
 * Transfer of land to the household:
 *fixfac(g,"Land",hfood) = fixfac(g,"Land",hfood) * (1+ %new_land_food%);
 *fixfac(g,"land",hcash) = fixfac(g,"Land",hcash) * (1+ %new_land_cash%);
-
-
+fixfac("Fish","Land","AqFSm") = fixfac("Fish","Land","AqFSm") +100 ;
+fixfac("Crop","Land","AqFSm") = fixfac("Crop","Land","AqFSm") -1 ;
 
 * additional simulations:
 * 1) 10% increase in capital (credit (market) for the treated households
@@ -72,3 +72,4 @@ if(%budgetconstraint% = 1,
 * 2) 10% increase in shift parameter (technology) for the treated household
 *acobb("crop",h)$ht(h) = acobb("crop",h)*1.1 ;
 *acobb("crop",h)$(maphv(h,"T")) = acobb("crop",h)*1.1 ;
+pshift("crop",h)$hag(h) = pshift("crop",h)*1.1 ;

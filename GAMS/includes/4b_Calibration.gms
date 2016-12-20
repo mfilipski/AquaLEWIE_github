@@ -196,7 +196,7 @@ display tqc_dr ;
 * quantity produced
 qp_dr(g,h,draw) = xlqp(g,h) ;
 
-* directly augment by the intermediate share? 
+* directly augment by the intermediate share?
 *qp_dr(g,h,draw) = xlqp(g,h)*(1+sum(gg,idsh_dr(g,gg,h,draw))) ;
 
 
@@ -304,7 +304,7 @@ $offtext
 * Factor demands derived from factor shares
 fd_dr(g,f,h,draw)  = (qp_dr(g,h,draw) - sum(gg,id_dr(g,gg,h,draw))) * fshare_dr(g,f,h,draw)  ;
 display fd_dr ;
-$exit
+
 
 qva_dr(g,h,draw)   = sum(f, fd_dr(g,f,h,draw)) ;
 
@@ -359,7 +359,7 @@ vfd_dr(f,v,draw)= sum(h$maphv(h,v), hfd_dr(f,h,draw)) ;
 zfd_dr(f,draw)  = sum(v, vfd_dr(f,v,draw)) ;
 
 * marketed surpluses for goods
-hms_dr(g,h,draw) = qp_dr(g,h,draw) - qc_dr(g,h,draw) - sum(gg,id_dr(g,gg,h,draw)) ;
+hms_dr(g,h,draw) = qp_dr(g,h,draw) - qc_dr(g,h,draw) - sum(gg,id_dr(gg,g,h,draw)) ;
 vms_dr(g,v,draw) = sum(h$maphv(h,v),hms_dr(g,h,draw));
 zms_dr(g,draw) = sum(v, vms_dr(g,v,draw));
 
@@ -380,7 +380,7 @@ zmsfix_dr(gtz,draw) = zms_dr(gtz,draw) ;
 emin_dr(g,h,draw) = 0 ;
 
 pva_dr(g,h,draw) = ph_dr(g,h,draw)
-                - sum(gg,idsh_dr(gg,g,h,draw)*ph_dr(gg,h,draw)) ;
+                - sum(gg,idsh_dr(g,gg,h,draw)*ph_dr(gg,h,draw)) ;
 trinsh_dr(h,draw)$(sum(hh,y_dr(hh,draw)*xltrinsh(hh))) = y_dr(h,draw)*xltrinsh(h)/sum(hh,y_dr(hh,draw)*xltrinsh(hh))  ;
 trin_dr(h,draw) = trinsh_dr(h,draw)*sum(hh,trout_dr(hh,draw)) ;
 

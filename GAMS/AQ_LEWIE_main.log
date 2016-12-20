@@ -1,33 +1,2116 @@
 
---- Job AQ_LEWIE_main.gms Start 12/20/16 16:09:09 24.5.4 r54492 WEX-WEI x86 64bit/MS Windows
+--- Job AQ_LEWIE_main.gms Start 12/20/16 18:03:55 24.5.4 r54492 WEX-WEI x86 64bit/MS Windows
 GAMS 24.5.4   Copyright (C) 1987-2015 GAMS Development. All rights reserved
 Licensee: Computer Services                              G150407:1601CO-GEN
           International Food Policy Research Institute               DC2119
 --- Starting compilation
 --- AQ_LEWIE_main.gms(81) 3 Mb
 --- .includes/1_Read_Excel.gms(17) 3 Mb
---- call gdxxrw input=AQ_LEWIE_InputSheet_v2.xlsx output=AQ_LEWIE_InputSheet_v2.gdx index=Index!A2
+--- call gdxxrw input=AQ_LEWIE_InputSheet_v3.xlsx output=AQ_LEWIE_InputSheet_v3.gdx index=Index!A2
 
 GDXXRW           24.5.4 r54492 Released Oct 15, 2015 VS8 x86 32bit/MS Windows 
-Input file : D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v2.xlsx
-Output file: D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v2.gdx
+Input file : D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v3.xlsx
+Output file: D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v3.gdx
 Substituting Index
-Total time = 765 Ms
+Total time = 780 Ms
 --- .includes/1_Read_Excel.gms(36) 3 Mb
---- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v2.gdx
---- .includes/1_Read_Excel.gms(151) 3 Mb 1 Error
-*** Error 116 in D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/1_Read_Excel.gms
-    Label is unknown
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v3.gdx
 --- .includes/1_Read_Excel.gms(158) 3 Mb
 --- AQ_LEWIE_main.gms(92) 3 Mb
---- .includes/2_MarketAssumptions.gms(63) 3 Mb
+--- .includes/2_MarketAssumptions.gms(65) 3 Mb
 --- AQ_LEWIE_main.gms(101) 3 Mb
 --- .includes/3_Model.gms(366) 3 Mb
 --- AQ_LEWIE_main.gms(109) 3 Mb
 --- .includes/4a_DefineAllParameters.gms(291) 3 Mb
 --- AQ_LEWIE_main.gms(119) 3 Mb
---- .includes/4b_Calibration.gms(307) 3 Mb
---- AQ_LEWIE_main.gms(120) 3 Mb 1 Error
-*** Status: Compilation error(s)
---- Job AQ_LEWIE_main.gms Stop 12/20/16 16:09:09 elapsed 0:00:00.845
-Exit code = 2
+--- .includes/4b_Calibration.gms(478) 3 Mb
+--- AQ_LEWIE_main.gms(275) 3 Mb
+--- .includes/5_generic_simulation.gms(75) 3 Mb
+--- AQ_LEWIE_main.gms(351) 3 Mb
+--- .includes/6_Output_Parameters.gms(1005) 3 Mb
+--- ..rank.gms(30) 3 Mb
+--- .includes/6_Output_Parameters.gms(1015) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1027) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1036) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1045) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1055) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1064) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1072) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1080) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1088) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1096) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1104) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1113) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1122) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1129) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1134) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1140) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1145) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1154) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1164) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1175) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1187) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1198) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1209) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1220) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1228) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1236) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1243) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1250) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1257) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1263) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1269) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1277) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1284) 3 Mb
+--- ..rank.gms(86) 3 Mb
+--- .includes/6_Output_Parameters.gms(1318) 3 Mb
+--- AQ_LEWIE_main.gms(354) 3 Mb
+--- .includes/7_Output_to_text_file.gms(324) 3 Mb
+--- AQ_LEWIE_main.gms(354) 3 Mb
+--- Starting execution: elapsed 0:00:01.012
+--- AQ_LEWIE_main.gms(1468) 5 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
+--- AQ_LEWIE_main.gms(1470) 5 Mb
+--- AQ_LEWIE_main.gms(1471) 5 Mb
+
+GDXXRW           24.5.4 r54492 Released Oct 15, 2015 VS8 x86 32bit/MS Windows 
+Input file : D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
+Output file: D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\MakeMeASam.xlsx
+Total time = 874 Ms
+--- AQ_LEWIE_main.gms(1472) 5 Mb
+--- AQ_LEWIE_main.gms(1488) 5 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 7 Mb
+--- LOOPS draw = dr0
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 5 Mb
+--- Executing PATH: elapsed 0:00:02.396
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.6662e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.2957e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  3.3324e+004 var: (R(fish,Land,AqFBg))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             8.3192e-012             0.0e+000 (EQ_QP(fish,AqFBg))
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 8.3192e-012           I 0.0e+000 7.3e-012 (EQ_QP(fish,AqFB)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  4.4827e-007 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Normal Map. . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Minimum Map . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Fischer Function. .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Grad Fischer Fcn. .  1.6300e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  1.8745e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.6662e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.031000
+Residual. . . . . . . . 8.319202e-012
+Postsolved residual: 8.3506e-012
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- Executing after solve: elapsed 0:00:02.598
+--- AQ_LEWIE_main.gms(1488) 3 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 6 Mb
+--- LOOPS draw = dr1
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 4 Mb
+--- Executing PATH: elapsed 0:00:02.624
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QVACOBB(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.8291e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.2323e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  3.7327e+004 var: (WV(Labor,AQUA))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             8.6045e-012             0.0e+000 (EQ_QVACOBB(fish,AqFBg))
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 8.6045e-012           I 0.0e+000 7.3e-012 (EQ_QVACOBB(fish)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  4.4827e-007 eqn: (EQ_QVACOBB(fish,AqFBg))
+Inf-Norm of Normal Map. . . . .  7.2760e-012 eqn: (EQ_QVACOBB(fish,AqFBg))
+Inf-Norm of Minimum Map . . . .  7.2760e-012 eqn: (EQ_QVACOBB(fish,AqFBg))
+Inf-Norm of Fischer Function. .  7.2760e-012 eqn: (EQ_QVACOBB(fish,AqFBg))
+Inf-Norm of Grad Fischer Fcn. .  1.3997e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  1.4888e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QVACOBB(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.8291e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.109000
+Residual. . . . . . . . 8.604473e-012
+Postsolved residual: 8.7788e-012
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- Executing after solve: elapsed 0:00:02.831
+--- AQ_LEWIE_main.gms(1488) 3 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 6 Mb
+--- LOOPS draw = dr2
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 4 Mb
+--- Executing PATH: elapsed 0:00:02.850
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.3719e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.0232e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  3.5801e+004 var: (WV(Labor,AQUA))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             8.4495e-012             0.0e+000 (EQ_QP(fish,AqFBg))
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 8.4495e-012           I 0.0e+000 7.3e-012 (EQ_QP(fish,AqFB)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  4.4827e-007 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Normal Map. . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Minimum Map . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Fischer Function. .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Grad Fischer Fcn. .  1.6300e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  1.7332e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.3719e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.016000
+Residual. . . . . . . . 8.449513e-012
+Postsolved residual: 8.6820e-012
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- Executing after solve: elapsed 0:00:02.980
+--- AQ_LEWIE_main.gms(1488) 3 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 6 Mb
+--- LOOPS draw = dr3
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 4 Mb
+--- Executing PATH: elapsed 0:00:03.000
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  9.0949e-013 eqn: (EQ_HMKT(ret,AqFSm))
+Maximum of Grad F . . . . . . .  2.0793e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.6730e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  4.1586e+004 var: (R(fish,Land,AqFBg))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.7312e-012             0.0e+000 (EQ_HMKT(ret,AqFSm))
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 1.7312e-012           I 0.0e+000 9.1e-013 (EQ_HMKT(ret,AqF)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.9401e-010 eqn: (EQ_QP(ser,AgAg))
+Inf-Norm of Normal Map. . . . .  9.0949e-013 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Minimum Map . . . .  9.0949e-013 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Fischer Function. .  9.0949e-013 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Grad Fischer Fcn. .  1.6300e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  1.7601e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  9.0949e-013 eqn: (EQ_HMKT(ret,AqFSm))
+Maximum of Grad F . . . . . . .  2.0793e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.016000
+Residual. . . . . . . . 1.731218e-012
+Postsolved residual: 3.2718e-012
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- Executing after solve: elapsed 0:00:03.136
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 7 Mb
+--- LOOPS draw = dr4
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 4 Mb
+--- Executing PATH: elapsed 0:00:03.158
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QVA(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.6670e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.1708e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  3.3340e+004 var: (R(fish,Land,AqFBg))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.0418e-011             0.0e+000 (EQ_QP(fish,AqFBg))
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 1.0418e-011           I 0.0e+000 7.3e-012 (EQ_QP(fish,AqFB)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  4.4827e-007 eqn: (EQ_QVACOBB(fish,AqFBg))
+Inf-Norm of Normal Map. . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Minimum Map . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Fischer Function. .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Grad Fischer Fcn. .  1.3721e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  1.5194e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QVA(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.6670e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.093000
+Residual. . . . . . . . 1.041751e-011
+Postsolved residual: 1.0956e-011
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- Executing after solve: elapsed 0:00:03.381
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 7 Mb
+--- LOOPS draw = dr5
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 4 Mb
+--- Executing PATH: elapsed 0:00:03.403
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QVA(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Maximum of Grad F . . . . . . .  2.2154e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  3.0213e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  4.4309e+004 var: (R(fish,Land,AqFBg))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.1139e-011             0.0e+000 (EQ_QP(fish,AqFBg))
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 1.1139e-011           I 0.0e+000 7.3e-012 (EQ_QP(fish,AqFB)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.0704e-010 eqn: (EQ_FDCOBB(ret,Capital,AqLL))
+Inf-Norm of Normal Map. . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Minimum Map . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Fischer Function. .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Grad Fischer Fcn. .  1.6300e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  1.7594e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QVA(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Maximum of Grad F . . . . . . .  2.2154e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.093000
+Residual. . . . . . . . 1.113947e-011
+Postsolved residual: 1.1148e-011
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Executing after solve: elapsed 0:00:03.633
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 7 Mb
+--- LOOPS draw = dr6
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 4 Mb
+--- Executing PATH: elapsed 0:00:03.657
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QVACOBB(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.7239e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.4969e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  3.4478e+004 var: (R(fish,Land,AqFBg))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             8.2366e-012             0.0e+000 (EQ_QVACOBB(fish,AqFBg))
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 8.2366e-012           I 0.0e+000 7.3e-012 (EQ_QVACOBB(fish)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  4.4827e-007 eqn: (EQ_QVACOBB(fish,AqFBg))
+Inf-Norm of Normal Map. . . . .  7.2760e-012 eqn: (EQ_QVACOBB(fish,AqFBg))
+Inf-Norm of Minimum Map . . . .  7.2760e-012 eqn: (EQ_QVACOBB(fish,AqFBg))
+Inf-Norm of Fischer Function. .  7.2760e-012 eqn: (EQ_QVACOBB(fish,AqFBg))
+Inf-Norm of Grad Fischer Fcn. .  2.8286e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  2.9628e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QVACOBB(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.7239e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.093000
+Residual. . . . . . . . 8.236622e-012
+Postsolved residual: 8.8305e-012
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- Executing after solve: elapsed 0:00:03.941
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 7 Mb
+--- LOOPS draw = dr7
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 4 Mb
+--- Executing PATH: elapsed 0:00:03.968
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  1.3642e-012 eqn: (EQ_HMKT(ret,AqFSm))
+Maximum of Grad F . . . . . . .  1.7628e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  3.1558e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  3.5257e+004 var: (R(fish,Land,AqFBg))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.5408e-012             0.0e+000 (EQ_HMKT(ret,AqFSm))
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 1.5408e-012           I 0.0e+000 1.4e-012 (EQ_HMKT(ret,AqF)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  2.0728e-010 eqn: (EQ_QP(ret,AqFBg))
+Inf-Norm of Normal Map. . . . .  1.3642e-012 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Minimum Map . . . .  1.8190e-012 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Fischer Function. .  1.3642e-012 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Grad Fischer Fcn. .  1.2977e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  1.4433e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  1.3642e-012 eqn: (EQ_HMKT(ret,AqFSm))
+Maximum of Grad F . . . . . . .  1.7628e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.047000
+Residual. . . . . . . . 1.540764e-012
+Postsolved residual: 1.8583e-012
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- Executing after solve: elapsed 0:00:04.126
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 7 Mb
+--- LOOPS draw = dr8
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 4 Mb
+--- Executing PATH: elapsed 0:00:04.149
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QVA(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.6800e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  1.8979e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  4.0502e+004 var: (WV(Labor,AQUA))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             7.5051e-012             0.0e+000 (EQ_QP(fish,AqFBg))
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 7.5051e-012           I 0.0e+000 7.3e-012 (EQ_QP(fish,AqFB)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.0364e-010 eqn: (EQ_QP(ret,AqFBg))
+Inf-Norm of Normal Map. . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Minimum Map . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Fischer Function. .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Inf-Norm of Grad Fischer Fcn. .  1.3598e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  1.5077e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QVA(fish,AqFBg))
+Maximum of F. . . . . . . . . .  7.2760e-012 eqn: (EQ_QP(fish,AqFBg))
+Maximum of Grad F . . . . . . .  1.6800e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.094000
+Residual. . . . . . . . 7.505098e-012
+Postsolved residual: 7.9400e-012
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- Executing after solve: elapsed 0:00:04.383
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 7 Mb
+--- LOOPS draw = dr9
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 4 Mb
+--- Executing PATH: elapsed 0:00:04.410
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  9.0949e-013 eqn: (EQ_HMKT(ret,AqFSm))
+Maximum of Grad F . . . . . . .  1.3555e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.8594e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  2.9362e+004 var: (WV(Labor,AQUA))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             1.8381e-012             0.0e+000 (EQ_HMKT(ret,AqFSm))
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 1.8381e-012           I 0.0e+000 9.1e-013 (EQ_HMKT(ret,AqF)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  7.2862e-010 eqn: (EQ_QP(ret,AqAg))
+Inf-Norm of Normal Map. . . . .  9.0949e-013 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Minimum Map . . . .  9.0949e-013 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Fischer Function. .  9.0949e-013 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Grad Fischer Fcn. .  1.2980e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  1.4438e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  9.0949e-013 eqn: (EQ_HMKT(ret,AqFSm))
+Maximum of Grad F . . . . . . .  1.3555e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.078000
+Residual. . . . . . . . 1.838055e-012
+Postsolved residual: 2.1936e-012
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- Executing after solve: elapsed 0:00:04.612
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 7 Mb
+--- LOOPS draw = dr10
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 4 Mb
+--- Executing PATH: elapsed 0:00:04.634
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  1.3642e-012 eqn: (EQ_HMKT(ret,AqFSm))
+Maximum of Grad F . . . . . . .  1.8228e+004 eqn: (EQ_FDCOBB(fish,Capital,AqFBg))
+                                            var: (R(fish,Capital,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  3.0473e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  3.6456e+004 var: (R(fish,Capital,AqFBg))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             2.2224e-012             0.0e+000 (EQ_HMKT(ret,AqFSm))
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 2.2224e-012           I 0.0e+000 1.4e-012 (EQ_HMKT(ret,AqF)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.0364e-010 eqn: (EQ_QP(ret,AqFBg))
+Inf-Norm of Normal Map. . . . .  1.3642e-012 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Minimum Map . . . .  1.8190e-012 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Fischer Function. .  1.3642e-012 eqn: (EQ_HMKT(ret,AqFSm))
+Inf-Norm of Grad Fischer Fcn. .  2.5923e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  2.7588e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  1.3642e-012 eqn: (EQ_HMKT(ret,AqFSm))
+Maximum of Grad F . . . . . . .  1.8228e+004 eqn: (EQ_FDCOBB(fish,Capital,AqFBg))
+                                            var: (R(fish,Capital,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.016000
+Residual. . . . . . . . 2.222399e-012
+Postsolved residual: 3.6467e-012
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- Executing after solve: elapsed 0:00:04.764
+--- AQ_LEWIE_main.gms(1488) 4 Mb
+--- Generating MCP model genCD
+--- AQ_LEWIE_main.gms(1563) 7 Mb
+--- LOOPS draw = dr11
+---   897 rows  902 columns  2,633 non-zeroes
+---   2,397 nl-code  1,038 nl-non-zeroes
+--- AQ_LEWIE_main.gms(1563) 4 Mb
+--- Executing PATH: elapsed 0:00:04.784
+Reading dictionary...
+Reading row data...
+Evaluating functions...
+Checking model...
+Calculating Jacobian...
+
+PATH             24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+
+897 row/cols, 2561 non-zeros, 0.32% dense.
+
+Path 4.7.03 (Thu Oct 15 13:58:56 2015)
+Written by Todd Munson, Steven Dirkse, and Michael Ferris
+
+MCPR: One:    0 Two:    0 Thr:    0 Qua:    0 WBd:    0 Fix:  344 IFx:    0
+MCPC: Zer:    0 One:   91 Two:   10 Thr:    0
+MCPC: Zer:    0 One:    6 Two:    0 Thr:    0
+MCPC: Zer:    0 One:   24 Two:    0 Thr:    0
+Preprocessed size   : 422
+
+INITIAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  4.5475e-013 eqn: (EQ_HMKT(ret,AqLL))
+Maximum of Grad F . . . . . . .  1.8535e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+INITIAL JACOBIAN NORM STATISTICS
+Maximum Row Norm. . . . . . . .  2.7108e+004 eqn: (EQ_Y(AqFBg))
+Minimum Row Norm. . . . . . . .  1.0000e+000 eqn: (EQ_VMKTfix(crop,AQUA))
+Maximum Column Norm . . . . . .  3.7069e+004 var: (R(fish,Land,AqFBg))
+Minimum Column Norm . . . . . .  1.0000e+000 var: (FD(crop,Input,AqFSm))
+
+Crash Log
+major  func  diff  size  residual    step       prox   (label)
+    0     0             9.8353e-013             0.0e+000 (EQ_FDCOBB(ret,Capital,A)
+
+Major Iteration Log
+major minor  func  grad  residual    step  type prox    inorm  (label)
+    0     0     1     1 9.8353e-013           I 0.0e+000 4.5e-013 (EQ_FDCOBB(ret,C)
+
+FINAL STATISTICS
+Inf-Norm of Complementarity . .  1.9401e-010 eqn: (EQ_QP(ser,AgAg))
+Inf-Norm of Normal Map. . . . .  4.5475e-013 eqn: (EQ_HMKT(ret,AqLL))
+Inf-Norm of Minimum Map . . . .  4.5475e-013 eqn: (EQ_HMKT(ret,AqLL))
+Inf-Norm of Fischer Function. .  4.5475e-013 eqn: (EQ_FDCOBB(ret,Capital,AgAg))
+Inf-Norm of Grad Fischer Fcn. .  2.7092e-009 eqn: (EQ_PVA(ret,AgAg))
+Two-Norm of Grad Fischer Fcn. .  2.8533e-009
+
+FINAL POINT STATISTICS
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Land,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFSm))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqFBg))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AqLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(crop,Capital,AgLL))
+Zero column of order. . . . . .  0.0000e+000 var: (R(meat,Land,AqFSm))
+Total zero columns. . . . . . .  58
+Maximum of X. . . . . . . . . .  6.1610e+004 var: (QP(fish,AqFBg))
+Maximum of F. . . . . . . . . .  4.5475e-013 eqn: (EQ_HMKT(ret,AqLL))
+Maximum of Grad F . . . . . . .  1.8535e+004 eqn: (EQ_FDCOBB(fish,Land,AqFBg))
+                                            var: (R(fish,Land,AqFBg))
+
+ ** EXIT - solution found.
+
+Major Iterations. . . . 0
+Minor Iterations. . . . 0
+Restarts. . . . . . . . 0
+Crash Iterations. . . . 0
+Gradient Steps. . . . . 0
+Function Evaluations. . 1
+Gradient Evaluations. . 1
+Basis Time. . . . . . . 0.000000
+Total Time. . . . . . . 0.016000
+Residual. . . . . . . . 9.835316e-013
+Postsolved residual: 3.6023e-012
+
+--- Restarting execution
+--- AQ_LEWIE_main.gms(1563) 3 Mb
+--- Reading solution for model genCD
+--- Executing after solve: elapsed 0:00:04.905
+--- AQ_LEWIE_main.gms(1973) 4 Mb
+*** Error at line 1973: division by zero (0)
+--- AQ_LEWIE_main.gms(1974) 4 Mb 1 Error
+*** Error at line 1974: division by zero (0)
+--- AQ_LEWIE_main.gms(1977) 4 Mb 2 Errors
+*** Error at line 1977: division by zero (0)
+--- AQ_LEWIE_main.gms(1978) 4 Mb 3 Errors
+*** Error at line 1978: division by zero (0)
+--- AQ_LEWIE_main.gms(1983) 4 Mb 4 Errors
+*** Error at line 1983: division by zero (0)
+--- AQ_LEWIE_main.gms(1984) 4 Mb 5 Errors
+*** Error at line 1984: division by zero (0)
+--- AQ_LEWIE_main.gms(1989) 4 Mb 6 Errors
+*** Error at line 1989: division by zero (0)
+--- AQ_LEWIE_main.gms(1990) 4 Mb 7 Errors
+*** Error at line 1990: division by zero (0)
+--- AQ_LEWIE_main.gms(1991) 4 Mb 8 Errors
+*** Error at line 1991: division by zero (0)
+--- AQ_LEWIE_main.gms(2001) 4 Mb 9 Errors
+*** Error at line 2001: division by zero (0)
+--- AQ_LEWIE_main.gms(2002) 4 Mb 10 Errors
+*** Error at line 2002: division by zero (0)
+--- AQ_LEWIE_main.gms(2826) 4 Mb 11 Errors
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(2922) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(3015) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(3108) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(3202) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(3295) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(3387) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(3479) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(3571) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(3663) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(3755) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(3848) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(3941) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(4103) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+--- AQ_LEWIE_main.gms(4106) 4 Mb
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- AQ_LEWIE_main.gms(4108) 4 Mb
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(4192) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+--- AQ_LEWIE_main.gms(4195) 4 Mb
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- AQ_LEWIE_main.gms(4197) 4 Mb
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(4282) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+--- AQ_LEWIE_main.gms(4285) 4 Mb
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- AQ_LEWIE_main.gms(4287) 4 Mb
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(4371) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+--- AQ_LEWIE_main.gms(4374) 4 Mb
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- AQ_LEWIE_main.gms(4376) 4 Mb
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(4392) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(4486) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(4581) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(4677) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(4772) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(4867) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(4963) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(5055) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(5147) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(5309) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+--- AQ_LEWIE_main.gms(5312) 4 Mb
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- AQ_LEWIE_main.gms(5314) 4 Mb
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(5329) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(5491) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+--- AQ_LEWIE_main.gms(5494) 4 Mb
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- AQ_LEWIE_main.gms(5496) 4 Mb
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(5581) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+--- AQ_LEWIE_main.gms(5584) 4 Mb
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- AQ_LEWIE_main.gms(5586) 4 Mb
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(5600) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(5692) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(5854) 4 Mb
+--- GDX File D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_data.gdx
+--- AQ_LEWIE_main.gms(5857) 4 Mb
+GDXRANK          24.5.4 r54492 Released Oct 15, 2015 WEI x86 64bit/MS Windows 
+--- AQ_LEWIE_main.gms(5859) 4 Mb
+--- GDXin=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\rank_output.gdx
+--- AQ_LEWIE_main.gms(6160) 4 Mb
+--- Putfile AQ_LEWIE_output D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_output.txt
+--- AQ_LEWIE_main.gms(6160) 4 Mb 11 Errors
+*** Status: Execution error(s)
+--- Job AQ_LEWIE_main.gms Stop 12/20/16 18:04:08 elapsed 0:00:12.669
+Exit code = 3

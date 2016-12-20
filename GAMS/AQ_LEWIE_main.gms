@@ -14,7 +14,7 @@ option limcol=30 ;
 
 
 * name of the excel file (WITHOUT .xlsx extension):
-$setglobal data_input "AQ_LEWIE_InputSheet_v2"
+$setglobal data_input "AQ_LEWIE_InputSheet_v3"
 * name of index sheet (village-specific):
 $setglobal input_sheet_index "Index!A2"
 * name of include file containing village-specific assumptions
@@ -117,7 +117,7 @@ $include includes/4a_DefineAllParameters.gms
 
 *$exit
 $include includes/4b_Calibration.gms
-$exit
+
 
 * ================================================================================================
 * ================================================================================================
@@ -345,10 +345,10 @@ hfsup2(ft,h,draw)   = HFSUP.l(ft,h) ;
 * ================================================================================================
 );
 
-$exit
+
 
 * Output : compute all the parameters
-$include includes/3_Output_Parameters.gms
+$include includes/6_Output_Parameters.gms
 
 * Output : create a formatted text file with a series of "put" statements
-$include includes/4_Output_to_text_file.gms
+$include includes/7_Output_to_text_file.gms

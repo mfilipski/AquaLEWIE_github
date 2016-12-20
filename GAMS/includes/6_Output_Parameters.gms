@@ -11,14 +11,14 @@
 
 * now compute and display all the values, differences in values, standard errors, etc...
 display pv1, pz1, ph1, qva1, fd1, id1, r1, wv1, wz1, qp1, tqp1, ttqp1, fixfac1, pva1, exinc1, endow1, y1, cpi1, vcpi1, ry1,
-        trinsh1, qc1, alpha1, troutsh1, hfsup1, hfd1, vfd1, zfd1, hms1, vms1, zms1, hfms1, vfms1, zfms1 ;
+        trinsh1, qc1, eshare1, troutsh1, hfsup1, hfd1, vfd1, zfd1, hms1, vms1, zms1, hfms1, vfms1, zfms1 ;
 
 display pv2, pz2, ph2, qva2, fd2, id2, r2, wv2, wz2, qp2, tqp2, ttqp2, fixfac2, pva2, exinc2, endow2, y2, cpi2, vcpi2, ry2,
-        trinsh2, qc2, alpha2, troutsh2, hfsup2, hfd2, vfd2, zfd2, hms2, vms2, zms2, hfms2, vfms2, zfms2 ;
+        trinsh2, qc2, eshare2, troutsh2, hfsup2, hfd2, vfd2, zfd2, hms2, vms2, zms2, hfms2, vfms2, zfms2 ;
 
 * DELTA between each calibration and the corresponding simulation
-acobbD(g,h,draw)    = acobb2(g,h,draw) - acobb1(g,h,draw);
-shcobbD(g,f,h,draw) = shcobb2(g,f,h,draw) - shcobb1(g,f,h,draw) ;
+pshiftD(g,h,draw)    = pshift2(g,h,draw) - pshift1(g,h,draw);
+fshareD(g,f,h,draw) = fshare2(g,f,h,draw) - fshare1(g,f,h,draw) ;
 pvD(g,v,draw)       = pv2(g,v,draw) - pv1(g,v,draw) ;
 pzD(g,draw)         = pz2(g,draw) - pz1(g,draw) ;
 phD(g,h,draw)       = ph2(g,h,draw) - ph1(g,h,draw) ;
@@ -48,7 +48,7 @@ tyD(draw)           = ty2(draw) - ty1(draw) ;
 tryD(draw)        = try2(draw) - try1(draw) ;
 trinshD(h,draw)     = trinsh2(h,draw) - trinsh1(h,draw) ;
 qcD(g,h,draw)       = qc2(g,h,draw) - qc1(g,h,draw) ;
-alphaD(g,h,draw)    = alpha2(g,h,draw) - alpha1(g,h,draw) ;
+eshareD(g,h,draw)    = eshare2(g,h,draw) - eshare1(g,h,draw) ;
 troutshD(h,draw)    = troutsh2(h,draw) - troutsh1(h,draw) ;
 hfdD(f,h,draw)      = hfd2(f,h,draw) - hfd1(f,h,draw) ;
 vfdD(f,v,draw)      = vfd2(f,v,draw) - vfd1(f,v,draw) ;
@@ -68,8 +68,8 @@ exprocD(h,draw)     = exproc2(h,draw) - exproc1(h,draw) ;
 hfsupD(f,h,draw)    = hfsup2(f,h,draw) - hfsup1(f,h,draw) ;
 
 * PERCENT CHANGE between each calibration and the corresponding simulation
-acobbPC(g,h,draw)$acobb1(g,h,draw)    = 100*acobbD(g,h,draw)/ acobb1(g,h,draw);
-shcobbPC(g,f,h,draw)$shcobb1(g,f,h,draw) = 100*shcobbD(g,f,h,draw) / shcobb1(g,f,h,draw) ;
+pshiftPC(g,h,draw)$pshift1(g,h,draw)    = 100*pshiftD(g,h,draw)/ pshift1(g,h,draw);
+fsharePC(g,f,h,draw)$fshare1(g,f,h,draw) = 100*fshareD(g,f,h,draw) / fshare1(g,f,h,draw) ;
 pvPC(g,v,draw)$pv1(g,v,draw)        = 100*pvD(g,v,draw) / pv1(g,v,draw) ;
 pzPC(g,draw)$pz1(g,draw)            = 100*pzD(g,draw) / pz1(g,draw) ;
 phPC(g,h,draw)$ph1(g,h,draw)        = 100*phD(g,h,draw) / ph1(g,h,draw) ;
@@ -97,7 +97,7 @@ tyPC(draw)$ty1(draw)                = 100*tyD(draw) / ty1(draw) ;
 tryPC(draw)$try1(draw)              = 100*tryD(draw) / try1(draw) ;
 trinshPC(h,draw)$trinsh1(h,draw)    = 100*trinshD(h,draw) / trinsh1(h,draw) ;
 qcPC(g,h,draw)$qc1(g,h,draw)        = 100*qcD(g,h,draw) / qc1(g,h,draw) ;
-alphaPC(g,h,draw)$alpha1(g,h,draw)  = 100*alphaD(g,h,draw) / alpha1(g,h,draw) ;
+esharePC(g,h,draw)$eshare1(g,h,draw)  = 100*eshareD(g,h,draw) / eshare1(g,h,draw) ;
 troutshPC(h,draw)$troutsh1(h,draw)  = 100*troutshD(h,draw) / troutsh1(h,draw) ;
 hfdPC(f,h,draw)$hfd1(f,h,draw)      = 100*hfdD(f,h,draw) / hfd1(f,h,draw) ;
 vfdPC(f,v,draw)$vfd1(f,v,draw)      = 100*vfdD(f,v,draw) / vfd1(f,v,draw) ;
@@ -117,11 +117,11 @@ hfsupPC(f,h,draw)$hfsup1(f,h,draw)  = 100*hfsupD(f,h,draw) / hfsup1(f,h,draw) ;
 
 
 display pvD, pzD, phD, qvaD, fdD, idD, rD, wvD, wzD, qpD, tqpD, ttqpD, fixfacD, pvaD, exincD, endowD, yD, cpiD, vcpiD, ryD, tyD, tryD,
-        trinshD, qcD, alphaD, troutshD, hfsupD, hfdD, vfdD, zfdD, hmsD, vmsD, zmsD, hfmsD, vfmsD, zfmsD ,
+        trinshD, qcD, eshareD, troutshD, hfsupD, hfdD, vfdD, zfdD, hmsD, vmsD, zmsD, hfmsD, vfmsD, zfmsD ,
         vashD, trinD, troutD;
 
 display pvPC, pzPC, phPC, qvaPC, fdPC, idPC, rPC, wvPC, wzPC, qpPC, tqpPC, ttqpPC, fixfacPC, pvaPC, exincPC, endowPC, yPC, cpiPC, vcpiPC, ryPC, tyPC, tryPC,
-        trinshPC, qcPC, alphaPC, troutshPC, hfsupPC, hfdPC, vfdPC, zfdPC, hmsPC, vmsPC, zmsPC, hfmsPC, vfmsPC, zfmsPC ,
+        trinshPC, qcPC, esharePC, troutshPC, hfsupPC, hfdPC, vfdPC, zfdPC, hmsPC, vmsPC, zmsPC, hfmsPC, vfmsPC, zfmsPC ,
         vashPC, trinPC, troutPC ;
 
 * Welfare and efficiency
@@ -182,7 +182,7 @@ denom(h,draw) = wfpcost(h);
 *denom(h,draw) = transfer(h)+newremits(h);
 
 
-cvh(h,draw) = y2(h,draw) - prod(g, (ph2(g,h,draw)/ph1(g,h,draw))**alpha_dr(g,h,draw))*y1(h,draw);
+cvh(h,draw) = y2(h,draw) - prod(g, (ph2(g,h,draw)/ph1(g,h,draw))**eshare_dr(g,h,draw))*y1(h,draw);
 cvh_perc(h,draw) = 100*cvh(h,draw)/y1(h,draw);
 cv(draw) = sum(h,cvh(h,draw));
 cv_perc(draw) = cv(draw)/sum(h,y1(h,draw));
@@ -261,8 +261,8 @@ qva1_mv(g,h,mv)      mean and stdev of calibrated quantity of value added
 qp1_mv(g,h,mv)       mean and stdev of calibrated quantity produced
 fd1_mv(g,f,h,mv)     mean and stdev of calibrated factor demand
 id1_mv(g,gg,h,mv)    mean and stdev of calibrated intermediate demand
-acobb1_mv(g,h,mv)    mean and stdev of calibrated cobb-douglas shifter
-shcobb1_mv(g,f,h,mv) mean and stdev of calibrated cobb-douglas shares
+pshift1_mv(g,h,mv)    mean and stdev of calibrated cobb-douglas shifter
+fshare1_mv(g,f,h,mv) mean and stdev of calibrated cobb-douglas shares
 r1_mv(g,f,h,mv)      mean and stdev of calibrated rent for fixed factors
 wv1_mv(f,v,mv)       mean and stdev of calibrated village-wide wage for tradable factors
 wz1_mv(f,mv)         mean and stdev of calibrated zoi-wide wage for tradable factors
@@ -273,13 +273,13 @@ fixfac1_mv(g,f,h,mv) mean and stdev of calibrated fixed factor demand
 exinc1_mv(h,mv)      mean and stdev of calibrated exogenous income
 endow1_mv(f,h,mv)    mean and stdev of calibrated endowment
 qc1_mv(g,h,mv)       mean and stdev of calibrated level of consumption
-alpha1_mv(g,h,mv)    mean and stdev of calibrated consumption shares
+eshare1_mv(g,h,mv)    mean and stdev of calibrated consumption shares
 y1_mv(h,mv)          mean and stdev of calibrated nominal income of household
 cpi1_mv(h,mv)        mean and stdev of calibrated cpi of household
 cri1_mv(v,f,mv)        mean and stdev of calibrated cpi of village
 vcpi1_mv(v,mv)        mean and stdev of calibrated cpi of village
 ry1_mv(h,mv)         mean and stdev of calibrated real income of household
-cmin1_mv(g,h,mv)     mean and stdev of calibrated incompressible demand
+emin1_mv(g,h,mv)     mean and stdev of calibrated incompressible demand
 trin1_mv(h,mv)       mean and stdev of calibrated transfers in - received
 trout1_mv(h,mv)      mean and stdev of calibrated transfers out - given
 sav1_mv(h,mv)        mean and stdev of calibrated savings
@@ -316,10 +316,10 @@ fd1_mv(g,f,h,"mean") = sum(draw, fd1(g,f,h,draw)) / card(draw) ;
 fd1_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(fd1(g,f,h,draw) - fd1_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 id1_mv(g,gg,h,"mean") = sum(draw, id1(g,gg,h,draw)) / card(draw) ;
 id1_mv(g,gg,h,"stdev") = sqrt(sum(draw, sqr(id1(g,gg,h,draw) - id1_mv(g,gg,h,"mean")))/(card(draw)-1)) ;
-acobb1_mv(g,h,"mean") = sum(draw, acobb1(g,h,draw)) / card(draw) ;
-acobb1_mv(g,h,"stdev") = sqrt(sum(draw, sqr(acobb1(g,h,draw) - acobb1_mv(g,h,"mean")))/(card(draw)-1)) ;
-shcobb1_mv(g,f,h,"mean") = sum(draw, shcobb1(g,f,h,draw)) / card(draw) ;
-shcobb1_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(shcobb1(g,f,h,draw) - shcobb1_mv(g,f,h,"mean")))/(card(draw)-1)) ;
+pshift1_mv(g,h,"mean") = sum(draw, pshift1(g,h,draw)) / card(draw) ;
+pshift1_mv(g,h,"stdev") = sqrt(sum(draw, sqr(pshift1(g,h,draw) - pshift1_mv(g,h,"mean")))/(card(draw)-1)) ;
+fshare1_mv(g,f,h,"mean") = sum(draw, fshare1(g,f,h,draw)) / card(draw) ;
+fshare1_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(fshare1(g,f,h,draw) - fshare1_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 r1_mv(g,f,h,"mean") = sum(draw, r1(g,f,h,draw)) / card(draw) ;
 r1_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(r1(g,f,h,draw) - r1_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 wv1_mv(f,v,"mean") = sum(draw, wv1(f,v,draw)) / card(draw) ;
@@ -342,8 +342,8 @@ endow1_mv(f,h,"mean") = sum(draw, endow1(f,h,draw)) / card(draw) ;
 endow1_mv(f,h,"stdev") = sqrt(sum(draw, sqr(endow1(f,h,draw) - endow1_mv(f,h,"mean")))/(card(draw)-1)) ;
 qc1_mv(g,h,"mean") = sum(draw, qc1(g,h,draw)) / card(draw) ;
 qc1_mv(g,h,"stdev") = sqrt(sum(draw, sqr(qc1(g,h,draw) - qc1_mv(g,h,"mean")))/(card(draw)-1)) ;
-alpha1_mv(g,h,"mean") = sum(draw, alpha1(g,h,draw)) / card(draw) ;
-alpha1_mv(g,h,"stdev") = sqrt(sum(draw, sqr(alpha1(g,h,draw) - alpha1_mv(g,h,"mean")))/(card(draw)-1)) ;
+eshare1_mv(g,h,"mean") = sum(draw, eshare1(g,h,draw)) / card(draw) ;
+eshare1_mv(g,h,"stdev") = sqrt(sum(draw, sqr(eshare1(g,h,draw) - eshare1_mv(g,h,"mean")))/(card(draw)-1)) ;
 y1_mv(h,"mean") = sum(draw, y1(h,draw)) / card(draw) ;
 y1_mv(h,"stdev") = sqrt(sum(draw, sqr(y1(h,draw) - y1_mv(h,"mean")))/(card(draw)-1)) ;
 cpi1_mv(h,"mean") = sum(draw, cpi1(h,draw)) / card(draw) ;
@@ -357,8 +357,8 @@ cri1_mv(v,f,"stdev") = sqrt(sum(draw, sqr(cri1(v,f,draw) - cri1_mv(v,f,"mean")))
 ry1_mv(h,"mean") = sum(draw, ry1(h,draw)) / card(draw) ;
 ry1_mv(h,"stdev") = sqrt(sum(draw, sqr(ry1(h,draw) - ry1_mv(h,"mean")))/(card(draw)-1)) ;
 
-cmin1_mv(g,h,"mean") = sum(draw, cmin1(g,h,draw)) / card(draw) ;
-cmin1_mv(g,h,"stdev") = sqrt(sum(draw, sqr(cmin1(g,h,draw) - cmin1_mv(g,h,"mean")))/(card(draw)-1)) ;
+emin1_mv(g,h,"mean") = sum(draw, emin1(g,h,draw)) / card(draw) ;
+emin1_mv(g,h,"stdev") = sqrt(sum(draw, sqr(emin1(g,h,draw) - emin1_mv(g,h,"mean")))/(card(draw)-1)) ;
 trin1_mv(h,"mean") = sum(draw, trin1(h,draw)) / card(draw) ;
 trin1_mv(h,"stdev") = sqrt(sum(draw, sqr(trin1(h,draw) - trin1_mv(h,"mean")))/(card(draw)-1)) ;
 trout1_mv(h,"mean") = sum(draw, trout1(h,draw)) / card(draw) ;
@@ -392,8 +392,8 @@ vfms1_mv(f,v,"stdev") = sqrt(sum(draw, sqr(vfms1(f,v,draw) - vfms1_mv(f,v,"mean"
 zfms1_mv(f,"mean") = sum(draw, zfms1(f,draw)) / card(draw) ;
 zfms1_mv(f,"stdev") = sqrt(sum(draw, sqr(zfms1(f,draw) - zfms1_mv(f,"mean")))/(card(draw)-1)) ;
 
-display pv1_mv, pz1_mv, ph1_mv, pva1_mv, qva1_mv, qp1_mv, fd1_mv, id1_mv, acobb1_mv, shcobb1_mv, r1_mv, wv1_mv, wz1_mv, vash1_mv, idsh1_mv,
-        tidsh1_mv, fixfac1_mv, exinc1_mv, endow1_mv, qc1_mv, alpha1_mv, y1_mv, cpi1_mv, vcpi1_mv,  ry1_mv, cmin1_mv, trin1_mv, trout1_mv, trinsh1_mv,
+display pv1_mv, pz1_mv, ph1_mv, pva1_mv, qva1_mv, qp1_mv, fd1_mv, id1_mv, pshift1_mv, fshare1_mv, r1_mv, wv1_mv, wz1_mv, vash1_mv, idsh1_mv,
+        tidsh1_mv, fixfac1_mv, exinc1_mv, endow1_mv, qc1_mv, eshare1_mv, y1_mv, cpi1_mv, vcpi1_mv,  ry1_mv, emin1_mv, trin1_mv, trout1_mv, trinsh1_mv,
         troutsh1_mv, hfd1_mv, vfd1_mv, zfd1_mv, hms1_mv, vms1_mv, zms1_mv, hfms1_mv, vfms1_mv, zfms1_mv ;
 
 parameter
@@ -407,8 +407,8 @@ qva2_mv(g,h,mv)      mean and stdev of simulated quantity of value added
 qp2_mv(g,h,mv)       mean and stdev of simulated quantity produced
 fd2_mv(g,f,h,mv)     mean and stdev of simulated factor demand
 id2_mv(g,gg,h,mv)    mean and stdev of simulated intermediate demand
-acobb2_mv(g,h,mv)    mean and stdev of simulated cobb-douglas shifter
-shcobb2_mv(g,f,h,mv) mean and stdev of simulated cobb-douglas shares
+pshift2_mv(g,h,mv)    mean and stdev of simulated cobb-douglas shifter
+fshare2_mv(g,f,h,mv) mean and stdev of simulated cobb-douglas shares
 r2_mv(g,f,h,mv)      mean and stdev of simulated rent for fixed factors
 wv2_mv(f,v,mv)       mean and stdev of simulated village-wide wage for tradable factors
 wz2_mv(f,mv)         mean and stdev of simulated zoi-wide wage for tradable factors
@@ -419,13 +419,13 @@ fixfac2_mv(g,f,h,mv) mean and stdev of simulated fixed factor demand
 exinc2_mv(h,mv)      mean and stdev of simulated exogenous income
 endow2_mv(f,h,mv)    mean and stdev of simulated endowment
 qc2_mv(g,h,mv)       mean and stdev of simulated level of consumption
-alpha2_mv(g,h,mv)    mean and stdev of simulated consumption shares
+eshare2_mv(g,h,mv)    mean and stdev of simulated consumption shares
 y2_mv(h,mv)          mean and stdev of simulated income of household
 cpi2_mv(h,mv)        mean and stdev of simulated cpi of household
 vcpi2_mv(v,mv)       mean and stdev of calibrated cpi of village
 cri2_mv(v,f,mv)        mean and stdev of calibrated cpi of village
 ry2_mv(h,mv)         mean and stdev of simulated real income of household
-cmin2_mv(g,h,mv)     mean and stdev of simulated incompressible demand
+emin2_mv(g,h,mv)     mean and stdev of simulated incompressible demand
 trin2_mv(h,mv)       mean and stdev of simulated transfers in - received
 trout2_mv(h,mv)      mean and stdev of simulated transfers out - given
 sav2_mv(h,mv)        mean and stdev of simulated savings
@@ -462,10 +462,10 @@ fd2_mv(g,f,h,"mean") = sum(draw, fd2(g,f,h,draw)) / card(draw) ;
 fd2_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(fd2(g,f,h,draw) - fd2_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 id2_mv(g,gg,h,"mean") = sum(draw, id2(g,gg,h,draw)) / card(draw) ;
 id2_mv(g,gg,h,"stdev") = sqrt(sum(draw, sqr(id2(g,gg,h,draw) - id2_mv(g,gg,h,"mean")))/(card(draw)-1)) ;
-acobb2_mv(g,h,"mean") = sum(draw, acobb2(g,h,draw)) / card(draw) ;
-acobb2_mv(g,h,"stdev") = sqrt(sum(draw, sqr(acobb2(g,h,draw) - acobb2_mv(g,h,"mean")))/(card(draw)-1)) ;
-shcobb2_mv(g,f,h,"mean") = sum(draw, shcobb2(g,f,h,draw)) / card(draw) ;
-shcobb2_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(shcobb2(g,f,h,draw) - shcobb2_mv(g,f,h,"mean")))/(card(draw)-1)) ;
+pshift2_mv(g,h,"mean") = sum(draw, pshift2(g,h,draw)) / card(draw) ;
+pshift2_mv(g,h,"stdev") = sqrt(sum(draw, sqr(pshift2(g,h,draw) - pshift2_mv(g,h,"mean")))/(card(draw)-1)) ;
+fshare2_mv(g,f,h,"mean") = sum(draw, fshare2(g,f,h,draw)) / card(draw) ;
+fshare2_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(fshare2(g,f,h,draw) - fshare2_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 r2_mv(g,f,h,"mean") = sum(draw, r2(g,f,h,draw)) / card(draw) ;
 r2_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(r2(g,f,h,draw) - r2_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 wv2_mv(f,v,"mean") = sum(draw, wv2(f,v,draw)) / card(draw) ;
@@ -488,8 +488,8 @@ endow2_mv(f,h,"mean") = sum(draw, endow2(f,h,draw)) / card(draw) ;
 endow2_mv(f,h,"stdev") = sqrt(sum(draw, sqr(endow2(f,h,draw) - endow2_mv(f,h,"mean")))/(card(draw)-1)) ;
 qc2_mv(g,h,"mean") = sum(draw, qc2(g,h,draw)) / card(draw) ;
 qc2_mv(g,h,"stdev") = sqrt(sum(draw, sqr(qc2(g,h,draw) - qc2_mv(g,h,"mean")))/(card(draw)-1)) ;
-alpha2_mv(g,h,"mean") = sum(draw, alpha2(g,h,draw)) / card(draw) ;
-alpha2_mv(g,h,"stdev") = sqrt(sum(draw, sqr(alpha2(g,h,draw) - alpha2_mv(g,h,"mean")))/(card(draw)-1)) ;
+eshare2_mv(g,h,"mean") = sum(draw, eshare2(g,h,draw)) / card(draw) ;
+eshare2_mv(g,h,"stdev") = sqrt(sum(draw, sqr(eshare2(g,h,draw) - eshare2_mv(g,h,"mean")))/(card(draw)-1)) ;
 y2_mv(h,"mean") = sum(draw, y2(h,draw)) / card(draw) ;
 y2_mv(h,"stdev") = sqrt(sum(draw, sqr(y2(h,draw) - y2_mv(h,"mean")))/(card(draw)-1)) ;
 
@@ -503,8 +503,8 @@ cri2_mv(v,f,"stdev") = sqrt(sum(draw, sqr(cri2(v,f,draw) - cri2_mv(v,f,"mean")))
 
 ry2_mv(h,"mean") = sum(draw, ry2(h,draw)) / card(draw) ;
 ry2_mv(h,"stdev") = sqrt(sum(draw, sqr(ry2(h,draw) - ry2_mv(h,"mean")))/(card(draw)-1)) ;
-*cmin2_mv(g,h,"mean") = sum(draw, cmin2(g,h,draw)) / card(draw) ;
-*cmin2_mv(g,h,"stdev") = sqrt(sum(draw, sqr(cmin2(g,h,draw) - cmin2_mv(g,h,"mean")))/(card(draw)-1)) ;
+*emin2_mv(g,h,"mean") = sum(draw, emin2(g,h,draw)) / card(draw) ;
+*emin2_mv(g,h,"stdev") = sqrt(sum(draw, sqr(emin2(g,h,draw) - emin2_mv(g,h,"mean")))/(card(draw)-1)) ;
 trin2_mv(h,"mean") = sum(draw, trin2(h,draw)) / card(draw) ;
 trin2_mv(h,"stdev") = sqrt(sum(draw, sqr(trin2(h,draw) - trin2_mv(h,"mean")))/(card(draw)-1)) ;
 trout2_mv(h,"mean") = sum(draw, trout2(h,draw)) / card(draw) ;
@@ -538,10 +538,10 @@ zfms2_mv(f,"mean") = sum(draw, zfms2(f,draw)) / card(draw) ;
 zfms2_mv(f,"stdev") = sqrt(sum(draw, sqr(zfms2(f,draw) - zfms2_mv(f,"mean")))/(card(draw)-1)) ;
 
 display pv2_mv, pz2_mv, ph2_mv, pva2_mv, qva2_mv, qp2_mv, fd2_mv, id2_mv, r2_mv, wv2_mv, wz2_mv, vash2_mv, fixfac2_mv,
-        exinc2_mv, endow2_mv, qc2_mv, alpha2_mv, y2_mv, cpi2_mv, vcpi2_mv,  ry2_mv,  trin2_mv, trout2_mv, trinsh2_mv,
+        exinc2_mv, endow2_mv, qc2_mv, eshare2_mv, y2_mv, cpi2_mv, vcpi2_mv,  ry2_mv,  trin2_mv, trout2_mv, trinsh2_mv,
         troutsh2_mv, hfd2_mv, vfd2_mv, zfd2_mv, hms2_mv, vms2_mv, zms2_mv, hfms2_mv, vfms2_mv, zfms2_mv
-, acobb2_mv, shcobb2_mv ;
-*, idsh2_mv, tidsh2_mv, cmin2_mv,
+, pshift2_mv, fshare2_mv ;
+*, idsh2_mv, tidsh2_mv, emin2_mv,
 
 parameter
 * mean and stdev of starting matrix
@@ -556,8 +556,8 @@ tqpD_mv(g,mv)        mean and stdev of delta total QP
 ttqpD_mv(mv)
 fdD_mv(g,f,h,mv)     mean and stdev of delta factor demand
 idD_mv(g,gg,h,mv)    mean and stdev of delta intermediate demand
-acobbD_mv(g,h,mv)    mean and stdev of delta cobb-douglas shifter
-shcobbD_mv(g,f,h,mv) mean and stdev of delta cobb-douglas shares
+pshiftD_mv(g,h,mv)    mean and stdev of delta cobb-douglas shifter
+fshareD_mv(g,f,h,mv) mean and stdev of delta cobb-douglas shares
 rD_mv(g,f,h,mv)      mean and stdev of delta rent for fixed factors
 wvD_mv(f,v,mv)       mean and stdev of delta village-wide wage for tradable factors
 wzD_mv(f,mv)         mean and stdev of delta zoi-wide wage for tradable factors
@@ -568,7 +568,7 @@ fixfacD_mv(g,f,h,mv) mean and stdev of delta fixed factor demand
 exincD_mv(h,mv)      mean and stdev of delta exogenous income
 endowD_mv(f,h,mv)    mean and stdev of delta endowment
 qcD_mv(g,h,mv)       mean and stdev of delta level of consumption
-alphaD_mv(g,h,mv)    mean and stdev of delta consumption shares
+eshareD_mv(g,h,mv)    mean and stdev of delta consumption shares
 yD_mv(h,mv)          mean and stdev of delta income of household
 cpiD_mv(h,mv)        mean and stdev of delta cpi of household
 vcpiD_mv(v,mv)       mean and stdev of delta cpi of village
@@ -576,7 +576,7 @@ criD_mv(v,f,mv)       mean and stdev of delta cri of village
 ryD_mv(h,mv)         mean and stdev of delta real income of household
 tyD_mv(mv)           mean and stdev of delta total nominal income
 tryD_mv(mv)          mean and stdev of delta total real income
-cminD_mv(g,h,mv)     mean and stdev of delta incompressible demand
+eminD_mv(g,h,mv)     mean and stdev of delta incompressible demand
 trinD_mv(h,mv)       mean and stdev of delta transfers in - received
 troutD_mv(h,mv)      mean and stdev of delta transfers out - given
 savD_mv(h,mv)        mean and stdev of delta savings
@@ -624,10 +624,10 @@ fdD_mv(g,f,h,"mean") = sum(draw, fdD(g,f,h,draw)) / card(draw) ;
 fdD_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(fdD(g,f,h,draw) - fdD_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 idD_mv(g,gg,h,"mean") = sum(draw, idD(g,gg,h,draw)) / card(draw) ;
 idD_mv(g,gg,h,"stdev") = sqrt(sum(draw, sqr(idD(g,gg,h,draw) - idD_mv(g,gg,h,"mean")))/(card(draw)-1)) ;
-acobbD_mv(g,h,"mean") = sum(draw, acobbD(g,h,draw)) / card(draw) ;
-acobbD_mv(g,h,"stdev") = sqrt(sum(draw, sqr(acobbD(g,h,draw) - acobbD_mv(g,h,"mean")))/(card(draw)-1)) ;
-shcobbD_mv(g,f,h,"mean") = sum(draw, shcobbD(g,f,h,draw)) / card(draw) ;
-shcobbD_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(shcobbD(g,f,h,draw) - shcobbD_mv(g,f,h,"mean")))/(card(draw)-1)) ;
+pshiftD_mv(g,h,"mean") = sum(draw, pshiftD(g,h,draw)) / card(draw) ;
+pshiftD_mv(g,h,"stdev") = sqrt(sum(draw, sqr(pshiftD(g,h,draw) - pshiftD_mv(g,h,"mean")))/(card(draw)-1)) ;
+fshareD_mv(g,f,h,"mean") = sum(draw, fshareD(g,f,h,draw)) / card(draw) ;
+fshareD_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(fshareD(g,f,h,draw) - fshareD_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 rD_mv(g,f,h,"mean") = sum(draw, rD(g,f,h,draw)) / card(draw) ;
 rD_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(rD(g,f,h,draw) - rD_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 wvD_mv(f,v,"mean") = sum(draw, wvD(f,v,draw)) / card(draw) ;
@@ -648,8 +648,8 @@ endowD_mv(f,h,"mean") = sum(draw, endowD(f,h,draw)) / card(draw) ;
 endowD_mv(f,h,"stdev") = sqrt(sum(draw, sqr(endowD(f,h,draw) - endowD_mv(f,h,"mean")))/(card(draw)-1)) ;
 qcD_mv(g,h,"mean") = sum(draw, qcD(g,h,draw)) / card(draw) ;
 qcD_mv(g,h,"stdev") = sqrt(sum(draw, sqr(qcD(g,h,draw) - qcD_mv(g,h,"mean")))/(card(draw)-1)) ;
-alphaD_mv(g,h,"mean") = sum(draw, alphaD(g,h,draw)) / card(draw) ;
-alphaD_mv(g,h,"stdev") = sqrt(sum(draw, sqr(alphaD(g,h,draw) - alphaD_mv(g,h,"mean")))/(card(draw)-1)) ;
+eshareD_mv(g,h,"mean") = sum(draw, eshareD(g,h,draw)) / card(draw) ;
+eshareD_mv(g,h,"stdev") = sqrt(sum(draw, sqr(eshareD(g,h,draw) - eshareD_mv(g,h,"mean")))/(card(draw)-1)) ;
 yD_mv(h,"mean") = sum(draw, yD(h,draw)) / card(draw) ;
 yD_mv(h,"stdev") = sqrt(sum(draw, sqr(yD(h,draw) - yD_mv(h,"mean")))/(card(draw)-1)) ;
 tyD_mv("mean") = sum(draw, tyD(draw)) / card(draw) ;
@@ -667,8 +667,8 @@ criD_mv(v,f,"stdev") = sqrt(sum(draw, sqr(criD(v,f,draw) - criD_mv(v,f,"mean")))
 
 ryD_mv(h,"mean") = sum(draw, ryD(h,draw)) / card(draw) ;
 ryD_mv(h,"stdev") = sqrt(sum(draw, sqr(ryD(h,draw) - ryD_mv(h,"mean")))/(card(draw)-1)) ;
-*cminD_mv(g,h,"mean") = sum(draw, cminD(g,h,draw)) / card(draw) ;
-*cminD_mv(g,h,"stdev") = sqrt(sum(draw, sqr(cminD(g,h,draw) - cminD_mv(g,h,"mean")))/(card(draw)-1)) ;
+*eminD_mv(g,h,"mean") = sum(draw, eminD(g,h,draw)) / card(draw) ;
+*eminD_mv(g,h,"stdev") = sqrt(sum(draw, sqr(eminD(g,h,draw) - eminD_mv(g,h,"mean")))/(card(draw)-1)) ;
 trinD_mv(h,"mean") = sum(draw, trinD(h,draw)) / card(draw) ;
 trinD_mv(h,"stdev") = sqrt(sum(draw, sqr(trinD(h,draw) - trinD_mv(h,"mean")))/(card(draw)-1)) ;
 troutD_mv(h,"mean") = sum(draw, troutD(h,draw)) / card(draw) ;
@@ -703,11 +703,11 @@ zfmsD_mv(f,"mean") = sum(draw, zfmsD(f,draw)) / card(draw) ;
 zfmsD_mv(f,"stdev") = sqrt(sum(draw, sqr(zfmsD(f,draw) - zfmsD_mv(f,"mean")))/(card(draw)-1)) ;
 
 display pvD_mv, pzD_mv, phD_mv, pvaD_mv, qvaD_mv, qpD_mv, tqpD_mv, ttqpD_mv, fdD_mv, idD_mv, rD_mv, wvD_mv, wzD_mv, vashD_mv, fixfacD_mv,
-        exincD_mv, endowD_mv, qcD_mv, alphaD_mv, yD_mv, cpiD_mv, vcpiD_mv,  ryD_mv, tyD_mv, tryD_mv,  trinD_mv, troutD_mv, trinshD_mv,
+        exincD_mv, endowD_mv, qcD_mv, eshareD_mv, yD_mv, cpiD_mv, vcpiD_mv,  ryD_mv, tyD_mv, tryD_mv,  trinD_mv, troutD_mv, trinshD_mv,
         troutshD_mv, hfdD_mv, vfdD_mv, zfdD_mv, hmsD_mv, vmsD_mv, zmsD_mv, hfmsD_mv, vfmsD_mv, zfmsD_mv
-     , acobbD_mv, shcobbD_mv
+     , pshiftD_mv, fshareD_mv
 savD_mv, exprocD_mv;
-*, idshD_mv, tidshD_mv, cminD_mv,
+*, idshD_mv, tidshD_mv, eminD_mv,
 
 parameter
 * mean and stdev of starting matrix
@@ -722,8 +722,8 @@ tqpPC_mv(g,mv)        mean and stdev of % change in quantity produced total
 ttqpPC_mv(mv)
 fdPC_mv(g,f,h,mv)     mean and stdev of % change in factor demand
 idPC_mv(g,gg,h,mv)    mean and stdev of % change in intermediate demand
-acobbPC_mv(g,h,mv)    mean and stdev of % change in cobb-douglas shifter
-shcobbPC_mv(g,f,h,mv) mean and stdev of % change in cobb-douglas shares
+pshiftPC_mv(g,h,mv)    mean and stdev of % change in cobb-douglas shifter
+fsharePC_mv(g,f,h,mv) mean and stdev of % change in cobb-douglas shares
 rPC_mv(g,f,h,mv)      mean and stdev of % change in rent for fixed factors
 wvPC_mv(f,v,mv)       mean and stdev of % change in village-wide wage for tradable factors
 wzPC_mv(f,mv)         mean and stdev of % change in zoi-wide wage for tradable factors
@@ -734,13 +734,13 @@ fixfacPC_mv(g,f,h,mv) mean and stdev of % change in fixed factor demand
 exincPC_mv(h,mv)      mean and stdev of % change in exogenous income
 endowPC_mv(f,h,mv)    mean and stdev of % change in endowment
 qcPC_mv(g,h,mv)       mean and stdev of % change in level of consumption
-alphaPC_mv(g,h,mv)    mean and stdev of % change in consumption shares
+esharePC_mv(g,h,mv)    mean and stdev of % change in consumption shares
 yPC_mv(h,mv)          mean and stdev of % change in income of household
 cpiPC_mv(h,mv)        mean and stdev of % change cpi of household
 vcpiPC_mv(v,mv)       mean and stdev of % change cpi of village
 criPC_mv(v,f,mv)       mean and stdev of % change cri of village
 ryPC_mv(h,mv)         mean and stdev of % change real income of household
-cminPC_mv(g,h,mv)     mean and stdev of % change in incompressible demand
+eminPC_mv(g,h,mv)     mean and stdev of % change in incompressible demand
 trinPC_mv(h,mv)       mean and stdev of % change in transfers in - received
 troutPC_mv(h,mv)      mean and stdev of % change in transfers out - given
 savPC_mv(h,mv)        mean and stdev of % change savings
@@ -777,10 +777,10 @@ fdPC_mv(g,f,h,"mean") = sum(draw, fdPC(g,f,h,draw)) / card(draw) ;
 fdPC_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(fdPC(g,f,h,draw) - fdPC_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 idPC_mv(g,gg,h,"mean") = sum(draw, idPC(g,gg,h,draw)) / card(draw) ;
 idPC_mv(g,gg,h,"stdev") = sqrt(sum(draw, sqr(idPC(g,gg,h,draw) - idPC_mv(g,gg,h,"mean")))/(card(draw)-1)) ;
-acobbPC_mv(g,h,"mean") = sum(draw, acobbPC(g,h,draw)) / card(draw) ;
-acobbPC_mv(g,h,"stdev") = sqrt(sum(draw, sqr(acobbPC(g,h,draw) - acobbPC_mv(g,h,"mean")))/(card(draw)-1)) ;
-shcobbPC_mv(g,f,h,"mean") = sum(draw, shcobbPC(g,f,h,draw)) / card(draw) ;
-shcobbPC_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(shcobbPC(g,f,h,draw) - shcobbPC_mv(g,f,h,"mean")))/(card(draw)-1)) ;
+pshiftPC_mv(g,h,"mean") = sum(draw, pshiftPC(g,h,draw)) / card(draw) ;
+pshiftPC_mv(g,h,"stdev") = sqrt(sum(draw, sqr(pshiftPC(g,h,draw) - pshiftPC_mv(g,h,"mean")))/(card(draw)-1)) ;
+fsharePC_mv(g,f,h,"mean") = sum(draw, fsharePC(g,f,h,draw)) / card(draw) ;
+fsharePC_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(fsharePC(g,f,h,draw) - fsharePC_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 rPC_mv(g,f,h,"mean") = sum(draw, rPC(g,f,h,draw)) / card(draw) ;
 rPC_mv(g,f,h,"stdev") = sqrt(sum(draw, sqr(rPC(g,f,h,draw) - rPC_mv(g,f,h,"mean")))/(card(draw)-1)) ;
 wvPC_mv(f,v,"mean") = sum(draw, wvPC(f,v,draw)) / card(draw) ;
@@ -808,8 +808,8 @@ endowPC_mv(f,h,"mean") = sum(draw, endowPC(f,h,draw)) / card(draw) ;
 endowPC_mv(f,h,"stdev") = sqrt(sum(draw, sqr(endowPC(f,h,draw) - endowPC_mv(f,h,"mean")))/(card(draw)-1)) ;
 qcPC_mv(g,h,"mean") = sum(draw, qcPC(g,h,draw)) / card(draw) ;
 qcPC_mv(g,h,"stdev") = sqrt(sum(draw, sqr(qcPC(g,h,draw) - qcPC_mv(g,h,"mean")))/(card(draw)-1)) ;
-alphaPC_mv(g,h,"mean") = sum(draw, alphaPC(g,h,draw)) / card(draw) ;
-alphaPC_mv(g,h,"stdev") = sqrt(sum(draw, sqr(alphaPC(g,h,draw) - alphaPC_mv(g,h,"mean")))/(card(draw)-1)) ;
+esharePC_mv(g,h,"mean") = sum(draw, esharePC(g,h,draw)) / card(draw) ;
+esharePC_mv(g,h,"stdev") = sqrt(sum(draw, sqr(esharePC(g,h,draw) - esharePC_mv(g,h,"mean")))/(card(draw)-1)) ;
 yPC_mv(h,"mean") = sum(draw, yPC(h,draw)) / card(draw) ;
 yPC_mv(h,"stdev") = sqrt(sum(draw, sqr(yPC(h,draw) - yPC_mv(h,"mean")))/(card(draw)-1)) ;
 cpiPC_mv(h,"mean") = sum(draw, cpiPC(h,draw)) / card(draw) ;
@@ -821,8 +821,8 @@ criPC_mv(v,f,"stdev") = sqrt(sum(draw, sqr(criPC(v,f,draw) - criPC_mv(v,f,"mean"
 
 ryPC_mv(h,"mean") = sum(draw, ryPC(h,draw)) / card(draw) ;
 ryPC_mv(h,"stdev") = sqrt(sum(draw, sqr(ryPC(h,draw) - ryPC_mv(h,"mean")))/(card(draw)-1)) ;
-*cminPC_mv(g,h,"mean") = sum(draw, cminPC(g,h,draw)) / card(draw) ;
-*cminPC_mv(g,h,"stdev") = sqrt(sum(draw, sqr(cminPC(g,h,draw) - cminPC_mv(g,h,"mean")))/(card(draw)-1)) ;
+*eminPC_mv(g,h,"mean") = sum(draw, eminPC(g,h,draw)) / card(draw) ;
+*eminPC_mv(g,h,"stdev") = sqrt(sum(draw, sqr(eminPC(g,h,draw) - eminPC_mv(g,h,"mean")))/(card(draw)-1)) ;
 trinPC_mv(h,"mean") = sum(draw, trinPC(h,draw)) / card(draw) ;
 trinPC_mv(h,"stdev") = sqrt(sum(draw, sqr(trinPC(h,draw) - trinPC_mv(h,"mean")))/(card(draw)-1)) ;
 troutPC_mv(h,"mean") = sum(draw, troutPC(h,draw)) / card(draw) ;
@@ -858,10 +858,10 @@ zfmsPC_mv(f,"stdev") = sqrt(sum(draw, sqr(zfmsPC(f,draw) - zfmsPC_mv(f,"mean")))
 
 
 display pvPC_mv, pzPC_mv, phPC_mv, pvaPC_mv, qvaPC_mv, qpPC_mv, fdPC_mv, idPC_mv, rPC_mv, wvPC_mv, wzPC_mv, vashPC_mv, fixfacPC_mv,
-        exincPC_mv, endowPC_mv, qcPC_mv, alphaPC_mv, yPC_mv,  cpiPC_mv, criPC_mv, ryPC_mv, trinPC_mv, troutPC_mv, trinshPC_mv,
+        exincPC_mv, endowPC_mv, qcPC_mv, esharePC_mv, yPC_mv,  cpiPC_mv, criPC_mv, ryPC_mv, trinPC_mv, troutPC_mv, trinshPC_mv,
         troutshPC_mv, hfdPC_mv, vfdPC_mv, zfdPC_mv, hmsPC_mv, vmsPC_mv, zmsPC_mv, hfmsPC_mv, vfmsPC_mv, zfmsPC_mv
-, acobbPC_mv, shcobbPC_mv;
-* idshPC_mv, tidshPC_mv, cminPC_mv,
+, pshiftPC_mv, fsharePC_mv;
+* idshPC_mv, tidshPC_mv, eminPC_mv,
 
 
 * Welfare and efficiency
