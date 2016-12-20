@@ -1,4 +1,4 @@
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 12/15/16 17:45:03 Page 1
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 12/20/16 10:32:58 Page 1
 MYANMAR AQUACULTURE LEWIE MODEL
 C o m p i l a t i o n
 
@@ -1677,7 +1677,7 @@ INCLUDE    D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes/4a_D
 1458   
 1459   
 EXIT D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 12/15/16 17:45:03 Page 2
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 12/20/16 10:32:58 Page 2
 MYANMAR AQUACULTURE LEWIE MODEL
 Include File Summary
 
@@ -1708,8 +1708,8 @@ Include File Summary
                                           LEWIE_github\GAMS\AQ_LEWIE_main.gms
 
 
-COMPILATION TIME     =        0.920 SECONDS      3 MB  24.5.4 r54492 WEX-WEI
-GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 12/15/16 17:45:03 Page 3
+COMPILATION TIME     =        1.045 SECONDS      3 MB  24.5.4 r54492 WEX-WEI
+GAMS 24.5.4  r54492 Released Oct 15, 2015 WEX-WEI x86 64bit/MS Windows 12/20/16 10:32:58 Page 3
 MYANMAR AQUACULTURE LEWIE MODEL
 E x e c u t i o n
 
@@ -8588,7 +8588,7 @@ INST.     .AgLL                                                          -1710
 
 
 
-EXECUTION TIME       =        1.170 SECONDS      5 MB  24.5.4 r54492 WEX-WEI
+EXECUTION TIME       =        2.434 SECONDS      5 MB  24.5.4 r54492 WEX-WEI
 
 
 USER: Computer Services                              G150407:1601CO-GEN
