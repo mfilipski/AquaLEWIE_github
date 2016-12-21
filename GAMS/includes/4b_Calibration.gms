@@ -322,8 +322,6 @@ tqcid_dr(g,draw) = tid_dr(g,draw) + tqc_dr(g,draw) ;
 display tqc_dr, tid_dr, tqcid_dr, tqp_dr ;
 
 
-
-
 * FACTOR ENDOWMENTS :
 * --------------------------
 * for fixed factors, endowment is just factor use:

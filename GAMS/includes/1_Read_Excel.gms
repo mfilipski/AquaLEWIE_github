@@ -146,7 +146,7 @@ xlrevsh_zoi(g,h) = alldata("revsh_zoi",g,"","",h) ;
 xlrevsh_rol(g,h) = alldata("revsh_rol",g,"","",h) ;
 xlrevsh_row(g,h) = alldata("revsh_row",g,"","",h) ;
 
-xlVA2IDsh(gg,g,h) = alldata("VA2IDsh",g,gg,"",h) ;
+*xlVA2IDsh(gg,g,h) = alldata("VA2IDsh",g,gg,"",h) ;
 
 xlwrkagepop(h)      = alldata("wrkagepop", "","","",h)
 
@@ -154,5 +154,5 @@ xlwrkagepop(h)      = alldata("wrkagepop", "","","",h)
 display xlidsh, xlfshare, xlfshare_se,  xleshare, xlemin, xlendow, xlROCendow, xlROWendow,
      xlTROUTsh, xlTRINsh, xlTROUTsh_se, xlTRINsh_se, xlSAVsh, xlSAVsh_se,
      xlexpoutsh, xlremit, xlothertransfers, xlnhh, xlhhinc, xlhhexp, xlhhsize, xlrevsh_vil, xlrevsh_zoi,
-     xlrevsh_rol, xlrevsh_row, xlVA2IDsh ;
-*xlpshift, xlpshift_se,
+     xlrevsh_rol, xlrevsh_row ;
+*xlpshift, xlpshift_se,, xlVA2IDsh

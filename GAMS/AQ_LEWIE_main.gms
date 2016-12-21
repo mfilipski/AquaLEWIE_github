@@ -14,7 +14,7 @@ option limcol=30 ;
 
 
 * name of the excel file (WITHOUT .xlsx extension):
-$setglobal data_input "AQ_LEWIE_InputSheet_v3"
+$setglobal data_input "AQ_LEWIE_InputSheet_v4"
 * name of index sheet (village-specific):
 $setglobal input_sheet_index "Index!A2"
 * name of include file containing village-specific assumptions
@@ -36,7 +36,7 @@ shSCTprod = 0 ;
 
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr11/ ;
+set draw /dr0*dr2/ ;
 
 
 * Choose simulation parameters:
@@ -97,16 +97,16 @@ $include includes/%assumptions_file%
 * ========================= STEP 3 - MODEL   =====================================================
 * ================================================================================================
 * ================================================================================================
-
 $include includes/3_Model.gms
+
 
 * ================================================================================================
 * ================================================================================================
 * ========================= STEP 4 - CALIBRATION  ================================================
 * ================================================================================================
 * ================================================================================================
-
 $include includes/4a_DefineAllParameters.gms
+
 
 
 * ================================================================================================
@@ -114,9 +114,8 @@ $include includes/4a_DefineAllParameters.gms
 * ====================== STEP 4 - CALIBRATE THE MODEL  ===========================================
 * ================================================================================================
 * ================================================================================================
-
-*$exit
 $include includes/4b_Calibration.gms
+
 
 
 * ================================================================================================
@@ -124,7 +123,6 @@ $include includes/4b_Calibration.gms
 * ===================== STEP 4 - SOLVE THE MODEL IN A LOOP OVER PARAMETERS DRAWS =================
 * ================================================================================================
 * ================================================================================================
-
 
 * The zero draw is using the mean values. Starting after dr1, those values are randomely drawn.
 loop(draw,
