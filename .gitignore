@@ -66,6 +66,9 @@ GAMS/UG_LEWIE_Rmj_OneDol_Food.gms
 *.~gm
 *.lst
 *.lxi
+GAMS/225*
+*.xlsx
+*.gdx
 
 *.~gm
 GAMS/AQ_LEWIE_main.lxi
