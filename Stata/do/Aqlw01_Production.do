@@ -18,7 +18,7 @@ global rawdata "D:\Docs\Myanmar\Data\AquaAgri\version0_9July16_v14"
 global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
 global hhgroup "$madedata\hhgroups.dta"
 
-global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v2"
+global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v4"
 
 cd $workdir 
 
@@ -192,9 +192,6 @@ global rhscrop "li_labor li_land li_capit li_other"
 global cstrcrop "li_labor+li_land+li_capit+li_other"
 
 egen y = rowtotal(gross_sale_monsoon gross_sale_dry)
-
-
-
 
 
 merge 1:1 eahh using $hhgroup 

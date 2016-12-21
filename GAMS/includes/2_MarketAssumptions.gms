@@ -54,11 +54,11 @@ set
 
 * accounts not in the matrix
 sets
-     v        villages / AQUA Aqua Cluster
-                         AGRI Agri Cluster/
+     v        villages / AQUA Aqua Cluster /
+*                         AGRI Agri Cluster/
 
      maphv mapping household to their village / (AqFSm,AqFBg,AqAg, AqLL).AQUA
-                                                (AgAg, AgLL).AGRI
+*                                                (AgAg, AgLL).AGRI
 /
 ;
 

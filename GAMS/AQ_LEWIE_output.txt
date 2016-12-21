@@ -15,32 +15,28 @@ iterations                             ;         3.00
 
 RESULTS IN LEVELS
 Total income Effect
-Nominal level                          ;57.410
-        (CI in millions)               ;(55.967,59.790)
-        real                           ; 1.1E+2
-        (CI in millions)               ;(99.698,1.1E+2)
+Nominal level                          ;-1.E+2
+        (CI in millions)               ;(-4.E+2,39.108)
+        real                           ; -2.E+2
+        (CI in millions)               ;(-6.E+2,80.563)
 
 Delta Household income (in Loti)
-AqFSm       nominal                         ;9.684
-             real                           ;22.225
-AqFBg       nominal                         ;1.636
-             real                           ;3.805
-AqAg        nominal                         ;38.271
-             real                           ;47.782
-AqLL        nominal                         ;7.819
-             real                           ;32.741
-AgAg        nominal                         ;0.000
-             real                           ;0.000
-AgLL        nominal                         ;0.000
-             real                           ;0.000
+AqFSm       nominal                         ;-3.E+1
+             real                           ;-5.E+1
+AqFBg       nominal                         ;-6.651
+             real                           ;-8.175
+AqAg        nominal                         ;-3.918
+             real                           ;-7.732
+AqLL        nominal                         ;-1.E+2
+             real                           ;-1.E+2
 
 Production Effects (in Loti)
-crop                                        ;72.129
+crop                                        ;91.044
 meat                                        ;0.000
-fish                                        ;-0.266
-prod                                        ;-0.211
-ret                                         ;19.450
-ser                                         ;1.480
+fish                                        ;2.449
+prod                                        ;0.183
+ret                                         ;-0.207
+ser                                         ;-297.346
 
 
 MULTIPLIERS
@@ -63,12 +59,6 @@ AqAg        nominal                         ; UNDF
 AqLL        nominal                         ; UNDF
              real                           ; UNDF
              (CI)                      ;( 0.00, 0.00)
-AgAg        nominal                         ; UNDF
-             real                           ; UNDF
-             (CI)                      ;( 0.00, 0.00)
-AgLL        nominal                         ; UNDF
-             real                           ; UNDF
-             (CI)                      ;( 0.00, 0.00)
 
 Production multiplier
 crop                                        ; 0.00
@@ -89,105 +79,70 @@ Village-wide income multiplier
 AQUA        nominal                         ;        0.00
              real                           ;  0.00
              (CI)                      ;(  0.00,  0.00)
-AGRI        nominal                         ;        0.00
-             real                           ;  0.00
-             (CI)                      ;(  0.00,  0.00)
 
-Rent index forLand        inAQUA            ;0.0614%
-             (CI)                      ;(  0.06%,  0.07%)
-Rent index forCapital     inAQUA            ;0.3383%
-             (CI)                      ;(  0.24%,  0.48%)
-Rent index forLand        inAGRI            ;0.0000%
-             (CI)                      ;(  0.00%,  0.00%)
-Rent index forCapital     inAGRI            ;0.0000%
-             (CI)                      ;(  0.00%,  0.00%)
+Rent index forLand        inAQUA            ;0.0825%
+             (CI)                      ;(  0.07%,  0.09%)
+Rent index forCapital     inAQUA            ;-0.E+1%
+             (CI)                      ;( -2.95%,  0.14%)
 
 Capital Rent index  - by crops and household
 crop        cap. in household AqFSm         ;  0.00%
 crop        cap. in household AqFBg         ;  0.00%
-crop        cap. in household AqAg          ; 16.65%
+crop        cap. in household AqAg          ; 22.91%
 crop        cap. in household AqLL          ;  0.00%
-crop        cap. in household AgAg          ;  0.00%
-crop        cap. in household AgLL          ;  0.00%
 meat        cap. in household AqFSm         ;  0.00%
 meat        cap. in household AqFBg         ;  0.00%
 meat        cap. in household AqAg          ;  0.00%
 meat        cap. in household AqLL          ;  0.00%
-meat        cap. in household AgAg          ;  0.00%
-meat        cap. in household AgLL          ;  0.00%
 fish        cap. in household AqFSm         ;  0.00%
 fish        cap. in household AqFBg         ;  0.00%
 fish        cap. in household AqAg          ;  0.00%
 fish        cap. in household AqLL          ;  0.00%
-fish        cap. in household AgAg          ;  0.00%
-fish        cap. in household AgLL          ;  0.00%
-prod        cap. in household AqFSm         ; -0.02%
-prod        cap. in household AqFBg         ; -0.02%
-prod        cap. in household AqAg          ; -0.02%
-prod        cap. in household AqLL          ; -0.03%
-prod        cap. in household AgAg          ;  0.00%
-prod        cap. in household AgLL          ;  0.00%
-ret         cap. in household AqFSm         ;  0.26%
-ret         cap. in household AqFBg         ;  0.29%
-ret         cap. in household AqAg          ;  0.33%
-ret         cap. in household AqLL          ;  0.26%
-ret         cap. in household AgAg          ;  0.00%
-ret         cap. in household AgLL          ;  0.00%
-ser         cap. in household AqFSm         ;  0.28%
-ser         cap. in household AqFBg         ;  0.20%
-ser         cap. in household AqAg          ;  0.21%
-ser         cap. in household AqLL          ;  0.22%
-ser         cap. in household AgAg          ;  0.00%
-ser         cap. in household AgLL          ;  0.00%
+prod        cap. in household AqFSm         ;  0.01%
+prod        cap. in household AqFBg         ;  0.00%
+prod        cap. in household AqAg          ;  0.01%
+prod        cap. in household AqLL          ;  0.01%
+ret         cap. in household AqFSm         ; -0.01%
+ret         cap. in household AqFBg         ; -0.01%
+ret         cap. in household AqAg          ; -0.01%
+ret         cap. in household AqLL          ; -0.01%
+ser         cap. in household AqFSm         ;  0.12%
+ser         cap. in household AqFBg         ;  0.13%
+ser         cap. in household AqAg          ;-66.67%
+ser         cap. in household AqLL          ;-33.31%
 
 Effect on prices by activity and village
-price inAQUA         crop                   ; -1.27%
-             (CI)                      ;( -1.36%, -1.19%
+price inAQUA         crop                   ; -0.01%
+             (CI)                      ;( -0.01%,  0.00%
 price inAQUA         meat                   ;  0.00%
              (CI)                      ;(  0.00%,  0.00%
 price inAQUA         fish                   ;  0.00%
              (CI)                      ;(  0.00%,  0.00%
 price inAQUA         prod                   ;  0.00%
              (CI)                      ;(  0.00%,  0.00%
-price inAQUA         ret                    ;  0.08%
-             (CI)                      ;(  0.07%,  0.08%
-price inAQUA         ser                    ;  0.10%
-             (CI)                      ;(  0.10%,  0.11%
+price inAQUA         ret                    ;  0.00%
+             (CI)                      ;( -0.01%,  0.00%
+price inAQUA         ser                    ;  0.04%
+             (CI)                      ;(  0.00%,  0.09%
 price inAQUA         OUT                    ;  0.00%
-             (CI)                      ;(  0.00%,  0.00%
-price inAGRI         crop                   ;  0.00%
-             (CI)                      ;(  0.00%,  0.00%
-price inAGRI         meat                   ;  0.00%
-             (CI)                      ;(  0.00%,  0.00%
-price inAGRI         fish                   ;  0.00%
-             (CI)                      ;(  0.00%,  0.00%
-price inAGRI         prod                   ;  0.00%
-             (CI)                      ;(  0.00%,  0.00%
-price inAGRI         ret                    ;  0.00%
-             (CI)                      ;(  0.00%,  0.00%
-price inAGRI         ser                    ;  0.00%
-             (CI)                      ;(  0.00%,  0.00%
-price inAGRI         OUT                    ;  0.00%
              (CI)                      ;(  0.00%,  0.00%
 
 Effect on wages
-wage inAQUA         Labor                   ;  0.00%
-             (CI)                      ;(  0.00%,  0.00%
-wage inAGRI         Labor                   ;  0.00%
-             (CI)                      ;(  0.00%,  0.00%
+wage inAQUA         Labor                   ; -0.01%
+             (CI)                      ;( -0.02%,  0.00%
 
-Change in quantity producedcrop             ;72.13
-                                       ;(65.70 ,77.96 )
+Change in quantity producedcrop             ;91.04
+                                       ;(80.06 ,98.62 )
 meat                                        ;0.00
                                        ;(0.00  ,0.00  )
-fish                                        ;-0.27
-                                       ;(-0.36 ,-0.19 )
-prod                                        ;-0.21
-                                       ;(-0.29 ,-0.16 )
-ret                                         ;19.45
-                                       ;(18.09 ,20.77 )
-ser                                         ;1.48
-                                       ;(1.27  ,1.62  )
+fish                                        ;2.45
+                                       ;(0.02  ,5.49  )
+prod                                        ;0.18
+                                       ;(0.00  ,0.46  )
+ret                                         ;-0.21
+                                       ;(-0.51 ,0.10  )
+ser                                         ;-3.E+2
+                                       ;(-7.E+2,-15.19)
 
 MULTIPLIERS with Capital (land) included
 Total income multiplier
@@ -213,43 +168,28 @@ AqLL        nominal                         ;  0.00
              real                           ;  0.00
 
                                        ;(  0.00,  0.00)
-AgAg        nominal                         ;  0.00
-             real                           ;  0.00
-
-                                       ;(  0.00,  0.00)
-AgLL        nominal                         ;  0.00
-             real                           ;  0.00
-
-                                       ;(  0.00,  0.00)
 
 Increase in Demand from outside the zoi:
 AqFSm       direct hh expense               ;0.00000
 AqFBg       direct hh expense               ;0.00000
 AqAg        direct hh expense               ;0.00000
 AqLL        direct hh expense               ;0.00000
-AgAg        direct hh expense               ;0.00000
-AgLL        direct hh expense               ;0.00000
 Increase Demand through local activities:
-AQUA        village demand                  ;0.00000AGRI        village demand
+AQUA        village demand                  ;7.48E+1AQUA        village demand
 
 Hh CPI increase
-AqFSm        cpi increase in %              ;-0.1153
-                                       ;(-0.1391,-0.0889)
-AqFBg        cpi increase in %              ;-0.0242
-                                       ;(-0.0267,-0.0210)
-AqAg         cpi increase in %              ;-0.2029
-                                       ;(-0.2061,-0.1978)
-AqLL         cpi increase in %              ;-0.2374
-                                       ;(-0.2640,-0.2101)
-AgAg         cpi increase in %              ;0.00000
-                                       ;(0.00000,0.00000)
-AgLL         cpi increase in %              ;0.00000
-                                       ;(0.00000,0.00000)
-             village cpi increase           ; -0.14%
+AqFSm        cpi increase in %              ;0.00243
+                                       ;(-0.0001,0.00601)
+AqFBg        cpi increase in %              ;0.00189
+                                       ;(0.00023,0.00393)
+AqAg         cpi increase in %              ;0.00048
+                                       ;(-0.0006,0.00219)
+AqLL         cpi increase in %              ;0.00057
+                                       ;(-0.0006,0.00223)
              village cpi increase           ;  0.00%
 
 
-Increase in zoi-row trade                   ;  28.346
-(CI)                                   ;( 27.408, 29.726)
+Increase in zoi-row trade                   ; 112.680
+(CI)                                   ;( 18.563,256.460)
 
 

@@ -21,6 +21,9 @@ $setglobal input_sheet_index "Index!A2"
 $setglobal assumptions_file  "2_MarketAssumptions.gms"
 * name of output file for text output:
 $setglobal output_txt_file "AQ_LEWIE_output"
+* name of intermediate SAM output:
+$setglobal autosam_file "AutoSAM_aqua.xlsx"
+
 
 * choose the elasticity of supply of labor - hired and family
 $setglobal hlse 100
@@ -75,9 +78,6 @@ $setglobal new_land 0
 * ==================== STEP 1 - READ IN DATA FROM EXCEL ==========================================
 * ================================================================================================
 * ================================================================================================
-
-
-
 $include includes/1_Read_Excel.gms
 
 
