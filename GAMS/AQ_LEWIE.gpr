@@ -33,31 +33,31 @@
 [RP:INCLUDES/4B_CALIBRATION]
 1=
 
-[RP:4B_CALIBRATION]
-1=
-
 [RP:3_MODEL]
-1=
-
-[RP:7_OUTPUT_TO_TEXT_FILE]
 1=
 
 [RP:1_READ_EXCEL]
 1=
 
+[RP:AQ_LEWIE_MAIN]
+1=
+
 [RP:2_MARKETASSUMPTIONS]
-1=
-
-[RP:4A_DEFINEALLPARAMETERS]
-1=
-
-[RP:6_OUTPUT_PARAMETERS]
 1=
 
 [RP:5_GENERIC_SIMULATION]
 1=
 
-[RP:AQ_LEWIE_MAIN]
+[RP:7_OUTPUT_TO_TEXT_FILE]
+1=
+
+[RP:6_OUTPUT_PARAMETERS]
+1=
+
+[RP:4B_CALIBRATION]
+1=
+
+[RP:4A_DEFINEALLPARAMETERS]
 1=
 
 [MRUFILES]
@@ -82,9 +82,9 @@ FILE7=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\4b_Calibr
 FILE8=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\5_Generic_Simulation.gms
 FILE9=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\6_Output_Parameters.gms
 FILE10=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7_Output_to_text_file.gms
-FILE11=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_output.txt
+FILE11=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
 MAXIM=0
-TOP=0
-LEFT=462
-HEIGHT=947
-WIDTH=1437
+TOP=4
+LEFT=392
+HEIGHT=924
+WIDTH=1504

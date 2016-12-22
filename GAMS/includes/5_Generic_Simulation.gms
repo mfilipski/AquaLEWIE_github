@@ -53,8 +53,8 @@ if(%budgetconstraint% = 1,
           exinc(h) = exinc(h) + transfer(h)+ newremits(h) ;
 );
 
-*transfer(h) = 1;
-*exinc(haq) = exinc(haq) + transfer(haq) ;
+transfer(h) = 1;
+exinc(haq) = exinc(haq) + transfer(haq) ;
 
 * Transfer of land to the household:
 *fixfac(g,"Land",hfood) = fixfac(g,"Land",hfood) * (1+ %new_land_food%);
@@ -73,4 +73,4 @@ if(%budgetconstraint% = 1,
 * 2) 10% increase in shift parameter (technology) for the treated household
 *acobb("crop",h)$ht(h) = acobb("crop",h)*1.1 ;
 *acobb("crop",h)$(maphv(h,"T")) = acobb("crop",h)*1.1 ;
-pshift("crop",h)$hag(h) = pshift("crop",h)*1.1 ;
+*pshift("crop",h)$hag(h) = pshift("crop",h)*1.1 ;

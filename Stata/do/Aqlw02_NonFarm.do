@@ -325,7 +325,7 @@ matrix osh = r(Stat1) \ r(Stat2) \ r(Stat3)
 matrix iosh = ish , osh 
 matrix colname iosh = "intermediate inputs share"  "share of inputs bought outside"
 mat l iosh 
- 
+
 
 putexcel B20 = matrix(iosh, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
  
@@ -337,6 +337,10 @@ merge m:1 eahhid using $madedata\hhgroups
 tab _m 
 drop if _m == 2 
 drop _m
+
+tab ysale lwgroup
+bysort btype: tab ysale lwgroup
+crash 
  
 collapse (sum) ysale , by(lwgroup btype) 
 list 
@@ -351,22 +355,20 @@ drop if btype==.
 
 * 
 decode lwgroup , gen(groupname)
-levelsof groupname, local(names)
-*mkmat ysale , matrix(m) rowname(groupname) 
-*mat  l m
-
 list
 
-keep ysale2 btype lwgroup 
-reshape wide ysale2, i(btype) j(lwgroup)
+keep ysale2 btype  lwgroup 
+
+reshape wide ysale2, i(btype) j(lwgroup) 
 l
+*renvars ysale*,  subs("ysale2" "")
+
 decode btype, gen(bnames)
-mkmat ysale*, matrix(m) rownames(bnames)
+mkmat ysal*, matrix(m) rownames(bnames)
 matrix list m
-di `names'
-matrix colnames m =  `names'
-matrix list m 
- 
+matrix colnames m = "AquaFSm" "AquaFBg" "AquaAg" "AquaLL" "AgriAg" "AgriLL" 
+matrix list m
+
 putexcel B2 = matrix(m, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
 
  
