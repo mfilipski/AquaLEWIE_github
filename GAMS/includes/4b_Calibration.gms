@@ -194,7 +194,7 @@ display tqc_dr ;
 *display tempid_dr ;
 
 * quantity produced
-qp_dr(g,h,draw) = xlqp(g,h) ;
+qp_dr(g,h,draw) = xlqp(g,h)*xlnhh(h) ;
 
 * directly augment by the intermediate share?
 *qp_dr(g,h,draw) = xlqp(g,h)*(1+sum(gg,idsh_dr(g,gg,h,draw))) ;
@@ -338,11 +338,12 @@ parameter
         shfl(h) share of village family labor coming from a household
         shhl(h) share of zoi hired labor coming from a household ;
 * shfl(h) = xlendow("Labor",h)/sum((hh,v)$(maphv(hh,v)*maphv(h,v)),xlendow("Labor",hh)) ;
-shfl(h) = xlwrkagepop(h)/sum((hh,v)$(maphv(hh,v)*maphv(h,v)),xlwrkagepop(hh)) ;
+shfl(h) = (xlwrkagepop(h)*xlnhh(h))/sum((hh,v)$(maphv(hh,v)*maphv(h,v)),xlwrkagepop(hh)*xlnhh(hh)) ;
 *shhl(h) = xlendow("Labor",h)/sum(hh,xlendow("Labor",hh)) ;
-shhl(h) = xlwrkagepop(h)/sum(hh,xlwrkagepop(hh)) ;
+shhl(h) = (xlwrkagepop(h)*xlnhh(h))/sum(hh,xlwrkagepop(hh)*xlnhh(hh)) ;
 
 display shhl, shfl ;
+
 
 *endow_dr("FL",h,draw) = shfl(h) * sum((hh,g,v)$(maphv(hh,v)*maphv(h,v)), fd_dr(g,"FL",hh,draw)) ;
 endow_dr("Labor",h,draw) = shfl(h) * sum((hh,g), fd_dr(g,"Labor",hh,draw)) ;

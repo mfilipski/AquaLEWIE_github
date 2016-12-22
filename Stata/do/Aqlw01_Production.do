@@ -18,7 +18,7 @@ global rawdata "D:\Docs\Myanmar\Data\AquaAgri\version0_9July16_v14"
 global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
 global hhgroup "$madedata\hhgroups.dta"
 
-global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v4"
+global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v5"
 
 cd $workdir 
 
@@ -37,7 +37,7 @@ count
 
  
 
-collapse (sum) rev_fish, by (lwgroup) 
+collapse (mean) rev_fish, by (lwgroup) 
 decode lwgroup, gen(gname)
 list 
 mkmat rev_fish, matrix(m) rownames(gname)
@@ -158,7 +158,7 @@ egen y = rowtotal(gross_sale_monsoon gross_sale_dry)
 * Convert to Lahks 
 replace y=y/100000
 decode lwgroup , gen(groupname)
-collapse (sum)  y, by(lwgroup groupname)
+collapse (mean)  y, by(lwgroup groupname)
 mkmat  y , matrix(mm) rownames(groupname) 
 matrix croprev = mm'
 

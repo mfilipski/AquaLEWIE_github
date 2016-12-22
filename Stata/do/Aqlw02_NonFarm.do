@@ -17,7 +17,7 @@ global rawdatav1 "D:\Docs\Myanmar\Data\AquaAgri\version1"
 global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
 global hhgroup "$madedata\hhgroups.dta"
 
-global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v4"
+global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v5"
 
 cd $workdir 
 
@@ -340,9 +340,9 @@ drop _m
 
 tab ysale lwgroup
 bysort btype: tab ysale lwgroup
-crash 
  
-collapse (sum) ysale , by(lwgroup btype) 
+ 
+collapse (mean) ysale , by(lwgroup btype) 
 list 
 
 * Redistribute the "." values: one third into each of the other cats

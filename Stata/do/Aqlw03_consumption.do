@@ -20,7 +20,7 @@ global rawdatav1 "D:\Docs\Myanmar\Data\AquaAgri\version1"
 global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
 global hhgroup "$madedata\hhgroups.dta"
 
-global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v2"
+global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v5"
 global inflat "D:\Docs\Myanmar\DATA\AquaAgri\inflation\MM_Inflation_1997-2016.dta"
  
 cd $workdir 
@@ -83,7 +83,7 @@ label define group2  1 "local crops"  2 "local meat"  3 "local fish" 4 "local pr
 				6 "local services" 7 "everything bought outside"
 label values group2 group2
 
-collapse (sum)  annual_total_f annual_expend1 annual_expend2 annual_expend, by(lwgroup group2)
+collapse (mean)  annual_total_f annual_expend1 annual_expend2 annual_expend, by(lwgroup group2)
 list, sepby(lwgroup)
 keep group lwgroup  annual_expend
 decode lwgroup , gen(gnames)
