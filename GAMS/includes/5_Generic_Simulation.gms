@@ -53,13 +53,15 @@ if(%budgetconstraint% = 1,
           exinc(h) = exinc(h) + transfer(h)+ newremits(h) ;
 );
 
-transfer(h) = 1;
-exinc(haq) = exinc(haq) + transfer(haq) ;
+*transfer(h) = 1;
+*exinc(haq) = exinc(haq) + transfer(haq) ;
 
 * Transfer of land to the household:
 *fixfac(g,"Land",hfood) = fixfac(g,"Land",hfood) * (1+ %new_land_food%);
 *fixfac(g,"land",hcash) = fixfac(g,"Land",hcash) * (1+ %new_land_cash%);
 *fixfac("Fish","Land","AqFSm") = fixfac("Fish","Land","AqFSm") +1 ;
+fixfac("Fish","Land","AqFSm") = fixfac("Fish","Land","AqFSm") +1 ;
+*fixfac("Crop","Land","AqAg") = fixfac("Crop","Land","AqAg") +1 ;
 *fixfac("Crop","Land","AqFSm") = fixfac("Crop","Land","AqFSm") -1 ;
 
 * additional simulations:

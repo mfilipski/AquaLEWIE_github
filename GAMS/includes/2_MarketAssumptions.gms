@@ -34,9 +34,9 @@ set
      fpurch(f) purchased factors /INPUT/
 
 * goods subsets
-     gtv(g)    goods tradable in the village / ret, crop, ser ,  null  /
+     gtv(g)    goods tradable in the village / ret,  ser ,  null  /
      gtz(g)    goods tradable in the zoi   /null /
-     gtw(g)    goods tradable with the rest of the world /meat, fish, prod, out/
+     gtw(g)    goods tradable with the rest of the world /meat, fish,crop, prod, out/
      gp(g)     goods that are produces / crop, fish, prod, ret, ser /
      gag(g)    ag goods /crop, meat, fish/
      gnag(g)   non ag goods /prod, ret, ser/

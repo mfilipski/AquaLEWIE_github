@@ -83,13 +83,20 @@ label define group2  1 "local crops"  2 "local meat"  3 "local fish" 4 "local pr
 				6 "local services" 7 "everything bought outside"
 label values group2 group2
 
+* first the sum by household, then the mean within the group
+collapse (sum)  annual_total_f annual_expend1 annual_expend2 annual_expend, by(lwgroup eahhid group2)
+list, sepby(lwgroup)
+
+* search for outliers: 
+tab annual_expend
+tab annual_expend lwgroup if annual_expend >100
+
 collapse (mean)  annual_total_f annual_expend1 annual_expend2 annual_expend, by(lwgroup group2)
 list, sepby(lwgroup)
+
 keep group lwgroup  annual_expend
 decode lwgroup , gen(gnames)
 rename annual_expend ae 
-levelsof gnames , local(g_names) 
-di `g_names' 
 
 tab lwgroup 
 keep ae group lwgroup 
@@ -100,7 +107,7 @@ list
 decode group2 , gen(items)
 mkmat  ae* , matrix(m)  rownames(items)
 matrix list m  
-matrix colnames m = `g_names' 
+matrix colnames m = "AquaFSm" "AquaFBg" "AquaAg" "AquaLL" "AgriAg" "AgriLL"
 matrix list m  
 
 putexcel B2 = matrix(m, names) using $lewiesheet, sheet("Cons") modify keepcellformat 
