@@ -34,8 +34,7 @@ merge 1:1 eahh using $hhgroup
 drop if _m==2 
 drop _m 
 count
-
- crash 
+ 
 
 collapse (mean) rev_fish, by (lwgroup) 
 decode lwgroup, gen(gname)
