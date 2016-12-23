@@ -35,7 +35,7 @@ drop if _m==2
 drop _m 
 count
 
- 
+ crash 
 
 collapse (mean) rev_fish, by (lwgroup) 
 decode lwgroup, gen(gname)
@@ -158,16 +158,22 @@ egen y = rowtotal(gross_sale_monsoon gross_sale_dry)
 * Convert to Lahks 
 replace y=y/100000
 decode lwgroup , gen(groupname)
-collapse (mean)  y, by(lwgroup groupname)
-mkmat  y , matrix(mm) rownames(groupname) 
+
+* Give non-ag households some production, assuming they use their ag land same as ag people: 
+gen y_pa = y/ld_agown 
+label var y_pa "crop income per acre of ag land"
+egen y_mean = mean(y_pa) , by(cluster)
+* assign imputed production only to groups 1 and 2: 
+gen y_imp = y_mean*ld_agown 
+
+
+
+collapse (mean)  y y_imp, by(lwgroup groupname)
+mkmat  y y_imp, matrix(mm) rownames(groupname) 
 matrix croprev = mm'
-
- 
 mat l croprev 
-
 putexcel B2 = matrix(croprev, names) using $lewiesheet, sheet("Crop") modify keepcellformat 
 
- 
 
 
 /* 4) Agriculture factor shares */

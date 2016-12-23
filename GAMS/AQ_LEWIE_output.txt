@@ -2,7 +2,7 @@ Output file                            ; AQ_LEWIE_output
 Assumptions                     ;
                                             ; K change
                                             ; no tech change
-Elasticity of hl/fl lab supply         ; 100.00/100.00
+Elasticity of hl/fl lab supply         ; 1.00  /1.00
 Liquidity constraint on/off            ; 0
 Village Cluster Markets                ; ret    ,ser    ,Labor  ,
 Treatment and Control Cluster Markets  ;
@@ -15,28 +15,28 @@ iterations                             ;         3.00
 
 RESULTS IN LEVELS
 Total income Effect
-Nominal level                          ;1.954
-        (CI in millions)               ;(1.785 ,2.054 )
-        real                           ; 1.890
-        (CI in millions)               ;(1.735 ,1.985 )
+Nominal level                          ;1.291
+        (CI in millions)               ;(1.173 ,1.451 )
+        real                           ; 1.223
+        (CI in millions)               ;(1.118 ,1.364 )
 
 Delta Household income (in Loti)
-AqFSm       nominal                         ;1.130
-             real                           ;1.122
-AqFBg       nominal                         ;0.016
-             real                           ;0.012
-AqAg        nominal                         ;0.190
-             real                           ;0.174
-AqLL        nominal                         ;0.618
-             real                           ;0.581
+AqFSm       nominal                         ;0.096
+             real                           ;0.088
+AqFBg       nominal                         ;0.006
+             real                           ;0.002
+AqAg        nominal                         ;0.826
+             real                           ;0.809
+AqLL        nominal                         ;0.363
+             real                           ;0.324
 
 Production Effects (in Loti)
-crop                                        ;0.000
+crop                                        ;1.512
 meat                                        ;0.000
-fish                                        ;1.994
-prod                                        ;-0.049
-ret                                         ;0.725
-ser                                         ;0.185
+fish                                        ;-0.033
+prod                                        ;-0.243
+ret                                         ;0.539
+ser                                         ;0.101
 
 
 MULTIPLIERS
@@ -80,21 +80,21 @@ AQUA        nominal                         ;        0.00
              real                           ;  0.00
              (CI)                      ;(  0.00,  0.00)
 
-Rent index forLand        inAQUA            ;-0.000%
+Rent index forLand        inAQUA            ;-0.004%
              (CI)                      ;(  0.00%,  0.00%)
-Rent index forCapital     inAQUA            ;0.0009%
+Rent index forCapital     inAQUA            ;0.0013%
              (CI)                      ;(  0.00%,  0.00%)
 
 Capital Rent index  - by crops and household
 crop        cap. in household AqFSm         ;  0.00%
 crop        cap. in household AqFBg         ;  0.00%
-crop        cap. in household AqAg          ;  0.00%
+crop        cap. in household AqAg          ;  0.25%
 crop        cap. in household AqLL          ;  0.00%
 meat        cap. in household AqFSm         ;  0.00%
 meat        cap. in household AqFBg         ;  0.00%
 meat        cap. in household AqAg          ;  0.00%
 meat        cap. in household AqLL          ;  0.00%
-fish        cap. in household AqFSm         ;  0.01%
+fish        cap. in household AqFSm         ;  0.00%
 fish        cap. in household AqFBg         ;  0.00%
 fish        cap. in household AqAg          ;  0.00%
 fish        cap. in household AqLL          ;  0.00%
@@ -131,41 +131,41 @@ Effect on wages
 wage inAQUA         Labor                   ;  0.00%
              (CI)                      ;(  0.00%,  0.00%
 
-Change in quantity producedcrop             ;0.00
-                                       ;(0.00  ,0.00  )
+Change in quantity producedcrop             ;1.51
+                                       ;(1.35  ,1.63  )
 meat                                        ;0.00
                                        ;(0.00  ,0.00  )
-fish                                        ;1.99
-                                       ;(1.88  ,2.10  )
-prod                                        ;-0.05
-                                       ;(-0.06 ,-0.04 )
-ret                                         ;0.73
-                                       ;(0.66  ,0.78  )
-ser                                         ;0.19
-                                       ;(0.17  ,0.20  )
+fish                                        ;-0.03
+                                       ;(-0.04 ,-0.02 )
+prod                                        ;-0.24
+                                       ;(-0.26 ,-0.23 )
+ret                                         ;0.54
+                                       ;(0.47  ,0.62  )
+ser                                         ;0.10
+                                       ;(0.09  ,0.11  )
 
 MULTIPLIERS with Capital (land) included
 Total income multiplier
-Nominal                                     ;  1.95
-    (CI)                               ;(  1.79,  2.05)
-   Real                                     ;  1.89
-   (CI)                                ;(  1.73,  1.99)
+Nominal                                     ;  1.84
+    (CI)                               ;(  1.68,  2.07)
+   Real                                     ;  1.75
+   (CI)                                ;(  1.60,  1.95)
 
 Hh income multiplier (nominal)
-AqFSm       nominal                         ;  1.13
-             real                           ;  1.12
+AqFSm       nominal                         ;  0.14
+             real                           ;  0.13
 
                                        ;(  0.00,  0.00)
-AqFBg       nominal                         ;  0.02
-             real                           ;  0.01
+AqFBg       nominal                         ;  0.01
+             real                           ;  0.00
 
                                        ;(  0.00,  0.00)
-AqAg        nominal                         ;  0.19
-             real                           ;  0.17
+AqAg        nominal                         ;  1.18
+             real                           ;  1.16
 
                                        ;(  0.00,  0.00)
-AqLL        nominal                         ;  0.62
-             real                           ;  0.58
+AqLL        nominal                         ;  0.52
+             real                           ;  0.46
 
                                        ;(  0.00,  0.00)
 
@@ -175,21 +175,21 @@ AqFBg       direct hh expense               ;0.00000
 AqAg        direct hh expense               ;0.00000
 AqLL        direct hh expense               ;0.00000
 Increase Demand through local activities:
-AQUA        village demand                  ;-0.8437AQUA        village demand
+AQUA        village demand                  ;-0.4404AQUA        village demand
 
 Hh CPI increase
-AqFSm        cpi increase in %              ;0.00017
-                                       ;(0.00013,0.00022)
-AqFBg        cpi increase in %              ;0.00020
+AqFSm        cpi increase in %              ;0.00018
+                                       ;(0.00014,0.00024)
+AqFBg        cpi increase in %              ;0.00021
+                                       ;(0.00017,0.00026)
+AqAg         cpi increase in %              ;0.00023
+                                       ;(0.00017,0.00031)
+AqLL         cpi increase in %              ;0.00019
                                        ;(0.00015,0.00024)
-AqAg         cpi increase in %              ;0.00021
-                                       ;(0.00017,0.00027)
-AqLL         cpi increase in %              ;0.00018
-                                       ;(0.00013,0.00021)
              village cpi increase           ;  0.00%
 
 
-Increase in zoi-row trade                   ;   3.384
-(CI)                                   ;(  3.162,  3.563)
+Increase in zoi-row trade                   ;   2.229
+(CI)                                   ;(  2.131,  2.322)
 
 

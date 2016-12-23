@@ -60,8 +60,15 @@ if(%budgetconstraint% = 1,
 *fixfac(g,"Land",hfood) = fixfac(g,"Land",hfood) * (1+ %new_land_food%);
 *fixfac(g,"land",hcash) = fixfac(g,"Land",hcash) * (1+ %new_land_cash%);
 *fixfac("Fish","Land","AqFSm") = fixfac("Fish","Land","AqFSm") +1 ;
-fixfac("Fish","Land","AqFSm") = fixfac("Fish","Land","AqFSm") +1 ;
-*fixfac("Crop","Land","AqAg") = fixfac("Crop","Land","AqAg") +1 ;
+
+* According to CESD Research Brief:
+* rent for paddy land = 70,000 / acre = 0.7 lakh
+* rent for pond land = 200,000 / acre = 2 lakh
+
+* let's simulate conversion of 1 acre of unused land into either paddy or pond:
+*fixfac("Fish","Land","AqFSm") = fixfac("Fish","Land","AqFSm") +2 ;
+*fixfac("Fish","Land","AqFBg") = fixfac("Fish","Land","AqFBg") +2 ;
+fixfac("Crop","Land","AqAg") = fixfac("Crop","Land","AqAg") +0.7 ;
 *fixfac("Crop","Land","AqFSm") = fixfac("Crop","Land","AqFSm") -1 ;
 
 * additional simulations:

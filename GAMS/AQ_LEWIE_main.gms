@@ -26,8 +26,8 @@ $setglobal autosam_file "AutoSAM_aqua.xlsx"
 
 
 * choose the elasticity of supply of labor - hired and family
-$setglobal hlse 100
-$setglobal flse 100
+$setglobal hlse 1
+$setglobal flse 1
 
 * choose whether or not to have a budget constraint and how much of the transfer releives that constraint
 * 0 = no constraint ,  1 = constraint
@@ -333,7 +333,6 @@ trin2(h,draw)       = TRIN.l(h) ;
 trout2(h,draw)      = TROUT.l(h) ;
 sav2(h,draw)        = SAV.l(h) ;
 exproc2(h,draw)     = EXPROC.l(h) ;
-
 
 hfsup2(ft,h,draw)   = HFSUP.l(ft,h) ;
 
