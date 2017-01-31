@@ -11,6 +11,9 @@ var  variable names
 ;
 parameter Alldata(*,*,*,*,h);
 
+
+
+
 * Read in the data from LEWIE spreadsheet:
 * the $call reads XL data and makes a .gdx file with it
 * (unstar the "call" statement to re-read from the excel spreadsheet)
@@ -44,6 +47,16 @@ display alldata;
 * the phantom element "null" can be put in a set to avoid leaving the set empty in some simulations
 * (GAMS can't handle empty sets)
 $phantom null
+
+
+* in future: read sim set from excel too:
+set sim simulations /sim1*sim3/ ;
+parameter fsim(g,f,h,sim) shock to the fixed factor parameter;
+fsim("Fish","Land","AqFSm","sim1") = 2 ;
+fsim("Fish","Land","AqFBg","sim2") = 2 ;
+fsim("Crop","Land","AqAg","sim3")  = 0.7 ;
+
+
 
 * Read in the matrix:
 *======================================================

@@ -121,11 +121,11 @@ $include includes/4b_Calibration.gms
 * ================================================================================================
 * ================================================================================================
 * ===================== STEP 4 - SOLVE THE MODEL IN A LOOP OVER PARAMETERS DRAWS =================
-* ================================================================================================
+* ======================================== AND SIMULATIONS =======================================
 * ================================================================================================
 
 * The zero draw is using the mean values. Starting after dr1, those values are randomely drawn.
-loop(draw,
+loop((draw, sim),
 * re-initialise all the variables in the matrix
 * but this time not at the I levels - rather, at the _dr levels
 
@@ -273,6 +273,7 @@ hqp1(h,draw)        = sum(g, qp1(g,h,draw)) ;
 $include includes/5_generic_simulation.gms
 
 
+
 * help the program reach a solution by re-initializing pva
 PVA.l(g,h) = PH.l(g,h) - sum(gg,idsh(gg,g,h)*PH.l(gg,h))
 
@@ -283,58 +284,58 @@ ABORT$(genCD.modelstat ne 1) "NO OPTIMAL SOLUTION REACHED" ;
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l, fd.l;
 display CPI.l ;
 
-pshift2(g,h,draw)   = pshift(g,h) ;
-fshare2(g,f,h,draw) = fshare(g,f,h) ;
+pshift2(g,h,draw,sim)   = pshift(g,h) ;
+fshare2(g,f,h,draw,sim) = fshare(g,f,h) ;
 
-pv2(g,v,draw)       = PV.l(g,v) ;
-pz2(g,draw)         = PZ.l(g) ;
-ph2(g,h,draw)       = PH.l(g,h) ;
-qva2(g,h,draw)      = QVA.l(g,h) ;
-fd2(g,f,h,draw)     = FD.l(g,f,h) ;
-id2(gg,g,h,draw)    = ID.l(gg,g,h) ;
-r2(g,fk,h,draw)     = R.l(g,fk,h) ;
-wv2(f,v,draw)       = WV.l(f,v) ;
-wz2(f,draw)         = WZ.l(f) ;
-qp2(g,h,draw)       = QP.l(g,h) ;
-tqp2(g,draw)        = sum(h,qp2(g,h,draw)) ;
-ttqp2(draw)        = sum(g,tqp2(g,draw)) ;
-hqp2(h,draw)        = sum(g, qp2(g,h,draw)) ;
+pv2(g,v,draw,sim)       = PV.l(g,v) ;
+pz2(g,draw,sim)         = PZ.l(g) ;
+ph2(g,h,draw,sim)       = PH.l(g,h) ;
+qva2(g,h,draw,sim)      = QVA.l(g,h) ;
+fd2(g,f,h,draw,sim)     = FD.l(g,f,h) ;
+id2(gg,g,h,draw,sim)    = ID.l(gg,g,h) ;
+r2(g,fk,h,draw,sim)     = R.l(g,fk,h) ;
+wv2(f,v,draw,sim)       = WV.l(f,v) ;
+wz2(f,draw,sim)         = WZ.l(f) ;
+qp2(g,h,draw,sim)       = QP.l(g,h) ;
+tqp2(g,draw,sim)        = sum(h,qp2(g,h,draw,sim)) ;
+ttqp2(draw,sim)        = sum(g,tqp2(g,draw,sim)) ;
+hqp2(h,draw,sim)        = sum(g, qp2(g,h,draw,sim)) ;
 
-fixfac2(g,fk,h,draw) = fixfac(g,fk,h) ;
-pva2(g,h,draw)      = PVA.l(g,h) ;
-vash2(g,h,draw)      = vash(g,h) ;
-exinc2(h,draw)      = exinc(h) ;
-endow2(f,h,draw)    = endow(f,h) ;
-y2(h,draw)          = Y.l(h) ;
-qc2(g,h,draw)       = QC.l(g,h) ;
-cpi2(h,draw)        = CPI.l(h) ;
-vqc2(v,g,draw)      = sum(h$maphv(h,v), qc2(g,h,draw));
+fixfac2(g,fk,h,draw,sim) = fixfac(g,fk,h) ;
+pva2(g,h,draw,sim)      = PVA.l(g,h) ;
+vash2(g,h,draw,sim)      = vash(g,h) ;
+exinc2(h,draw,sim)      = exinc(h) ;
+endow2(f,h,draw,sim)    = endow(f,h) ;
+y2(h,draw,sim)          = Y.l(h) ;
+qc2(g,h,draw,sim)       = QC.l(g,h) ;
+cpi2(h,draw,sim)        = CPI.l(h) ;
+vqc2(v,g,draw,sim)      = sum(h$maphv(h,v), qc2(g,h,draw,sim));
 * village cpi is weighted sum of prices
-vcpi2(v,draw)       = sum((h,g)$maphv(h,v), (ph2(g,h,draw)**2)*qc2(g,h,draw)) / sum((h,g)$maphv(h,v),ph2(g,h,draw)*qc2(g,h,draw)) ;
+vcpi2(v,draw,sim)       = sum((h,g)$maphv(h,v), (ph2(g,h,draw,sim)**2)*qc2(g,h,draw,sim)) / sum((h,g)$maphv(h,v),ph2(g,h,draw,sim)*qc2(g,h,draw,sim)) ;
 * weighted capital rent in the village
-cri2(v,f,draw)          = sum((g,h)$maphv(h,v), r2(g,f,h,draw)*fd2(g,f,h,draw)/sum((gg,hh)$maphv(hh,v),fd2(gg,f,hh,draw)) ) ;
+cri2(v,f,draw,sim)          = sum((g,h)$maphv(h,v), r2(g,f,h,draw,sim)*fd2(g,f,h,draw,sim)/sum((gg,hh)$maphv(hh,v),fd2(gg,f,hh,draw,sim)) ) ;
 
-ry2(h,draw)         = RY.l(h) ;
-ty2(draw)           = sum(h,y2(h,draw));
-try2(draw)          = sum(h,ry2(h,draw));
-trinsh2(h,draw)     = trinsh(h) ;
-eshare2(g,h,draw)   = eshare(g,h) ;
-troutsh2(h,draw)    = troutsh(h) ;
-hfd2(f,h,draw)      = HFD.l(f,h) ;
-vfd2(f,v,draw)      = VFD.l(f,v) ;
-zfd2(f,draw)        = ZFD.l(f) ;
-hms2(g,h,draw)      = HMS.l(g,h) ;
-vms2(g,v,draw)      = VMS.l(g,v) ;
-zms2(g,draw)        = ZMS.l(g) ;
-hfms2(ft,h,draw)    = HFMS.l(ft,h) ;
-vfms2(ft,v,draw)    = VFMS.l(ft,v) ;
-zfms2(ft,draw)      = ZFMS.l(ft) ;
-trin2(h,draw)       = TRIN.l(h) ;
-trout2(h,draw)      = TROUT.l(h) ;
-sav2(h,draw)        = SAV.l(h) ;
-exproc2(h,draw)     = EXPROC.l(h) ;
+ry2(h,draw,sim)         = RY.l(h) ;
+ty2(draw,sim)           = sum(h,y2(h,draw,sim));
+try2(draw,sim)          = sum(h,ry2(h,draw,sim));
+trinsh2(h,draw,sim)     = trinsh(h) ;
+eshare2(g,h,draw,sim)   = eshare(g,h) ;
+troutsh2(h,draw,sim)    = troutsh(h) ;
+hfd2(f,h,draw,sim)      = HFD.l(f,h) ;
+vfd2(f,v,draw,sim)      = VFD.l(f,v) ;
+zfd2(f,draw,sim)        = ZFD.l(f) ;
+hms2(g,h,draw,sim)      = HMS.l(g,h) ;
+vms2(g,v,draw,sim)      = VMS.l(g,v) ;
+zms2(g,draw,sim)        = ZMS.l(g) ;
+hfms2(ft,h,draw,sim)    = HFMS.l(ft,h) ;
+vfms2(ft,v,draw,sim)    = VFMS.l(ft,v) ;
+zfms2(ft,draw,sim)      = ZFMS.l(ft) ;
+trin2(h,draw,sim)       = TRIN.l(h) ;
+trout2(h,draw,sim)      = TROUT.l(h) ;
+sav2(h,draw,sim)        = SAV.l(h) ;
+exproc2(h,draw,sim)     = EXPROC.l(h) ;
 
-hfsup2(ft,h,draw)   = HFSUP.l(ft,h) ;
+hfsup2(ft,h,draw,sim)   = HFSUP.l(ft,h) ;
 
 
 * ================================================================================================
@@ -342,8 +343,11 @@ hfsup2(ft,h,draw)   = HFSUP.l(ft,h) ;
 * ================================================================================================
 );
 
+display_pars(1);
+display_pars(2);
 
 
+$exit
 * Output : compute all the parameters
 $include includes/6_Output_Parameters.gms
 

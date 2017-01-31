@@ -128,164 +128,170 @@ hfsup1(f,h,draw)    calibrated factor supply by the household
 
 * after a simulation for each draw
 *pm2(g,draw)         simulated market price
-pv2(g,v,draw)       simulated price at village level
-pz2(g,draw)         simulated price at zoi level
-ph2(g,h,draw)       simulated price as seen by household
-pva2(g,h,draw)      simulated price of value added
-qva2(g,h,draw)      simulated quantity of value added
-qp2(g,h,draw)       simulated quantity produced
-tqp2(g,draw)        simulated total quantity produced in the economy
-ttqp2(draw)
-hqp2(h,draw)         sim total qty produced by a household
-fd2(g,f,h,draw)     simulated factor demand
-id2(g,gg,h,draw)    simulated intermediate demand
-pshift2(g,h,draw)    simulated cobb-douglas shifter
-fshare2(g,f,h,draw) simulated cobb-douglas shares
-r2(g,f,h,draw)      simulated rent for fixed factors
-wv2(f,v,draw)       simulated village-wide wage for tradable factors
-wz2(f,draw)         simulated zoi-wide wage for tradable factors
-vash2(g,h,draw)     simulated value-added share
-idsh2(gg,g,h,draw)  simulated intermediate demand share
-tidsh2(gg,h,draw)   simulated total intermediate input share (2-vash)
-fixfac2(g,f,h,draw) simulated fixed factor demand
-exinc2(h,draw)      simulated exogenous income
-endow2(f,h,draw)    simulated endowment
-qc2(g,h,draw)       simulated level of consumption
-eshare2(g,h,draw)    simulated consumption shares
-y2(h,draw)          simulated income of household
-cpi2(h,draw)        simulated cpi
-cri2(v,f,draw)          simulated capital rent index (cap rent in activity*weight of activity)
-vqc2(v,g,draw)      simulated village consumption
-vcpi2(v,draw)       simulated village cpi
+pv2(g,v,draw,sim)       simulated price at village level
+pz2(g,draw,sim)         simulated price at zoi level
+ph2(g,h,draw,sim)       simulated price as seen by household
+pva2(g,h,draw,sim)      simulated price of value added
+qva2(g,h,draw,sim)      simulated quantity of value added
+qp2(g,h,draw,sim)       simulated quantity produced
+tqp2(g,draw,sim)        simulated total quantity produced in the economy
+ttqp2(draw,sim)
+hqp2(h,draw,sim)         sim total qty produced by a household
+fd2(g,f,h,draw,sim)     simulated factor demand
+id2(g,gg,h,draw,sim)    simulated intermediate demand
+pshift2(g,h,draw,sim)    simulated cobb-douglas shifter
+fshare2(g,f,h,draw,sim) simulated cobb-douglas shares
+r2(g,f,h,draw,sim)      simulated rent for fixed factors
+wv2(f,v,draw,sim)       simulated village-wide wage for tradable factors
+wz2(f,draw,sim)         simulated zoi-wide wage for tradable factors
+vash2(g,h,draw,sim)     simulated value-added share
+idsh2(gg,g,h,draw,sim)  simulated intermediate demand share
+tidsh2(gg,h,draw,sim)   simulated total intermediate input share (2-vash)
+fixfac2(g,f,h,draw,sim) simulated fixed factor demand
+exinc2(h,draw,sim)      simulated exogenous income
+endow2(f,h,draw,sim)    simulated endowment
+qc2(g,h,draw,sim)       simulated level of consumption
+eshare2(g,h,draw,sim)    simulated consumption shares
+y2(h,draw,sim)          simulated income of household
+cpi2(h,draw,sim)        simulated cpi
+cri2(v,f,draw,sim)          simulated capital rent index (cap rent in activity*weight of activity)
+vqc2(v,g,draw,sim)      simulated village consumption
+vcpi2(v,draw,sim)       simulated village cpi
 
 
-ry2(h,draw)         simulated real income
-ty2(draw)           simulated income total
-try2(draw)          simulated real income total
-emin2(g,h,draw)     simulated incompressible demand
-trin2(h,draw)       simulated transfers in - received
-trout2(h,draw)      simulated transfers out - given
-sav2(h,draw)        simulated savings
-exproc2(h,draw)     simulated expenditure rest of country
-trinsh2(h,draw)     simulated share of all transfers in the eco going to h
-troutsh2(h,draw)    simulated share of yousehold h's income being given as transfers
-hfd2(f,h,draw)      simulated factor demand of household h for factor f
-vfd2(f,v,draw)      simulated village demand for factor f
-zfd2(f,draw)        simulated zoi demand for factor f
-hms2(g,h,draw)      simulated household marketed surplus of good g
-vms2(g,v,draw)      simulated village marketed surplus of good g
-zms2(g,draw)        simulated household marketed surplus of good g
-*unemp2(f,h,draw)    calibrated unemployement in the households
-hfms2(f,h,draw)     simulated household factor marketed surplus
-vfms2(f,v,draw)     simulated village factor marketed surplus
-zfms2(f,draw)       simulated zoi factor marketed surplus
-hfsup2(f,h,draw)    simulated factor supply by the household
+ry2(h,draw,sim)         simulated real income
+ty2(draw,sim)           simulated income total
+try2(draw,sim)          simulated real income total
+emin2(g,h,draw,sim)     simulated incompressible demand
+trin2(h,draw,sim)       simulated transfers in - received
+trout2(h,draw,sim)      simulated transfers out - given
+sav2(h,draw,sim)        simulated savings
+exproc2(h,draw,sim)     simulated expenditure rest of country
+trinsh2(h,draw,sim)     simulated share of all transfers in the eco going to h
+troutsh2(h,draw,sim)    simulated share of yousehold h's income being given as transfers
+hfd2(f,h,draw,sim)      simulated factor demand of household h for factor f
+vfd2(f,v,draw,sim)      simulated village demand for factor f
+zfd2(f,draw,sim)        simulated zoi demand for factor f
+hms2(g,h,draw,sim)      simulated household marketed surplus of good g
+vms2(g,v,draw,sim)      simulated village marketed surplus of good g
+zms2(g,draw,sim)        simulated household marketed surplus of good g
+*unemp2(f,h,draw,sim)    calibrated unemployement in the households
+hfms2(f,h,draw,sim)     simulated household factor marketed surplus
+vfms2(f,v,draw,sim)     simulated village factor marketed surplus
+zfms2(f,draw,sim)       simulated zoi factor marketed surplus
+hfsup2(f,h,draw,sim)    simulated factor supply by the household
 
 * delta calibration /simulation
-pvD(g,v,draw)       delta price at village level
-pzD(g,draw)         delta price at zoi level
-phD(g,h,draw)       delta price as seen by household
+pvD(g,v,draw,sim)       delta price at village level
+pzD(g,draw,sim)         delta price at zoi level
+phD(g,h,draw,sim)       delta price as seen by household
 
-pvaD(g,h,draw)      delta price of value added
-qvaD(g,h,draw)      delta quantity of value added
-qpD(g,h,draw)       delta quantity produced
-tqpD(g,draw)        delta total qp
-ttqpD(draw)
-hqpD(h,draw)          delta hqp
-fdD(g,f,h,draw)     delta factor demand
-idD(g,gg,h,draw)    delta intermediate demand
-pshiftD(g,h,draw)    delta cobb-douglas shifter
-fshareD(g,f,h,draw) delta cobb-douglas shares
-rD(g,f,h,draw)      delta rent for fixed factors
-wvD(f,v,draw)       delta village-wide wage for tradable factors
-wzD(f,draw)         delta zoi-wide wage for tradable factors
-vashD(g,h,draw)     delta value-added share
-idshD(gg,g,h,draw)  delta intermediate demand share
-tidshD(gg,h,draw)   delta total intermediate input share (1-vash)
-fixfacD(g,f,h,draw) delta fixed factor demand
-exincD(h,draw)      delta exogenous income
-endowD(f,h,draw)    delta endowment
-qcD(g,h,draw)       delta level of consumption
-eshareD(g,h,draw)    delta consumption shares
-yD(h,draw)          delta income of household
-cpiD(h,draw)        delta cpi
-criD(v,f,draw)        delta capital rent index (cap rent in activity*weight of activity)
-vqcD(v,g,draw)      delta village consumption
-vcpiD(v,draw)       delta village cpi
+pvaD(g,h,draw,sim)      delta price of value added
+qvaD(g,h,draw,sim)      delta quantity of value added
+qpD(g,h,draw,sim)       delta quantity produced
+tqpD(g,draw,sim)        delta total qp
+ttqpD(draw,sim)
+hqpD(h,draw,sim)          delta hqp
+fdD(g,f,h,draw,sim)     delta factor demand
+idD(g,gg,h,draw,sim)    delta intermediate demand
+pshiftD(g,h,draw,sim)    delta cobb-douglas shifter
+fshareD(g,f,h,draw,sim) delta cobb-douglas shares
+rD(g,f,h,draw,sim)      delta rent for fixed factors
+wvD(f,v,draw,sim)       delta village-wide wage for tradable factors
+wzD(f,draw,sim)         delta zoi-wide wage for tradable factors
+vashD(g,h,draw,sim)     delta value-added share
+idshD(gg,g,h,draw,sim)  delta intermediate demand share
+tidshD(gg,h,draw,sim)   delta total intermediate input share (1-vash)
+fixfacD(g,f,h,draw,sim) delta fixed factor demand
+exincD(h,draw,sim)      delta exogenous income
+endowD(f,h,draw,sim)    delta endowment
+qcD(g,h,draw,sim)       delta level of consumption
+eshareD(g,h,draw,sim)    delta consumption shares
+yD(h,draw,sim)          delta income of household
+cpiD(h,draw,sim)        delta cpi
+criD(v,f,draw,sim)        delta capital rent index (cap rent in activity*weight of activity)
+vqcD(v,g,draw,sim)      delta village consumption
+vcpiD(v,draw,sim)       delta village cpi
 
-ryD(h,draw)         delta real income
-tyD(draw)           delta income total
-tryD(draw)          delta real income total
-eminD(g,h,draw)     delta incompressible demand
-trinD(h,draw)       delta transfers in - received
-troutD(h,draw)      delta transfers out - given
-savD(h,draw)        delta savings
-exprocD(h,draw)     delta expenditure rest of country
-trinshD(h,draw)     delta share of all transfers in the eco going to h
-troutshD(h,draw)    delta share of yousehold h's income being given as transfers
-hfdD(f,h,draw)      delta factor demand of household h for factor f
-vfdD(f,v,draw)      delta village demand for factor f
-zfdD(f,draw)        delta zoi demand for factor f
-hmsD(g,h,draw)      delta household marketed surplus of good g
-vmsD(g,v,draw)      delta village marketed surplus of good g
-zmsD(g,draw)        delta household marketed surplus of good g
-hfmsD(f,h,draw)     delta household factor marketed surplus
-vfmsD(f,v,draw)     delta village factor marketed surplus
-zfmsD(f,draw)       delta zoi factor marketed surplus
-hfsupD(f,h,draw)    delta factor supply by the household
+ryD(h,draw,sim)         delta real income
+tyD(draw,sim)           delta income total
+tryD(draw,sim)          delta real income total
+eminD(g,h,draw,sim)     delta incompressible demand
+trinD(h,draw,sim)       delta transfers in - received
+troutD(h,draw,sim)      delta transfers out - given
+savD(h,draw,sim)        delta savings
+exprocD(h,draw,sim)     delta expenditure rest of country
+trinshD(h,draw,sim)     delta share of all transfers in the eco going to h
+troutshD(h,draw,sim)    delta share of yousehold h's income being given as transfers
+hfdD(f,h,draw,sim)      delta factor demand of household h for factor f
+vfdD(f,v,draw,sim)      delta village demand for factor f
+zfdD(f,draw,sim)        delta zoi demand for factor f
+hmsD(g,h,draw,sim)      delta household marketed surplus of good g
+vmsD(g,v,draw,sim)      delta village marketed surplus of good g
+zmsD(g,draw,sim)        delta household marketed surplus of good g
+hfmsD(f,h,draw,sim)     delta household factor marketed surplus
+vfmsD(f,v,draw,sim)     delta village factor marketed surplus
+zfmsD(f,draw,sim)       delta zoi factor marketed surplus
+hfsupD(f,h,draw,sim)    delta factor supply by the household
 
 * percent change calibration/simulation
-pvPC(g,v,draw)        % change price at village level
-pzPC(g,draw)          % chage price at zoi level
-phPC(g,h,draw)        % change price as seen by household
+pvPC(g,v,draw,sim)        % change price at village level
+pzPC(g,draw,sim)          % chage price at zoi level
+phPC(g,h,draw,sim)        % change price as seen by household
 
-pvaPC(g,h,draw)      % change price of value added
-qvaPC(g,h,draw)      % change quantity of value added
-qpPC(g,h,draw)       % change quantity produced
-tqpPC(g,draw)        % change in total qp
-ttqpPC(draw)
-hqpPC(h,draw)          % change in hqp
+pvaPC(g,h,draw,sim)      % change price of value added
+qvaPC(g,h,draw,sim)      % change quantity of value added
+qpPC(g,h,draw,sim)       % change quantity produced
+tqpPC(g,draw,sim)        % change in total qp
+ttqpPC(draw,sim)
+hqpPC(h,draw,sim)          % change in hqp
 
-fdPC(g,f,h,draw)     % change factor demand
-idPC(g,gg,h,draw)    % change intermediate demand
-pshiftPC(g,h,draw)    % change cobb-douglas shifter
-fsharePC(g,f,h,draw) % change cobb-douglas shares
-rPC(g,f,h,draw)      % change rent for fixed factors
-wvPC(f,v,draw)       % change village-wide wage for tradable factors
-wzPC(f,draw)         % change zoi-wide wage for tradable factors
-vashPC(g,h,draw)     % change value-added share
-idshPC(gg,g,h,draw)  % change intermediate demand share
-tidshPC(gg,h,draw)   % change total intermediate input share (1-vash)
-fixfacPC(g,f,h,draw) % change fixed factor demand
-exincPC(h,draw)      % change exogenous income
-endowPC(f,h,draw)    % change endowment
-qcPC(g,h,draw)       % change level of consumption
-esharePC(g,h,draw)    % change consumption shares
-yPC(h,draw)          % change income of household
-cpiPC(h,draw)        % change in cpi
-criPC(v,f,draw)        % change capital rent index (cap rent in activity*weight of activity)
-vqcPC(v,g,draw)      % change village consumption
-vcpiPC(v,draw)       % change village cpi
+fdPC(g,f,h,draw,sim)     % change factor demand
+idPC(g,gg,h,draw,sim)    % change intermediate demand
+pshiftPC(g,h,draw,sim)    % change cobb-douglas shifter
+fsharePC(g,f,h,draw,sim) % change cobb-douglas shares
+rPC(g,f,h,draw,sim)      % change rent for fixed factors
+wvPC(f,v,draw,sim)       % change village-wide wage for tradable factors
+wzPC(f,draw,sim)         % change zoi-wide wage for tradable factors
+vashPC(g,h,draw,sim)     % change value-added share
+idshPC(gg,g,h,draw,sim)  % change intermediate demand share
+tidshPC(gg,h,draw,sim)   % change total intermediate input share (1-vash)
+fixfacPC(g,f,h,draw,sim) % change fixed factor demand
+exincPC(h,draw,sim)      % change exogenous income
+endowPC(f,h,draw,sim)    % change endowment
+qcPC(g,h,draw,sim)       % change level of consumption
+esharePC(g,h,draw,sim)    % change consumption shares
+yPC(h,draw,sim)          % change income of household
+cpiPC(h,draw,sim)        % change in cpi
+criPC(v,f,draw,sim)        % change capital rent index (cap rent in activity*weight of activity)
+vqcPC(v,g,draw,sim)      % change village consumption
+vcpiPC(v,draw,sim)       % change village cpi
 
 
-ryPC(h,draw)         % change in real income
-tyPC(draw)           % change income total
-tryPC(draw)          % change real income total
-eminPC(g,h,draw)     % change incompressible demand
-trinPC(h,draw)       % change transfers in - received
-troutPC(h,draw)      % change transfers out - given
-savPC(h,draw)        % change savings
-exprocPC(h,draw)     % change expenditure rest of country
-trinshPC(h,draw)     % change share of all transfers in the eco going to h
-troutshPC(h,draw)    % change share of yousehold h's income being given as transfers
-hfdPC(f,h,draw)      % change factor demand of household h for factor f
-vfdPC(f,v,draw)      % change village demand for factor f
-zfdPC(f,draw)        % change zoi demand for factor f
-hmsPC(g,h,draw)      % change household marketed surplus of good g
-vmsPC(g,v,draw)      % change village marketed surplus of good g
-zmsPC(g,draw)        % change household marketed surplus of good g
-hfmsPC(f,h,draw)     % change household factor marketed surplus
-vfmsPC(f,v,draw)     % change village factor marketed surplus
-zfmsPC(f,draw)       % change zoi factor marketed surplus
-hfsupPC(f,h,draw)    % change factor supply by the household
+ryPC(h,draw,sim)         % change in real income
+tyPC(draw,sim)           % change income total
+tryPC(draw,sim)          % change real income total
+eminPC(g,h,draw,sim)     % change incompressible demand
+trinPC(h,draw,sim)       % change transfers in - received
+troutPC(h,draw,sim)      % change transfers out - given
+savPC(h,draw,sim)        % change savings
+exprocPC(h,draw,sim)     % change expenditure rest of country
+trinshPC(h,draw,sim)     % change share of all transfers in the eco going to h
+troutshPC(h,draw,sim)    % change share of yousehold h's income being given as transfers
+hfdPC(f,h,draw,sim)      % change factor demand of household h for factor f
+vfdPC(f,v,draw,sim)      % change village demand for factor f
+zfdPC(f,draw,sim)        % change zoi demand for factor f
+hmsPC(g,h,draw,sim)      % change household marketed surplus of good g
+vmsPC(g,v,draw,sim)      % change village marketed surplus of good g
+zmsPC(g,draw,sim)        % change household marketed surplus of good g
+hfmsPC(f,h,draw,sim)     % change household factor marketed surplus
+vfmsPC(f,v,draw,sim)     % change village factor marketed surplus
+zfmsPC(f,draw,sim)       % change zoi factor marketed surplus
+hfsupPC(f,h,draw,sim)    % change factor supply by the household
 ;
+
+
+$macro display_pars(i) display pv&i, pz&i, ph&i, qva&i, fd&i, id&i, r&i, wv&i, wz&i, qp&i, tqp&i,    \
+ttqp&i , fixfac&i, pva&i, exinc&i, endow&i, y&i, cpi&i, vcpi&i, ry&i, trinsh&i, qc&i, eshare&i, troutsh&i, hfsup&i, hfd&i, vfd&i, zfd&i, hms&i, vms&i, zms&i, hfms&i, vfms&i, zfms&i ;
+
+

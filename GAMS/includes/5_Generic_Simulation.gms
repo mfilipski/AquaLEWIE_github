@@ -1,3 +1,23 @@
+
+
+
+
+* simulation shocks for fixed factor:
+fixfac(g,f,h) = fixfac(g,f,h) + fsim(g,f,h,sim) ;
+
+
+*fixfac("Fish","Land","AqFSm") = fixfac("Fish","Land","AqFSm") +2 ;
+*fixfac("Fish","Land","AqFBg") = fixfac("Fish","Land","AqFBg") +2 ;
+*fixfac("Crop","Land","AqAg") = fixfac("Crop","Land","AqAg") +0.7 ;
+
+
+
+
+
+
+
+$ontext
+
 *baseline parameters
 transfer(h) = 0 ;
 infood(h) = 0 ;
@@ -83,3 +103,6 @@ fixfac("Fish","Land","AqFBg") = fixfac("Fish","Land","AqFBg") +2 ;
 *acobb("crop",h)$ht(h) = acobb("crop",h)*1.1 ;
 *acobb("crop",h)$(maphv(h,"T")) = acobb("crop",h)*1.1 ;
 *pshift("crop",h)$hag(h) = pshift("crop",h)*1.1 ;
+
+
+$offtext
