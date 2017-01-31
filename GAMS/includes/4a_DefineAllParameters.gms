@@ -129,7 +129,7 @@ $macro defpars(i)  parameters  pv&i(g,v,draw,sim) calibrated price at village le
 defpars(1) ;
 defpars(2) ;
 defpars(D) ;
-defpars(PS)
+defpars(PC) ;
 
 
 $ontext

@@ -107,7 +107,7 @@ $include includes/3_Model.gms
 * ================================================================================================
 $include includes/4a_DefineAllParameters.gms
 
-$exit
+
 
 * ================================================================================================
 * ================================================================================================
@@ -207,63 +207,63 @@ ABORT$(genCD.modelstat ne 1) "NOT WELL CALIBRATED IN THIS DRAW - CHECK THE DATA 
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, Y.l, CPI.l, RY.l, SAV.l, EXPROC.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l;
 display CPI.l ;
 
-pshift1(g,h,draw)    = pshift(g,h) ;
-fshare1(g,f,h,draw) = fshare(g,f,h) ;
+pshift1(g,h,draw,sim)    = pshift(g,h) ;
+fshare1(g,f,h,draw,sim) = fshare(g,f,h) ;
 
-pv1(g,v,draw)       = PV.l(g,v) ;
-pz1(g,draw)         = PZ.l(g) ;
-ph1(g,h,draw)       = PH.l(g,h) ;
-qva1(g,h,draw)      = QVA.l(g,h) ;
-fd1(g,f,h,draw)     = FD.l(g,f,h) ;
-id1(gg,g,h,draw)    = ID.l(gg,g,h) ;
-r1(g,fk,h,draw)     = R.l(g,fk,h) ;
-wv1(f,v,draw)       = WV.l(f,v) ;
-wz1(f,draw)         = WZ.l(f) ;
-qp1(g,h,draw)       = QP.l(g,h) ;
-fixfac1(g,fk,h,draw) = fixfac(g,fk,h) ;
-pva1(g,h,draw)      = PVA.l(g,h) ;
-vash1(g,h,draw)     = vash(g,h) ;
-idsh1(g,gg,h,draw)  = idsh(g,gg,h) ;
-tidsh1(g,h,draw)    = tidsh(g,h) ;
-exinc1(h,draw)      = exinc(h) ;
-endow1(f,h,draw)    = endow(f,h) ;
-y1(h,draw)          = Y.l(h) ;
-qc1(g,h,draw)       = QC.l(g,h) ;
-cpi1(h,draw)        = CPI.l(h) ;
-vqc1(v,g,draw)      = sum(h$maphv(h,v), qc1(g,h,draw));
+pv1(g,v,draw,sim)       = PV.l(g,v) ;
+pz1(g,draw,sim)         = PZ.l(g) ;
+ph1(g,h,draw,sim)       = PH.l(g,h) ;
+qva1(g,h,draw,sim)      = QVA.l(g,h) ;
+fd1(g,f,h,draw,sim)     = FD.l(g,f,h) ;
+id1(gg,g,h,draw,sim)    = ID.l(gg,g,h) ;
+r1(g,fk,h,draw,sim)     = R.l(g,fk,h) ;
+wv1(f,v,draw,sim)       = WV.l(f,v) ;
+wz1(f,draw,sim)         = WZ.l(f) ;
+qp1(g,h,draw,sim)       = QP.l(g,h) ;
+fixfac1(g,fk,h,draw,sim) = fixfac(g,fk,h) ;
+pva1(g,h,draw,sim)      = PVA.l(g,h) ;
+vash1(g,h,draw,sim)     = vash(g,h) ;
+idsh1(g,gg,h,draw,sim)  = idsh(g,gg,h) ;
+tidsh1(g,h,draw,sim)    = tidsh(g,h) ;
+exinc1(h,draw,sim)      = exinc(h) ;
+endow1(f,h,draw,sim)    = endow(f,h) ;
+y1(h,draw,sim)          = Y.l(h) ;
+qc1(g,h,draw,sim)       = QC.l(g,h) ;
+cpi1(h,draw,sim)        = CPI.l(h) ;
+vqc1(v,g,draw,sim)      = sum(h$maphv(h,v), qc1(g,h,draw,sim));
 * village cpi is weighted sum of prices
-vcpi1(v,draw)       = sum((h,g)$maphv(h,v), (ph1(g,h,draw)**2)*qc1(g,h,draw)) / sum((h,g)$maphv(h,v),ph1(g,h,draw)*qc1(g,h,draw)) ;
-cri1(v,f,draw)      = sum((g,h)$maphv(h,v), r1(g,f,h,draw)*fd1(g,f,h,draw)/sum((gg,hh)$maphv(hh,v),fd1(gg,f,hh,draw)) ) ;
+vcpi1(v,draw,sim)       = sum((h,g)$maphv(h,v), (ph1(g,h,draw,sim)**2)*qc1(g,h,draw,sim)) / sum((h,g)$maphv(h,v),ph1(g,h,draw,sim)*qc1(g,h,draw,sim)) ;
+cri1(v,f,draw,sim)      = sum((g,h)$maphv(h,v), r1(g,f,h,draw,sim)*fd1(g,f,h,draw,sim)/sum((gg,hh)$maphv(hh,v),fd1(gg,f,hh,draw,sim)) ) ;
 
-ry1(h,draw)         = RY.l(h) ;
-ty1(draw)           = sum(h,y1(h,draw));
-try1(draw)          = sum(h,ry1(h,draw));
-trin1(h,draw)       = TRIN.l(h) ;
-trout1(h,draw)      = TROUT.l(h) ;
-trinsh1(h,draw)     = trinsh(h) ;
-sav1(h,draw)        = SAV.l(h) ;
-exproc1(h,draw)     = EXPROC.l(h) ;
-eshare1(g,h,draw)    = eshare(g,h) ;
-emin1(g,h,draw)     = emin(g,h) ;
-troutsh1(h,draw)    = troutsh(h) ;
-hfd1(f,h,draw)      = HFD.l(f,h) ;
-vfd1(f,v,draw)      = VFD.l(f,v) ;
-zfd1(f,draw)        = ZFD.l(f) ;
-hms1(g,h,draw)      = HMS.l(g,h) ;
-vms1(g,v,draw)      = VMS.l(g,v) ;
-zms1(g,draw)        = ZMS.l(g) ;
-hfms1(ft,h,draw)    = HFMS.l(ft,h) ;
-vfms1(ft,v,draw)    = VFMS.l(ft,v) ;
-zfms1(ft,draw)      = ZFMS.l(ft) ;
-hfsup1(ft,h,draw)   = HFSUP.l(ft,h) ;
+ry1(h,draw,sim)         = RY.l(h) ;
+ty1(draw,sim)           = sum(h,y1(h,draw,sim));
+try1(draw,sim)          = sum(h,ry1(h,draw,sim));
+trin1(h,draw,sim)       = TRIN.l(h) ;
+trout1(h,draw,sim)      = TROUT.l(h) ;
+trinsh1(h,draw,sim)     = trinsh(h) ;
+sav1(h,draw,sim)        = SAV.l(h) ;
+exproc1(h,draw,sim)     = EXPROC.l(h) ;
+eshare1(g,h,draw,sim)    = eshare(g,h) ;
+emin1(g,h,draw,sim)     = emin(g,h) ;
+troutsh1(h,draw,sim)    = troutsh(h) ;
+hfd1(f,h,draw,sim)      = HFD.l(f,h) ;
+vfd1(f,v,draw,sim)      = VFD.l(f,v) ;
+zfd1(f,draw,sim)        = ZFD.l(f) ;
+hms1(g,h,draw,sim)      = HMS.l(g,h) ;
+vms1(g,v,draw,sim)      = VMS.l(g,v) ;
+zms1(g,draw,sim)        = ZMS.l(g) ;
+hfms1(ft,h,draw,sim)    = HFMS.l(ft,h) ;
+vfms1(ft,v,draw,sim)    = VFMS.l(ft,v) ;
+zfms1(ft,draw,sim)      = ZFMS.l(ft) ;
+hfsup1(ft,h,draw,sim)   = HFSUP.l(ft,h) ;
 
-vfmsfix1(ft,v,draw) = vfmsfix_dr(ft,v,draw) ;
-zfmsfix1(ft,draw)   = zfmsfix_dr(ft,draw) ;
+vfmsfix1(ft,v,draw,sim) = vfmsfix_dr(ft,v,draw) ;
+zfmsfix1(ft,draw,sim)   = zfmsfix_dr(ft,draw) ;
 
 * more params
-tqp1(g,draw)        = sum(h,qp1(g,h,draw)) ;
-ttqp1(draw)        = sum(g,tqp1(g,draw)) ;
-hqp1(h,draw)        = sum(g, qp1(g,h,draw)) ;
+tqp1(g,draw,sim)        = sum(h,qp1(g,h,draw,sim)) ;
+ttqp1(draw,sim)        = sum(g,tqp1(g,draw,sim)) ;
+hqp1(h,draw,sim)        = sum(g, qp1(g,h,draw,sim)) ;
 
 
 
@@ -347,7 +347,7 @@ display_pars(1);
 display_pars(2);
 
 
-
+$exit
 * Output : compute all the parameters
 $include includes/6_Output_Parameters.gms
 $exit
