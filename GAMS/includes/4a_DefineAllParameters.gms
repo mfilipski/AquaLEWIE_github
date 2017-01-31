@@ -137,3 +137,60 @@ $macro display_pars(i) display pv&i, pz&i, ph&i, qva&i, fd&i, id&i, r&i, wv&i, w
 ttqp&i , fixfac&i, pva&i, exinc&i, endow&i, y&i, cpi&i, vcpi&i, ry&i, trinsh&i, qc&i, eshare&i, troutsh&i, hfsup&i, hfd&i, vfd&i, zfd&i, hms&i, vms&i, zms&i, hfms&i, vfms&i, zfms&i ;
 
 
+
+
+*-----------------------------------------------------------------------
+* Now output parameters with mean and variance
+*-----------------------------------------------------------------------
+set mv /mean, stdev, pct5, pct95/ ;
+
+
+* Macro to define all the _mv parameters:
+$macro defpars_mv(i)  parameters pv_mv&i(g,v,sim,mv)       mean and stdev of village price   ,  \
+pz_mv&i(g,sim,mv)         mean and stdev of zoi price                                     , \
+ph_mv&i(g,h,sim,mv)       mean and stdev of market price as seen by household             , \
+pva_mv&i(g,h,sim,mv)      mean and stdev of price of value added                          , \
+qva_mv&i(g,h,sim,mv)      mean and stdev of quantity of value added                       , \
+qp_mv&i(g,h,sim,mv)       mean and stdev of quantity produced                             , \
+fd_mv&i(g,f,h,sim,mv)     mean and stdev of factor demand                                 , \
+id_mv&i(g,gg,h,sim,mv)    mean and stdev of intermediate demand                           , \
+pshift_mv&i(g,h,sim,mv)    mean and stdev of cobb-douglas shifter                         , \
+fshare_mv&i(g,f,h,sim,mv) mean and stdev of cobb-douglas shares                           , \
+r_mv&i(g,f,h,sim,mv)      mean and stdev of rent for fixed factors                        , \
+wv_mv&i(f,v,sim,mv)       mean and stdev of village-wide wage for tradable factors        , \
+wz_mv&i(f,sim,mv)         mean and stdev of zoi-wide wage for tradable factors            , \
+vash_mv&i(g,h,sim,mv)     mean and stdev of value-added share                             , \
+idsh_mv&i(gg,g,h,sim,mv)  mean and stdev of intermediate demand share                     , \
+tidsh_mv&i(gg,h,sim,mv)   mean and stdev of total intermediate input share (1_mv-vash)    , \
+fixfac_mv&i(g,f,h,sim,mv) mean and stdev of fixed factor demand                           , \
+exinc_mv&i(h,sim,mv)      mean and stdev of exogenous income                              , \
+endow_mv&i(f,h,sim,mv)    mean and stdev of endowment                                     , \
+qc_mv&i(g,h,sim,mv)       mean and stdev of level of consumption                          , \
+eshare_mv&i(g,h,sim,mv)    mean and stdev of consumption shares                           , \
+y_mv&i(h,sim,mv)          mean and stdev of nominal income of household                   , \
+cpi_mv&i(h,sim,mv)        mean and stdev of cpi of household                              , \
+cri_mv&i(v,f,sim,mv)        mean and stdev of cri of village                              , \
+vcpi_mv&i(v,sim,mv)        mean and stdev of cpi of village                               , \
+ry_mv&i(h,sim,mv)         mean and stdev of real income of household                      , \
+emin_mv&i(g,h,sim,mv)     mean and stdev of incompressible demand                         , \
+trin_mv&i(h,sim,mv)       mean and stdev of transfers in - received                       , \
+trout_mv&i(h,sim,mv)      mean and stdev of transfers out - given                         , \
+sav_mv&i(h,sim,mv)        mean and stdev of savings                                       , \
+exproc_mv&i(h,sim,mv)     mean and stdev of expenditures rest of the world                , \
+trinsh_mv&i(h,sim,mv)     mean and stdev of share of all transfers in the eco going to h  , \
+troutsh_mv&i(h,sim,mv)    mean and stdev of share of yousehold h income being given as transfers , \
+hfd_mv&i(f,h,sim,mv)      mean and stdev of factor demand of household h for factor f      , \
+vfd_mv&i(f,v,sim,mv)      mean and stdev of village demand for factor f                    , \
+zfd_mv&i(f,sim,mv)        mean and stdev of zoi demand for factor f                        , \
+hms_mv&i(g,h,sim,mv)      mean and stdev of household marketed surplus of good g           , \
+vms_mv&i(g,v,sim,mv)      mean and stdev of village marketed surplus of good g             , \
+zms_mv&i(g,sim,mv)        mean and stdev of household marketed surplus of good g           , \
+hfms_mv&i(f,h,sim,mv)     mean and stdev of household factor marketed surplus              , \
+vfms_mv&i(f,v,sim,mv)     mean and stdev of village factor marketed surplus                , \
+zfms_mv&i(f,sim,mv)       mean and stdev of zoi factor marketed surplus                     \
+;
+
+defpars_mv(1) ;
+defpars_mv(2) ;
+defpars_mv(D) ;
+defpars_mv(PC) ;

@@ -233,15 +233,33 @@ display ymult_h, rymult_h, ykmult_h, rykmult_h, yktotmult_h, ryktotmult_h ;
 
 
 
-$exit
-
 
 *-----------------------------------------------------------------------
 * Now output parameters with mean and variance
 *-----------------------------------------------------------------------
-set mv /mean, stdev, pct5, pct95/ ;
+*set mv /mean, stdev, pct5, pct95/ ;
 
 abort$(card(draw) le 1) "ONE REPETITION ONLY - NO MEANS OR STDEVS TO COMPUTE";
+
+
+* Macro to define all the _mv parameters:
+*$macro defpar_mv(i)
+
+* Macro to make all the _mv parameters:
+$macro mvfy(i) pv_mv&i(g,v,sim,"mean") = sum(draw, pv&i(g,v,draw,sim)) / card(draw) ; \
+pv_mv&i(g,v,sim,"stdev") = sqrt(sum(draw, sqr(pv&i(g,v,draw,sim) - pv_mv&i(g,v,sim,"mean")))/(card(draw)-1)) ; \
+pz_mv&i(g,sim,"mean") = sum(draw, pz&i(g,draw,sim)) / card(draw) ;                  \
+pz_mv&i(g,sim,"stdev") = sqrt(sum(draw, sqr(pz&i(g,draw,sim) - pz_mv&i(g,sim,"mean")))/(card(draw)-1)) ;
+
+
+mvfy(1) ;
+mvfy(2) ;
+
+display pv_mv1, pz_mv2 ; 
+$exit
+
+
+$ontext
 
 parameter
 * mean and stdev of starting matrix
@@ -856,6 +874,9 @@ display pvPC_mv, pzPC_mv, phPC_mv, pvaPC_mv, qvaPC_mv, qpPC_mv, fdPC_mv, idPC_mv
 , pshiftPC_mv, fsharePC_mv;
 * idshPC_mv, tidshPC_mv, eminPC_mv,
 
+$offtext
+
+
 
 * Welfare and efficiency
 parameter cvh_mv(h,mv)   compensating variation per household
@@ -894,6 +915,8 @@ parameter cvh_mv(h,mv)   compensating variation per household
           ykmult_all_mv(mv) multiplier of the program + the capital influx
           rykmult_all_mv(mv) multiplier of the program + the capital influx
 ;
+
+
 
 cvh_mv(h,"mean") = sum(draw, cvh(h,draw)) / card(draw) ;
 cvh_mv(h,"stdev") = sqrt(sum(draw, sqr(cvh(h,draw) - cvh_mv(h,"mean")))/(card(draw)-1)) ;
