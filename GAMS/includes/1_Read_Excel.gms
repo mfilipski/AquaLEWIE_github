@@ -120,10 +120,6 @@ xlqp(g,h)      = alldata("qp",g,"","",h) ;
 xlidsh(g,gg,h) = alldata("idsh",g,gg,"",h) ;
 xlfshare(g,f,h) = alldata("fshare",g,"",f,h) ;
 xlfshare_se(g,f,h) = alldata("fshare_se",g,"",f,h) ;
-* note: the A is actually log(A) because of the log-log regression
-* Do we even need the pshift? or does that get computed out of facshares and total qp?
-*xlpshift(g,h) = (alldata("pshift",g,"","",h)) ;
-*xlpshift_se(g,h) = (alldata("pshift_se",g,"","",h)) ;
 
 * transfers and savings
 xlTROUTsh(h) = alldata("transfout","","","",h) ;
@@ -135,9 +131,6 @@ xlsavsh(h) = alldata("savsh","","","",h) ;
 xlSAVsh_se(h) = alldata("savsh_se","","","",h) ;
 
 xlendow(f,h) = alldata("endow","","",f,h) + alldata("zoiendow","","",f,h) ;
-*xlendow("LABOR",h) = sum(g, xlFD(g,"LABOR",h));
-*xlendow("LAND",h) = sum(g, xlFD(g,"LAND",h));
-*xlendow("CAPITAL",h) = sum(g, xlFD(g,"CAPITAL",h));
 xlROCendow(f,h) = alldata("ROCendow","","",f,h) ;
 xlROWendow(f,h) = alldata("ROWendow","","",f,h) ;
 

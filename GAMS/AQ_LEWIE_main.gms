@@ -347,9 +347,10 @@ display_pars(1);
 display_pars(2);
 
 
-$exit
+
 * Output : compute all the parameters
 $include includes/6_Output_Parameters.gms
+$exit
 
 * Output : create a formatted text file with a series of "put" statements
 $include includes/7_Output_to_text_file.gms

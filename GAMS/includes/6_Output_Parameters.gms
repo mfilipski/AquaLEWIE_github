@@ -6,119 +6,114 @@
 * ================================================================================================
 * ================================================================================================
 
-
-* This file is generic to all models, both Rwamwanja or Adjumani
-
 * now compute and display all the values, differences in values, standard errors, etc...
-display pv1, pz1, ph1, qva1, fd1, id1, r1, wv1, wz1, qp1, tqp1, ttqp1, fixfac1, pva1, exinc1, endow1, y1, cpi1, vcpi1, ry1,
-        trinsh1, qc1, eshare1, troutsh1, hfsup1, hfd1, vfd1, zfd1, hms1, vms1, zms1, hfms1, vfms1, zfms1 ;
+display_pars(1) ;
+display_pars(2) ;
 
-display pv2, pz2, ph2, qva2, fd2, id2, r2, wv2, wz2, qp2, tqp2, ttqp2, fixfac2, pva2, exinc2, endow2, y2, cpi2, vcpi2, ry2,
-        trinsh2, qc2, eshare2, troutsh2, hfsup2, hfd2, vfd2, zfd2, hms2, vms2, zms2, hfms2, vfms2, zfms2 ;
 
 * DELTA between each calibration and the corresponding simulation
-pshiftD(g,h,draw)    = pshift2(g,h,draw) - pshift1(g,h,draw);
-fshareD(g,f,h,draw) = fshare2(g,f,h,draw) - fshare1(g,f,h,draw) ;
-pvD(g,v,draw)       = pv2(g,v,draw) - pv1(g,v,draw) ;
-pzD(g,draw)         = pz2(g,draw) - pz1(g,draw) ;
-phD(g,h,draw)       = ph2(g,h,draw) - ph1(g,h,draw) ;
-qvaD(g,h,draw)      = qva2(g,h,draw) - qva1(g,h,draw) ;
-fdD(g,f,h,draw)     = fd2(g,f,h,draw) - fd1(g,f,h,draw) ;
-idD(gg,g,h,draw)    = id2(gg,g,h,draw) - id1(gg,g,h,draw) ;
-rD(g,fk,h,draw)     = r2(g,fk,h,draw) - r1(g,fk,h,draw) ;
-wvD(f,v,draw)       = wv2(f,v,draw) - wv1(f,v,draw) ;
-wzD(f,draw)         = wz2(f,draw) - wz1(f,draw) ;
-qpD(g,h,draw)       = qp2(g,h,draw) - qp1(g,h,draw) ;
-tqpD(g,draw)       = tqp2(g,draw) - tqp1(g,draw) ;
-ttqpD(draw)        = ttqp2(draw) - ttqp1(draw) ;
-hqpD(h,draw)        = hqp2(h,draw) - hqp1(h,draw) ;
+pshiftD(g,h,draw,sim)    = pshift2(g,h,draw,sim)     - pshift1(g,h,draw);
+fshareD(g,f,h,draw,sim) = fshare2(g,f,h,draw,sim)    - fshare1(g,f,h,draw) ;
+pvD(g,v,draw,sim)       = pv2(g,v,draw,sim)          - pv1(g,v,draw) ;
+pzD(g,draw,sim)         = pz2(g,draw,sim)            - pz1(g,draw) ;
+phD(g,h,draw,sim)       = ph2(g,h,draw,sim)          - ph1(g,h,draw) ;
+qvaD(g,h,draw,sim)      = qva2(g,h,draw,sim)         - qva1(g,h,draw) ;
+fdD(g,f,h,draw,sim)     = fd2(g,f,h,draw,sim)        - fd1(g,f,h,draw) ;
+idD(gg,g,h,draw,sim)    = id2(gg,g,h,draw,sim)       - id1(gg,g,h,draw) ;
+rD(g,fk,h,draw,sim)     = r2(g,fk,h,draw,sim)        - r1(g,fk,h,draw) ;
+wvD(f,v,draw,sim)       = wv2(f,v,draw,sim)          - wv1(f,v,draw) ;
+wzD(f,draw,sim)         = wz2(f,draw,sim)            - wz1(f,draw) ;
+qpD(g,h,draw,sim)       = qp2(g,h,draw,sim)          - qp1(g,h,draw) ;
+tqpD(g,draw,sim)        = tqp2(g,draw,sim)           - tqp1(g,draw) ;
+ttqpD(draw,sim)         = ttqp2(draw,sim)            - ttqp1(draw) ;
+hqpD(h,draw,sim)        = hqp2(h,draw,sim)           - hqp1(h,draw) ;
 
-fixfacD(g,fk,h,draw) = fixfac2(g,fk,h,draw) - fixfac1(g,fk,h,draw) ;
-pvaD(g,h,draw)      = pva2(g,h,draw) - pva1(g,h,draw) ;
-exincD(h,draw)      = exinc2(h,draw) - exinc1(h,draw) ;
-endowD(f,h,draw)    = endow2(f,h,draw) - endow1(f,h,draw) ;
-yD(h,draw)          = y2(h,draw) - y1(h,draw) ;
-cpiD(h,draw)          = cpi2(h,draw) - cpi1(h,draw) ;
-vqcD(v,g,draw)      = vqc2(v,g,draw)-vqc1(v,g,draw) ;
-* village cpi is weighted sum of prices
-vcpiD(v,draw)       = vcpi2(v,draw) - vcpi1(v,draw);
-criD(v,f,draw)       = cri2(v,f,draw) - cri1(v,f,draw);
-ryD(h,draw)           = ry2(h,draw) - ry1(h,draw) ;
-tyD(draw)           = ty2(draw) - ty1(draw) ;
-tryD(draw)        = try2(draw) - try1(draw) ;
-trinshD(h,draw)     = trinsh2(h,draw) - trinsh1(h,draw) ;
-qcD(g,h,draw)       = qc2(g,h,draw) - qc1(g,h,draw) ;
-eshareD(g,h,draw)    = eshare2(g,h,draw) - eshare1(g,h,draw) ;
-troutshD(h,draw)    = troutsh2(h,draw) - troutsh1(h,draw) ;
-hfdD(f,h,draw)      = hfd2(f,h,draw) - hfd1(f,h,draw) ;
-vfdD(f,v,draw)      = vfd2(f,v,draw) - vfd1(f,v,draw) ;
-zfdD(f,draw)        = zfd2(f,draw) - zfd1(f,draw) ;
-hmsD(g,h,draw)      = hms2(g,h,draw) - hms1(g,h,draw) ;
-vmsD(g,v,draw)      = vms2(g,v,draw) - vms1(g,v,draw) ;
-zmsD(g,draw)        = zms2(g,draw) - zms1(g,draw) ;
-hfmsD(ft,h,draw)    = hfms2(ft,h,draw) - hfms1(ft,h,draw) ;
-vfmsD(ft,v,draw)    = vfms2(ft,v,draw) - vfms1(ft,v,draw) ;
-zfmsD(ft,draw)      = zfms2(ft,draw) - zfms1(ft,draw) ;
-vashD(g,h,draw)     = vash2(g,h,draw) -vash1(g,h,draw) ;
-trinD(h,draw)       = trin2(h,draw) - trin1(h,draw) ;
-troutD(h,draw)      = trout2(h,draw) - trout1(h,draw) ;
-savD(h,draw)        = sav2(h,draw) -sav1(h,draw) ;
-exprocD(h,draw)     = exproc2(h,draw) - exproc1(h,draw) ;
-
-hfsupD(f,h,draw)    = hfsup2(f,h,draw) - hfsup1(f,h,draw) ;
+fixfacD(g,fk,h,draw,sim) = fixfac2(g,fk,h,draw,sim)  - fixfac1(g,fk,h,draw) ;
+pvaD(g,h,draw,sim)      = pva2(g,h,draw,sim)         - pva1(g,h,draw) ;
+exincD(h,draw,sim)      = exinc2(h,draw,sim)         - exinc1(h,draw) ;
+endowD(f,h,draw,sim)    = endow2(f,h,draw,sim)       - endow1(f,h,draw) ;
+yD(h,draw,sim)          = y2(h,draw,sim)             - y1(h,draw) ;
+cpiD(h,draw,sim)        = cpi2(h,draw,sim)           - cpi1(h,draw) ;
+vqcD(v,g,draw,sim)      = vqc2(v,g,draw,sim)         - vqc1(v,g,draw) ;
+vcpiD(v,draw,sim)       = vcpi2(v,draw,sim)          - vcpi1(v,draw);
+criD(v,f,draw,sim)      = cri2(v,f,draw,sim)         - cri1(v,f,draw);
+ryD(h,draw,sim)         = ry2(h,draw,sim)            - ry1(h,draw) ;
+tyD(draw,sim)           = ty2(draw,sim)              - ty1(draw) ;
+tryD(draw,sim)          = try2(draw,sim)             - try1(draw) ;
+trinshD(h,draw,sim)     = trinsh2(h,draw,sim)        - trinsh1(h,draw) ;
+qcD(g,h,draw,sim)       = qc2(g,h,draw,sim)          - qc1(g,h,draw) ;
+eshareD(g,h,draw,sim)   = eshare2(g,h,draw,sim)      - eshare1(g,h,draw) ;
+troutshD(h,draw,sim)    = troutsh2(h,draw,sim)       - troutsh1(h,draw) ;
+hfdD(f,h,draw,sim)      = hfd2(f,h,draw,sim)         - hfd1(f,h,draw) ;
+vfdD(f,v,draw,sim)      = vfd2(f,v,draw,sim)         - vfd1(f,v,draw) ;
+zfdD(f,draw,sim)        = zfd2(f,draw,sim)           - zfd1(f,draw) ;
+hmsD(g,h,draw,sim)      = hms2(g,h,draw,sim)         - hms1(g,h,draw) ;
+vmsD(g,v,draw,sim)      = vms2(g,v,draw,sim)         - vms1(g,v,draw) ;
+zmsD(g,draw,sim)        = zms2(g,draw,sim)           - zms1(g,draw) ;
+hfmsD(ft,h,draw,sim)    = hfms2(ft,h,draw,sim)       - hfms1(ft,h,draw) ;
+vfmsD(ft,v,draw,sim)    = vfms2(ft,v,draw,sim)       - vfms1(ft,v,draw) ;
+zfmsD(ft,draw,sim)      = zfms2(ft,draw,sim)         - zfms1(ft,draw) ;
+vashD(g,h,draw,sim)     = vash2(g,h,draw,sim)        - vash1(g,h,draw) ;
+trinD(h,draw,sim)       = trin2(h,draw,sim)          - trin1(h,draw) ;
+troutD(h,draw,sim)      = trout2(h,draw,sim)         - trout1(h,draw) ;
+savD(h,draw,sim)        = sav2(h,draw,sim)           - sav1(h,draw) ;
+exprocD(h,draw,sim)     = exproc2(h,draw,sim)        - exproc1(h,draw) ;
+hfsupD(f,h,draw,sim)    = hfsup2(f,h,draw,sim)       - hfsup1(f,h,draw) ;
 
 * PERCENT CHANGE between each calibration and the corresponding simulation
-pshiftPC(g,h,draw)$pshift1(g,h,draw)    = 100*pshiftD(g,h,draw)/ pshift1(g,h,draw);
-fsharePC(g,f,h,draw)$fshare1(g,f,h,draw) = 100*fshareD(g,f,h,draw) / fshare1(g,f,h,draw) ;
-pvPC(g,v,draw)$pv1(g,v,draw)        = 100*pvD(g,v,draw) / pv1(g,v,draw) ;
-pzPC(g,draw)$pz1(g,draw)            = 100*pzD(g,draw) / pz1(g,draw) ;
-phPC(g,h,draw)$ph1(g,h,draw)        = 100*phD(g,h,draw) / ph1(g,h,draw) ;
-qvaPC(g,h,draw)$qva1(g,h,draw)      = 100*qvaD(g,h,draw) / qva1(g,h,draw) ;
-fdPC(g,f,h,draw)$fd1(g,f,h,draw)    = 100*fdD(g,f,h,draw) / fd1(g,f,h,draw) ;
-idPC(gg,g,h,draw)$id1(gg,g,h,draw)  = 100*idD(gg,g,h,draw) / id1(gg,g,h,draw) ;
-rPC(g,fk,h,draw)$r1(g,fk,h,draw)    = 100*rD(g,fk,h,draw) / r1(g,fk,h,draw) ;
-wvPC(f,v,draw)$wv1(f,v,draw)        = 100*wvD(f,v,draw) / wv1(f,v,draw) ;
-wzPC(f,draw)$wz1(f,draw)            = 100*wzD(f,draw) / wz1(f,draw) ;
-qpPC(g,h,draw)$qp1(g,h,draw)        = 100*qpD(g,h,draw) / qp1(g,h,draw) ;
-tqpPC(g,draw)$tqp1(g,draw)          = 100*tqpD(g,draw) / tqp1(g,draw) ;
-ttqpPC(draw)$ttqp1(draw)            = 100*ttqpD(draw) / ttqp1(draw) ;
+pshiftPC(g,h,draw,sim)$pshift1(g,h,draw)    = 100*pshiftD(g,h,draw,sim)/ pshift1(g,h,draw);
+fsharePC(g,f,h,draw,sim)$fshare1(g,f,h,draw) = 100*fshareD(g,f,h,draw,sim) / fshare1(g,f,h,draw) ;
+pvPC(g,v,draw,sim)$pv1(g,v,draw)        = 100*pvD(g,v,draw,sim)          / pv1(g,v,draw) ;
+pzPC(g,draw,sim)$pz1(g,draw)            = 100*pzD(g,draw,sim)            / pz1(g,draw) ;
+phPC(g,h,draw,sim)$ph1(g,h,draw)        = 100*phD(g,h,draw,sim)          / ph1(g,h,draw) ;
+qvaPC(g,h,draw,sim)$qva1(g,h,draw)      = 100*qvaD(g,h,draw,sim)         / qva1(g,h,draw) ;
+fdPC(g,f,h,draw,sim)$fd1(g,f,h,draw)    = 100*fdD(g,f,h,draw,sim)        / fd1(g,f,h,draw) ;
+idPC(gg,g,h,draw,sim)$id1(gg,g,h,draw)  = 100*idD(gg,g,h,draw,sim)       / id1(gg,g,h,draw) ;
+rPC(g,fk,h,draw,sim)$r1(g,fk,h,draw)    = 100*rD(g,fk,h,draw,sim)        / r1(g,fk,h,draw) ;
+wvPC(f,v,draw,sim)$wv1(f,v,draw)        = 100*wvD(f,v,draw,sim)          / wv1(f,v,draw) ;
+wzPC(f,draw,sim)$wz1(f,draw)            = 100*wzD(f,draw,sim)            / wz1(f,draw) ;
+qpPC(g,h,draw,sim)$qp1(g,h,draw)        = 100*qpD(g,h,draw,sim)          / qp1(g,h,draw) ;
+tqpPC(g,draw,sim)$tqp1(g,draw)          = 100*tqpD(g,draw,sim)           / tqp1(g,draw) ;
+ttqpPC(draw,sim)$ttqp1(draw)            = 100*ttqpD(draw,sim)            / ttqp1(draw) ;
 
-fixfacPC(g,fk,h,draw)$fixfac1(g,fk,h,draw)  = 100*fixfacD(g,fk,h,draw) / fixfac1(g,fk,h,draw) ;
-pvaPC(g,h,draw)$pva1(g,h,draw)      = 100*pvaD(g,h,draw) / pva1(g,h,draw) ;
-exincPC(h,draw)$exinc1(h,draw)      = 100*exincD(h,draw) / exinc1(h,draw) ;
-endowPC(f,h,draw)$endow1(f,h,draw)  = 100*endowD(f,h,draw) / endow1(f,h,draw) ;
-yPC(h,draw)$y1(h,draw)              = 100*yD(h,draw) / y1(h,draw) ;
-cpiPC(h,draw)$cpi1(h,draw)          = 100*cpiD(h,draw) / cpi1(h,draw) ;
-vcpiPC(v,draw)$vcpi1(v,draw)        = 100*vcpiD(v,draw) / vcpi1(v,draw) ;
-criPC(v,f,draw)$cri1(v,f,draw)      = 100*criD(v,f,draw) / cri1(v,f,draw) ;
+fixfacPC(g,fk,h,draw,sim)$fixfac1(g,fk,h,draw)  = 100*fixfacD(g,fk,h,draw,sim) / fixfac1(g,fk,h,draw) ;
+pvaPC(g,h,draw,sim)$pva1(g,h,draw)      = 100*pvaD(g,h,draw,sim)         / pva1(g,h,draw) ;
+exincPC(h,draw,sim)$exinc1(h,draw)      = 100*exincD(h,draw,sim)         / exinc1(h,draw) ;
+endowPC(f,h,draw,sim)$endow1(f,h,draw)  = 100*endowD(f,h,draw,sim)       / endow1(f,h,draw) ;
+yPC(h,draw,sim)$y1(h,draw)              = 100*yD(h,draw,sim)             / y1(h,draw) ;
+cpiPC(h,draw,sim)$cpi1(h,draw)          = 100*cpiD(h,draw,sim)           / cpi1(h,draw) ;
+vcpiPC(v,draw,sim)$vcpi1(v,draw)        = 100*vcpiD(v,draw,sim)          / vcpi1(v,draw) ;
+criPC(v,f,draw,sim)$cri1(v,f,draw)      = 100*criD(v,f,draw,sim)         / cri1(v,f,draw) ;
 
-ryPC(h,draw)$ry1(h,draw)            = 100*ryD(h,draw) / ry1(h,draw) ;
-tyPC(draw)$ty1(draw)                = 100*tyD(draw) / ty1(draw) ;
-tryPC(draw)$try1(draw)              = 100*tryD(draw) / try1(draw) ;
-trinshPC(h,draw)$trinsh1(h,draw)    = 100*trinshD(h,draw) / trinsh1(h,draw) ;
-qcPC(g,h,draw)$qc1(g,h,draw)        = 100*qcD(g,h,draw) / qc1(g,h,draw) ;
-esharePC(g,h,draw)$eshare1(g,h,draw)  = 100*eshareD(g,h,draw) / eshare1(g,h,draw) ;
-troutshPC(h,draw)$troutsh1(h,draw)  = 100*troutshD(h,draw) / troutsh1(h,draw) ;
-hfdPC(f,h,draw)$hfd1(f,h,draw)      = 100*hfdD(f,h,draw) / hfd1(f,h,draw) ;
-vfdPC(f,v,draw)$vfd1(f,v,draw)      = 100*vfdD(f,v,draw) / vfd1(f,v,draw) ;
-zfdPC(f,draw)$zfd1(f,draw)          = 100*zfdD(f,draw) / zfd1(f,draw) ;
-hmsPC(g,h,draw)$hms1(g,h,draw)      = 100*hmsD(g,h,draw) / hms1(g,h,draw) ;
-vmsPC(g,v,draw)$vms1(g,v,draw)      = 100*vmsD(g,v,draw) / vms1(g,v,draw) ;
-zmsPC(g,draw)$zms1(g,draw)          = 100*zmsD(g,draw) / zms1(g,draw) ;
-hfmsPC(ft,h,draw)$hfms1(ft,h,draw)  = 100*hfmsD(ft,h,draw) / hfms1(ft,h,draw) ;
-vfmsPC(ft,v,draw)$vfms1(ft,v,draw)  = 100*vfmsD(ft,v,draw) / vfms1(ft,v,draw) ;
-zfmsPC(ft,draw)$zfms1(ft,draw)      = 100*zfmsD(ft,draw) / zfms1(ft,draw) ;
-vashPC(g,h,draw)$vash1(g,h,draw)    = 100*vashD(g,h,draw) / vash1(g,h,draw) ;
-trinPC(h,draw)$trin1(h,draw)        = 100*trinD(h,draw) / trin1(h,draw) ;
-troutPC(h,draw)$trout1(h,draw)      = 100*troutD(h,draw) / trout1(h,draw) ;
-savPC(h,draw)$sav1(h,draw)          = 100*savD(h,draw) / sav1(h,draw) ;
-exprocPC(h,draw)$exproc1(h,draw)    = 100*exprocD(h,draw) / exproc1(h,draw) ;
-hfsupPC(f,h,draw)$hfsup1(f,h,draw)  = 100*hfsupD(f,h,draw) / hfsup1(f,h,draw) ;
+ryPC(h,draw,sim)$ry1(h,draw)            = 100*ryD(h,draw,sim)            / ry1(h,draw) ;
+tyPC(draw,sim)$ty1(draw)                = 100*tyD(draw,sim)              / ty1(draw) ;
+tryPC(draw,sim)$try1(draw)              = 100*tryD(draw,sim)             / try1(draw) ;
+trinshPC(h,draw,sim)$trinsh1(h,draw)    = 100*trinshD(h,draw,sim)        / trinsh1(h,draw) ;
+qcPC(g,h,draw,sim)$qc1(g,h,draw)        = 100*qcD(g,h,draw,sim)          / qc1(g,h,draw) ;
+esharePC(g,h,draw,sim)$eshare1(g,h,draw)  = 100*eshareD(g,h,draw,sim)    / eshare1(g,h,draw) ;
+troutshPC(h,draw,sim)$troutsh1(h,draw)  = 100*troutshD(h,draw,sim)       / troutsh1(h,draw) ;
+hfdPC(f,h,draw,sim)$hfd1(f,h,draw)      = 100*hfdD(f,h,draw,sim)         / hfd1(f,h,draw) ;
+vfdPC(f,v,draw,sim)$vfd1(f,v,draw)      = 100*vfdD(f,v,draw,sim)         / vfd1(f,v,draw) ;
+zfdPC(f,draw,sim)$zfd1(f,draw)          = 100*zfdD(f,draw,sim)           / zfd1(f,draw) ;
+hmsPC(g,h,draw,sim)$hms1(g,h,draw)      = 100*hmsD(g,h,draw,sim)         / hms1(g,h,draw) ;
+vmsPC(g,v,draw,sim)$vms1(g,v,draw)      = 100*vmsD(g,v,draw,sim)         / vms1(g,v,draw) ;
+zmsPC(g,draw,sim)$zms1(g,draw)          = 100*zmsD(g,draw,sim)           / zms1(g,draw) ;
+hfmsPC(ft,h,draw,sim)$hfms1(ft,h,draw)  = 100*hfmsD(ft,h,draw,sim)       / hfms1(ft,h,draw) ;
+vfmsPC(ft,v,draw,sim)$vfms1(ft,v,draw)  = 100*vfmsD(ft,v,draw,sim)       / vfms1(ft,v,draw) ;
+zfmsPC(ft,draw,sim)$zfms1(ft,draw)      = 100*zfmsD(ft,draw,sim)         / zfms1(ft,draw) ;
+vashPC(g,h,draw,sim)$vash1(g,h,draw)    = 100*vashD(g,h,draw,sim)        / vash1(g,h,draw) ;
+trinPC(h,draw,sim)$trin1(h,draw)        = 100*trinD(h,draw,sim)          / trin1(h,draw) ;
+troutPC(h,draw,sim)$trout1(h,draw)      = 100*troutD(h,draw,sim)         / trout1(h,draw) ;
+savPC(h,draw,sim)$sav1(h,draw)          = 100*savD(h,draw,sim)           / sav1(h,draw) ;
+exprocPC(h,draw,sim)$exproc1(h,draw)    = 100*exprocD(h,draw,sim)        / exproc1(h,draw) ;
+hfsupPC(f,h,draw,sim)$hfsup1(f,h,draw)  = 100*hfsupD(f,h,draw,sim)       / hfsup1(f,h,draw) ;
 
 
-display pvD, pzD, phD, qvaD, fdD, idD, rD, wvD, wzD, qpD, tqpD, ttqpD, fixfacD, pvaD, exincD, endowD, yD, cpiD, vcpiD, ryD, tyD, tryD,
-        trinshD, qcD, eshareD, troutshD, hfsupD, hfdD, vfdD, zfdD, hmsD, vmsD, zmsD, hfmsD, vfmsD, zfmsD ,
-        vashD, trinD, troutD;
+*display pvD, pzD, phD, qvaD, fdD, idD, rD, wvD, wzD, qpD, tqpD, ttqpD, fixfacD, pvaD, exincD, endowD, yD, cpiD, vcpiD, ryD, tyD, tryD,
+*        trinshD, qcD, eshareD, troutshD, hfsupD, hfdD, vfdD, zfdD, hmsD, vmsD, zmsD, hfmsD, vfmsD, zfmsD ,
+*        vashD, trinD, troutD;
+display_pars(D)
+$exit
 
 display pvPC, pzPC, phPC, qvaPC, fdPC, idPC, rPC, wvPC, wzPC, qpPC, tqpPC, ttqpPC, fixfacPC, pvaPC, exincPC, endowPC, yPC, cpiPC, vcpiPC, ryPC, tyPC, tryPC,
         trinshPC, qcPC, esharePC, troutshPC, hfsupPC, hfdPC, vfdPC, zfdPC, hmsPC, vmsPC, zmsPC, hfmsPC, vfmsPC, zfmsPC ,
