@@ -66,8 +66,8 @@ if(%budgetconstraint% = 1,
 * rent for pond land = 200,000 / acre = 2 lakh
 
 * let's simulate conversion of 1 acre of unused land into either paddy or pond:
-fixfac("Fish","Land","AqFSm") = fixfac("Fish","Land","AqFSm") +2 ;
-*fixfac("Fish","Land","AqFBg") = fixfac("Fish","Land","AqFBg") +2 ;
+*fixfac("Fish","Land","AqFSm") = fixfac("Fish","Land","AqFSm") +2 ;
+fixfac("Fish","Land","AqFBg") = fixfac("Fish","Land","AqFBg") +2 ;
 *fixfac("Crop","Land","AqAg") = fixfac("Crop","Land","AqAg") +0.7 ;
 *fixfac("Crop","Land","AqFSm") = fixfac("Crop","Land","AqFSm") -1 ;
 
