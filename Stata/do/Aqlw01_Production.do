@@ -81,16 +81,13 @@ egen i_land = rowtotal(aqua_sparea)
 egen i_capit = rowtotal(nval cst_mach)
 egen i_other = rowtotal(cst_oinp cst_harv cst_mkt cst_leg  cst_bor)
 
-* Maybe no need for Other - they are intermediate inputs, not value-added creating inputs
-global rhsfish "li_labor li_land li_capit li_feed "
-global cstrfish "li_labor+li_land+li_capit+li_feed"
-
 
 label var i_land "Land"
 
 gen y = rev_fish 
 
-keep eahhid y i_* 
+keep eahhid y i_*  wei
+ 
 sort eahhid
 tempfile growout 
 save `growout' 
@@ -106,10 +103,25 @@ foreach v of varlist y i_* {
 	gen l`v' = log(`v')
 }
 
+* generate variables for the regression:
+* Maybe no need for Other - they are intermediate inputs, not value-added creating inputs
+global rhsfish "li_labor li_land li_capit li_feed "
+global cstrfish "li_labor+li_land+li_capit+li_feed"
+
+* look for outliers: 
+tab li_labor 
+tab li_land
+tab li_capit
+drop if li_capit <=-2
+drop if li_capit >=9 & li_capit!=.
+tab li_feed
+
+
+
 * run a constrained log-log regression
 eststo clear  
 constraint 3 $cstrfish = 1 , c(3)
-bysort lwgroup : eststo: cnsreg ly $rhsfish, r c(3) 
+bysort lwgroup : eststo: cnsreg ly $rhsfish , r c(3) 
 
 estout
 return list
@@ -127,8 +139,6 @@ matrix colnames mout = beta se p beta se p
 mat l mout
 
 putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
-
- 
 
  
 * ============================================================

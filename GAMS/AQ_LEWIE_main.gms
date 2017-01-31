@@ -14,7 +14,7 @@ option limcol=30 ;
 
 
 * name of the excel file (WITHOUT .xlsx extension):
-$setglobal data_input "AQ_LEWIE_InputSheet_v5"
+$setglobal data_input "AQ_LEWIE_InputSheet_v6"
 * name of index sheet (village-specific):
 $setglobal input_sheet_index "Index!A2"
 * name of include file containing village-specific assumptions
