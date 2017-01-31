@@ -109,15 +109,11 @@ exprocPC(h,draw,sim)$exproc1(h,draw)    = 100*exprocD(h,draw,sim)        / expro
 hfsupPC(f,h,draw,sim)$hfsup1(f,h,draw)  = 100*hfsupD(f,h,draw,sim)       / hfsup1(f,h,draw) ;
 
 
-*display pvD, pzD, phD, qvaD, fdD, idD, rD, wvD, wzD, qpD, tqpD, ttqpD, fixfacD, pvaD, exincD, endowD, yD, cpiD, vcpiD, ryD, tyD, tryD,
-*        trinshD, qcD, eshareD, troutshD, hfsupD, hfdD, vfdD, zfdD, hmsD, vmsD, zmsD, hfmsD, vfmsD, zfmsD ,
-*        vashD, trinD, troutD;
 display_pars(D)
+display_pars(PC)
+
 $exit
 
-display pvPC, pzPC, phPC, qvaPC, fdPC, idPC, rPC, wvPC, wzPC, qpPC, tqpPC, ttqpPC, fixfacPC, pvaPC, exincPC, endowPC, yPC, cpiPC, vcpiPC, ryPC, tyPC, tryPC,
-        trinshPC, qcPC, esharePC, troutshPC, hfsupPC, hfdPC, vfdPC, zfdPC, hmsPC, vmsPC, zmsPC, hfmsPC, vfmsPC, zfmsPC ,
-        vashPC, trinPC, troutPC ;
 
 * Welfare and efficiency
 parameter cvh(h,draw)   compensating variation per household

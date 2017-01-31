@@ -7,6 +7,7 @@
 * This defines all the essential parameters for calibration.
 * Additional ad-hoc parameters (for instance for checks) get added in the
 
+
 parameter
 * meta-parameters with parameter draws
 fshare_t(g,f,h,draw)  unscaled draw the cobb-douglas factor shares
@@ -68,7 +69,70 @@ exprocsh_dr(h,draw)   drawn or computed outside-of-zoi expenditures rate
 exproc_dr(h,draw)     drawn or computed outside-of-zoi expenditures level
 expzoish_dr(h,draw)   drawn or computed outside-of-zoi expenditures level
 
+;
 
+* MACRO for defininf all parameters of type 1, 2, D or PC
+
+$macro defpars(i)  parameters  pv&i(g,v,draw,sim) calibrated price at village level ,  \
+         pz&i(g,draw,sim)          price at zoi level     , \
+         ph&i(g,h,draw,sim)        price as seen by household    ,\
+         pva&i(g,h,draw,sim)       price of value added     ,   \
+         qva&i(g,h,draw,sim)       quantity of value added  , \
+         qp&i(g,h,draw,sim)            quantity produced by h        , \
+         tqp&i(g,draw,sim)             total quantity produced of g  , \
+         ttqp&i(draw,sim)              total production value in whole economy  , \
+         hqp&i(h,draw,sim)             total qty produced by a household  , \
+         fd&i(g,f,h,draw,sim)          factor demand                           , \
+         id&i(g,gg,h,draw,sim)         intermediate demand                      , \
+         pshift&i(g,h,draw,sim)        cobb-douglas shifter                    , \
+         fshare&i(g,f,h,draw,sim)      cobb-douglas shares                     , \
+         r&i(g,f,h,draw,sim)           rent for fixed factors                  , \
+         wv&i(f,v,draw,sim)            village-wide wage for tradable factors  , \
+         wz&i(f,draw,sim)              zoi-wide wage for tradable factors      , \
+         vash&i(g,h,draw,sim)          value-added share                       , \
+         idsh&i(gg,g,h,draw,sim)       intermediate demand share               , \
+         tidsh&i(gg,h,draw,sim)        total intermediate input share (1-vash) , \
+         fixfac&i(g,f,h,draw,sim)      fixed factor demand                     , \
+         exinc&i(h,draw,sim)           exogenous income                        , \
+         endow&i(f,h,draw,sim)         endowment                               , \
+         qc&i(g,h,draw,sim)            level of consumption                    , \
+         eshare&i(g,h,draw,sim)        consumption shares                      , \
+         y&i(h,draw,sim)               income of household                     , \
+         cpi&i(h,draw,sim)             cpi                                     , \
+         vqc&i(v,g,draw,sim)           village consumption                     , \
+         vcpi&i(v,draw,sim)            village cpi                             , \
+         cri&i(v,f,draw,sim)           rent weighted index                     , \
+         ry&i(h,draw,sim)              real income                             , \
+         ty&i(draw,sim)                income total                            , \
+         try&i(draw,sim)               real income total                       , \
+         emin&i(g,h,draw,sim)          incompressible demand                   , \
+         trin&i(h,draw,sim)            transfers in - received                 , \
+         trout&i(h,draw,sim)           transfers out - given                   , \
+         sav&i(h,draw,sim)             savings                                 , \
+         exproc&i(h,draw,sim)          expenditure rest of country             , \
+         trinsh&i(h,draw,sim)          share of all transfers in the eco going to h  , \
+         troutsh&i(h,draw,sim)         share of household h income being given as transfers , \
+         hfd&i(f,h,draw,sim)           factor demand of household h for factor f , \
+         vfd&i(f,v,draw,sim)           village demand for factor f             , \
+         zfd&i(f,draw,sim)             zoi demand for factor f                 , \
+         hms&i(g,h,draw,sim)           household marketed surplus of good g    , \
+         vms&i(g,v,draw,sim)           village marketed surplus of good g       , \
+         zms&i(g,draw,sim)             household marketed surplus of good g    , \
+         hfms&i(f,h,draw,sim)          household factor marketed surplus       , \
+         vfms&i(f,v,draw,sim)          village factor marketed surplus         , \
+         zfms&i(f,draw,sim)            zoi factor marketed surplus             , \
+         vfmsfix&i(f,v,draw,sim)       factors fixed at the Village level (family labor)  , \
+         zfmsfix&i(f,draw,sim)         factors fixed at the zoi level (hired labor)       , \
+         hfsup&i(f,h,draw,sim)         factor supply by the household                      \
+;
+
+defpars(1) ;
+defpars(2) ;
+defpars(D) ;
+defpars(PS)
+
+
+$ontext
 * calibration values in each draw
 *pm1(g,draw)         calibrated market price
 pv1(g,v,draw)       calibrated price at village level
@@ -76,54 +140,7 @@ pz1(g,draw)         calibrated price at zoi level
 ph1(g,h,draw)       calibrated price as seen by household
 pva1(g,h,draw)      calibrated price of value added
 qva1(g,h,draw)      calibrated quantity of value added
-qp1(g,h,draw)       calibrated quantity produced
-tqp1(g,draw)        calibrated total quantity produced
-ttqp1(draw)
-hqp1(h,draw)        calibrated total qty produced by a household
-fd1(g,f,h,draw)     calibrated factor demand
-id1(g,gg,h,draw)    calibrated intermediate demand
-pshift1(g,h,draw)   calibrated cobb-douglas shifter
-fshare1(g,f,h,draw) calibrated cobb-douglas shares
-r1(g,f,h,draw)      calibrated rent for fixed factors
-wv1(f,v,draw)       calibrated village-wide wage for tradable factors
-wz1(f,draw)         calibrated zoi-wide wage for tradable factors
-vash1(g,h,draw)     calibrated value-added share
-idsh1(gg,g,h,draw)  calibrated intermediate demand share
-tidsh1(gg,h,draw)   calibrated total intermediate input share (1-vash)
-fixfac1(g,f,h,draw) calibrated fixed factor demand
-exinc1(h,draw)      calibrated exogenous income
-endow1(f,h,draw)    calibrated endowment
-qc1(g,h,draw)       calibrated level of consumption
-eshare1(g,h,draw)    calibrated consumption shares
-y1(h,draw)          calibrated income of household
-cpi1(h,draw)        calibrated cpi
-vqc1(v,g,draw)      calibrated village consumption
-vcpi1(v,draw)       calibrated village cpi
-cri1(v,f,draw)      calibrated rent weighted index
 
-ry1(h,draw)         calibrated real income
-ty1(draw)           calibrated income total
-try1(draw)          calibrated real income total
-emin1(g,h,draw)     calibrated incompressible demand
-trin1(h,draw)       calibrated transfers in - received
-trout1(h,draw)      calibrated transfers out - given
-sav1(h,draw)        calibrated savings
-exproc1(h,draw)     calibrated expenditure rest of country
-trinsh1(h,draw)     calibrated share of all transfers in the eco going to h
-troutsh1(h,draw)    calibrated share of yousehold h's income being given as transfers
-hfd1(f,h,draw)      calibrated factor demand of household h for factor f
-vfd1(f,v,draw)      calibrated village demand for factor f
-zfd1(f,draw)        calibrated zoi demand for factor f
-hms1(g,h,draw)      calibrated household marketed surplus of good g
-vms1(g,v,draw)      calibrated village marketed surplus of good g
-zms1(g,draw)        calibrated household marketed surplus of good g
-*unemp1(f,h,draw)    calibrated unemployement in the household
-hfms1(f,h,draw)     calibrated household factor marketed surplus
-vfms1(f,v,draw)     calibrated village factor marketed surplus
-zfms1(f,draw)       calibrated zoi factor marketed surplus
-vfmsfix1(f,v,draw)    calibrated factors fixed at the Village level (family labor)
-zfmsfix1(f,draw)      calibrated factors fixed at the zoi level (hired labor)
-hfsup1(f,h,draw)    calibrated factor supply by the household
 
 
 * after a simulation for each draw
@@ -290,6 +307,7 @@ zfmsPC(f,draw,sim)       % change zoi factor marketed surplus
 hfsupPC(f,h,draw,sim)    % change factor supply by the household
 ;
 
+$offtext
 
 $macro display_pars(i) display pv&i, pz&i, ph&i, qva&i, fd&i, id&i, r&i, wv&i, wz&i, qp&i, tqp&i,    \
 ttqp&i , fixfac&i, pva&i, exinc&i, endow&i, y&i, cpi&i, vcpi&i, ry&i, trinsh&i, qc&i, eshare&i, troutsh&i, hfsup&i, hfd&i, vfd&i, zfd&i, hms&i, vms&i, zms&i, hfms&i, vfms&i, zfms&i ;
