@@ -12,203 +12,202 @@ display_pars(2) ;
 
 
 * DELTA between each calibration and the corresponding simulation
-pshiftD(g,h,draw,sim)    = pshift2(g,h,draw,sim)     - pshift1(g,h,draw);
-fshareD(g,f,h,draw,sim) = fshare2(g,f,h,draw,sim)    - fshare1(g,f,h,draw) ;
-pvD(g,v,draw,sim)       = pv2(g,v,draw,sim)          - pv1(g,v,draw) ;
-pzD(g,draw,sim)         = pz2(g,draw,sim)            - pz1(g,draw) ;
-phD(g,h,draw,sim)       = ph2(g,h,draw,sim)          - ph1(g,h,draw) ;
-qvaD(g,h,draw,sim)      = qva2(g,h,draw,sim)         - qva1(g,h,draw) ;
-fdD(g,f,h,draw,sim)     = fd2(g,f,h,draw,sim)        - fd1(g,f,h,draw) ;
-idD(gg,g,h,draw,sim)    = id2(gg,g,h,draw,sim)       - id1(gg,g,h,draw) ;
-rD(g,fk,h,draw,sim)     = r2(g,fk,h,draw,sim)        - r1(g,fk,h,draw) ;
-wvD(f,v,draw,sim)       = wv2(f,v,draw,sim)          - wv1(f,v,draw) ;
-wzD(f,draw,sim)         = wz2(f,draw,sim)            - wz1(f,draw) ;
-qpD(g,h,draw,sim)       = qp2(g,h,draw,sim)          - qp1(g,h,draw) ;
-tqpD(g,draw,sim)        = tqp2(g,draw,sim)           - tqp1(g,draw) ;
-ttqpD(draw,sim)         = ttqp2(draw,sim)            - ttqp1(draw) ;
-hqpD(h,draw,sim)        = hqp2(h,draw,sim)           - hqp1(h,draw) ;
+pshiftD(g,h,draw,sim)    = pshift2(g,h,draw,sim)     - pshift1(g,h,draw,sim);
+fshareD(g,f,h,draw,sim) = fshare2(g,f,h,draw,sim)    - fshare1(g,f,h,draw,sim) ;
+pvD(g,v,draw,sim)       = pv2(g,v,draw,sim)          - pv1(g,v,draw,sim) ;
+pzD(g,draw,sim)         = pz2(g,draw,sim)            - pz1(g,draw,sim) ;
+phD(g,h,draw,sim)       = ph2(g,h,draw,sim)          - ph1(g,h,draw,sim) ;
+qvaD(g,h,draw,sim)      = qva2(g,h,draw,sim)         - qva1(g,h,draw,sim) ;
+fdD(g,f,h,draw,sim)     = fd2(g,f,h,draw,sim)        - fd1(g,f,h,draw,sim) ;
+idD(gg,g,h,draw,sim)    = id2(gg,g,h,draw,sim)       - id1(gg,g,h,draw,sim) ;
+rD(g,fk,h,draw,sim)     = r2(g,fk,h,draw,sim)        - r1(g,fk,h,draw,sim) ;
+wvD(f,v,draw,sim)       = wv2(f,v,draw,sim)          - wv1(f,v,draw,sim) ;
+wzD(f,draw,sim)         = wz2(f,draw,sim)            - wz1(f,draw,sim) ;
+qpD(g,h,draw,sim)       = qp2(g,h,draw,sim)          - qp1(g,h,draw,sim) ;
+tqpD(g,draw,sim)        = tqp2(g,draw,sim)           - tqp1(g,draw,sim) ;
+ttqpD(draw,sim)         = ttqp2(draw,sim)            - ttqp1(draw,sim) ;
+hqpD(h,draw,sim)        = hqp2(h,draw,sim)           - hqp1(h,draw,sim) ;
 
-fixfacD(g,fk,h,draw,sim) = fixfac2(g,fk,h,draw,sim)  - fixfac1(g,fk,h,draw) ;
-pvaD(g,h,draw,sim)      = pva2(g,h,draw,sim)         - pva1(g,h,draw) ;
-exincD(h,draw,sim)      = exinc2(h,draw,sim)         - exinc1(h,draw) ;
-endowD(f,h,draw,sim)    = endow2(f,h,draw,sim)       - endow1(f,h,draw) ;
-yD(h,draw,sim)          = y2(h,draw,sim)             - y1(h,draw) ;
-cpiD(h,draw,sim)        = cpi2(h,draw,sim)           - cpi1(h,draw) ;
-vqcD(v,g,draw,sim)      = vqc2(v,g,draw,sim)         - vqc1(v,g,draw) ;
-vcpiD(v,draw,sim)       = vcpi2(v,draw,sim)          - vcpi1(v,draw);
-criD(v,f,draw,sim)      = cri2(v,f,draw,sim)         - cri1(v,f,draw);
-ryD(h,draw,sim)         = ry2(h,draw,sim)            - ry1(h,draw) ;
-tyD(draw,sim)           = ty2(draw,sim)              - ty1(draw) ;
-tryD(draw,sim)          = try2(draw,sim)             - try1(draw) ;
-trinshD(h,draw,sim)     = trinsh2(h,draw,sim)        - trinsh1(h,draw) ;
-qcD(g,h,draw,sim)       = qc2(g,h,draw,sim)          - qc1(g,h,draw) ;
-eshareD(g,h,draw,sim)   = eshare2(g,h,draw,sim)      - eshare1(g,h,draw) ;
-troutshD(h,draw,sim)    = troutsh2(h,draw,sim)       - troutsh1(h,draw) ;
-hfdD(f,h,draw,sim)      = hfd2(f,h,draw,sim)         - hfd1(f,h,draw) ;
-vfdD(f,v,draw,sim)      = vfd2(f,v,draw,sim)         - vfd1(f,v,draw) ;
-zfdD(f,draw,sim)        = zfd2(f,draw,sim)           - zfd1(f,draw) ;
-hmsD(g,h,draw,sim)      = hms2(g,h,draw,sim)         - hms1(g,h,draw) ;
-vmsD(g,v,draw,sim)      = vms2(g,v,draw,sim)         - vms1(g,v,draw) ;
-zmsD(g,draw,sim)        = zms2(g,draw,sim)           - zms1(g,draw) ;
-hfmsD(ft,h,draw,sim)    = hfms2(ft,h,draw,sim)       - hfms1(ft,h,draw) ;
-vfmsD(ft,v,draw,sim)    = vfms2(ft,v,draw,sim)       - vfms1(ft,v,draw) ;
-zfmsD(ft,draw,sim)      = zfms2(ft,draw,sim)         - zfms1(ft,draw) ;
-vashD(g,h,draw,sim)     = vash2(g,h,draw,sim)        - vash1(g,h,draw) ;
-trinD(h,draw,sim)       = trin2(h,draw,sim)          - trin1(h,draw) ;
-troutD(h,draw,sim)      = trout2(h,draw,sim)         - trout1(h,draw) ;
-savD(h,draw,sim)        = sav2(h,draw,sim)           - sav1(h,draw) ;
-exprocD(h,draw,sim)     = exproc2(h,draw,sim)        - exproc1(h,draw) ;
-hfsupD(f,h,draw,sim)    = hfsup2(f,h,draw,sim)       - hfsup1(f,h,draw) ;
+fixfacD(g,fk,h,draw,sim) = fixfac2(g,fk,h,draw,sim)  - fixfac1(g,fk,h,draw,sim) ;
+pvaD(g,h,draw,sim)      = pva2(g,h,draw,sim)         - pva1(g,h,draw,sim) ;
+exincD(h,draw,sim)      = exinc2(h,draw,sim)         - exinc1(h,draw,sim) ;
+endowD(f,h,draw,sim)    = endow2(f,h,draw,sim)       - endow1(f,h,draw,sim) ;
+yD(h,draw,sim)          = y2(h,draw,sim)             - y1(h,draw,sim) ;
+cpiD(h,draw,sim)        = cpi2(h,draw,sim)           - cpi1(h,draw,sim) ;
+vqcD(v,g,draw,sim)      = vqc2(v,g,draw,sim)         - vqc1(v,g,draw,sim) ;
+vcpiD(v,draw,sim)       = vcpi2(v,draw,sim)          - vcpi1(v,draw,sim);
+criD(v,f,draw,sim)      = cri2(v,f,draw,sim)         - cri1(v,f,draw,sim);
+ryD(h,draw,sim)         = ry2(h,draw,sim)            - ry1(h,draw,sim) ;
+tyD(draw,sim)           = ty2(draw,sim)              - ty1(draw,sim) ;
+tryD(draw,sim)          = try2(draw,sim)             - try1(draw,sim) ;
+trinshD(h,draw,sim)     = trinsh2(h,draw,sim)        - trinsh1(h,draw,sim) ;
+qcD(g,h,draw,sim)       = qc2(g,h,draw,sim)          - qc1(g,h,draw,sim) ;
+eshareD(g,h,draw,sim)   = eshare2(g,h,draw,sim)      - eshare1(g,h,draw,sim) ;
+troutshD(h,draw,sim)    = troutsh2(h,draw,sim)       - troutsh1(h,draw,sim) ;
+hfdD(f,h,draw,sim)      = hfd2(f,h,draw,sim)         - hfd1(f,h,draw,sim) ;
+vfdD(f,v,draw,sim)      = vfd2(f,v,draw,sim)         - vfd1(f,v,draw,sim) ;
+zfdD(f,draw,sim)        = zfd2(f,draw,sim)           - zfd1(f,draw,sim) ;
+hmsD(g,h,draw,sim)      = hms2(g,h,draw,sim)         - hms1(g,h,draw,sim) ;
+vmsD(g,v,draw,sim)      = vms2(g,v,draw,sim)         - vms1(g,v,draw,sim) ;
+zmsD(g,draw,sim)        = zms2(g,draw,sim)           - zms1(g,draw,sim) ;
+hfmsD(ft,h,draw,sim)    = hfms2(ft,h,draw,sim)       - hfms1(ft,h,draw,sim) ;
+vfmsD(ft,v,draw,sim)    = vfms2(ft,v,draw,sim)       - vfms1(ft,v,draw,sim) ;
+zfmsD(ft,draw,sim)      = zfms2(ft,draw,sim)         - zfms1(ft,draw,sim) ;
+vashD(g,h,draw,sim)     = vash2(g,h,draw,sim)        - vash1(g,h,draw,sim) ;
+trinD(h,draw,sim)       = trin2(h,draw,sim)          - trin1(h,draw,sim) ;
+troutD(h,draw,sim)      = trout2(h,draw,sim)         - trout1(h,draw,sim) ;
+savD(h,draw,sim)        = sav2(h,draw,sim)           - sav1(h,draw,sim) ;
+exprocD(h,draw,sim)     = exproc2(h,draw,sim)        - exproc1(h,draw,sim) ;
+hfsupD(f,h,draw,sim)    = hfsup2(f,h,draw,sim)       - hfsup1(f,h,draw,sim) ;
 
 * PERCENT CHANGE between each calibration and the corresponding simulation
-pshiftPC(g,h,draw,sim)$pshift1(g,h,draw)    = 100*pshiftD(g,h,draw,sim)/ pshift1(g,h,draw);
-fsharePC(g,f,h,draw,sim)$fshare1(g,f,h,draw) = 100*fshareD(g,f,h,draw,sim) / fshare1(g,f,h,draw) ;
-pvPC(g,v,draw,sim)$pv1(g,v,draw)        = 100*pvD(g,v,draw,sim)          / pv1(g,v,draw) ;
-pzPC(g,draw,sim)$pz1(g,draw)            = 100*pzD(g,draw,sim)            / pz1(g,draw) ;
-phPC(g,h,draw,sim)$ph1(g,h,draw)        = 100*phD(g,h,draw,sim)          / ph1(g,h,draw) ;
-qvaPC(g,h,draw,sim)$qva1(g,h,draw)      = 100*qvaD(g,h,draw,sim)         / qva1(g,h,draw) ;
-fdPC(g,f,h,draw,sim)$fd1(g,f,h,draw)    = 100*fdD(g,f,h,draw,sim)        / fd1(g,f,h,draw) ;
-idPC(gg,g,h,draw,sim)$id1(gg,g,h,draw)  = 100*idD(gg,g,h,draw,sim)       / id1(gg,g,h,draw) ;
-rPC(g,fk,h,draw,sim)$r1(g,fk,h,draw)    = 100*rD(g,fk,h,draw,sim)        / r1(g,fk,h,draw) ;
-wvPC(f,v,draw,sim)$wv1(f,v,draw)        = 100*wvD(f,v,draw,sim)          / wv1(f,v,draw) ;
-wzPC(f,draw,sim)$wz1(f,draw)            = 100*wzD(f,draw,sim)            / wz1(f,draw) ;
-qpPC(g,h,draw,sim)$qp1(g,h,draw)        = 100*qpD(g,h,draw,sim)          / qp1(g,h,draw) ;
-tqpPC(g,draw,sim)$tqp1(g,draw)          = 100*tqpD(g,draw,sim)           / tqp1(g,draw) ;
-ttqpPC(draw,sim)$ttqp1(draw)            = 100*ttqpD(draw,sim)            / ttqp1(draw) ;
+pshiftPC(g,h,draw,sim)$pshift1(g,h,draw,sim)    = 100*pshiftD(g,h,draw,sim)/ pshift1(g,h,draw,sim);
+fsharePC(g,f,h,draw,sim)$fshare1(g,f,h,draw,sim) = 100*fshareD(g,f,h,draw,sim) / fshare1(g,f,h,draw,sim) ;
+pvPC(g,v,draw,sim)$pv1(g,v,draw,sim)        = 100*pvD(g,v,draw,sim)          / pv1(g,v,draw,sim) ;
+pzPC(g,draw,sim)$pz1(g,draw,sim)            = 100*pzD(g,draw,sim)            / pz1(g,draw,sim) ;
+phPC(g,h,draw,sim)$ph1(g,h,draw,sim)        = 100*phD(g,h,draw,sim)          / ph1(g,h,draw,sim) ;
+qvaPC(g,h,draw,sim)$qva1(g,h,draw,sim)      = 100*qvaD(g,h,draw,sim)         / qva1(g,h,draw,sim) ;
+fdPC(g,f,h,draw,sim)$fd1(g,f,h,draw,sim)    = 100*fdD(g,f,h,draw,sim)        / fd1(g,f,h,draw,sim) ;
+idPC(gg,g,h,draw,sim)$id1(gg,g,h,draw,sim)  = 100*idD(gg,g,h,draw,sim)       / id1(gg,g,h,draw,sim) ;
+rPC(g,fk,h,draw,sim)$r1(g,fk,h,draw,sim)    = 100*rD(g,fk,h,draw,sim)        / r1(g,fk,h,draw,sim) ;
+wvPC(f,v,draw,sim)$wv1(f,v,draw,sim)        = 100*wvD(f,v,draw,sim)          / wv1(f,v,draw,sim) ;
+wzPC(f,draw,sim)$wz1(f,draw,sim)            = 100*wzD(f,draw,sim)            / wz1(f,draw,sim) ;
+qpPC(g,h,draw,sim)$qp1(g,h,draw,sim)        = 100*qpD(g,h,draw,sim)          / qp1(g,h,draw,sim) ;
+tqpPC(g,draw,sim)$tqp1(g,draw,sim)          = 100*tqpD(g,draw,sim)           / tqp1(g,draw,sim) ;
+ttqpPC(draw,sim)$ttqp1(draw,sim)            = 100*ttqpD(draw,sim)            / ttqp1(draw,sim) ;
 
-fixfacPC(g,fk,h,draw,sim)$fixfac1(g,fk,h,draw)  = 100*fixfacD(g,fk,h,draw,sim) / fixfac1(g,fk,h,draw) ;
-pvaPC(g,h,draw,sim)$pva1(g,h,draw)      = 100*pvaD(g,h,draw,sim)         / pva1(g,h,draw) ;
-exincPC(h,draw,sim)$exinc1(h,draw)      = 100*exincD(h,draw,sim)         / exinc1(h,draw) ;
-endowPC(f,h,draw,sim)$endow1(f,h,draw)  = 100*endowD(f,h,draw,sim)       / endow1(f,h,draw) ;
-yPC(h,draw,sim)$y1(h,draw)              = 100*yD(h,draw,sim)             / y1(h,draw) ;
-cpiPC(h,draw,sim)$cpi1(h,draw)          = 100*cpiD(h,draw,sim)           / cpi1(h,draw) ;
-vcpiPC(v,draw,sim)$vcpi1(v,draw)        = 100*vcpiD(v,draw,sim)          / vcpi1(v,draw) ;
-criPC(v,f,draw,sim)$cri1(v,f,draw)      = 100*criD(v,f,draw,sim)         / cri1(v,f,draw) ;
+fixfacPC(g,fk,h,draw,sim)$fixfac1(g,fk,h,draw,sim)  = 100*fixfacD(g,fk,h,draw,sim) / fixfac1(g,fk,h,draw,sim) ;
+pvaPC(g,h,draw,sim)$pva1(g,h,draw,sim)      = 100*pvaD(g,h,draw,sim)         / pva1(g,h,draw,sim) ;
+exincPC(h,draw,sim)$exinc1(h,draw,sim)      = 100*exincD(h,draw,sim)         / exinc1(h,draw,sim) ;
+endowPC(f,h,draw,sim)$endow1(f,h,draw,sim)  = 100*endowD(f,h,draw,sim)       / endow1(f,h,draw,sim) ;
+yPC(h,draw,sim)$y1(h,draw,sim)              = 100*yD(h,draw,sim)             / y1(h,draw,sim) ;
+cpiPC(h,draw,sim)$cpi1(h,draw,sim)          = 100*cpiD(h,draw,sim)           / cpi1(h,draw,sim) ;
+vcpiPC(v,draw,sim)$vcpi1(v,draw,sim)        = 100*vcpiD(v,draw,sim)          / vcpi1(v,draw,sim) ;
+criPC(v,f,draw,sim)$cri1(v,f,draw,sim)      = 100*criD(v,f,draw,sim)         / cri1(v,f,draw,sim) ;
 
-ryPC(h,draw,sim)$ry1(h,draw)            = 100*ryD(h,draw,sim)            / ry1(h,draw) ;
-tyPC(draw,sim)$ty1(draw)                = 100*tyD(draw,sim)              / ty1(draw) ;
-tryPC(draw,sim)$try1(draw)              = 100*tryD(draw,sim)             / try1(draw) ;
-trinshPC(h,draw,sim)$trinsh1(h,draw)    = 100*trinshD(h,draw,sim)        / trinsh1(h,draw) ;
-qcPC(g,h,draw,sim)$qc1(g,h,draw)        = 100*qcD(g,h,draw,sim)          / qc1(g,h,draw) ;
-esharePC(g,h,draw,sim)$eshare1(g,h,draw)  = 100*eshareD(g,h,draw,sim)    / eshare1(g,h,draw) ;
-troutshPC(h,draw,sim)$troutsh1(h,draw)  = 100*troutshD(h,draw,sim)       / troutsh1(h,draw) ;
-hfdPC(f,h,draw,sim)$hfd1(f,h,draw)      = 100*hfdD(f,h,draw,sim)         / hfd1(f,h,draw) ;
-vfdPC(f,v,draw,sim)$vfd1(f,v,draw)      = 100*vfdD(f,v,draw,sim)         / vfd1(f,v,draw) ;
-zfdPC(f,draw,sim)$zfd1(f,draw)          = 100*zfdD(f,draw,sim)           / zfd1(f,draw) ;
-hmsPC(g,h,draw,sim)$hms1(g,h,draw)      = 100*hmsD(g,h,draw,sim)         / hms1(g,h,draw) ;
-vmsPC(g,v,draw,sim)$vms1(g,v,draw)      = 100*vmsD(g,v,draw,sim)         / vms1(g,v,draw) ;
-zmsPC(g,draw,sim)$zms1(g,draw)          = 100*zmsD(g,draw,sim)           / zms1(g,draw) ;
-hfmsPC(ft,h,draw,sim)$hfms1(ft,h,draw)  = 100*hfmsD(ft,h,draw,sim)       / hfms1(ft,h,draw) ;
-vfmsPC(ft,v,draw,sim)$vfms1(ft,v,draw)  = 100*vfmsD(ft,v,draw,sim)       / vfms1(ft,v,draw) ;
-zfmsPC(ft,draw,sim)$zfms1(ft,draw)      = 100*zfmsD(ft,draw,sim)         / zfms1(ft,draw) ;
-vashPC(g,h,draw,sim)$vash1(g,h,draw)    = 100*vashD(g,h,draw,sim)        / vash1(g,h,draw) ;
-trinPC(h,draw,sim)$trin1(h,draw)        = 100*trinD(h,draw,sim)          / trin1(h,draw) ;
-troutPC(h,draw,sim)$trout1(h,draw)      = 100*troutD(h,draw,sim)         / trout1(h,draw) ;
-savPC(h,draw,sim)$sav1(h,draw)          = 100*savD(h,draw,sim)           / sav1(h,draw) ;
-exprocPC(h,draw,sim)$exproc1(h,draw)    = 100*exprocD(h,draw,sim)        / exproc1(h,draw) ;
-hfsupPC(f,h,draw,sim)$hfsup1(f,h,draw)  = 100*hfsupD(f,h,draw,sim)       / hfsup1(f,h,draw) ;
+ryPC(h,draw,sim)$ry1(h,draw,sim)            = 100*ryD(h,draw,sim)            / ry1(h,draw,sim) ;
+tyPC(draw,sim)$ty1(draw,sim)                = 100*tyD(draw,sim)              / ty1(draw,sim) ;
+tryPC(draw,sim)$try1(draw,sim)              = 100*tryD(draw,sim)             / try1(draw,sim) ;
+trinshPC(h,draw,sim)$trinsh1(h,draw,sim)    = 100*trinshD(h,draw,sim)        / trinsh1(h,draw,sim) ;
+qcPC(g,h,draw,sim)$qc1(g,h,draw,sim)        = 100*qcD(g,h,draw,sim)          / qc1(g,h,draw,sim) ;
+esharePC(g,h,draw,sim)$eshare1(g,h,draw,sim)  = 100*eshareD(g,h,draw,sim)    / eshare1(g,h,draw,sim) ;
+troutshPC(h,draw,sim)$troutsh1(h,draw,sim)  = 100*troutshD(h,draw,sim)       / troutsh1(h,draw,sim) ;
+hfdPC(f,h,draw,sim)$hfd1(f,h,draw,sim)      = 100*hfdD(f,h,draw,sim)         / hfd1(f,h,draw,sim) ;
+vfdPC(f,v,draw,sim)$vfd1(f,v,draw,sim)      = 100*vfdD(f,v,draw,sim)         / vfd1(f,v,draw,sim) ;
+zfdPC(f,draw,sim)$zfd1(f,draw,sim)          = 100*zfdD(f,draw,sim)           / zfd1(f,draw,sim) ;
+hmsPC(g,h,draw,sim)$hms1(g,h,draw,sim)      = 100*hmsD(g,h,draw,sim)         / hms1(g,h,draw,sim) ;
+vmsPC(g,v,draw,sim)$vms1(g,v,draw,sim)      = 100*vmsD(g,v,draw,sim)         / vms1(g,v,draw,sim) ;
+zmsPC(g,draw,sim)$zms1(g,draw,sim)          = 100*zmsD(g,draw,sim)           / zms1(g,draw,sim) ;
+hfmsPC(ft,h,draw,sim)$hfms1(ft,h,draw,sim)  = 100*hfmsD(ft,h,draw,sim)       / hfms1(ft,h,draw,sim) ;
+vfmsPC(ft,v,draw,sim)$vfms1(ft,v,draw,sim)  = 100*vfmsD(ft,v,draw,sim)       / vfms1(ft,v,draw,sim) ;
+zfmsPC(ft,draw,sim)$zfms1(ft,draw,sim)      = 100*zfmsD(ft,draw,sim)         / zfms1(ft,draw,sim) ;
+vashPC(g,h,draw,sim)$vash1(g,h,draw,sim)    = 100*vashD(g,h,draw,sim)        / vash1(g,h,draw,sim) ;
+trinPC(h,draw,sim)$trin1(h,draw,sim)        = 100*trinD(h,draw,sim)          / trin1(h,draw,sim) ;
+troutPC(h,draw,sim)$trout1(h,draw,sim)      = 100*troutD(h,draw,sim)         / trout1(h,draw,sim) ;
+savPC(h,draw,sim)$sav1(h,draw,sim)          = 100*savD(h,draw,sim)           / sav1(h,draw,sim) ;
+exprocPC(h,draw,sim)$exproc1(h,draw,sim)    = 100*exprocD(h,draw,sim)        / exproc1(h,draw,sim) ;
+hfsupPC(f,h,draw,sim)$hfsup1(f,h,draw,sim)  = 100*hfsupD(f,h,draw,sim)       / hfsup1(f,h,draw,sim) ;
 
 
 display_pars(D)
 display_pars(PC)
 
-$exit
 
 
 * Welfare and efficiency
-parameter cvh(h,draw)   compensating variation per household
-          cvh_perc(h,draw) cv ac a percentage of initial income
-          cv(draw)   compensating variation across all households
-          cv_perc(draw) compensating variation as a percentage of income
-          ymult(draw)   nominal income multiplier
-          ymult_h(h,draw) nominal income muliplier on each hh that receive a transfer
-          ytotmult_h(h,draw) nominal income muliplier divided by total transfer
-          ymult_treat(draw) nominal income muliplier on all hh that received a transfer
-          ymult_vil(v,draw) nominal income muliplier on a village
-          ymult_all(draw) nominal income muliplier on hh A B C amd D
+parameter cvh(h,draw,sim)   compensating variation per household
+          cvh_perc(h,draw,sim) cv ac a percentage of initial income
+          cv(draw,sim)   compensating variation across all households
+          cv_perc(draw,sim) compensating variation as a percentage of income
+          ymult(draw,sim)   nominal income multiplier
+          ymult_h(h,draw,sim) nominal income muliplier on each hh that receive a transfer
+          ytotmult_h(h,draw,sim) nominal income muliplier divided by total transfer
+          ymult_treat(draw,sim) nominal income muliplier on all hh that received a transfer
+          ymult_vil(v,draw,sim) nominal income muliplier on a village
+          ymult_all(draw,sim) nominal income muliplier on hh A B C amd D
 
-          rymult(draw)   real income multiplier
-          rymult_h(h,draw) real income muliplier on each hh that receive a transfer
-          rytotmult_h(h,draw) real income muliplier divided by total transfer
-          rymult_treat(draw) real income muliplier on all hh that received a transfer
-          rymult_vil(v,draw) real income muliplier on a village
-          rymult_all(draw) real income muliplier on hh A B C amd D
+          rymult(draw,sim)   real income multiplier
+          rymult_h(h,draw,sim) real income muliplier on each hh that receive a transfer
+          rytotmult_h(h,draw,sim) real income muliplier divided by total transfer
+          rymult_treat(draw,sim) real income muliplier on all hh that received a transfer
+          rymult_vil(v,draw,sim) real income muliplier on a village
+          rymult_all(draw,sim) real income muliplier on hh A B C amd D
 
-          cvmult(draw)  cv multiplier
-          prodmult_h(g,h,draw) production multiplier (value of extra g output per dollar of transfer to h)
-          prodTotmult_h(g,h,draw) production multiplier (value of extra g output per dollar of total transfer)
-          prodmult_treat(g,draw) production muliplier on all hh that received a transfer
-          prodmult_ntreat(g,draw) production muliplier on all hh that received a transfer
-          prodmult_vil(g,v,draw) production multiplier for the village
-          prodmult_all(g,draw)     total production multiplier
-          tprodmult_all(draw) total total production multiplier
+          cvmult(draw,sim)  cv multiplier
+          prodmult_h(g,h,draw,sim) production multiplier (value of extra g output per dollar of transfer to h)
+          prodTotmult_h(g,h,draw,sim) production multiplier (value of extra g output per dollar of total transfer)
+          prodmult_treat(g,draw,sim) production muliplier on all hh that received a transfer
+          prodmult_ntreat(g,draw,sim) production muliplier on all hh that received a transfer
+          prodmult_vil(g,v,draw,sim) production multiplier for the village
+          prodmult_all(g,draw,sim)     total production multiplier
+          tprodmult_all(draw,sim) total total production multiplier
 
-          ttprodmult(draw)         total multiplier on ttqp
-          hprodmult(h,draw)        total household production multiplier
+          ttprodmult(draw,sim)         total multiplier on ttqp
+          hprodmult(h,draw,sim)        total household production multiplier
 
-          prodVmult_h(g,h,draw) production multiplier (value of extra g output per dollar of transfer)
-          prodVmult_treat(g,draw) production muliplier on all hh that received a transfer
-          prodVmult_ntreat(g,draw) production muliplier on all hh that received a transfer
-          prodVmult_vil(g,v,draw) production multiplier for the village
-          prodVmult_all(g,draw)     total production multiplier
+          prodVmult_h(g,h,draw,sim) production multiplier (value of extra g output per dollar of transfer)
+          prodVmult_treat(g,draw,sim) production muliplier on all hh that received a transfer
+          prodVmult_ntreat(g,draw,sim) production muliplier on all hh that received a transfer
+          prodVmult_vil(g,v,draw,sim) production multiplier for the village
+          prodVmult_all(g,draw,sim)     total production multiplier
 
-          ykmult_h(h,draw) multiplier of the program + the capital influx
-          rykmult_h(h,draw) multiplier of the program + the capital influx
-          ykTotmult_h(h,draw) multiplier of the program + the capital influx
-          rykTotmult_h(h,draw) multiplier of the program + the capital influx
-          ykmult_all(draw) multiplier of the program + the capital influx
-          rykmult_all(draw) multiplier of the program + the capital influx
-          denom(h,draw) denominator for the multipliers (wfp spending)
+          ykmult_h(h,draw,sim) multiplier of the program + the capital influx
+          rykmult_h(h,draw,sim) multiplier of the program + the capital influx
+          ykTotmult_h(h,draw,sim) multiplier of the program + the capital influx
+          rykTotmult_h(h,draw,sim) multiplier of the program + the capital influx
+          ykmult_all(draw,sim) multiplier of the program + the capital influx
+          rykmult_all(draw,sim) multiplier of the program + the capital influx
+          denom(h,draw,sim) denominator for the multipliers (wfp spending)
 ;
 
 * If the denominator is the total value of the wfp cost
-*denom(h,draw) = infood(h) ;
-*denom(h,draw) = wfpcost(h);
+*denom(h,draw,sim) = infood(h) ;
+*denom(h,draw,sim) = wfpcost(h);
 * with or without new remittances:
-*denom(h,draw) = infood(h)+newremits ;
+*denom(h,draw,sim) = infood(h)+newremits ;
 * If its the value net of the t-cost loss (when some of the infood is sold)
-denom(h,draw) = transfer(h);
+denom(h,draw,sim) = transfer(h);
 * If its the value net of the t-cost loss (when some of the infood is sold)
 * with the new remittances counted as well...
-*denom(h,draw) = transfer(h)+newremits(h);
+*denom(h,draw,sim) = transfer(h)+newremits(h);
 
 
-cvh(h,draw) = y2(h,draw) - prod(g, (ph2(g,h,draw)/ph1(g,h,draw))**eshare_dr(g,h,draw))*y1(h,draw);
-cvh_perc(h,draw) = 100*cvh(h,draw)/y1(h,draw);
-cv(draw) = sum(h,cvh(h,draw));
-cv_perc(draw) = cv(draw)/sum(h,y1(h,draw));
-ymult(draw) = sum(h,yD(h,draw)) / sum(h,denom(h,draw)) ;
-cvmult(draw) = cv(draw) / sum(h,denom(h,draw)) ;
+cvh(h,draw,sim) = y2(h,draw,sim) - prod(g, (ph2(g,h,draw,sim)/ph1(g,h,draw,sim))**eshare_dr(g,h,draw))*y1(h,draw,sim);
+cvh_perc(h,draw,sim) = 100*cvh(h,draw,sim)/y1(h,draw,sim);
+cv(draw,sim) = sum(h,cvh(h,draw,sim));
+cv_perc(draw,sim) = cv(draw,sim)/sum(h,y1(h,draw,sim));
+ymult(draw,sim) = sum(h,yD(h,draw,sim)) / sum(h,denom(h,draw,sim)) ;
+cvmult(draw,sim) = cv(draw,sim) / sum(h,denom(h,draw,sim)) ;
 
-ymult_h(h,draw)$transfer(h) = yD(h,draw) / denom(h,draw) ;
-ytotmult_h(h,draw) = yD(h,draw) /sum(hh, denom(hh,draw)) ;
-ymult_treat(draw)  = sum(h$transfer(h),yD(h,draw)) / sum(h, denom(h,draw)) ;
-ymult_vil(v,draw)$sum(hh$maphv(hh,v),denom(hh,draw))  = sum(h$maphv(h,v),yD(h,draw)) / sum(hh$maphv(hh,v),denom(hh,draw))  ;
-ymult_all(draw)$sum(h,denom(h,draw))  = sum(h,yD(h,draw)) / sum(h,denom(h,draw)) ;
+ymult_h(h,draw,sim)$transfer(h) = yD(h,draw,sim) / denom(h,draw,sim) ;
+ytotmult_h(h,draw,sim) = yD(h,draw,sim) /sum(hh, denom(hh,draw,sim)) ;
+ymult_treat(draw,sim)  = sum(h$transfer(h),yD(h,draw,sim)) / sum(h, denom(h,draw,sim)) ;
+ymult_vil(v,draw,sim)$sum(hh$maphv(hh,v),denom(hh,draw,sim))  = sum(h$maphv(h,v),yD(h,draw,sim)) / sum(hh$maphv(hh,v),denom(hh,draw,sim))  ;
+ymult_all(draw,sim)$sum(h,denom(h,draw,sim))  = sum(h,yD(h,draw,sim)) / sum(h,denom(h,draw,sim)) ;
 
-rymult_h(h,draw)$transfer(h) = ryD(h,draw) / denom(h,draw) ;
-rytotmult_h(h,draw) = ryD(h,draw) /sum(hh, denom(hh,draw)) ;
-rymult_treat(draw)  = sum(h$transfer(h),ryD(h,draw)) / sum(h, denom(h,draw)) ;
-rymult_vil(v,draw)$sum(hh$maphv(hh,v),denom(hh,draw))  = sum(h$maphv(h,v),ryD(h,draw)) / sum(hh$maphv(hh,v),denom(hh,draw))  ;
-rymult_all(draw)$sum(h,denom(h,draw))  = sum(h,ryD(h,draw)) / sum(h,denom(h,draw)) ;
+rymult_h(h,draw,sim)$transfer(h) = ryD(h,draw,sim) / denom(h,draw,sim) ;
+rytotmult_h(h,draw,sim) = ryD(h,draw,sim) /sum(hh, denom(hh,draw,sim)) ;
+rymult_treat(draw,sim)  = sum(h$transfer(h),ryD(h,draw,sim)) / sum(h, denom(h,draw,sim)) ;
+rymult_vil(v,draw,sim)$sum(hh$maphv(hh,v),denom(hh,draw,sim))  = sum(h$maphv(h,v),ryD(h,draw,sim)) / sum(hh$maphv(hh,v),denom(hh,draw,sim))  ;
+rymult_all(draw,sim)$sum(h,denom(h,draw,sim))  = sum(h,ryD(h,draw,sim)) / sum(h,denom(h,draw,sim)) ;
 
-prodmult_h(g,h,draw)$transfer(h) = qpD(g,h,draw) / denom(h,draw) ;
-prodTotmult_h(g,h,draw) = qpD(g,h,draw) / sum(hh,denom(hh,draw)) ;
-prodmult_treat(g,draw)  = sum(h$denom(h,draw),qpD(g,h,draw)) / sum(h, denom(h,draw)) ;
-prodmult_ntreat(g,draw)  = sum(h$(not denom(h,draw)),qpD(g,h,draw)) / sum(h, denom(h,draw)) ;
-prodmult_vil(g,v,draw)$sum(hh$maphv(hh,v),denom(hh,draw))  = sum(h$maphv(h,v),qpD(g,h,draw)) / sum(hh$maphv(hh,v),denom(hh,draw))  ;
-prodmult_all(g,draw)$sum(h,denom(h,draw))  = sum(h,qpD(g,h,draw)) / sum(h,denom(h,draw)) ;
+prodmult_h(g,h,draw,sim)$transfer(h) = qpD(g,h,draw,sim) / denom(h,draw,sim) ;
+prodTotmult_h(g,h,draw,sim) = qpD(g,h,draw,sim) / sum(hh,denom(hh,draw,sim)) ;
+prodmult_treat(g,draw,sim)  = sum(h$denom(h,draw,sim),qpD(g,h,draw,sim)) / sum(h, denom(h,draw,sim)) ;
+prodmult_ntreat(g,draw,sim)  = sum(h$(not denom(h,draw,sim)),qpD(g,h,draw,sim)) / sum(h, denom(h,draw,sim)) ;
+prodmult_vil(g,v,draw,sim)$sum(hh$maphv(hh,v),denom(hh,draw,sim))  = sum(h$maphv(h,v),qpD(g,h,draw,sim)) / sum(hh$maphv(hh,v),denom(hh,draw,sim))  ;
+prodmult_all(g,draw,sim)$sum(h,denom(h,draw,sim))  = sum(h,qpD(g,h,draw,sim)) / sum(h,denom(h,draw,sim)) ;
 
-tprodmult_all(draw)=sum(g,prodmult_all(g,draw));
+tprodmult_all(draw,sim)=sum(g,prodmult_all(g,draw,sim));
 
-ttprodmult(draw)$sum(h,denom(h,draw))  = ttqpD(draw) / sum(h,denom(h,draw)) ;
-hprodmult(h,draw)$sum(hh,denom(hh,draw))  = hqpD(h,draw) / sum(hh,denom(hh,draw)) ;
+ttprodmult(draw,sim)$sum(h,denom(h,draw,sim))  = ttqpD(draw,sim) / sum(h,denom(h,draw,sim)) ;
+hprodmult(h,draw,sim)$sum(hh,denom(hh,draw,sim))  = hqpD(h,draw,sim) / sum(hh,denom(hh,draw,sim)) ;
 
-prodVmult_h(g,h,draw)$denom(h,draw) = (ph2(g,h,draw)*qpD(g,h,draw)) / denom(h,draw) ;
-prodVmult_treat(g,draw)  = sum(h$denom(h,draw),(ph2(g,h,draw)*qpD(g,h,draw))) / sum(h, denom(h,draw)) ;
-prodVmult_ntreat(g,draw)  = sum(h$(not denom(h,draw)),(ph2(g,h,draw)*qpD(g,h,draw))) / sum(h, denom(h,draw)) ;
-prodVmult_vil(g,v,draw)$sum(hh$maphv(hh,v),denom(hh,draw))  = sum(h$maphv(h,v),(ph2(g,h,draw)*qpD(g,h,draw))) / sum(hh$maphv(hh,v),denom(hh,draw))  ;
-prodVmult_all(g,draw)$sum(h,denom(h,draw))  = sum(h,(ph2(g,h,draw)*qpD(g,h,draw))) / sum(h,denom(h,draw)) ;
+prodVmult_h(g,h,draw,sim)$denom(h,draw,sim) = (ph2(g,h,draw,sim)*qpD(g,h,draw,sim)) / denom(h,draw,sim) ;
+prodVmult_treat(g,draw,sim)  = sum(h$denom(h,draw,sim),(ph2(g,h,draw,sim)*qpD(g,h,draw,sim))) / sum(h, denom(h,draw,sim)) ;
+prodVmult_ntreat(g,draw,sim)  = sum(h$(not denom(h,draw,sim)),(ph2(g,h,draw,sim)*qpD(g,h,draw,sim))) / sum(h, denom(h,draw,sim)) ;
+prodVmult_vil(g,v,draw,sim)$sum(hh$maphv(hh,v),denom(hh,draw,sim))  = sum(h$maphv(h,v),(ph2(g,h,draw,sim)*qpD(g,h,draw,sim))) / sum(hh$maphv(hh,v),denom(hh,draw,sim))  ;
+prodVmult_all(g,draw,sim)$sum(h,denom(h,draw,sim))  = sum(h,(ph2(g,h,draw,sim)*qpD(g,h,draw,sim))) / sum(h,denom(h,draw,sim)) ;
 
 
 display cvh, cvh_perc, cv, cv_perc, ymult, cvmult, ymult_h, ytotmult_h, ymult_treat, ymult_vil, ymult_all,
@@ -216,22 +215,25 @@ display cvh, cvh_perc, cv, cv_perc, ymult, cvmult, ymult_h, ytotmult_h, ymult_tr
      prodmult_h, prodTotmult_h, prodmult_treat, prodmult_ntreat, prodmult_vil, prodmult_all, tprodmult_all
      prodVmult_h, prodVmult_treat, prodVmult_ntreat, prodVmult_vil, prodVmult_all ;
 
-ykmult_all(draw)$(sum(h,denom(h,draw))+sum((h,g,f),fixfacD(g,f,h,draw))) = tyD(draw)
- / (sum(h,denom(h,draw))+sum((h,g,f),fixfacD(g,f,h,draw))) ;
-rykmult_all(draw)$(sum(h,denom(h,draw))+sum((h,g,f),fixfacD(g,f,h,draw))) = tryD(draw)
- / (sum(h,denom(h,draw))+sum((h,g,f),fixfacD(g,f,h,draw))) ;
+ykmult_all(draw,sim)$(sum(h,denom(h,draw,sim))+sum((h,g,f),fixfacD(g,f,h,draw,sim))) = tyD(draw,sim)
+ / (sum(h,denom(h,draw,sim))+sum((h,g,f),fixfacD(g,f,h,draw,sim))) ;
+rykmult_all(draw,sim)$(sum(h,denom(h,draw,sim))+sum((h,g,f),fixfacD(g,f,h,draw,sim))) = tryD(draw,sim)
+ / (sum(h,denom(h,draw,sim))+sum((h,g,f),fixfacD(g,f,h,draw,sim))) ;
 display ymult_all, rymult_all, ykmult_all, rykmult_all ;
 
-ykmult_h(h,draw)$(denom(h,draw)+sum((g,f),fixfacD(g,f,h,draw))) = yD(h,draw)
- / (denom(h,draw)+sum((g,f),fixfacD(g,f,h,draw))) ;
-rykmult_h(h,draw)$(denom(h,draw)+sum((g,f),fixfacD(g,f,h,draw))) = ryD(h,draw)
- / (denom(h,draw)+sum((g,f),fixfacD(g,f,h,draw))) ;
-ykTotmult_h(hh,draw)$(sum(h,denom(h,draw))+sum((h,g,f),fixfacD(g,f,h,draw))) = yD(hh,draw)
- / (sum(h,denom(h,draw))+sum((h,g,f),fixfacD(g,f,h,draw))) ;
-rykTotmult_h(hh,draw)$(sum(h,denom(h,draw))+sum((h,g,f),fixfacD(g,f,h,draw))) = ryD(hh,draw)
- /(sum(h,denom(h,draw))+sum((h,g,f),fixfacD(g,f,h,draw))) ;
+ykmult_h(h,draw,sim)$(denom(h,draw,sim)+sum((g,f),fixfacD(g,f,h,draw,sim))) = yD(h,draw,sim)
+ / (denom(h,draw,sim)+sum((g,f),fixfacD(g,f,h,draw,sim))) ;
+rykmult_h(h,draw,sim)$(denom(h,draw,sim)+sum((g,f),fixfacD(g,f,h,draw,sim))) = ryD(h,draw,sim)
+ / (denom(h,draw,sim)+sum((g,f),fixfacD(g,f,h,draw,sim))) ;
+ykTotmult_h(hh,draw,sim)$(sum(h,denom(h,draw,sim))+sum((h,g,f),fixfacD(g,f,h,draw,sim))) = yD(hh,draw,sim)
+ / (sum(h,denom(h,draw,sim))+sum((h,g,f),fixfacD(g,f,h,draw,sim))) ;
+rykTotmult_h(hh,draw,sim)$(sum(h,denom(h,draw,sim))+sum((h,g,f),fixfacD(g,f,h,draw,sim))) = ryD(hh,draw,sim)
+ /(sum(h,denom(h,draw,sim))+sum((h,g,f),fixfacD(g,f,h,draw,sim))) ;
 display ymult_h, rymult_h, ykmult_h, rykmult_h, yktotmult_h, ryktotmult_h ;
 
+
+
+$exit
 
 
 *-----------------------------------------------------------------------

@@ -347,7 +347,7 @@ display_pars(1);
 display_pars(2);
 
 
-$exit
+
 * Output : compute all the parameters
 $include includes/6_Output_Parameters.gms
 $exit

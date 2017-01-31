@@ -1,7 +1,7 @@
 
 
 
-
+transfer(h)=0 ;
 * simulation shocks for fixed factor:
 fixfac(g,f,h) = fixfac(g,f,h) + fsim(g,f,h,sim) ;
 
