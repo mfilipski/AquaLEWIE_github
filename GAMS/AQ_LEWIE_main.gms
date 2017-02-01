@@ -298,7 +298,7 @@ wv2(f,v,draw,sim)       = WV.l(f,v) ;
 wz2(f,draw,sim)         = WZ.l(f) ;
 qp2(g,h,draw,sim)       = QP.l(g,h) ;
 tqp2(g,draw,sim)        = sum(h,qp2(g,h,draw,sim)) ;
-ttqp2(draw,sim)        = sum(g,tqp2(g,draw,sim)) ;
+ttqp2(draw,sim)         = sum(g,tqp2(g,draw,sim)) ;
 hqp2(h,draw,sim)        = sum(g, qp2(g,h,draw,sim)) ;
 
 fixfac2(g,fk,h,draw,sim) = fixfac(g,fk,h) ;
@@ -320,6 +320,7 @@ ty2(draw,sim)           = sum(h,y2(h,draw,sim));
 try2(draw,sim)          = sum(h,ry2(h,draw,sim));
 trinsh2(h,draw,sim)     = trinsh(h) ;
 eshare2(g,h,draw,sim)   = eshare(g,h) ;
+emin2(g,h,draw,sim)     = emin(g,h) ;
 troutsh2(h,draw,sim)    = troutsh(h) ;
 hfd2(f,h,draw,sim)      = HFD.l(f,h) ;
 vfd2(f,v,draw,sim)      = VFD.l(f,v) ;
@@ -334,7 +335,6 @@ trin2(h,draw,sim)       = TRIN.l(h) ;
 trout2(h,draw,sim)      = TROUT.l(h) ;
 sav2(h,draw,sim)        = SAV.l(h) ;
 exproc2(h,draw,sim)     = EXPROC.l(h) ;
-
 hfsup2(ft,h,draw,sim)   = HFSUP.l(ft,h) ;
 
 

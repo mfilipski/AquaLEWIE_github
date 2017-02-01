@@ -27,6 +27,7 @@ qpD(g,h,draw,sim)       = qp2(g,h,draw,sim)          - qp1(g,h,draw,sim) ;
 tqpD(g,draw,sim)        = tqp2(g,draw,sim)           - tqp1(g,draw,sim) ;
 ttqpD(draw,sim)         = ttqp2(draw,sim)            - ttqp1(draw,sim) ;
 hqpD(h,draw,sim)        = hqp2(h,draw,sim)           - hqp1(h,draw,sim) ;
+eminD(g,h,draw,sim)     = emin2(g,h,draw,sim)        - emin1(g,h,draw,sim) ;
 
 fixfacD(g,fk,h,draw,sim) = fixfac2(g,fk,h,draw,sim)  - fixfac1(g,fk,h,draw,sim) ;
 pvaD(g,h,draw,sim)      = pva2(g,h,draw,sim)         - pva1(g,h,draw,sim) ;
@@ -75,6 +76,9 @@ wzPC(f,draw,sim)$wz1(f,draw,sim)            = 100*wzD(f,draw,sim)            / w
 qpPC(g,h,draw,sim)$qp1(g,h,draw,sim)        = 100*qpD(g,h,draw,sim)          / qp1(g,h,draw,sim) ;
 tqpPC(g,draw,sim)$tqp1(g,draw,sim)          = 100*tqpD(g,draw,sim)           / tqp1(g,draw,sim) ;
 ttqpPC(draw,sim)$ttqp1(draw,sim)            = 100*ttqpD(draw,sim)            / ttqp1(draw,sim) ;
+hqpPC(h,draw,sim)$hqp1(h,draw,sim)          = 100*hqpD(h,draw,sim)           / hqp1(h,draw,sim) ;
+eminPC(g,h,draw,sim)$emin1(g,h,draw,sim)    = 100*eminD(g,h,draw,sim)        / emin1(g,h,draw,sim) ;
+
 
 fixfacPC(g,fk,h,draw,sim)$fixfac1(g,fk,h,draw,sim)  = 100*fixfacD(g,fk,h,draw,sim) / fixfac1(g,fk,h,draw,sim) ;
 pvaPC(g,h,draw,sim)$pva1(g,h,draw,sim)      = 100*pvaD(g,h,draw,sim)         / pva1(g,h,draw,sim) ;
@@ -249,14 +253,110 @@ abort$(card(draw) le 1) "ONE REPETITION ONLY - NO MEANS OR STDEVS TO COMPUTE";
 $macro mvfy(i) pv_mv&i(g,v,sim,"mean") = sum(draw, pv&i(g,v,draw,sim)) / card(draw) ; \
 pv_mv&i(g,v,sim,"stdev") = sqrt(sum(draw, sqr(pv&i(g,v,draw,sim) - pv_mv&i(g,v,sim,"mean")))/(card(draw)-1)) ; \
 pz_mv&i(g,sim,"mean") = sum(draw, pz&i(g,draw,sim)) / card(draw) ;                  \
-pz_mv&i(g,sim,"stdev") = sqrt(sum(draw, sqr(pz&i(g,draw,sim) - pz_mv&i(g,sim,"mean")))/(card(draw)-1)) ;
-
+pz_mv&i(g,sim,"stdev") = sqrt(sum(draw, sqr(pz&i(g,draw,sim) - pz_mv&i(g,sim,"mean")))/(card(draw)-1)) ;    \
+ph_mv&i(g,h,sim,"mean") = sum(draw, ph&i(g,h,draw,sim)) / card(draw) ;                                                       \
+ph_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(ph&i(g,h,draw,sim) - ph_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;               \
+pva_mv&i(g,h,sim,"mean") = sum(draw, pva&i(g,h,draw,sim)) / card(draw) ;                                                     \
+pva_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(pva&i(g,h,draw,sim) - pva_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;            \
+qva_mv&i(g,h,sim,"mean") = sum(draw, qva&i(g,h,draw,sim)) / card(draw) ;                                                     \
+qva_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(qva&i(g,h,draw,sim) - qva_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;            \
+qp_mv&i(g,h,sim,"mean") = sum(draw, qp&i(g,h,draw,sim)) / card(draw) ;                                                       \
+qp_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(qp&i(g,h,draw,sim) - qp_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;               \
+tqp_mv&i(g,sim,"mean") = sum(draw, tqp&i(g,draw,sim)) / card(draw) ;                                                         \
+tqp_mv&i(g,sim,"stdev") = sqrt(sum(draw, sqr(tqp&i(g,draw,sim) - tqp_mv&i(g,sim,"mean")))/(card(draw)-1)) ;                  \
+ttqp_mv&i(sim,"mean") = sum(draw, ttqp&i(draw,sim)) / card(draw) ;                                                           \
+ttqp_mv&i(sim,"stdev") = sqrt(sum(draw, sqr(ttqp&i(draw,sim) - ttqp_mv&i(sim,"mean")))/(card(draw)-1)) ;                     \
+hqp_mv&i(h,sim,"mean") = sum(draw, hqp&i(h,draw,sim)) / card(draw) ;                                                         \
+hqp_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(hqp&i(h,draw,sim) - hqp_mv&i(h,sim,"mean")))/(card(draw)-1)) ;                  \
+fd_mv&i(g,f,h,sim,"mean") = sum(draw, fd&i(g,f,h,draw,sim)) / card(draw) ;                                                   \
+fd_mv&i(g,f,h,sim,"stdev") = sqrt(sum(draw, sqr(fd&i(g,f,h,draw,sim) - fd_mv&i(g,f,h,sim,"mean")))/(card(draw)-1)) ;         \
+id_mv&i(g,gg,h,sim,"mean") = sum(draw, id&i(g,gg,h,draw,sim)) / card(draw) ;                                                 \
+id_mv&i(g,gg,h,sim,"stdev") = sqrt(sum(draw, sqr(id&i(g,gg,h,draw,sim) - id_mv&i(g,gg,h,sim,"mean")))/(card(draw)-1)) ;      \
+pshift_mv&i(g,h,sim,"mean") = sum(draw, pshift&i(g,h,draw,sim)) / card(draw) ;                                               \
+pshift_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(pshift&i(g,h,draw,sim) - pshift_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;   \
+fshare_mv&i(g,f,h,sim,"mean") = sum(draw, fshare&i(g,f,h,draw,sim)) / card(draw) ;                                           \
+fshare_mv&i(g,f,h,sim,"stdev") = sqrt(sum(draw, sqr(fshare&i(g,f,h,draw,sim) - fshare_mv&i(g,f,h,sim,"mean")))/(card(draw)-1)) ; \
+r_mv&i(g,f,h,sim,"mean") = sum(draw, r&i(g,f,h,draw,sim)) / card(draw) ;                                                     \
+r_mv&i(g,f,h,sim,"stdev") = sqrt(sum(draw, sqr(r&i(g,f,h,draw,sim) - r_mv&i(g,f,h,sim,"mean")))/(card(draw)-1)) ;            \
+wv_mv&i(f,v,sim,"mean") = sum(draw, wv&i(f,v,draw,sim)) / card(draw) ;                                                       \
+wv_mv&i(f,v,sim,"stdev") = sqrt(sum(draw, sqr(wv&i(f,v,draw,sim) - wv_mv&i(f,v,sim,"mean")))/(card(draw)-1)) ;               \
+wz_mv&i(f,sim,"mean") = sum(draw, wz&i(f,draw,sim)) / card(draw) ;                                                           \
+wz_mv&i(f,sim,"stdev") = sqrt(sum(draw, sqr(wz&i(f,draw,sim) - wz_mv&i(f,sim,"mean")))/(card(draw)-1)) ;                     \
+vash_mv&i(g,h,sim,"mean") = sum(draw, vash&i(g,h,draw,sim)) / card(draw) ;                                                   \
+vash_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(vash&i(g,h,draw,sim) - vash_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;         \
+qp_mv&i(g,h,sim,"mean") = sum(draw, qp&i(g,h,draw,sim)) / card(draw) ;                                                         \
+qp_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(qp&i(g,h,draw,sim) - qp_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;                 \
+fixfac_mv&i(g,f,h,sim,"mean") = sum(draw, fixfac&i(g,f,h,draw,sim)) / card(draw) ;                                             \
+fixfac_mv&i(g,f,h,sim,"stdev") = sqrt(sum(draw, sqr(fixfac&i(g,f,h,draw,sim) - fixfac_mv&i(g,f,h,sim,"mean")))/(card(draw)-1)) ;   \
+exinc_mv&i(h,sim,"mean") = sum(draw, exinc&i(h,draw,sim)) / card(draw) ;                                                       \
+exinc_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(exinc&i(h,draw,sim) - exinc_mv&i(h,sim,"mean")))/(card(draw)-1)) ;           \
+endow_mv&i(f,h,sim,"mean") = sum(draw, endow&i(f,h,draw,sim)) / card(draw) ;                                                \
+endow_mv&i(f,h,sim,"stdev") = sqrt(sum(draw, sqr(endow&i(f,h,draw,sim) - endow_mv&i(f,h,sim,"mean")))/(card(draw)-1)) ;     \
+qc_mv&i(g,h,sim,"mean") = sum(draw, qc&i(g,h,draw,sim)) / card(draw) ;                                                      \
+qc_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(qc&i(g,h,draw,sim) - qc_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;              \
+eshare_mv&i(g,h,sim,"mean") = sum(draw, eshare&i(g,h,draw,sim)) / card(draw) ;                                              \
+eshare_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(eshare&i(g,h,draw,sim) - eshare_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;  \
+y_mv&i(h,sim,"mean") = sum(draw, y&i(h,draw,sim)) / card(draw) ;                                                            \
+y_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(y&i(h,draw,sim) - y_mv&i(h,sim,"mean")))/(card(draw)-1)) ;                       \
+cpi_mv&i(h,sim,"mean") = sum(draw, cpi&i(h,draw,sim)) / card(draw) ;                                                        \
+cpi_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(cpi&i(h,draw,sim) - cpi_mv&i(h,sim,"mean")))/(card(draw)-1)) ;                 \
+vcpi_mv&i(v,sim,"mean") = sum(draw, vcpi&i(v,draw,sim)) / card(draw) ;                                                      \
+vcpi_mv&i(v,sim,"stdev") = sqrt(sum(draw, sqr(vcpi&i(v,draw,sim) - vcpi_mv&i(v,sim,"mean")))/(card(draw)-1)) ;              \
+cri_mv&i(v,f,sim,"mean") = sum(draw, cri&i(v,f,draw,sim)) / card(draw) ;                                                    \
+cri_mv&i(v,f,sim,"stdev") = sqrt(sum(draw, sqr(cri&i(v,f,draw,sim) - cri_mv&i(v,f,sim,"mean")))/(card(draw)-1)) ;           \
+ry_mv&i(h,sim,"mean") = sum(draw, ry&i(h,draw,sim)) / card(draw) ;                                                          \
+ry_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(ry&i(h,draw,sim) - ry_mv&i(h,sim,"mean")))/(card(draw)-1)) ;                    \
+emin_mv&i(g,h,sim,"mean") = sum(draw, emin&i(g,h,draw,sim)) / card(draw) ;                                                  \
+emin_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(emin&i(g,h,draw,sim) - emin_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;        \
+trin_mv&i(h,sim,"mean") = sum(draw, trin&i(h,draw,sim)) / card(draw) ;                                                      \
+trin_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(trin&i(h,draw,sim) - trin_mv&i(h,sim,"mean")))/(card(draw)-1)) ;              \
+trout_mv&i(h,sim,"mean") = sum(draw, trout&i(h,draw,sim)) / card(draw) ;                                                    \
+trout_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(trout&i(h,draw,sim) - trout_mv&i(h,sim,"mean")))/(card(draw)-1)) ;           \
+sav_mv&i(h,sim,"mean") = sum(draw, sav&i(h,draw,sim)) / card(draw) ;                                                        \
+sav_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(sav&i(h,draw,sim) - sav_mv&i(h,sim,"mean")))/(card(draw)-1)) ;                 \
+exproc_mv&i(h,sim,"mean") = sum(draw, exproc&i(h,draw,sim)) / card(draw) ;                                                  \
+exproc_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(exproc&i(h,draw,sim) - exproc_mv&i(h,sim,"mean")))/(card(draw)-1)) ;        \
+trinsh_mv&i(h,sim,"mean") = sum(draw, trinsh&i(h,draw,sim)) / card(draw) ;                                                  \
+trinsh_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(trinsh&i(h,draw,sim) - trinsh_mv&i(h,sim,"mean")))/(card(draw)-1)) ;        \
+troutsh_mv&i(h,sim,"mean") = sum(draw, troutsh&i(h,draw,sim)) / card(draw) ;                                                \
+troutsh_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(troutsh&i(h,draw,sim) - troutsh_mv&i(h,sim,"mean")))/(card(draw)-1)) ;     \
+hfd_mv&i(f,h,sim,"mean") = sum(draw, hfd&i(f,h,draw,sim)) / card(draw) ;                                                    \
+hfd_mv&i(f,h,sim,"stdev") = sqrt(sum(draw, sqr(hfd&i(f,h,draw,sim) - hfd_mv&i(f,h,sim,"mean")))/(card(draw)-1)) ;           \
+vfd_mv&i(f,v,sim,"mean") = sum(draw, vfd&i(f,v,draw,sim)) / card(draw) ;                                                    \
+vfd_mv&i(f,v,sim,"stdev") = sqrt(sum(draw, sqr(vfd&i(f,v,draw,sim) - vfd_mv&i(f,v,sim,"mean")))/(card(draw)-1)) ;           \
+zfd_mv&i(f,sim,"mean") = sum(draw, zfd&i(f,draw,sim)) / card(draw) ;                                                        \
+zfd_mv&i(f,sim,"stdev") = sqrt(sum(draw, sqr(zfd&i(f,draw,sim) - zfd_mv&i(f,sim,"mean")))/(card(draw)-1)) ;                 \
+hms_mv&i(g,h,sim,"mean") = sum(draw, hms&i(g,h,draw,sim)) / card(draw) ;                                                    \
+hms_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(hms&i(g,h,draw,sim) - hms_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;           \
+vms_mv&i(g,v,sim,"mean") = sum(draw, vms&i(g,v,draw,sim)) / card(draw) ;                                                    \
+vms_mv&i(g,v,sim,"stdev") = sqrt(sum(draw, sqr(vms&i(g,v,draw,sim) - vms_mv&i(g,v,sim,"mean")))/(card(draw)-1)) ;           \
+zms_mv&i(g,sim,"mean") = sum(draw, zms&i(g,draw,sim)) / card(draw) ;                                                        \
+zms_mv&i(g,sim,"stdev") = sqrt(sum(draw, sqr(zms&i(g,draw,sim) - zms_mv&i(g,sim,"mean")))/(card(draw)-1)) ;                 \
+hfms_mv&i(f,h,sim,"mean") = sum(draw, hfms&i(f,h,draw,sim)) / card(draw) ;                                                  \
+hfms_mv&i(f,h,sim,"stdev") = sqrt(sum(draw, sqr(hfms&i(f,h,draw,sim) - hfms_mv&i(f,h,sim,"mean")))/(card(draw)-1)) ;        \
+vfms_mv&i(f,v,sim,"mean") = sum(draw, vfms&i(f,v,draw,sim)) / card(draw) ;                                                  \
+vfms_mv&i(f,v,sim,"stdev") = sqrt(sum(draw, sqr(vfms&i(f,v,draw,sim) - vfms_mv&i(f,v,sim,"mean")))/(card(draw)-1)) ;        \
+zfms_mv&i(f,sim,"mean") = sum(draw, zfms&i(f,draw,sim)) / card(draw) ;                                                      \
+zfms_mv&i(f,sim,"stdev") = sqrt(sum(draw, sqr(zfms&i(f,draw,sim) - zfms_mv&i(f,sim,"mean")))/(card(draw)-1)) ;              \
+hfsup_mv&i(f,h,sim,"mean") = sum(draw, hfsup&i(f,h,draw,sim)) / card(draw) ;                                                  \
+hfsup_mv&i(f,h,sim,"stdev") = sqrt(sum(draw, sqr(hfsup&i(f,h,draw,sim) - hfsup_mv&i(f,h,sim,"mean")))/(card(draw)-1)) ;        \
+;
 
 mvfy(1) ;
 mvfy(2) ;
-
-display pv_mv1, pz_mv2 ; 
+mvfy(D) ;
+mvfy(PC) ;
+display pv_mv1, pz_mv2 , zfms_mv2;
+display_pars(_mv1) ;
+display_pars(_mv2) ;
+display_pars(_mvD) ;
+display_pars(_mvPC) ;
 $exit
+* there were not defined for 2, D and PC so they can't be in the generic macro:
+*idsh_mv&i(g,gg,h,sim,"mean") = sum(draw, idsh&i(g,gg,h,draw,sim)) / card(draw) ;                                               \
+*idsh_mv&i(g,gg,h,sim,"stdev") = sqrt(sum(draw, sqr(idsh&i(g,gg,h,draw,sim) - idsh_mv&i(g,gg,h,sim,"mean")))/(card(draw)-1)) ;  \
+*tidsh_mv&i(g,h,sim,"mean") = sum(draw, tidsh&i(g,h,draw,sim)) / card(draw) ;                                                   \
+*tidsh_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(tidsh&i(g,h,draw,sim) - tidsh_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;        \
 
 
 $ontext

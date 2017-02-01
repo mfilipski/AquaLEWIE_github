@@ -152,6 +152,9 @@ ph_mv&i(g,h,sim,mv)       mean and stdev of market price as seen by household   
 pva_mv&i(g,h,sim,mv)      mean and stdev of price of value added                          , \
 qva_mv&i(g,h,sim,mv)      mean and stdev of quantity of value added                       , \
 qp_mv&i(g,h,sim,mv)       mean and stdev of quantity produced                             , \
+tqp_mv&i(g,sim,mv)   mean and stdev of total quantity produced of g  , \
+ttqp_mv&i(sim,mv)    mean and stdev of total production value in whole economy  , \
+hqp_mv&i(h,sim,mv)   mean and stdev of total qty produced by a household  , \
 fd_mv&i(g,f,h,sim,mv)     mean and stdev of factor demand                                 , \
 id_mv&i(g,gg,h,sim,mv)    mean and stdev of intermediate demand                           , \
 pshift_mv&i(g,h,sim,mv)    mean and stdev of cobb-douglas shifter                         , \
@@ -187,7 +190,8 @@ vms_mv&i(g,v,sim,mv)      mean and stdev of village marketed surplus of good g  
 zms_mv&i(g,sim,mv)        mean and stdev of household marketed surplus of good g           , \
 hfms_mv&i(f,h,sim,mv)     mean and stdev of household factor marketed surplus              , \
 vfms_mv&i(f,v,sim,mv)     mean and stdev of village factor marketed surplus                , \
-zfms_mv&i(f,sim,mv)       mean and stdev of zoi factor marketed surplus                     \
+zfms_mv&i(f,sim,mv)       mean and stdev of zoi factor marketed surplus                    , \
+hfsup_mv&i(f,h,sim,mv)    mean and stdev of factor supply by the household     \
 ;
 
 defpars_mv(1) ;
