@@ -469,7 +469,7 @@ execute_unload "outmat.gdx" outmat ;
 * And this writes in an excel sheet called "MakeMeASam":
 execute "xlstalk.exe -s   %autosam_file%" ;
 execute "gdxxrw.exe outmat.gdx par=outmat o=%autosam_file% rng=a1 rdim=3 cdim=3" ;
-execute 'xlstalk.exe -O %autosam_file%' ;
+*execute 'xlstalk.exe -O %autosam_file%' ;
 
 * NB: the range is important here rng=a1:am39 is the exact size of the Lesotho matrix  :aq43
 * this is to prevent the gdxxrw procedure from overwriting everything on the entire xl spreadsheet

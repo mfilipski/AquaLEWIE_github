@@ -23,6 +23,9 @@ $setglobal assumptions_file  "2_MarketAssumptions.gms"
 $setglobal output_txt_file "AQ_LEWIE_output"
 * name of intermediate SAM output:
 $setglobal autosam_file "AutoSAM_aqua.xlsx"
+* name of excel output automatically populated
+$setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
+
 
 
 * choose the elasticity of supply of labor - hired and family
@@ -243,7 +246,7 @@ trout1(h,draw,sim)      = TROUT.l(h) ;
 trinsh1(h,draw,sim)     = trinsh(h) ;
 sav1(h,draw,sim)        = SAV.l(h) ;
 exproc1(h,draw,sim)     = EXPROC.l(h) ;
-eshare1(g,h,draw,sim)    = eshare(g,h) ;
+eshare1(g,h,draw,sim)   = eshare(g,h) ;
 emin1(g,h,draw,sim)     = emin(g,h) ;
 troutsh1(h,draw,sim)    = troutsh(h) ;
 hfd1(f,h,draw,sim)      = HFD.l(f,h) ;
@@ -262,7 +265,7 @@ zfmsfix1(ft,draw,sim)   = zfmsfix_dr(ft,draw) ;
 
 * more params
 tqp1(g,draw,sim)        = sum(h,qp1(g,h,draw,sim)) ;
-ttqp1(draw,sim)        = sum(g,tqp1(g,draw,sim)) ;
+ttqp1(draw,sim)         = sum(g,tqp1(g,draw,sim)) ;
 hqp1(h,draw,sim)        = sum(g, qp1(g,h,draw,sim)) ;
 
 
@@ -350,7 +353,11 @@ display_pars(2);
 
 * Output : compute all the parameters
 $include includes/6_Output_Parameters.gms
+
+$include includes/7a_Output_to_excel.gms
 $exit
 
+
+
 * Output : create a formatted text file with a series of "put" statements
-$include includes/7_Output_to_text_file.gms
+*$include includes/7_Output_to_text_file.gms
