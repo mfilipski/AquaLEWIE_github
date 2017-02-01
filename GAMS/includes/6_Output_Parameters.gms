@@ -179,6 +179,8 @@ eshare_mv&i(g,h,sim,"mean") = sum(draw, eshare&i(g,h,draw,sim)) / card(draw) ;  
 eshare_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(eshare&i(g,h,draw,sim) - eshare_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;  \
 y_mv&i(h,sim,"mean") = sum(draw, y&i(h,draw,sim)) / card(draw) ;                                                            \
 y_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(y&i(h,draw,sim) - y_mv&i(h,sim,"mean")))/(card(draw)-1)) ;                       \
+ty_mv&i(sim,"mean") = sum(draw, ty&i(draw,sim)) / card(draw) ;                                                            \
+ty_mv&i(sim,"stdev") = sqrt(sum(draw, sqr(ty&i(draw,sim) - ty_mv&i(sim,"mean")))/(card(draw)-1)) ;                       \
 cpi_mv&i(h,sim,"mean") = sum(draw, cpi&i(h,draw,sim)) / card(draw) ;                                                        \
 cpi_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(cpi&i(h,draw,sim) - cpi_mv&i(h,sim,"mean")))/(card(draw)-1)) ;                 \
 vcpi_mv&i(v,sim,"mean") = sum(draw, vcpi&i(v,draw,sim)) / card(draw) ;                                                      \
@@ -187,6 +189,8 @@ cri_mv&i(v,f,sim,"mean") = sum(draw, cri&i(v,f,draw,sim)) / card(draw) ;        
 cri_mv&i(v,f,sim,"stdev") = sqrt(sum(draw, sqr(cri&i(v,f,draw,sim) - cri_mv&i(v,f,sim,"mean")))/(card(draw)-1)) ;           \
 ry_mv&i(h,sim,"mean") = sum(draw, ry&i(h,draw,sim)) / card(draw) ;                                                          \
 ry_mv&i(h,sim,"stdev") = sqrt(sum(draw, sqr(ry&i(h,draw,sim) - ry_mv&i(h,sim,"mean")))/(card(draw)-1)) ;                    \
+try_mv&i(sim,"mean") = sum(draw, try&i(draw,sim)) / card(draw) ;                                                            \
+try_mv&i(sim,"stdev") = sqrt(sum(draw, sqr(try&i(draw,sim) - try_mv&i(sim,"mean")))/(card(draw)-1)) ;                       \
 emin_mv&i(g,h,sim,"mean") = sum(draw, emin&i(g,h,draw,sim)) / card(draw) ;                                                  \
 emin_mv&i(g,h,sim,"stdev") = sqrt(sum(draw, sqr(emin&i(g,h,draw,sim) - emin_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;        \
 trin_mv&i(h,sim,"mean") = sum(draw, trin&i(h,draw,sim)) / card(draw) ;                                                      \
@@ -305,6 +309,7 @@ denom(h,draw,sim) = transfer(h);
 * with the new remittances counted as well...
 *denom(h,draw,sim) = transfer(h)+newremits(h);
 
+$ontext
 
 cvh(h,draw,sim) = y2(h,draw,sim) - prod(g, (ph2(g,h,draw,sim)/ph1(g,h,draw,sim))**eshare_dr(g,h,draw))*y1(h,draw,sim);
 cvh_perc(h,draw,sim) = 100*cvh(h,draw,sim)/y1(h,draw,sim);
@@ -403,6 +408,7 @@ parameter cvh_mv(h,sim,mv)   compensating variation per household
           ykmult_all_mv(sim,mv) multiplier of the program + the capital influx
           rykmult_all_mv(sim,mv) multiplier of the program + the capital influx
 ;
+$offtext
 
 
 

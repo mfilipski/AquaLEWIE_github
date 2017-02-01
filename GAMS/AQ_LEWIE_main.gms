@@ -42,7 +42,7 @@ shSCTprod = 0 ;
 
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr2/ ;
+set draw /dr0*dr10/ ;
 
 
 * Choose simulation parameters:
@@ -283,7 +283,7 @@ PVA.l(g,h) = PH.l(g,h) - sum(gg,idsh(gg,g,h)*PH.l(gg,h))
 *solve genCD using mcp ;
 solve genCDnlp using nlp maximizing USELESS ;
 ABORT$(genCD.modelstat ne 1) "NO OPTIMAL SOLUTION REACHED" ;
-
+modstat(sim) = genCD.modelstat ;
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l, fd.l;
 display CPI.l ;
 

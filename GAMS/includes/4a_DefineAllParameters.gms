@@ -9,6 +9,8 @@
 
 
 parameter
+* model result stat
+modstat(sim) model stat (1 means solved ok) 
 * meta-parameters with parameter draws
 fshare_t(g,f,h,draw)  unscaled draw the cobb-douglas factor shares
 eshare_t(g,h,draw)    unscaled draw of expenditure shares
@@ -171,10 +173,12 @@ endow_mv&i(f,h,sim,mv)    mean and stdev of endowment                           
 qc_mv&i(g,h,sim,mv)       mean and stdev of level of consumption                          , \
 eshare_mv&i(g,h,sim,mv)    mean and stdev of consumption shares                           , \
 y_mv&i(h,sim,mv)          mean and stdev of nominal income of household                   , \
+ty_mv&i(sim,mv)          mean and stdev of nominal income in total                   , \
 cpi_mv&i(h,sim,mv)        mean and stdev of cpi of household                              , \
 cri_mv&i(v,f,sim,mv)        mean and stdev of cri of village                              , \
 vcpi_mv&i(v,sim,mv)        mean and stdev of cpi of village                               , \
 ry_mv&i(h,sim,mv)         mean and stdev of real income of household                      , \
+try_mv&i(sim,mv)         mean and stdev of real income total                      , \
 emin_mv&i(g,h,sim,mv)     mean and stdev of incompressible demand                         , \
 trin_mv&i(h,sim,mv)       mean and stdev of transfers in - received                       , \
 trout_mv&i(h,sim,mv)      mean and stdev of transfers out - given                         , \
