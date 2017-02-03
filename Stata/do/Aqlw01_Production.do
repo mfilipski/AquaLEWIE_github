@@ -18,7 +18,7 @@ global rawdata "D:\Docs\Myanmar\Data\AquaAgri\version0_9July16_v14"
 global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
 global hhgroup "$madedata\hhgroups.dta"
 
-global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v6"
+global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v7"
 
 cd $workdir 
 
@@ -64,13 +64,17 @@ drop _m
 * Impute out values if needed: 
 imputeout cst_purch cst_constrep, bylist(cluster) 
  
-
+ 
 cap mat clear
 * generate variables to put all costs into simple categories: 
 * purchased inputs, labor, capital
+
+* intermediate inputs:
 egen i_aqua = rowtotal(cst_seed)
-*gen i_agri = 
-egen i_feed = rowtotal(cst_feed) 
+egen i_intinp = rowtotal(cst_feed cst_harv cst_mkt cst_leg cst_bor) 
+
+
+* Value-added creating inputs: 
 egen i_labor = rowtotal(cst_lab) 
 * Is land the area or the investment?  *aqua_sparea
 egen i_land = rowtotal(aqua_sparea) 
@@ -78,20 +82,22 @@ egen i_land = rowtotal(aqua_sparea)
 * egen i_capit = rowtotal(cst_purch cst_constrep cst_mach ) 
 * adding cost of purchase and cost of construction makes a negative coeff for small farms. 
 * that might be because land is already picking up that investment
-egen i_capit = rowtotal(nval cst_mach)
-egen i_other = rowtotal(cst_oinp cst_harv cst_mkt cst_leg  cst_bor)
-
+egen i_capit = rowtotal(cst_mach)
+egen i_other = rowtotal(cst_oinp)
 
 label var i_land "Land"
+label var i_labor "labor"
+label var i_capit "capital"
+label var i_other "other inputs that create value added"
+label var i_aqua "intermediate inputs from aquaculture (seed)"
+label var i_intinp "all other purchased intermediate inputs"
 
 gen y = rev_fish 
-
 keep eahhid y i_*  wei
  
 sort eahhid
 tempfile growout 
 save `growout' 
-
 
 merge 1:1 eahh using $hhgroup 
 drop if _m==2 
@@ -105,23 +111,22 @@ foreach v of varlist y i_* {
 
 * generate variables for the regression:
 * Maybe no need for Other - they are intermediate inputs, not value-added creating inputs
-global rhsfish "li_labor li_land li_capit li_feed "
-global cstrfish "li_labor+li_land+li_capit+li_feed"
+global rhsfish "li_labor li_land  li_capit li_other"
+global cstrfish "li_labor+li_land+li_capit +li_other"
 
 * look for outliers: 
 tab li_labor 
 tab li_land
 tab li_capit
-drop if li_capit <=-2
-drop if li_capit >=9 & li_capit!=.
-tab li_feed
-
+*drop if li_capit <=-2
+*drop if li_capit >=9 & li_capit!=.
 
 
 * run a constrained log-log regression
 eststo clear  
 constraint 3 $cstrfish = 1 , c(3)
-bysort lwgroup : eststo: cnsreg ly $rhsfish , r c(3) 
+*bysort lwgroup : eststo: reg ly $rhsfish , r 
+bysort lwgroup : eststo: cnsreg ly $rhsfish [aw=wei], r  c(3) 
 
 estout
 return list
@@ -140,7 +145,12 @@ mat l mout
 
 putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
 
- 
+* intermediate input shares: 
+gen iish_aqua = i_aqua / y 
+gen iish_intinp = i_intinp / y 
+tabstat iish* [aw=wei], by(lwgroup)  stat(mean med)
+
+crash  
 * ============================================================
 * ============= Nursery Ponds??  ===========
 * ============================================================

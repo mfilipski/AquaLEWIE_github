@@ -296,6 +296,7 @@ putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("ProdSerRet") modify 
 
 /* 2) Figure out share of intermediate inputs:  */
 * =============================================
+* that's essentially the percent margin - "recurring costs" / "sales"
 gen inpsh = yrc / ysale 
 * clean and remove outliers: 
 replace inpsh = 0 if ysale!=. & yrc==. 
