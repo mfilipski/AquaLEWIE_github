@@ -71,10 +71,11 @@ cap mat clear
 
 * intermediate inputs:
 egen i_aqua = rowtotal(cst_seed)
-egen i_intinp = rowtotal(cst_feed cst_harv cst_mkt cst_leg cst_bor) 
+egen i_intinp = rowtotal(cst_oinp cst_harv cst_mkt cst_leg cst_bor) 
 
 
 * Value-added creating inputs: 
+* MUST ADD FAMILY LABOR HOURS OTHERWISE MIGHT UNDERESTIMATE INPUTS ON SMALL FARMS. 
 egen i_labor = rowtotal(cst_lab) 
 * Is land the area or the investment?  *aqua_sparea
 egen i_land = rowtotal(aqua_sparea) 
@@ -82,8 +83,8 @@ egen i_land = rowtotal(aqua_sparea)
 * egen i_capit = rowtotal(cst_purch cst_constrep cst_mach ) 
 * adding cost of purchase and cost of construction makes a negative coeff for small farms. 
 * that might be because land is already picking up that investment
-egen i_capit = rowtotal(cst_mach)
-egen i_other = rowtotal(cst_oinp)
+egen i_capit = rowtotal(nval cst_mach)
+egen i_other = rowtotal(cst_feed )
 
 label var i_land "Land"
 label var i_labor "labor"
@@ -148,7 +149,31 @@ putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("Fish") modify keepce
 * intermediate input shares: 
 gen iish_aqua = i_aqua / y 
 gen iish_intinp = i_intinp / y 
-tabstat iish* [aw=wei], by(lwgroup)  stat(mean med)
+tabstat iish* [aw=wei], by(lwgroup)  stat(mean) save 
+
+matrix ii = r(Stat1) \ r(Stat2) 
+matrix rownames ii = "`r(name1)'"  "`r(name2)'"  
+mat l ii 
+mat inp = ii' 
+putexcel B19 = matrix(inp, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
+
+
+* share of intermediate inputs coming from OUT versus retail: 
+use $aquamade\clean_inputs, clear 
+merge m:1 eahhid using $hhgroup 
+
+collapse (sum) cinpt, by(lwgroup locpurch)
+egen tc = sum(cinpt)  , by(lwgroup)
+gen share = cinpt/tc
+list 
+
+use $aquamade\clean_feed, clear 
+merge m:1 eahhid using $hhgroup 
+collapse (sum) cfeed, by(lwgroup locpurch)
+egen tc = sum(cfeed)  , by(lwgroup)
+gen share = cfeed/tc
+list 
+
 
 crash  
 * ============================================================

@@ -32,7 +32,9 @@ gen lwgroup = .
 
 * aqua cluster
 replace lwgroup = 1 if resp== 1
-replace lwgroup = 2 if aqua_sizecat==3
+* choose where to put the 10-40 group. 
+*replace lwgroup = 2 if aqua_sizecat==3 
+replace lwgroup = 2 if aqua_sizecat==3 | aqua_sizecat==2
 replace lwgroup = 3 if agritype!=. & cluster == 1
 replace lwgroup = 4 if (landless==1 | resp==3) & cluster == 1  & lwgroup==.
 
