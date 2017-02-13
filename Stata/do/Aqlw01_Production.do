@@ -18,7 +18,7 @@ global rawdata "D:\Docs\Myanmar\Data\AquaAgri\version0_9July16_v14"
 global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
 global hhgroup "$madedata\hhgroups.dta"
 
-global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v7"
+global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet"
 
 cd $workdir 
 
@@ -29,6 +29,24 @@ cd $workdir
 
 /*  1) Compute total output from fish activity, by household:  */
 *----------------------------------------------------------------------------------------------
+* ============================================================
+* ============= Nursery Ponds  ===========
+* ============================================================
+use $aquamade\clean_nurscost, clear
+
+* Revenues: 
+egen rev_nurs = rowtotal(r_sold r_keep) 
+keep if rev_nurs !=0
+collapse (mean) rev_nurs
+mkmat rev_nurs , mat(nursrev) 
+matrix list nursrev 
+matrix colname nursrev = "AquaNurs"
+
+
+* ============================================================
+* ============= Growout Ponds  ===========
+* ============================================================
+
 use $aquamade\aqua_allcosts, clear
 merge 1:1 eahh using $hhgroup 
 drop if _m==2 
@@ -40,22 +58,34 @@ collapse (mean) rev_fish, by (lwgroup)
 decode lwgroup, gen(gname)
 list 
 mkmat rev_fish, matrix(m) rownames(gname)
+* transpose and add nurseries
 mat list m
-matrix fishrev = m'
+matrix fishrev = m'  , nursrev
 matrix list fishrev 
+
 putexcel B2 = matrix(fishrev, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
 clear
 
 
-
 /*  2) Compute factor shares: */
 *----------------------------------------------------------------------------------------------
+* ============================================================
+* ============= Nursery Ponds  ===========
+* ============================================================
+use $aquamade\clean_nurscost, clear
 
-* Need to take both nurseries and growout ponds - appending them together
-* Keeping only the income and input costs: 
+*Revenues: 
+egen rev_nurs = rowtotal(r_sold r_keep) 
+
+FILL THIS IN
+
+crash 
+
+
+* ============================================================
+* ============= Growout Ponds  ===========
+* ============================================================
 use $aquamade\aqua_allcosts, clear
-
- 
 * Merge in value of total assets 
 merge m:1 eahhid using $madedata\ass_val 
 drop if _m==2
@@ -174,16 +204,7 @@ egen tc = sum(cfeed)  , by(lwgroup)
 gen share = cfeed/tc
 list 
 
-
-crash  
-* ============================================================
-* ============= Nursery Ponds??  ===========
-* ============================================================
-* use $aquamade\clean_nurscost, clear
-* generate variables to put all costs into simple categories: 
-* purchased inputs, labor, capital
-
-
+ 
 
 * ============================================================
 * ============= Data for Crop - Livestock Activity ===========
