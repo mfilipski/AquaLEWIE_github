@@ -74,10 +74,59 @@ clear
 * ============================================================
 use $aquamade\clean_nurscost, clear
 
-*Revenues: 
+*Define variables: 
 egen rev_nurs = rowtotal(r_sold r_keep) 
+egen i_intinp = rowtotal(c_oinp)
+egen i_nurs = rowtotal(c_seed)
+egen i_labor = rowtotal(cstlab) 
+egen i_land = rowtotal(area) 
+egen i_other = rowtotal(c_feed)
 
-FILL THIS IN
+* Label variables
+label var i_intinp "all other purchased intermediate inputs"
+label var i_nurs "fish seed"
+label var i_land "Land"
+label var i_labor "labor"
+label var i_other "other inputs that create value added"
+
+* make the logs
+foreach v of varlist rev_nurs i_* {
+	gen l`v' = log(`v')
+}
+
+* unconstrained and constrained log-log regression
+local rhs "li_labor li_land li_capit li_other "
+constraint 1 li_labor + li_land +li_capit + li_other= 1 , c(1)
+
+* put into a matrix 
+eststo clear
+reg lrev_nurs  `rhs' [aw=wei] 
+eststo: cnsreg lrev_nurs `rhs', r  c(1) 
+return list
+esttab,  nodepvar  label nonumber not se 
+return list 
+matrix nout = r(coefs) 
+
+* extract submatrices 
+mat noutb = nout[1..., "est1:b"]
+mat noutse = nout[1..., "est1:se"]
+matrix coleq noutb = "AquaNurs" 
+matrix coleq noutse = "AquaNurs" 
+matrix colnames noutb = beta 
+mat l noutb
+mat l noutse
+
+* intermediate input share: 
+gen iish = i_intinp/rev_nurs
+gen iish_nurs = i_nurs / y 
+gen iish_intinp = i_intinp / y 
+tabstat iish* [aw=wei], by(lwgroup)  stat(mean) save 
+
+matrix ii = r(Stat1) \ r(Stat2) 
+matrix rownames ii = "`r(name1)'"  "`r(name2)'"  
+mat l ii 
+mat inp = ii' 
+
 
 crash 
 
@@ -100,7 +149,7 @@ cap mat clear
 * purchased inputs, labor, capital
 
 * intermediate inputs:
-egen i_aqua = rowtotal(cst_seed)
+egen i_nurs = rowtotal(cst_seed)
 egen i_intinp = rowtotal(cst_oinp cst_harv cst_mkt cst_leg cst_bor) 
 
 
@@ -120,7 +169,7 @@ label var i_land "Land"
 label var i_labor "labor"
 label var i_capit "capital"
 label var i_other "other inputs that create value added"
-label var i_aqua "intermediate inputs from aquaculture (seed)"
+label var i_nurs "intermediate inputs from aquaculture (seed)"
 label var i_intinp "all other purchased intermediate inputs"
 
 gen y = rev_fish 
@@ -165,19 +214,26 @@ esttab,  nodepvar  label nonumber not se
 return list 
 matrix mout = r(coefs) 
 mat l mout
-*matrix coleq mout = 
-matrix coleq mout = "`r(m1_estimates_title)'"  "`r(m1_estimates_title)'"  "`r(m1_estimates_title)'" ///
-					"`r(m2_estimates_title)'"  "`r(m2_estimates_title)'"  "`r(m2_estimates_title)'"
-mat l mout
-*matrix colnames mout = "`r(m1_estimates_title)' beta" "`r(m1_estimates_title)' se" "`r(m1_estimates_title)' p" ///
-*					"`r(m2_estimates_title)' beta" "`r(m2_estimates_title)' se" "`r(m2_estimates_title)' p"
-matrix colnames mout = beta se p beta se p 
-mat l mout
 
-putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
+* extract submatrices: 
+mat moutb = mout[1..., "est1:b"], mout[1..., "est2:b"]
+mat moutse = mout[1..., "est1:se"], mout[1..., "est2:se"]
+matrix coleq moutb = "`r(m1_estimates_title)'"  "`r(m2_estimates_title)'"
+matrix colnames moutb = beta beta 
+matrix coleq moutse = "`r(m1_estimates_title)'"  "`r(m2_estimates_title)'"
+mat l moutb 
+mat l moutse 
+
+mat fishprodb = moutb, noutb
+mat fishprodse = moutse, noutse
+mat l fishprodb 
+mat l fishprodse 
+
+putexcel B8 = matrix(fishprodb, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
+putexcel B20 = matrix(fishprodse, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
 
 * intermediate input shares: 
-gen iish_aqua = i_aqua / y 
+gen iish_nurs = i_nurs / y 
 gen iish_intinp = i_intinp / y 
 tabstat iish* [aw=wei], by(lwgroup)  stat(mean) save 
 
