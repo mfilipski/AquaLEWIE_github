@@ -49,7 +49,7 @@ replace lwgroup = 1 if eahhid == 110017
 * replace lwgroup = 6 if agritype!=. & cluster == 2 & lwgroup ==. 
 * replace lwgroup = 7 if (landless==1 | resp==3) & cluster == 2 
 
-label define lwgroup 0 "nonfarm" 1 "AquaFSm" 2 "AquaFBg" 3 "AquaNurs" 4 "AquaAg" 5 "AquaLL" 
+label define lwgroup 0 "nonfarm" 1 "AquaFSm" 2 "AquaFBg" 3 "AquaNurs" 4 "AquaAg" 5 "AquaLL"  
 * dropped: 6 "AgriAg" 7 "AgriLL" 
 label values lwgroup lwgroup 
 tab resp lwgroup

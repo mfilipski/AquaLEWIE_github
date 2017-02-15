@@ -17,7 +17,7 @@ global rawdatav1 "D:\Docs\Myanmar\Data\AquaAgri\version1"
 global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
 global hhgroup "$madedata\hhgroups.dta"
 
-global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet_v5"
+global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet"
 
 cd $workdir 
 
@@ -357,17 +357,16 @@ drop if btype==.
 * 
 decode lwgroup , gen(groupname)
 list
-
 keep ysale2 btype  lwgroup 
 
+drop if lwgroup==.
 reshape wide ysale2, i(btype) j(lwgroup) 
 l
 *renvars ysale*,  subs("ysale2" "")
-
 decode btype, gen(bnames)
 mkmat ysal*, matrix(m) rownames(bnames)
 matrix list m
-matrix colnames m = "AquaFSm" "AquaFBg" "AquaAg" "AquaLL" "AgriAg" "AgriLL" 
+matrix colnames m = "AquaFSm" "AquaFBg" "AquaNurs" "AquaAg" "AquaLL" 
 matrix list m
 
 putexcel B2 = matrix(m, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 

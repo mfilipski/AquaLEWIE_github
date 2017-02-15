@@ -73,14 +73,20 @@ clear
 * ============= Nursery Ponds  ===========
 * ============================================================
 use $aquamade\clean_nurscost, clear
+* Merge in value of aqua-related machinery:   
+merge m:1 eahhid using $aquamade\c_machines
+drop if _m==2
+drop _m 
+
 
 *Define variables: 
 egen rev_nurs = rowtotal(r_sold r_keep) 
 egen i_intinp = rowtotal(c_oinp)
-egen i_nurs = rowtotal(c_seed)
+egen i_nurs = rowtotal(c_stock)
 egen i_labor = rowtotal(cstlab) 
 egen i_land = rowtotal(area) 
 egen i_other = rowtotal(c_feed)
+egen  i_capit = rowtotal(rvmach)
 
 * Label variables
 label var i_intinp "all other purchased intermediate inputs"
@@ -117,19 +123,14 @@ mat l noutb
 mat l noutse
 
 * intermediate input share: 
-gen iish = i_intinp/rev_nurs
-gen iish_nurs = i_nurs / y 
-gen iish_intinp = i_intinp / y 
-tabstat iish* [aw=wei], by(lwgroup)  stat(mean) save 
+gen iish_nurs = i_nurs / rev_nurs 
+gen iish_intinp = i_intinp / rev_nurs 
+tabstat iish* [aw=wei],  stat(mean) save 
 
-matrix ii = r(Stat1) \ r(Stat2) 
-matrix rownames ii = "`r(name1)'"  "`r(name2)'"  
-mat l ii 
-mat inp = ii' 
-
-
-crash 
-
+matrix ii = r(StatTotal)
+matrix rownames ii = "AquaNurs"  
+mat inpn = ii' 
+mat l inpn
 
 * ============================================================
 * ============= Growout Ponds  ===========
@@ -159,10 +160,12 @@ egen i_labor = rowtotal(cst_lab)
 * Is land the area or the investment?  *aqua_sparea
 egen i_land = rowtotal(aqua_sparea) 
 * Includes real value of all assets rval: 
-* egen i_capit = rowtotal(cst_purch cst_constrep cst_mach ) 
+* egen i_capit = rowtotal(cst_purch cst_constrep cst_mach nval ) 
 * adding cost of purchase and cost of construction makes a negative coeff for small farms. 
 * that might be because land is already picking up that investment
-egen i_capit = rowtotal(nval cst_mach)
+* value of all aquaculture-related machines on the farm: rvmach 
+
+egen i_capit = rowtotal(rvmach)
 egen i_other = rowtotal(cst_feed )
 
 label var i_land "Land"
@@ -240,9 +243,11 @@ tabstat iish* [aw=wei], by(lwgroup)  stat(mean) save
 matrix ii = r(Stat1) \ r(Stat2) 
 matrix rownames ii = "`r(name1)'"  "`r(name2)'"  
 mat l ii 
-mat inp = ii' 
-putexcel B19 = matrix(inp, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
+mat inpm = ii' 
+* Put both growout and nurseries together: 
 
+mat inp = inpm, inpn
+putexcel B31 = matrix(inp, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
 
 * share of intermediate inputs coming from OUT versus retail: 
 use $aquamade\clean_inputs, clear 
@@ -290,6 +295,7 @@ gen y_imp = y_mean*ld_agown
 
 
 collapse (mean)  y y_imp, by(lwgroup groupname)
+drop if lwgroup ==. 
 mkmat  y y_imp, matrix(mm) rownames(groupname) 
 matrix croprev = mm'
 mat l croprev 
