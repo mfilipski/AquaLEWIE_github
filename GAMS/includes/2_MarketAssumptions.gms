@@ -34,7 +34,7 @@ set
      fpurch(f) purchased factors /INPUT/
 
 * goods subsets
-     gtv(g)    goods tradable in the village / ret,  ser ,  null  /
+     gtv(g)    goods tradable in the village / fseed, ret,  ser ,  null  /
      gtz(g)    goods tradable in the zoi   /null /
      gtw(g)    goods tradable with the rest of the world /meat, fish,crop, prod, out/
      gp(g)     goods that are produces / crop, fish, prod, ret, ser /
@@ -43,7 +43,7 @@ set
 
 * household subsets
      ht(h)     treated recipients in this simulation (can be a or b or both) / null/
-     haq(h)    aquaculture households / AqFSm, AqFBg/
+     haq(h)    aquaculture households / AqFSm, AqFBg, AqNurs/
      hag(h)    agriculture households / AqAg /
 
 *     hc(h)     households in the camp / rrc, rrf/
@@ -57,7 +57,7 @@ sets
      v        villages / AQUA Aqua Cluster /
 *                         AGRI Agri Cluster/
 
-     maphv mapping household to their village / (AqFSm,AqFBg,AqAg, AqLL).AQUA
+     maphv mapping household to their village / (AqFSm,AqFBg,AqNurs,AqAg, AqLL).AQUA
 *                                                (AgAg, AgLL).AGRI
 /
 ;

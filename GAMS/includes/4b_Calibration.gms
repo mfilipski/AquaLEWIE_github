@@ -106,6 +106,7 @@ display troutsh_dr, savsh_dr, exprocsh_dr, expzoish_dr;
 * set wages and prices to 1:
 pv_dr(gtv,v,draw) = 1 ;
 pz_dr(g,draw) = 1 ;
+
 ph_dr(g,h,draw) = [pz_dr(g,draw)$(gtz(g)+gtw(g)) + sum(v$maphv(h,v),pv_dr(g,v,draw))$gtv(g)] ;
 display pv_dr, pz_dr, ph_dr ;
 
@@ -160,6 +161,7 @@ ABORT$(card(smallzoi_dr)) "These household spend over 10% of income on transfers
 qc_dr(g,h,draw) = (y_dr(h,draw)-sav_dr(h,draw)-trout_dr(h,draw)-exproc_dr(h,draw))*eshare_dr(g,h,draw)/ph_dr(g,h,draw) ;
 
 display qc_dr ;
+
 parameter qcshare(h,g) share of household h in total consumption of g ;
 qcshare(h,g)$qc_dr(g,h,"dr0") = qc_dr(g,h,"dr0") / sum(hh,qc_dr(g,hh,"dr0")) ;
 display qcshare;

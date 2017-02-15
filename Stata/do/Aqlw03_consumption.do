@@ -100,6 +100,7 @@ rename annual_expend ae
 
 tab lwgroup 
 keep ae group lwgroup 
+drop if lwg==.
 reshape wide ae , i(group) j(lwgroup)
 list 
 
@@ -107,7 +108,7 @@ list
 decode group2 , gen(items)
 mkmat  ae* , matrix(m)  rownames(items)
 matrix list m  
-matrix colnames m = "AquaFSm" "AquaFBg" "AquaAg" "AquaLL" "AgriAg" "AgriLL"
+matrix colnames m = "AquaFSm" "AquaFBg" "AquaNurs" "AquaAg" "AquaLL" 
 matrix list m  
 
 putexcel B2 = matrix(m, names) using $lewiesheet, sheet("Cons") modify keepcellformat 
