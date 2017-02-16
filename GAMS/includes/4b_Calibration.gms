@@ -30,7 +30,7 @@ exprocsh_dr(h,draw)  = xlexpoutsh(h) ;
 *exprocsh_dr(h,"dr0")  = xlexpoutsh(h) ;
 
 fshare_t(g,f,h,draw)$(not sameas(draw,"dr0")) = normal(xlfshare(g,f,h),xlfshare_se(g,f,h));
-eshare_t(g,h,draw)$(not sameas(draw,"dr0"))    = normal(xleshare(g,h),xleshare_se(g,h));
+eshare_t(g,h,draw)$(not sameas(draw,"dr0"))   = normal(xleshare(g,h),xleshare_se(g,h));
 savsh_dr(h,draw)$(not sameas(draw,"dr0"))     = normal(xlSAVsh(h),xlSAVsh_se(h));
 troutsh_dr(h,draw)$(not sameas(draw,"dr0"))   = normal(xltroutsh(h),xltroutsh_se(h));
 
@@ -52,7 +52,7 @@ loop((g,f,h,draw)$(xlfshare(g,f,h)*((fshare_t(g,f,h,draw) le 0) or (fshare_t(g,f
      );
 );
 display fshare_t;
-* finally, we can use that as our parameter draw:
+* finally, we can use that as our parameter draw (re-scaled to one):
 fshare_dr(g,f,h,draw)$fshare_t(g,f,h,draw) = fshare_t(g,f,h,draw)/sum(fa,fshare_t(g,fa,h,draw)) ;
 display fshare_t, fshare_dr ;
 
@@ -470,6 +470,7 @@ execute_unload "outmat.gdx" outmat ;
 * And this writes in an excel sheet called "MakeMeASam":
 execute "xlstalk.exe -s   %autosam_file%" ;
 execute "gdxxrw.exe outmat.gdx par=outmat o=%autosam_file% rng=a1 rdim=3 cdim=3" ;
+execute "xlstalk.exe -o   %autosam_file%" ;
 *execute 'xlstalk.exe -O %autosam_file%' ;
 
 * NB: the range is important here rng=a1:am39 is the exact size of the Lesotho matrix  :aq43

@@ -153,7 +153,6 @@ cap mat clear
 egen i_nurs = rowtotal(cst_seed)
 egen i_intinp = rowtotal(cst_oinp cst_harv cst_mkt cst_leg cst_bor) 
 
-
 * Value-added creating inputs: 
 * MUST ADD FAMILY LABOR HOURS OTHERWISE MIGHT UNDERESTIMATE INPUTS ON SMALL FARMS. 
 egen i_labor = rowtotal(cst_lab) 
@@ -164,11 +163,11 @@ egen i_land = rowtotal(aqua_sparea)
 * adding cost of purchase and cost of construction makes a negative coeff for small farms. 
 * that might be because land is already picking up that investment
 * value of all aquaculture-related machines on the farm: rvmach 
-
+* 
 egen i_capit = rowtotal(rvmach)
-egen i_other = rowtotal(cst_feed )
+egen i_other = rowtotal(cst_feed)
 
-label var i_land "Land"
+label var i_land "land"
 label var i_labor "labor"
 label var i_capit "capital"
 label var i_other "other inputs that create value added"
@@ -194,7 +193,7 @@ foreach v of varlist y i_* {
 
 * generate variables for the regression:
 * Maybe no need for Other - they are intermediate inputs, not value-added creating inputs
-global rhsfish "li_labor li_land  li_capit li_other"
+global rhsfish "li_labor li_land li_capit  li_other"
 global cstrfish "li_labor+li_land+li_capit +li_other"
 
 * look for outliers: 
@@ -208,7 +207,7 @@ tab li_capit
 * run a constrained log-log regression
 eststo clear  
 constraint 3 $cstrfish = 1 , c(3)
-*bysort lwgroup : eststo: reg ly $rhsfish , r 
+*bysort lwgroup : eststo: reg ly $rhsfish   
 bysort lwgroup : eststo: cnsreg ly $rhsfish [aw=wei], r  c(3) 
 
 estout
@@ -231,6 +230,8 @@ mat fishprodb = moutb, noutb
 mat fishprodse = moutse, noutse
 mat l fishprodb 
 mat l fishprodse 
+
+ 
 
 putexcel B8 = matrix(fishprodb, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
 putexcel B20 = matrix(fishprodse, names) using $lewiesheet, sheet("Fish") modify keepcellformat 

@@ -42,7 +42,7 @@ shSCTprod = 0 ;
 
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr3/ ;
+set draw /dr0*dr30/ ;
 
 
 * Choose simulation parameters:
