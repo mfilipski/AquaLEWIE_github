@@ -200,6 +200,14 @@ tab activ btype , m
 list activ ysale if btype==.
 * decide what to do with "other specify" 
 * let's put a third in each at the end 
+* make a random var for it: 
+gen rand = round(runiform(1,2))
+tab rand 
+replace btype = 1 if activ==28 
+replace btype = 1 if activ==99 & rand==1
+replace btype = 1 if activ==99 & rand==2
+
+
 
 sort btype 
 tab activ btype 
@@ -324,24 +332,24 @@ return list
 matrix osh = r(Stat1) \ r(Stat2) \ r(Stat3)
 
 matrix iosh = ish , osh 
-matrix colname iosh = "intermediate inputs share"  "share of inputs bought outside"
+matrix colname iosh = "inter_inp_sh"  "share_bought_outside"
 mat l iosh 
+
 
 
 putexcel B20 = matrix(iosh, names) using $lewiesheet, sheet("ProdSerRet") modify keepcellformat 
  
 
  /* 3) Compute total production in lakh  */
- 
-* first merge in the groups 
+ * first merge in the groups 
 merge m:1 eahhid using $madedata\hhgroups 
 tab _m 
 drop if _m == 2 
 drop _m
 
+
 tab ysale lwgroup
 bysort btype: tab ysale lwgroup
- 
  
 collapse (mean) ysale , by(lwgroup btype) 
 list 

@@ -29,8 +29,8 @@ $setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
 
 
 * choose the elasticity of supply of labor - hired and family
-$setglobal hlse 1
-$setglobal flse 1
+$setglobal hlse 100
+$setglobal flse 100
 
 * choose whether or not to have a budget constraint and how much of the transfer releives that constraint
 * 0 = no constraint ,  1 = constraint
@@ -42,7 +42,7 @@ shSCTprod = 0 ;
 
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr12/ ;
+set draw /dr0*dr3/ ;
 
 
 * Choose simulation parameters:
@@ -119,7 +119,6 @@ $include includes/4a_DefineAllParameters.gms
 * ================================================================================================
 $include includes/4b_Calibration.gms
 
-$exit
 
 
 

@@ -171,7 +171,7 @@ EQ_QVACOBB(g,h)..
      QVA(g,h) =E= pshift(g,h)*prod(f,FD(g,f,h)**(fshare(g,f,h)))
 ;
 
-EQ_FDCOBB(g,f,h)$(not fpurch(f))..
+EQ_FDCOBB(g,f,h)$((not fpurch(f)))..
      FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),WV(f,v))$ftv(f) )
       =E= PVA(g,h)*QP(g,h)*fshare(g,f,h)
 ;

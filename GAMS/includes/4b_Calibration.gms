@@ -106,7 +106,6 @@ display troutsh_dr, savsh_dr, exprocsh_dr, expzoish_dr;
 * set wages and prices to 1:
 pv_dr(gtv,v,draw) = 1 ;
 pz_dr(g,draw) = 1 ;
-
 ph_dr(g,h,draw) = [pz_dr(g,draw)$(gtz(g)+gtw(g)) + sum(v$maphv(h,v),pv_dr(g,v,draw))$gtv(g)] ;
 display pv_dr, pz_dr, ph_dr ;
 
