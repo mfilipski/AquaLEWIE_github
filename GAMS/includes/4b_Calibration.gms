@@ -469,7 +469,7 @@ display outmat ;
 execute_unload "outmat.gdx" outmat ;
 * And this writes in an excel sheet called "MakeMeASam":
 execute "xlstalk.exe -s   %autosam_file%" ;
-execute "gdxxrw.exe outmat.gdx par=outmat o=%autosam_file% rng=a1 rdim=3 cdim=3" ;
+execute "gdxxrw.exe outmat.gdx par=outmat o=%autosam_file% rng=a1:%matcorner% rdim=3 cdim=3" ;
 execute "xlstalk.exe -o   %autosam_file%" ;
 *execute 'xlstalk.exe -O %autosam_file%' ;
 

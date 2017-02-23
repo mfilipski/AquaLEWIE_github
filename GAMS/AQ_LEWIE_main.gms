@@ -23,8 +23,11 @@ $setglobal assumptions_file  "2_MarketAssumptions.gms"
 $setglobal output_txt_file "AQ_LEWIE_output"
 * name of intermediate SAM output:
 $setglobal autosam_file "AutoSAM_aqua.xlsx"
+* cell where intermediate SAM has bottom right corner:
+$setglobal matcorner "AS45"
 * name of excel output automatically populated
 $setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
+
 
 
 
@@ -42,7 +45,7 @@ shSCTprod = 0 ;
 
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr30/ ;
+set draw /dr0*dr15/ ;
 
 
 * Choose simulation parameters:
