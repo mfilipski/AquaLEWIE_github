@@ -10,7 +10,7 @@
 
 parameter
 * model result stat
-modstat(sim) model stat (1 means solved ok) 
+modstat(sim) model stat (1 means solved ok)
 * meta-parameters with parameter draws
 fshare_t(g,f,h,draw)  unscaled draw the cobb-douglas factor shares
 eshare_t(g,h,draw)    unscaled draw of expenditure shares
@@ -125,7 +125,8 @@ $macro defpars(i)  parameters  pv&i(g,v,draw,sim) calibrated price at village le
          zfms&i(f,draw,sim)            zoi factor marketed surplus             , \
          vfmsfix&i(f,v,draw,sim)       factors fixed at the Village level (family labor)  , \
          zfmsfix&i(f,draw,sim)         factors fixed at the zoi level (hired labor)       , \
-         hfsup&i(f,h,draw,sim)         factor supply by the household                      \
+         hfsup&i(f,h,draw,sim)         factor supply by the household                     , \
+         fsup&i(f,draw,sim)            factor supply                       \
 ;
 
 defpars(1) ;
@@ -136,7 +137,8 @@ defpars(PC) ;
 
 
 $macro display_pars(i) display pv&i, pz&i, ph&i, qva&i, fd&i, id&i, r&i, wv&i, wz&i, qp&i, tqp&i,    \
-ttqp&i , fixfac&i, pva&i, exinc&i, endow&i, y&i, cpi&i, vcpi&i, ry&i, trinsh&i, qc&i, eshare&i, troutsh&i, hfsup&i, hfd&i, vfd&i, zfd&i, hms&i, vms&i, zms&i, hfms&i, vfms&i, zfms&i ;
+ttqp&i , fixfac&i, pva&i, exinc&i, endow&i, y&i, cpi&i, vcpi&i, ry&i, trinsh&i, qc&i, eshare&i, troutsh&i, hfsup&i, fsup&i, \
+hfd&i, vfd&i, zfd&i, hms&i, vms&i, zms&i, hfms&i, vfms&i, zfms&i ;
 
 
 
@@ -195,7 +197,8 @@ zms_mv&i(g,sim,mv)        mean and stdev of household marketed surplus of good g
 hfms_mv&i(f,h,sim,mv)     mean and stdev of household factor marketed surplus              , \
 vfms_mv&i(f,v,sim,mv)     mean and stdev of village factor marketed surplus                , \
 zfms_mv&i(f,sim,mv)       mean and stdev of zoi factor marketed surplus                    , \
-hfsup_mv&i(f,h,sim,mv)    mean and stdev of factor supply by the household     \
+hfsup_mv&i(f,h,sim,mv)    mean and stdev of factor supply by the household     , \
+fsup_mv&i(f,sim,mv)       mean and stdev of factor supply by the household     \
 ;
 
 defpars_mv(1) ;

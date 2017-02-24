@@ -28,28 +28,9 @@ $setglobal matcorner "AS45"
 * name of excel output automatically populated
 $setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
 
-
-
-
-* choose the elasticity of supply of labor - hired and family
-$setglobal hlse 100
-$setglobal flse 100
-
-* choose whether or not to have a budget constraint and how much of the transfer releives that constraint
-* 0 = no constraint ,  1 = constraint
-* If the constraint is active, the parameter shSCTprod determines what % of the transfer is used to relieve the constraint
-$setglobal budgetconstraint 0
-parameter shSCTprod share of SCT used for buying purchased inputs ;
-shSCTprod = 0 ;
-
-
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr15/ ;
-
-
-* Choose simulation parameters:
-$setglobal new_land 0
+set draw /dr0*dr3/ ;
 
 
 
@@ -263,6 +244,8 @@ hfms1(ft,h,draw,sim)    = HFMS.l(ft,h) ;
 vfms1(ft,v,draw,sim)    = VFMS.l(ft,v) ;
 zfms1(ft,draw,sim)      = ZFMS.l(ft) ;
 hfsup1(ft,h,draw,sim)   = HFSUP.l(ft,h) ;
+fsup1(ft,draw,sim)      = sum(h,hfsup1(ft,h,draw,sim)) ;
+
 
 vfmsfix1(ft,v,draw,sim) = vfmsfix_dr(ft,v,draw) ;
 zfmsfix1(ft,draw,sim)   = zfmsfix_dr(ft,draw) ;
@@ -343,6 +326,7 @@ trout2(h,draw,sim)      = TROUT.l(h) ;
 sav2(h,draw,sim)        = SAV.l(h) ;
 exproc2(h,draw,sim)     = EXPROC.l(h) ;
 hfsup2(ft,h,draw,sim)   = HFSUP.l(ft,h) ;
+fsup2(ft,draw,sim)      = sum(h,hfsup2(ft,h,draw,sim)) ;
 
 
 * ================================================================================================

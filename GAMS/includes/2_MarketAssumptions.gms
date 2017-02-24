@@ -58,3 +58,18 @@ sets
 ;
 
 display g, f, h, fk, ft, ftv, ftz, ftw, gtv, gtz, gtw, gp, v, mapHv ;
+
+
+
+* choose the elasticity of supply of labor - hired and family
+$setglobal hlse 100
+$setglobal flse 100
+
+* choose whether or not to have a budget constraint and how much of the transfer releives that constraint
+* 0 = no constraint ,  1 = constraint
+* If the constraint is active, the parameter shSCTprod determines what % of the transfer is used to relieve the constraint
+$setglobal budgetconstraint 0
+parameter shSCTprod share of SCT used for buying purchased inputs ;
+shSCTprod = 0 ;
+
+

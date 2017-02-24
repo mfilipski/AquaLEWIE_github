@@ -266,7 +266,7 @@ egen tc = sum(cfeed)  , by(lwgroup)
 gen share = cfeed/tc
 list 
 
- 
+ crash 
 
 * ============================================================
 * ============= Data for Crop - Livestock Activity ===========
