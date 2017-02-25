@@ -33,9 +33,6 @@
 [RP:MYANMAR_RICE17]
 1=
 
-[RP:UNTITLED_1]
-1=
-
 [RP:7_OUTPUT_TO_EXCEL]
 1=
 
@@ -48,45 +45,51 @@ Order=1,2,3,4,5,6
 Decim=7
 PlaneRownr=-1
 
+[RP:7_OUTPUT_TO_TEXT_FILE]
+1=
+
+[RP:UNTITLED_1]
+1=
+
+[RP:COMPUTING_CONF_BOUNDS_OLD]
+1=
+
+[RP:2_MARKETASSUMPTIONS]
+1=
+
+[RP:4B_CALIBRATION]
+1=
+
+[RP:1_READ_EXCEL]
+1=
+
+[RP:4A_DEFINEALLPARAMETERS]
+1=
+
 [RP:7A_OUTPUT_TO_EXCEL]
 1=
 
 [RP:3_MODEL]
 1=
 
-[RP:4A_DEFINEALLPARAMETERS]
-1=
-
-[RP:7_OUTPUT_TO_TEXT_FILE]
-1=
-
-[RP:6_OUTPUT_PARAMETERS]
-1=
-
 [RP:5_GENERIC_SIMULATION]
 1=
 
-[RP:4B_CALIBRATION]
-1=
-
-[RP:2_MARKETASSUMPTIONS]
-1=
-
-[RP:1_READ_EXCEL]
+[RP:6_OUTPUT_PARAMETERS]
 1=
 
 [RP:AQ_LEWIE_MAIN]
 1=
 
 [MRUFILES]
-1=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
-2=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_output.txt
-3=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7_Output_to_excel.gms
-4=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\Untitled_1.gms
-5=D:\Users\mfilipski\AppData\Local\Microsoft\Windows\Temporary Internet Files\Content.Outlook\CEZKBPBP\Myanmar_rice17.gms
-6=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\4_Calibration.gms
-7=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\1_Read_Excel.lst
-8=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\Generic_Simulation.gms
+1=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\computing_conf_bounds_old.gms
+2=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\Untitled_1.gms
+3=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7_Output_to_text_file.gms
+4=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
+5=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_output.txt
+6=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7_Output_to_excel.gms
+7=D:\Users\mfilipski\AppData\Local\Microsoft\Windows\Temporary Internet Files\Content.Outlook\CEZKBPBP\Myanmar_rice17.gms
+8=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\4_Calibration.gms
 
 [OPENWINDOW_1]
 FILE0=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
@@ -98,11 +101,10 @@ FILE5=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\4a_Define
 FILE6=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\4b_Calibration.gms
 FILE7=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\5_Generic_Simulation.gms
 FILE8=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\6_Output_Parameters.gms
-FILE9=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7_Output_to_text_file.gms
-FILE10=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7a_Output_to_excel.gms
-FILE11=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
+FILE9=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7a_Output_to_excel.gms
+FILE10=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
 MAXIM=0
 TOP=0
-LEFT=365
-HEIGHT=946
-WIDTH=1537
+LEFT=361
+HEIGHT=918
+WIDTH=1444

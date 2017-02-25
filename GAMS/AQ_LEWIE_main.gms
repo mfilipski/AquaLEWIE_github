@@ -30,7 +30,7 @@ $setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
 
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr3/ ;
+set draw /dr0*dr100/ ;
 
 
 
@@ -255,6 +255,14 @@ tqp1(g,draw,sim)        = sum(h,qp1(g,h,draw,sim)) ;
 ttqp1(draw,sim)         = sum(g,tqp1(g,draw,sim)) ;
 hqp1(h,draw,sim)        = sum(g, qp1(g,h,draw,sim)) ;
 
+* mean income and theil index:
+mry1(draw,sim)           = sum(h, ry1(h,draw,sim)) / sum(h,xlnhh(h)) ;
+* modified formula a bit to account for the fact that we grouped the households
+rytheil1(draw,sim)        = sum(h, ry1(h,draw,sim)/xlnhh(h)/mry1(draw,sim)
+                             *log(ry1(h,draw,sim)/xlnhh(h)/mry1(draw,sim))
+                             *xlnhh(h))
+                          / sum(h,xlnhh(h)) ;
+
 
 
 *------------------------------------
@@ -328,6 +336,13 @@ exproc2(h,draw,sim)     = EXPROC.l(h) ;
 hfsup2(ft,h,draw,sim)   = HFSUP.l(ft,h) ;
 fsup2(ft,draw,sim)      = sum(h,hfsup2(ft,h,draw,sim)) ;
 
+mry2(draw,sim)           = sum(h, ry2(h,draw,sim)) / sum(h,xlnhh(h)) ;
+* modified formula a bit to account for the fact that we grouped the households
+rytheil2(draw,sim)        = sum(h, ry2(h,draw,sim)/xlnhh(h)/mry2(draw,sim)
+                             *log(ry2(h,draw,sim)/xlnhh(h)/mry2(draw,sim))
+                             *xlnhh(h))
+                          / sum(h,xlnhh(h)) ;
+
 
 * ================================================================================================
 * ===================== LOOP ENDS HERE    ========================================================
@@ -341,7 +356,6 @@ display_pars(2);
 
 * Output : compute all the parameters
 $include includes/6_Output_Parameters.gms
-
 $include includes/7a_Output_to_excel.gms
 $exit
 

@@ -24,6 +24,9 @@ benefs_o("benef", sim) = benefryD(sim,"mean") ;
 benefs_o("non-benef", sim) = nbenefryD(sim,"mean") ;
 benefs_o("simval", sim) = simval(sim) ;
 benefs_o("mult", sim) = mult(sim,"mean") ;
+benefs_o("mincPC", sim) = mry_mvPC(sim,"mean") ;
+benefs_o("rytheilPC", sim) = rytheil_mvPC(sim,"mean") ;
+
 *nbenef_o(sim) = nbenefryD(sim,"mean") ;
 pv_o(g,sim) = 1E-13 ;
 hlsup_o(h,sim) = hfsup_mvD("labor",h,sim,"mean") ;

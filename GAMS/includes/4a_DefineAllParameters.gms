@@ -11,6 +11,7 @@
 parameter
 * model result stat
 modstat(sim) model stat (1 means solved ok)
+
 * meta-parameters with parameter draws
 fshare_t(g,f,h,draw)  unscaled draw the cobb-douglas factor shares
 eshare_t(g,h,draw)    unscaled draw of expenditure shares
@@ -100,6 +101,8 @@ $macro defpars(i)  parameters  pv&i(g,v,draw,sim) calibrated price at village le
          qc&i(g,h,draw,sim)            level of consumption                    , \
          eshare&i(g,h,draw,sim)        consumption shares                      , \
          y&i(h,draw,sim)               income of household                     , \
+         mry&i(draw,sim)                mean income in economy (weighted by nhh), \
+         rytheil&i(draw,sim)            theil index for income                  , \
          cpi&i(h,draw,sim)             cpi                                     , \
          vqc&i(v,g,draw,sim)           village consumption                     , \
          vcpi&i(v,draw,sim)            village cpi                             , \
@@ -137,7 +140,7 @@ defpars(PC) ;
 
 
 $macro display_pars(i) display pv&i, pz&i, ph&i, qva&i, fd&i, id&i, r&i, wv&i, wz&i, qp&i, tqp&i,    \
-ttqp&i , fixfac&i, pva&i, exinc&i, endow&i, y&i, cpi&i, vcpi&i, ry&i, trinsh&i, qc&i, eshare&i, troutsh&i, hfsup&i, fsup&i, \
+ttqp&i , fixfac&i, pva&i, exinc&i, endow&i, y&i, cpi&i, vcpi&i, ry&i, mry&i, rytheil&i, trinsh&i, qc&i, eshare&i, troutsh&i, hfsup&i, fsup&i, \
 hfd&i, vfd&i, zfd&i, hms&i, vms&i, zms&i, hfms&i, vfms&i, zfms&i ;
 
 
@@ -176,11 +179,15 @@ qc_mv&i(g,h,sim,mv)       mean and stdev of level of consumption                
 eshare_mv&i(g,h,sim,mv)    mean and stdev of consumption shares                           , \
 y_mv&i(h,sim,mv)          mean and stdev of nominal income of household                   , \
 ty_mv&i(sim,mv)          mean and stdev of nominal income in total                   , \
+mry_mv&i(sim,mv)           mean and stdev mean income in economy (weighted by nhh), \
+rytheil_mv&i(sim,mv)        mean and stdev theil index for income                  , \
 cpi_mv&i(h,sim,mv)        mean and stdev of cpi of household                              , \
 cri_mv&i(v,f,sim,mv)        mean and stdev of cri of village                              , \
 vcpi_mv&i(v,sim,mv)        mean and stdev of cpi of village                               , \
 ry_mv&i(h,sim,mv)         mean and stdev of real income of household                      , \
 try_mv&i(sim,mv)         mean and stdev of real income total                      , \
+mry_my&i(sim,mv)         mean and stdev of mean income                           , \
+rytheil_my&i(sim,mv)      mean and stdev of theil index                           , \
 emin_mv&i(g,h,sim,mv)     mean and stdev of incompressible demand                         , \
 trin_mv&i(h,sim,mv)       mean and stdev of transfers in - received                       , \
 trout_mv&i(h,sim,mv)      mean and stdev of transfers out - given                         , \
