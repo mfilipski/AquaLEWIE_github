@@ -15,7 +15,8 @@ global tables "$workdir\tables"
 global outtab "$tables\table.xlsx"
 
 global rawdata "D:\Docs\Myanmar\Data\AquaAgri\version0_9July16_v14"
-global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
+*global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
+global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\161011_hhchar_ch_mf.dta"
 global hhgroup "$madedata\hhgroups.dta"
 
 global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet"
@@ -266,7 +267,6 @@ egen tc = sum(cfeed)  , by(lwgroup)
 gen share = cfeed/tc
 list 
 
- crash 
 
 * ============================================================
 * ============= Data for Crop - Livestock Activity ===========
