@@ -50,7 +50,7 @@ $phantom null
 
 
 * in future: read sim set from excel too:
-set sim simulations /sim1*sim6/ ;
+set sim simulations /sim1*sim5/ ;
 parameter fsim(g,f,h,sim) shock to the fixed factor parameter;
 * One acre coming out of nowhere (rental value is 2 lakh in fish, 0.7 lahk in crop)
 fsim("Fish","Land","AqFSm","sim1") = 2 ;
