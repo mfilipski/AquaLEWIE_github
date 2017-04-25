@@ -61,8 +61,13 @@ fsim("Fish","Land","AqFSm","sim4")  = 2 ;
 fsim("Crop","Land","AqFSm","sim4")  = -0.7 ;
 fsim("Fish","Land","AqFBg","sim5")  = 2 ;
 fsim("Crop","Land","AqFBg","sim5")  = -0.7 ;
-fsim("Fseed","Land","AqNurs","sim6")  = 2 ;
+* tests in sim 6:
+* nurseries - not good, overinflates results
+*fsim("Fseed","Land","AqNurs","sim6")  = 2 ;
 
+* redistribution:
+*fsim("Fish","Land","AqFSm","sim6") = 2 ;
+*fsim("Fish","Land","AqFBg","sim6") = -2 ;
 
 
 

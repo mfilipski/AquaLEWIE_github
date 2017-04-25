@@ -10,7 +10,7 @@ benefs_o(*,sim)  beneficiary and non-beneficiary returns
 pv_o(g,sim)      percent change in prices
 hlsup_o(h,sim)   labor supply level change
 lsup_o(sim)      total labor supply level change
-
+nreps_o          number of repetitions
 ;
 * First display the parameters I want:
 display ty_mvD, try_mvD, y_mvD, tqpD ;
@@ -26,6 +26,8 @@ benefs_o("simval", sim) = simval(sim) ;
 benefs_o("mult", sim) = mult(sim,"mean") ;
 benefs_o("mincPC", sim) = mry_mvPC(sim,"mean") ;
 benefs_o("rytheilPC", sim) = rytheil_mvPC(sim,"mean") ;
+nreps_o  = card(draw) ;
+
 
 *nbenef_o(sim) = nbenefryD(sim,"mean") ;
 pv_o(g,sim) = 1E-13 ;
@@ -37,10 +39,10 @@ pv_o(g,sim)$pv_mvPC(g,"AQUA",sim,"mean") = pv_mvPC(g,"AQUA",sim,"mean") ;
 
 
 
-display ty_o, try_o, ry_o, tqp_o, benefs_o, pv_o, hlsup_o, lsup_o;
+display ty_o, try_o, ry_o, tqp_o, benefs_o, pv_o, hlsup_o, lsup_o, nreps_o;
 
 
-execute_unload "outxl.gdx" modstat ty_o try_o ry_o tqp_o benefs_o pv_o hlsup_o lsup_o ;
+execute_unload "outxl.gdx" modstat ty_o try_o ry_o tqp_o benefs_o pv_o hlsup_o lsup_o nreps_o;
 * And this writes in an excel sheet called "MakeMeASam":
 execute "xlstalk.exe -s   %output_xl_file%" ;
 execute "gdxxrw.exe outxl.gdx  o=%output_xl_file% index=index!a2" ;

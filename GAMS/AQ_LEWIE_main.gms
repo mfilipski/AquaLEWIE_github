@@ -30,7 +30,7 @@ $setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
 
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr30/ ;
+set draw /dr0*dr12/ ;
 
 
 
@@ -258,8 +258,8 @@ hqp1(h,draw,sim)        = sum(g, qp1(g,h,draw,sim)) ;
 * mean income and theil index:
 mry1(draw,sim)           = sum(h, ry1(h,draw,sim)) / sum(h,xlnhh(h)) ;
 * modified formula a bit to account for the fact that we grouped the households
-rytheil1(draw,sim)        = sum(h, ry1(h,draw,sim)/xlnhh(h)/mry1(draw,sim)
-                             *log(ry1(h,draw,sim)/xlnhh(h)/mry1(draw,sim))
+rytheil1(draw,sim)        = sum(h, (ry1(h,draw,sim)/xlnhh(h))/mry1(draw,sim)
+                             *log((ry1(h,draw,sim)/xlnhh(h))/mry1(draw,sim))
                              *xlnhh(h))
                           / sum(h,xlnhh(h)) ;
 
@@ -279,6 +279,7 @@ PVA.l(g,h) = PH.l(g,h) - sum(gg,idsh(gg,g,h)*PH.l(gg,h))
 solve genCDnlp using nlp maximizing USELESS ;
 ABORT$(genCD.modelstat ne 1) "NO OPTIMAL SOLUTION REACHED" ;
 modstat(sim) = genCD.modelstat ;
+modstat_dr(draw,sim) = genCD.modelstat ;
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l, fd.l;
 display CPI.l ;
 
@@ -351,6 +352,7 @@ rytheil2(draw,sim)        = sum(h, ry2(h,draw,sim)/xlnhh(h)/mry2(draw,sim)
 
 display_pars(1);
 display_pars(2);
+display modstat_dr ;
 
 
 

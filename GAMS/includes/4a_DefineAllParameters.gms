@@ -11,6 +11,7 @@
 parameter
 * model result stat
 modstat(sim) model stat (1 means solved ok)
+modstat_dr(draw,sim) model stat for each draw (1 means solved ok)
 
 * meta-parameters with parameter draws
 fshare_t(g,f,h,draw)  unscaled draw the cobb-douglas factor shares
@@ -140,7 +141,7 @@ defpars(PC) ;
 
 
 $macro display_pars(i) display pv&i, pz&i, ph&i, qva&i, fd&i, id&i, r&i, wv&i, wz&i, qp&i, tqp&i,    \
-ttqp&i , fixfac&i, pva&i, exinc&i, endow&i, y&i, cpi&i, vcpi&i, ry&i, mry&i, rytheil&i, trinsh&i, qc&i, eshare&i, troutsh&i, hfsup&i, fsup&i, \
+ttqp&i , fixfac&i, pva&i, exinc&i, endow&i, y&i, cpi&i, vcpi&i, ry&i, try&i, mry&i, rytheil&i, trinsh&i, qc&i, eshare&i, troutsh&i, hfsup&i, fsup&i, \
 hfd&i, vfd&i, zfd&i, hms&i, vms&i, zms&i, hfms&i, vfms&i, zfms&i ;
 
 
