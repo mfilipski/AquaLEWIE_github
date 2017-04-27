@@ -12,8 +12,6 @@ var  variable names
 parameter Alldata(*,*,*,*,h);
 
 
-
-
 * Read in the data from LEWIE spreadsheet:
 * the $call reads XL data and makes a .gdx file with it
 * (unstar the "call" statement to re-read from the excel spreadsheet)

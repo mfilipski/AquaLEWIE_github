@@ -140,7 +140,7 @@ defpars(PC) ;
 
 
 
-$macro display_pars(i) display pv&i, pz&i, ph&i, qva&i, fd&i, id&i, r&i, wv&i, wz&i, qp&i, tqp&i,    \
+$macro display_pars(i) display pv&i, pz&i, ph&i, qva&i, fd&i, id&i, pshift&i, fshare&i, r&i, wv&i, wz&i, vash&i, idsh&i, tidsh&i, qp&i, tqp&i,    \
 ttqp&i , fixfac&i, pva&i, exinc&i, endow&i, y&i, cpi&i, vcpi&i, ry&i, try&i, mry&i, rytheil&i, trinsh&i, qc&i, eshare&i, troutsh&i, hfsup&i, fsup&i, \
 hfd&i, vfd&i, zfd&i, hms&i, vms&i, zms&i, hfms&i, vfms&i, zfms&i ;
 

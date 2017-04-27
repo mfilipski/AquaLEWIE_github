@@ -1,6 +1,31 @@
-set res Results for output
-/ ymv_o, rymv_o/
+*set res Results for output
+*/ ymv_o, rymv_o/
 
+* Model parameters for report
+Parameter
+fshare_o(g,f,h)    factor shares in production functions mean
+fsharesd_o(g,f,h)  factor shares in production functions stdev
+eshare_o(g,h)      expenditure shares mean
+esharesd_o(g,h)    expenditures shares stdev
+idsh_o(g,gg,h)
+idshsd_o(g,gg,h)
+
+
+;
+fshare_o(g,f,h)  = fshare_mv1(g,f,h,"sim1","mean") ;
+fsharesd_o(g,f,h)= fshare_mv1(g,f,h,"sim1","stdev") ;
+eshare_o(g,h)    = eshare_mv1(g,h,"sim1","mean") ;
+esharesd_o(g,h)  = eshare_mv1(g,h,"sim1","stdev") ;
+idsh_o(g,gg,h)   = idsh_mv1(g,gg,h,"sim1","mean") ;
+idshsd_o(g,gg,h) = idsh_mv1(g,gg,h,"sim1","stdev") ;
+
+
+display fshare_o, fsharesd_o, eshare_o, esharesd_o, idsh_o, idshsd_o ;
+
+
+
+
+* Result parameters:
 Parameter
 ty_o(sim)        total nominal income level change
 try_o(sim)       total real income level change
@@ -29,6 +54,8 @@ benefs_o("rytheilPC", sim) = rytheil_mvPC(sim,"mean") ;
 nreps_o  = card(draw) ;
 
 
+
+
 *nbenef_o(sim) = nbenefryD(sim,"mean") ;
 pv_o(g,sim) = 1E-13 ;
 hlsup_o(h,sim) = hfsup_mvD("labor",h,sim,"mean") ;
@@ -42,7 +69,8 @@ pv_o(g,sim)$pv_mvPC(g,"AQUA",sim,"mean") = pv_mvPC(g,"AQUA",sim,"mean") ;
 display ty_o, try_o, ry_o, tqp_o, benefs_o, pv_o, hlsup_o, lsup_o, nreps_o;
 
 
-execute_unload "outxl.gdx" modstat ty_o try_o ry_o tqp_o benefs_o pv_o hlsup_o lsup_o nreps_o;
+execute_unload "outxl.gdx" modstat ty_o try_o ry_o tqp_o benefs_o pv_o hlsup_o lsup_o nreps_o fshare_o
+               fsharesd_o, eshare_o, esharesd_o, idsh_o, idshsd_o ;
 * And this writes in an excel sheet called "MakeMeASam":
 execute "xlstalk.exe -s   %output_xl_file%" ;
 execute "gdxxrw.exe outxl.gdx  o=%output_xl_file% index=index!a2" ;
