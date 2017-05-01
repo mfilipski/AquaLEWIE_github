@@ -63,7 +63,7 @@ mkmat rev_fish, matrix(m) rownames(gname)
 mat list m
 matrix fishrev = m'  , nursrev
 matrix list fishrev 
-
+ 
 putexcel B2 = matrix(fishrev, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
 clear
 
@@ -152,7 +152,7 @@ cap mat clear
 
 * intermediate inputs:
 egen i_nurs = rowtotal(cst_seed)
-egen i_intinp = rowtotal(cst_oinp cst_harv cst_mkt cst_leg cst_bor) 
+egen i_intinp = rowtotal( cst_harv cst_mkt cst_leg cst_bor) 
 
 * Value-added creating inputs: 
 * MUST ADD FAMILY LABOR HOURS OTHERWISE MIGHT UNDERESTIMATE INPUTS ON SMALL FARMS. 
@@ -160,13 +160,13 @@ egen i_labor = rowtotal(cst_lab)
 * Is land the area or the investment?  *aqua_sparea
 egen i_land = rowtotal(aqua_sparea) 
 * Includes real value of all assets rval: 
-* egen i_capit = rowtotal(cst_purch cst_constrep cst_mach nval ) 
+*egen i_capit = rowtotal(cst_purch cst_constrep cst_mach nval ) 
 * adding cost of purchase and cost of construction makes a negative coeff for small farms. 
 * that might be because land is already picking up that investment
 * value of all aquaculture-related machines on the farm: rvmach 
 * 
 egen i_capit = rowtotal(rvmach)
-egen i_other = rowtotal(cst_feed)
+egen i_other = rowtotal(cst_feed cst_oinp)
 
 label var i_land "land"
 label var i_labor "labor"
@@ -217,7 +217,7 @@ esttab,  nodepvar  label nonumber not se
 return list 
 matrix mout = r(coefs) 
 mat l mout
-
+*crash
 * extract submatrices: 
 mat moutb = mout[1..., "est1:b"], mout[1..., "est2:b"]
 mat moutse = mout[1..., "est1:se"], mout[1..., "est2:se"]
@@ -280,7 +280,7 @@ drop if _m==2
 drop _m 
 count
  
-
+ 
 egen y = rowtotal(gross_sale_monsoon gross_sale_dry)
 * Convert to Lahks 
 replace y=y/100000
@@ -363,6 +363,19 @@ mat l mout
  
 putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("Crop") modify keepcellformat 
  
+
+ 
+ * intermediate input shares: 
+gen iish_agri = i_agri / y 
+*gen iish_intinp = i_intinp / y 
+tabstat iish* [aw=wei] if iish_agri!=0, by(lwgroup)  stat(mean) save 
+return list 
+matrix ii = r(Stat1) \ r(Stat2) \ r(Stat3) \ r(Stat4) \ r(Stat5)
+matrix rownames ii = "`r(name1)'"  "`r(name2)'" "`r(name3)'" "`r(name4)'" "`r(name5)'" 
+mat inpag = ii' 
+mat l inpag 
+
+putexcel B20 = matrix(inpag, names) using $lewiesheet, sheet("Crop") modify keepcellformat 
 
 
  
