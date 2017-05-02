@@ -61,7 +61,7 @@ tab lwgroup [aw=weight], matcell(wcounts)
 gen count =1 
 tabstat count , by(lwgroup) stat(count)  save
 
-
+ 
 matrix hhnum = r(Stat1) \ r(Stat2) \ r(Stat3)\r(Stat4)\r(Stat5)
 * dropped: \r(Stat6)
 matrix rownames hhnum = "`r(name1)'"  "`r(name2)'"  "`r(name3)'""`r(name4)'"  "`r(name5)'"  
@@ -75,12 +75,21 @@ mat list hh
 mat rownames hh = "obs" "weighted"
 mat list hh 
 * tabstat count [w=wei], by(lwgroup) stat(count) 
-putexcel B4 = matrix(hh, names) using $lewiesheet, sheet("Demog") modify keepcellformat 
+
+*putexcel B4 = matrix(hh, names) using $lewiesheet, sheet("Demog") modify keepcellformat 
  
+gen countw = count*weight 
+preserve 
+collapse (sum) countw, by(lwgroup)
+list 
+restore 
+
+exit
+
+
 count 
 tab lwgroup 
 sort eahhid  
 keep eahhid lwgroup 
-
 save $madedata\hhgroups.dta, replace 
 
