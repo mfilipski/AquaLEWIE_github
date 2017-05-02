@@ -7,6 +7,7 @@ global workdir "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\Stata"
 global rawdata "D:\Docs\Myanmar\Data\AquaAgri\version0_9July16_v14"
 global aadir "D:\Docs\Myanmar\AquaAgri\Analysis"
 global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
+*global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\161011_hhchar_ch_mf.dta"
 
 global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet"
 
@@ -20,6 +21,12 @@ global outtab "$tables\table.xlsx"
 
 * Take all household characteristics, and make it into the groups we want
 use $hhchar
+
+gen count=1 
+sum count hhsize landless ownpond  
+sum count hhsize landless ownpond  [aw=wei] 
+ 
+
 
 * Groups defined as: 
 * Non-farm households 
@@ -57,11 +64,19 @@ tab resp lwgroup
 tab lwgroup , matcell(counts)
 tab lwgroup [aw=weight], matcell(wcounts)
 
+
+* check the percentage of landless
+tab landless [ aw=wei]
+tab lwgroup landless
+tab resp 
+tab resp [aw=wei]
+
+
+
 * Export to the excel file
 gen count =1 
 tabstat count , by(lwgroup) stat(count)  save
 
- 
 matrix hhnum = r(Stat1) \ r(Stat2) \ r(Stat3)\r(Stat4)\r(Stat5)
 * dropped: \r(Stat6)
 matrix rownames hhnum = "`r(name1)'"  "`r(name2)'"  "`r(name3)'""`r(name4)'"  "`r(name5)'"  
@@ -84,7 +99,7 @@ collapse (sum) countw, by(lwgroup)
 list 
 restore 
 
-exit
+
 
 
 count 
