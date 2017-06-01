@@ -28,7 +28,9 @@ display fshare_o, fsharesd_o, eshare_o, esharesd_o, idsh_o, idshsd_o ;
 * Result parameters:
 Parameter
 ty_o(sim)        total nominal income level change
-try_o(sim)       total real income level change
+try_o(*,sim)       total real income level change
+*try_o5(sim)       total real income level change 5pct bound
+*try_o95(sim)       total real income level change 95pct bound
 ry_o(h,sim)      household real income level change
 tqp_o(g,sim)     total quantity produced level change
 benefs_o(*,sim)  beneficiary and non-beneficiary returns
@@ -41,7 +43,9 @@ nreps_o          number of repetitions
 display ty_mvD, try_mvD, y_mvD, tqpD ;
 
 ty_o(sim) = ty_mvD(sim,"mean") ;
-try_o(sim) = try_mvD(sim, "mean") ;
+try_o("mean",sim) = try_mvD(sim, "mean") ;
+try_o("pct5",sim) = try_mvD(sim, "pct5") ;
+try_o("pct95",sim) = try_mvD(sim, "pct95") ;
 ry_o(h,sim) = ry_mvD(h,sim,"mean") ;
 tqp_o(g,sim) = 1E-13;
 tqp_o(g,sim) = tqp_mvD(g,sim,"mean") ;

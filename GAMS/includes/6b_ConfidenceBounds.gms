@@ -29,10 +29,10 @@ loop(sim,
 $libinclude rank Torank draw Ranks ci2
          ty_mvD(sim,lh) = ci2(lh) ;
 *try
-         Torank(draw) = tyD(draw,sim) ;
+         Torank(draw) = tryD(draw,sim) ;
          ci2(lh) = ci(lh);
 $libinclude rank Torank draw Ranks ci2
-         ty_mvD(sim,lh) = ci2(lh) ;
+         try_mvD(sim,lh) = ci2(lh) ;
 
 
 *parameters by household:
