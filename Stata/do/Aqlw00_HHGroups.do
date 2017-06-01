@@ -3,24 +3,13 @@ capture log close
 set more off
 
 * define paths
-global workdir "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\Stata"
-global rawdata "D:\Docs\Myanmar\Data\AquaAgri\version0_9July16_v14"
-global aadir "D:\Docs\Myanmar\AquaAgri\Analysis"
-global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
-*global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\161011_hhchar_ch_mf.dta"
+include "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\Stata\do\Aqlw00000_paths.do"
 
-global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet"
-
-global graphs "$workdir\graphs"
-global madedata "$workdir\madedata"
-global tables "$workdir\tables"
-global outtab "$tables\table.xlsx"
-
-* cd $workdir 
+cd $workdir 
 
 
 * Take all household characteristics, and make it into the groups we want
-use $hhchar
+use $hhchars
 
 gen count=1 
 sum count hhsize landless ownpond  
@@ -74,7 +63,6 @@ tab resp [aw=wei]
 
 
 * Export to the excel file
-gen count =1 
 tabstat count , by(lwgroup) stat(count)  save
 
 matrix hhnum = r(Stat1) \ r(Stat2) \ r(Stat3)\r(Stat4)\r(Stat5)
@@ -106,5 +94,5 @@ count
 tab lwgroup 
 sort eahhid  
 keep eahhid lwgroup 
-save $madedata\hhgroups.dta, replace 
+save $hhgroups.dta, replace 
 

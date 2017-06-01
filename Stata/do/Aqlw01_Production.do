@@ -4,10 +4,11 @@ set more off
 cap mat clear 
 global drop 
 
+/*
 * define paths
 global workdir "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\Stata"
-global aquamade "D:\Docs\Myanmar\AquaAgri\Analysis\Aqua\stata\made"
-global agrimade "D:\Docs\Myanmar\AquaAgri\Analysis\Agri\stata\made" 
+global aquamade "D:\Docs\Myanmar\AquaAgri\Analysis\Aqua\stata\made_4lewie"
+global agrimade "D:\Docs\Myanmar\AquaAgri\Analysis\Agri\stata\made_4lewie" 
 
 global graphs "$workdir\graphs"
 global madedata "$workdir\madedata"
@@ -20,6 +21,10 @@ global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\161011_hhchar_ch_mf.dta"
 global hhgroup "$madedata\hhgroups.dta"
 
 global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet"
+*/
+* define paths
+include "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\Stata\do\Aqlw00000_paths.do"
+
 
 cd $workdir 
 
@@ -164,8 +169,11 @@ egen i_land = rowtotal(aqua_sparea)
 * adding cost of purchase and cost of construction makes a negative coeff for small farms. 
 * that might be because land is already picking up that investment
 * value of all aquaculture-related machines on the farm: rvmach 
-* 
-egen i_capit = rowtotal(rvmach)
+
+*various choices for machinery:  
+*egen i_capit = rowtotal(rvmach)
+egen i_capit = rowtotal(nval)
+
 egen i_other = rowtotal(cst_feed cst_oinp)
 
 label var i_land "land"

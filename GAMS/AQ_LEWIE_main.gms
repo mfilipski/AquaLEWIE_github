@@ -14,8 +14,8 @@ option limcol=30 ;
 
 
 * name of the excel file (WITHOUT .xlsx extension):
-$setglobal data_input "AQ_LEWIE_InputSheet_UsedForDraft1a"
-*$setglobal data_input "AQ_LEWIE_InputSheet"
+*$setglobal data_input "AQ_LEWIE_InputSheet_UsedForDraft1a"
+$setglobal data_input "AQ_LEWIE_InputSheet"
 * name of index sheet (village-specific):
 $setglobal input_sheet_index "Index!A2"
 * name of include file containing village-specific assumptions
@@ -31,7 +31,7 @@ $setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
 
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr99/ ;
+set draw /dr0*dr12/ ;
 
 
 
@@ -363,6 +363,7 @@ display modstat_dr ;
 
 * Output : compute all the parameters
 $include includes/6_Output_Parameters.gms
+$include includes/6b_ConfidenceBounds.gms
 $include includes/7a_Output_to_excel.gms
 $exit
 

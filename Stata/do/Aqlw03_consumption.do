@@ -4,6 +4,7 @@ set more off
 cap mat clear 
 global drop 
 
+/*
 * define paths
 global workdir "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\Stata"
 global aquamade "D:\Docs\Myanmar\AquaAgri\Analysis\Aqua\stata\made"
@@ -22,6 +23,8 @@ global hhgroup "$madedata\hhgroups.dta"
 
 global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet"
 global inflat "D:\Docs\Myanmar\DATA\AquaAgri\inflation\MM_Inflation_1997-2016.dta"
+*/
+include "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\Stata\do\Aqlw00000_paths.do"
  
 cd $workdir 
 

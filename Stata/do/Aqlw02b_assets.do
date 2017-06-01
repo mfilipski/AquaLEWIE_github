@@ -3,22 +3,7 @@ cap mat clear
 
 
 * define paths
-global workdir "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\Stata"
-global aquamade "D:\Docs\Myanmar\AquaAgri\Analysis\Aqua\stata\made"
-
-global graphs "$workdir\graphs"
-global madedata "$workdir\madedata"
-global tables "$workdir\tables"
-global outtab "$tables\table.xlsx"
-
-global rawdata "D:\Docs\Myanmar\Data\AquaAgri\version0_9July16_v14"
-global rawdatav1 "D:\Docs\Myanmar\Data\AquaAgri\version1"
-global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
-global hhgroup "$madedata\hhgroups.dta"
-
-global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet"
-global inflat "D:\Docs\Myanmar\DATA\AquaAgri\inflation\MM_Inflation_1997-2016.dta"
- 
+include "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\Stata\do\Aqlw00000_paths.do"
 cd $workdir 
 
 use "$rawdata\sec_f1v0.dta", clear
