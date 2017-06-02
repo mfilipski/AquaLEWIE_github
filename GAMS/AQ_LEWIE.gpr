@@ -1,8 +1,5 @@
 [PROJECT]
 
-[RP:UG_LEWIE_RMJ_ONEDOL_FOOD]
-1=
-
 [RP:1RMJ_MARKETASSUMPTIONS]
 1=
 
@@ -48,9 +45,6 @@ PlaneRownr=-1
 [RP:7_OUTPUT_TO_TEXT_FILE]
 1=
 
-[RP:UNTITLED_1]
-1=
-
 [RP:COMPUTING_CONF_BOUNDS_OLD]
 1=
 
@@ -61,9 +55,6 @@ PlaneRownr=-1
 1=
 
 [RP:3_MODEL]
-1=
-
-[RP:5_GENERIC_SIMULATION]
 1=
 
 [RP:4B_CALIBRATION]
@@ -78,7 +69,22 @@ PlaneRownr=-1
 [RP:1_READ_EXCEL]
 1=
 
+[RP:UNTITLED_1]
+1=
+
+[RP:UG_LEWIE_RMJ_ONEDOL_FOOD]
+1=
+
+[RP:NEWREFUGEELEWIE_ONLYV1_WITHWEDGE_160303]
+1=
+
 [RP:6_OUTPUT_PARAMETERS]
+1=
+
+[RP:5_GENERIC_SIMULATION]
+1=
+
+[RP:6B_CONFIDENCEBOUNDS]
 1=
 
 [RP:7A_OUTPUT_TO_EXCEL]
@@ -88,14 +94,14 @@ PlaneRownr=-1
 1=
 
 [MRUFILES]
-1=D:\Docs\random_work\Heng_other\ccs_sim1_HZ2.gms
-2=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\computing_conf_bounds_old.gms
+1=D:\Docs\RefugeeCamp\LEWIE\NewRefugeeLewie_onlyV1_withwedge_160303.gms
+2=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\UG_LEWIE_Rmj_OneDol_Food.gms
 3=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\Untitled_1.gms
-4=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7_Output_to_text_file.gms
-5=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
-6=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_output.txt
-7=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7_Output_to_excel.gms
-8=D:\Users\mfilipski\AppData\Local\Microsoft\Windows\Temporary Internet Files\Content.Outlook\CEZKBPBP\Myanmar_rice17.gms
+4=D:\Docs\random_work\Heng_other\ccs_sim1_HZ2.gms
+5=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\computing_conf_bounds_old.gms
+6=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7_Output_to_text_file.gms
+7=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\outmat.gdx
+8=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_output.txt
 
 [OPENWINDOW_1]
 FILE0=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
@@ -107,10 +113,11 @@ FILE5=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\4a_Define
 FILE6=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\4b_Calibration.gms
 FILE7=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\5_Generic_Simulation.gms
 FILE8=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\6_Output_Parameters.gms
-FILE9=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7a_Output_to_excel.gms
-FILE10=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.lst
+FILE9=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\6b_ConfidenceBounds.gms
+FILE10=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7a_Output_to_excel.gms
+FILE11=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
 MAXIM=0
-TOP=0
-LEFT=379
-HEIGHT=947
-WIDTH=1536
+TOP=4
+LEFT=357
+HEIGHT=936
+WIDTH=1544
