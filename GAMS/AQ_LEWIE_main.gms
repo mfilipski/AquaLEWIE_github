@@ -14,7 +14,7 @@ option limcol=30 ;
 
 
 * name of the excel file (WITHOUT .xlsx extension):
-$setglobal data_input "AQ_LEWIE_InputSheet_UsedForDraft2"
+$setglobal data_input "AQ_LEWIE_InputSheet_UsedForDraft3"
 *$setglobal data_input "AQ_LEWIE_InputSheet"
 * name of index sheet (village-specific):
 $setglobal input_sheet_index "Index!A2"
@@ -31,7 +31,7 @@ $setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
 
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr199/ ;
+set draw /dr0*dr20/ ;
 
 
 
