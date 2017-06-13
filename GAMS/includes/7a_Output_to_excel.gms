@@ -41,6 +41,7 @@ lsup_o(sim)      total labor supply level change
 nreps_o          number of repetitions
 ;
 * First display the parameters I want:
+display tyPC, tryPC, tyD, tryD ;   
 display ty_mvD, try_mvD, y_mvD, tqp_mvD ;
 
 ty_o(sim) = ty_mvD(sim,"mean") ;

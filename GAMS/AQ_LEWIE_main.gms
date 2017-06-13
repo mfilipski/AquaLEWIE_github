@@ -31,7 +31,8 @@ $setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
 
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-set draw /dr0*dr20/ ;
+*option seed = 500;
+set draw /dr0*dr199/ ;
 
 
 
@@ -112,12 +113,11 @@ $include includes/4b_Calibration.gms
 * ===================== STEP 4 - SOLVE THE MODEL IN A LOOP OVER PARAMETERS DRAWS =================
 * ======================================== AND SIMULATIONS =======================================
 * ================================================================================================
-
+skipped_dr(draw,sim)=0;
 * The zero draw is using the mean values. Starting after dr1, those values are randomely drawn.
 loop((draw, sim),
 * re-initialise all the variables in the matrix
 * but this time not at the I levels - rather, at the _dr levels
-
 pshift(g,h)    = pshift_dr(g,h,draw) ;
 fshare(g,f,h)  = fshare_dr(g,f,h,draw) ;
 PZ.l(g)        = pz_dr(g,draw) ;
@@ -171,6 +171,9 @@ pibsh(g,h)$sum(gg,pibudget(gg,h))  = pibudget(g,h)/sum(gg,pibudget(gg,h)) ;
 * for those who sell part of their package onto the market
 packsold(g) = 0 ;
 
+* Make sure FD cannot reach zero if it wasn't at zero:
+FD.lo(g,f,h)$FD.l(g,f,h) = 1E-15;
+
 
 * read the supply elasticities from the locals defined at the top of the program
 hfsupel("LABOR",h) = %hlse% ;
@@ -181,6 +184,7 @@ hfsnewref(ft,h) = 0 ;
 * closures: fixed wages and prices on world-market-integrated factors and goods (ftw & gtw)
 WZ.fx(ftw) = WZ.l(ftw);
 PZ.fx(gtw) = PZ.l(gtw) ;
+
 
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, CPI.l, RY.l, SAV.l, EXPROC.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l;
 
@@ -193,6 +197,7 @@ solve genCD using mcp ;
 *solve genCDnlp using nlp maximizing USELESS ;
 option iterlim=1000;
 ABORT$(genCD.modelstat ne 1) "NOT WELL CALIBRATED IN THIS DRAW - CHECK THE DATA INPUTS" ;
+display genCD.modelstat ;
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, Y.l, CPI.l, RY.l, SAV.l, EXPROC.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l;
 display CPI.l ;
 
@@ -274,20 +279,33 @@ $include includes/5_generic_simulation.gms
 
 
 
-* help the program reach a solution by re-initializing pva
-PVA.l(g,h) = PH.l(g,h) - sum(gg,idsh(gg,g,h)*PH.l(gg,h))
+* help the program reach a solution by re-initializing pva, fd, qva
+PVA.l(g,h) = PH.l(g,h) - sum(gg,idsh(gg,g,h)*PH.l(gg,h)) ;
+*FD.l(g,f,h) = PVA.l(g,h)*QP.l(g,h)*fshare(g,f,h) /
+*         (R.l(g,f,h)$fk(f) + WZ.l(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),WV.l(f,v))$ftv(f) )  ;
+*QVA.l(g,h) = pshift(g,h)*prod(f,FD.l(g,f,h)**(fshare(g,f,h)));
 
 *solve genCD using mcp ;
+*genCDnlp.OptFile = 1 ;
 solve genCDnlp using nlp maximizing USELESS ;
-ABORT$(genCD.modelstat ne 1) "NO OPTIMAL SOLUTION REACHED" ;
-modstat(sim) = genCD.modelstat ;
-modstat_dr(draw,sim) = genCD.modelstat ;
+*ABORT$(genCDnlp.modelstat ne 1 AND genCDnlp.modelstat ne 2) "NO OPTIMAL SOLUTION REACHED" ;
+modstat(sim) = genCDnlp.modelstat ;
+modstat_dr(draw,sim) = genCDnlp.modelstat ;
+display modstat;
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l, fd.l;
 display CPI.l ;
 
+* temporary fix: don't record the ones that I skipped
+if( (genCDnlp.modelstat ne 1 AND genCDnlp.modelstat ne 2)),
+         display "NO OPTIMAL SOLUTION REACHED" ;
+         skipped(draw,sim) = 1 ;
+$goto notrecoreded ;
+);
+
+
+
 pshift2(g,h,draw,sim)   = pshift(g,h) ;
 fshare2(g,f,h,draw,sim) = fshare(g,f,h) ;
-
 pv2(g,v,draw,sim)       = PV.l(g,v) ;
 pz2(g,draw,sim)         = PZ.l(g) ;
 ph2(g,h,draw,sim)       = PH.l(g,h) ;

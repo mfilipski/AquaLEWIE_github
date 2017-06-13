@@ -99,6 +99,11 @@ loop((h,draw),
 display troutsh_dr, savsh_dr, exprocsh_dr, expzoish_dr;
 
 
+* Display all parameters that were drawn:
+display  fshare_t, eshare_t, troutsh_dr, savsh_dr, exprocsh_dr, expzoish_dr;
+
+
+
 * THOSE WERE THE PARAMETERS THAT ARE ACTUALLY DRAWN FROM A DISTRIBUTION
 * ALL OTHER PARAMETERS EITHER FOLLOW FROM THOSE DRAWS (RATHER THAN DRAWN DIRECTLY)
 * OR RESULT FROM ASSUMPTIONS OR CLOSURE RULES

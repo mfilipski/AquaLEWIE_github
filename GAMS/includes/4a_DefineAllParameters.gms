@@ -73,6 +73,7 @@ exprocsh_dr(h,draw)   drawn or computed outside-of-zoi expenditures rate
 exproc_dr(h,draw)     drawn or computed outside-of-zoi expenditures level
 expzoish_dr(h,draw)   drawn or computed outside-of-zoi expenditures level
 
+skipped_dr(draw,sim)  which draws and sims were skipped because they failed
 ;
 
 * MACRO for defininf all parameters of type 1, 2, D or PC

@@ -50,14 +50,14 @@ $phantom null
 * in future: read sim set from excel too:
 set sim simulations /sim1*sim5/ ;
 parameter fsim(g,f,h,sim) shock to the fixed factor parameter;
-* One acre coming out of nowhere (rental value is 2 lakh in fish, 0.7 lahk in crop)
-fsim("Fish","Land","AqFSm","sim1") = 4 ;
-fsim("Fish","Land","AqFBg","sim2") = 4 ;
+* One acre coming out of nowhere (rental value is 2 lakh in fish, 0.7 lahk in crop, according to our Research Highlights)
+fsim("Fish","Land","AqFSm","sim1") = 2 ;
+fsim("Fish","Land","AqFBg","sim2") = 2 ;
 fsim("Crop","Land","AqAg","sim3")  = 0.7 ;
 * One acre from your own farm converted from ag to fish:
-fsim("Fish","Land","AqFSm","sim4")  = 4 ;
+fsim("Fish","Land","AqFSm","sim4")  = 2 ;
 fsim("Crop","Land","AqFSm","sim4")  = -0.7 ;
-fsim("Fish","Land","AqFBg","sim5")  = 4 ;
+fsim("Fish","Land","AqFBg","sim5")  = 2 ;
 fsim("Crop","Land","AqFBg","sim5")  = -0.7 ;
 * tests in sim 6:
 * nurseries - not good, overinflates results
