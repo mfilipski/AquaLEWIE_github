@@ -41,7 +41,7 @@ lsup_o(sim)      total labor supply level change
 nreps_o          number of repetitions
 ;
 * First display the parameters I want:
-display tyPC, tryPC, tyD, tryD ;   
+display tyPC, tryPC, tyD, tryD ;
 display ty_mvD, try_mvD, y_mvD, tqp_mvD ;
 
 ty_o(sim) = ty_mvD(sim,"mean") ;
@@ -77,6 +77,7 @@ pv_o(g,sim)$pv_mvPC(g,"AQUA",sim,"mean") = pv_mvPC(g,"AQUA",sim,"mean") ;
 
 
 display ty_o, try_o, ry_o, tqp_o, tqpsd_o, benefs_o, pv_o, hlsup_o, lsup_o, nreps_o;
+Display "this is the number of sims that had to be corrected", negfixfacnum ;
 
 
 execute_unload "outxl.gdx" modstat ty_o try_o ry_o tqp_o tqpsd_o benefs_o pv_o hlsup_o lsup_o nreps_o fshare_o

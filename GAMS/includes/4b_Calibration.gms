@@ -309,7 +309,10 @@ $offtext
 * We can figure out the rest from there:
 * Factor demands derived from factor shares
 fd_dr(g,f,h,draw)  = (qp_dr(g,h,draw) - sum(gg,id_dr(g,gg,h,draw))) * fshare_dr(g,f,h,draw)  ;
+
 display fd_dr ;
+
+
 
 
 qva_dr(g,h,draw)   = sum(f, fd_dr(g,f,h,draw)) ;

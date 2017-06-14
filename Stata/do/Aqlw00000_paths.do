@@ -12,13 +12,15 @@ global aadir "D:\Docs\Myanmar\AquaAgri\Analysis"
 global hhchars "D:\Docs\Myanmar\Data\AquaAgri\hhchars\160714_hhchar_v14_un.dta"
 *global hhchar "D:\Docs\Myanmar\Data\AquaAgri\hhchars\161011_hhchar_ch_mf.dta"
 
+global graphs "$workdir\graphs"
+global madedata "$workdir\madedata"
+global tables "$workdir\tables"
+
 global lewiesheet "D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_InputSheet"
 global hhgroups "$madedata\hhgroups.dta"
 
 
-global graphs "$workdir\graphs"
-global madedata "$workdir\madedata"
-global tables "$workdir\tables"
+
 *global outtab "$tables\table.xlsx"
 
 

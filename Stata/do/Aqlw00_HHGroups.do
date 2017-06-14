@@ -87,7 +87,12 @@ collapse (sum) countw, by(lwgroup)
 list 
 restore 
 
-
+* count the total weights
+preserve 
+collapse (sum) weight, by(cluster)
+sum 
+list
+restore
 
 
 count 

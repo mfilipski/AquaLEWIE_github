@@ -5,10 +5,10 @@ $TITLE MYANMAR AQUACULTURE LEWIE MODEL
 * Then it draws from those distributions and constructs a SAM from the values drawn
 * The it uses those same values to calibrate a village economywide model
 * A few useful gams options
-option limrow=30 ;
-option limcol=30 ;
-*$onsymlist
-*$onsymxref
+option limrow=100 ;
+option limcol=100 ;
+$onsymlist
+$onsymxref
 * unstar the following only if you don't have a PATH licence
 *option mcp = miles;
 
@@ -31,7 +31,7 @@ $setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
 
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
-*option seed = 500;
+option seed = 500;
 set draw /dr0*dr199/ ;
 
 
@@ -113,9 +113,9 @@ $include includes/4b_Calibration.gms
 * ===================== STEP 4 - SOLVE THE MODEL IN A LOOP OVER PARAMETERS DRAWS =================
 * ======================================== AND SIMULATIONS =======================================
 * ================================================================================================
-skipped_dr(draw,sim)=0;
 * The zero draw is using the mean values. Starting after dr1, those values are randomely drawn.
 loop((draw, sim),
+display "THIS IS THE BEGINNING OF THE LOOP" ;
 * re-initialise all the variables in the matrix
 * but this time not at the I levels - rather, at the _dr levels
 pshift(g,h)    = pshift_dr(g,h,draw) ;
@@ -195,7 +195,7 @@ display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, CPI.l, RY.l
 option iterlim = 1 ;
 solve genCD using mcp ;
 *solve genCDnlp using nlp maximizing USELESS ;
-option iterlim=1000;
+option iterlim=1000000;
 ABORT$(genCD.modelstat ne 1) "NOT WELL CALIBRATED IN THIS DRAW - CHECK THE DATA INPUTS" ;
 display genCD.modelstat ;
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, Y.l, CPI.l, RY.l, SAV.l, EXPROC.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l;
@@ -281,26 +281,30 @@ $include includes/5_generic_simulation.gms
 
 * help the program reach a solution by re-initializing pva, fd, qva
 PVA.l(g,h) = PH.l(g,h) - sum(gg,idsh(gg,g,h)*PH.l(gg,h)) ;
-*FD.l(g,f,h) = PVA.l(g,h)*QP.l(g,h)*fshare(g,f,h) /
-*         (R.l(g,f,h)$fk(f) + WZ.l(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),WV.l(f,v))$ftv(f) )  ;
-*QVA.l(g,h) = pshift(g,h)*prod(f,FD.l(g,f,h)**(fshare(g,f,h)));
 
-*solve genCD using mcp ;
+* Using PATH solver and MCP model
+solve genCD using mcp ;
+ABORT$(genCD.modelstat ne 1) "NO OPTIMAL SOLUTION REACHED in MCP model" ;
+modstat(sim) = genCD.modelstat ;
+modstat_dr(draw,sim) = genCD.modelstat ;
+
+* Using CONOPT solver and NLP model
 *genCDnlp.OptFile = 1 ;
-solve genCDnlp using nlp maximizing USELESS ;
-*ABORT$(genCDnlp.modelstat ne 1 AND genCDnlp.modelstat ne 2) "NO OPTIMAL SOLUTION REACHED" ;
-modstat(sim) = genCDnlp.modelstat ;
-modstat_dr(draw,sim) = genCDnlp.modelstat ;
+*solve genCDnlp using nlp maximizing USELESS ;
+*ABORT$(genCDnlp.modelstat ne 1 AND genCDnlp.modelstat ne 2) "NO OPTIMAL SOLUTION REACHED in NPL model" ;
+*modstat(sim) = genCDnlp.modelstat ;
+*modstat_dr(draw,sim) = genCDnlp.modelstat ;
+
 display modstat;
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l, fd.l;
 display CPI.l ;
 
 * temporary fix: don't record the ones that I skipped
-if( (genCDnlp.modelstat ne 1 AND genCDnlp.modelstat ne 2)),
-         display "NO OPTIMAL SOLUTION REACHED" ;
-         skipped(draw,sim) = 1 ;
-$goto notrecoreded ;
-);
+*if( (genCDnlp.modelstat ne 1 AND genCDnlp.modelstat ne 2)),
+*         display "NO OPTIMAL SOLUTION REACHED" ;
+*         skipped(draw,sim) = 1 ;
+*$goto notrecoreded ;
+*);
 
 
 
@@ -371,11 +375,15 @@ rytheil2(draw,sim)        = sum(h, ry2(h,draw,sim)/xlnhh(h)/mry2(draw,sim)
 * ================================================================================================
 * ===================== LOOP ENDS HERE    ========================================================
 * ================================================================================================
+display "THIS IS THE END OF THE LOOP" ;
 );
+display modstat_dr ;
+display negfixfac, fixfac_t, fixfac, fixfacsim_dr ;
+negfixfacnum(sim) = sum((g,f,h,draw)$negfixfac(g,f,h,draw,sim),1) ;
 
 display_pars(1);
 display_pars(2);
-display modstat_dr ;
+
 
 
 

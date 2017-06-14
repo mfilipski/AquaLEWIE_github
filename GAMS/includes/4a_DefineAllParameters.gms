@@ -73,7 +73,12 @@ exprocsh_dr(h,draw)   drawn or computed outside-of-zoi expenditures rate
 exproc_dr(h,draw)     drawn or computed outside-of-zoi expenditures level
 expzoish_dr(h,draw)   drawn or computed outside-of-zoi expenditures level
 
-skipped_dr(draw,sim)  which draws and sims were skipped because they failed
+fixfac_t(g,f,h)          first try at changing the fixfac parameter (gets changed if negative)
+negfixfac(g,f,h,draw,sim) check for negative values for each sim and draw
+fixfacsim_dr_t(g,f,h,draw,sim) fixed factor after the simulation (temp - not corrected)
+fixfacsim_dr(g,f,h,draw,sim) fixed factor after the simulation (corrected if needed)
+negfixfacnum(sim)     check the number of negatives that needed to be corrected for each sim
+
 ;
 
 * MACRO for defininf all parameters of type 1, 2, D or PC
