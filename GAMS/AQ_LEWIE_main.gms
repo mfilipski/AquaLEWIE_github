@@ -186,6 +186,7 @@ WZ.fx(ftw) = WZ.l(ftw);
 PZ.fx(gtw) = PZ.l(gtw) ;
 
 
+
 display PV.l, PZ.l, PH.l, PVA.l, QVA.l, FD.l, QP.l, ID.l, QC.l, Y.l, CPI.l, RY.l, SAV.l, EXPROC.l, HMS.l, VMS.l, ZMS.l, R.l, WZ.l, HFMS.l, VFMS.l, ZFMS.l;
 
 *---------------------------------
@@ -279,8 +280,9 @@ $include includes/5_generic_simulation.gms
 
 
 
-* help the program reach a solution by re-initializing pva, fd, qva
+* help the program reach a solution by re-initializing pva
 PVA.l(g,h) = PH.l(g,h) - sum(gg,idsh(gg,g,h)*PH.l(gg,h)) ;
+*FD.l(g,fk,h) = fixfac(g,fk,h);
 
 * Using PATH solver and MCP model
 solve genCD using mcp ;

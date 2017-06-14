@@ -4,7 +4,7 @@
 transfer(h)=0 ;
 * simulation shocks for fixed factor:
 fixfac_t(g,f,h) = fixfac(g,f,h) + fsim(g,f,h,sim) ;
-display "this is the original fixfac", fixfac_t ;
+display "this is the first change of fixfac", fixfac_t ;
 
 fixfacsim_dr_t(g,f,h,draw,sim)= fixfac_t(g,f,h) ;
 * if negative, replace with 0.1:
@@ -15,7 +15,7 @@ fixfacsim_dr(g,f,h,draw,sim)= fixfac(g,f,h) ;
 *fixfac("Fish","Land","AqFSm") = fixfac("Fish","Land","AqFSm") +2 ;
 *fixfac("Fish","Land","AqFBg") = fixfac("Fish","Land","AqFBg") +2 ;
 *fixfac("Crop","Land","AqAg") = fixfac("Crop","Land","AqAg") +0.7 ;
-display "this is the original fixfac", fixfac_t ;
+display "this is the first change of fixfac", fixfac_t ;
 
 
 $ontext

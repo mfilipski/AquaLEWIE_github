@@ -15,7 +15,7 @@ gen count=1
 sum count hhsize landless ownpond  
 sum count hhsize landless ownpond  [aw=wei] 
  
-
+ 
 
 * Groups defined as: 
 * Non-farm households 
