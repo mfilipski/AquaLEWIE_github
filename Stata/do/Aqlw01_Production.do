@@ -70,7 +70,7 @@ matrix fishrev = m'  , nursrev
 matrix list fishrev 
  
 putexcel B2 = matrix(fishrev, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
-clear
+
 
 
 /*  2) Compute factor shares: */
@@ -258,6 +258,8 @@ mat inpm = ii'
 
 mat inp = inpm, inpn
 putexcel B31 = matrix(inp, names) using $lewiesheet, sheet("Fish") modify keepcellformat 
+
+
 
 * share of intermediate inputs coming from OUT versus retail: 
 use $aquamade\clean_inputs, clear 

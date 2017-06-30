@@ -219,3 +219,14 @@ defpars_mv(1) ;
 defpars_mv(2) ;
 defpars_mv(D) ;
 defpars_mv(PC) ;
+
+
+
+* define parameters that correct for freak outcomes:
+defpars_mv(c1) ;
+defpars_mv(c2) ;
+defpars_mv(cD) ;
+defpars_mv(cPC) ;
+
+
+

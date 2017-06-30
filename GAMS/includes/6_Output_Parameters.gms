@@ -288,3 +288,154 @@ display benefdum, benefryD, nbenefryD, simval, mult ;
 
 
 
+
+
+
+* D. MEANS AND STANDARD DEVIATIONS AFTER REMOVING FREAK OUTCOMES (IF ANY)
+* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+* Define freaks as those where distance from mean is more than 15 times
+* identify freak outcome using total income:
+parameter freaksim(draw,sim) identifies freak simulations
+          freakdraw(draw)        identifiea freak draws
+          tryD_dist(draw,sim) distance from mean for total real income
+          numfreaks;
+tryD_dist(draw,sim)$try_mvD(sim,"mean") = abs(tryD(draw,sim)- try_mvD(sim,"mean"))/try_mvD(sim,"mean") ;
+freaksim(draw,sim)$(tryD_dist(draw,sim)>15) = 1  ;
+freakdraw(draw) = sum(sim, freaksim(draw,sim)) ;
+numfreaks = card(freakdraw) ;
+
+display tryD_dist, freaksim, freakdraw, numfreaks ;
+
+
+
+abort$(card(draw) le 1) "ONE REPETITION ONLY - NO MEANS OR STDEVS TO COMPUTE";
+
+* Macro to compute all the _mv parameters:
+$macro mvfyc(i) pv_mvc&i(g,v,sim,"mean") = sum(draw$(not freakdraw(draw)), pv&i(g,v,draw,sim)) / (card(draw)-numfreaks) ; \
+pv_mvc&i(g,v,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(pv&i(g,v,draw,sim) - pv_mvc&i(g,v,sim,"mean")))/(card(draw) - numfreaks-1)) ; \
+pz_mvc&i(g,sim,"mean") = sum(draw$(not freakdraw(draw)), pz&i(g,draw,sim)) / (card(draw) - numfreaks) ;                  \
+pz_mvc&i(g,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(pz&i(g,draw,sim) - pz_mvc&i(g,sim,"mean")))/(card(draw) - numfreaks-1)) ;    \
+ph_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), ph&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                                       \
+ph_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(ph&i(g,h,draw,sim) - ph_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;               \
+pva_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), pva&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                                     \
+pva_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(pva&i(g,h,draw,sim) - pva_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;            \
+qva_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), qva&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                                     \
+qva_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(qva&i(g,h,draw,sim) - qva_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;            \
+qp_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), qp&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                                       \
+qp_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(qp&i(g,h,draw,sim) - qp_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;               \
+tqp_mvc&i(g,sim,"mean") = sum(draw$(not freakdraw(draw)), tqp&i(g,draw,sim)) / (card(draw) - numfreaks) ;                                                         \
+tqp_mvc&i(g,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(tqp&i(g,draw,sim) - tqp_mvc&i(g,sim,"mean")))/(card(draw) - numfreaks-1)) ;                  \
+ttqp_mvc&i(sim,"mean") = sum(draw$(not freakdraw(draw)), ttqp&i(draw,sim)) / (card(draw) - numfreaks) ;                                                           \
+ttqp_mvc&i(sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(ttqp&i(draw,sim) - ttqp_mvc&i(sim,"mean")))/(card(draw) - numfreaks-1)) ;                     \
+hqp_mvc&i(h,sim,"mean") = sum(draw$(not freakdraw(draw)), hqp&i(h,draw,sim)) / (card(draw) - numfreaks) ;                                                         \
+hqp_mvc&i(h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(hqp&i(h,draw,sim) - hqp_mvc&i(h,sim,"mean")))/(card(draw) - numfreaks-1)) ;                  \
+fd_mvc&i(g,f,h,sim,"mean") = sum(draw$(not freakdraw(draw)), fd&i(g,f,h,draw,sim)) / (card(draw) - numfreaks) ;                                                   \
+fd_mvc&i(g,f,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(fd&i(g,f,h,draw,sim) - fd_mvc&i(g,f,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;         \
+id_mvc&i(g,gg,h,sim,"mean") = sum(draw$(not freakdraw(draw)), id&i(g,gg,h,draw,sim)) / (card(draw) - numfreaks) ;                                                 \
+id_mvc&i(g,gg,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(id&i(g,gg,h,draw,sim) - id_mvc&i(g,gg,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;      \
+pshift_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), pshift&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                               \
+pshift_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(pshift&i(g,h,draw,sim) - pshift_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;   \
+fshare_mvc&i(g,f,h,sim,"mean") = sum(draw$(not freakdraw(draw)), fshare&i(g,f,h,draw,sim)) / (card(draw) - numfreaks) ;                                           \
+fshare_mvc&i(g,f,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(fshare&i(g,f,h,draw,sim) - fshare_mvc&i(g,f,h,sim,"mean")))/(card(draw) - numfreaks-1)) ; \
+r_mvc&i(g,f,h,sim,"mean") = sum(draw$(not freakdraw(draw)), r&i(g,f,h,draw,sim)) / (card(draw) - numfreaks) ;                                                     \
+r_mvc&i(g,f,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(r&i(g,f,h,draw,sim) - r_mvc&i(g,f,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;            \
+wv_mvc&i(f,v,sim,"mean") = sum(draw$(not freakdraw(draw)), wv&i(f,v,draw,sim)) / (card(draw) - numfreaks) ;                                                       \
+wv_mvc&i(f,v,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(wv&i(f,v,draw,sim) - wv_mvc&i(f,v,sim,"mean")))/(card(draw) - numfreaks-1)) ;               \
+wz_mvc&i(f,sim,"mean") = sum(draw$(not freakdraw(draw)), wz&i(f,draw,sim)) / (card(draw) - numfreaks) ;                                                           \
+wz_mvc&i(f,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(wz&i(f,draw,sim) - wz_mvc&i(f,sim,"mean")))/(card(draw) - numfreaks-1)) ;                     \
+vash_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), vash&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                                   \
+vash_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(vash&i(g,h,draw,sim) - vash_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;         \
+idsh_mvc&i(g,gg,h,sim,"mean") = sum(draw$(not freakdraw(draw)), idsh&i(g,gg,h,draw,sim)) / (card(draw) - numfreaks) ;                                                   \
+idsh_mvc&i(g,gg,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(idsh&i(g,gg,h,draw,sim) - idsh_mvc&i(g,gg,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;         \
+tidsh_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), tidsh&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                                   \
+tidsh_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(tidsh&i(g,h,draw,sim) - tidsh_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;         \
+qp_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), qp&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                                         \
+qp_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(qp&i(g,h,draw,sim) - qp_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;                 \
+fixfac_mvc&i(g,f,h,sim,"mean") = sum(draw$(not freakdraw(draw)), fixfac&i(g,f,h,draw,sim)) / (card(draw) - numfreaks) ;                                             \
+fixfac_mvc&i(g,f,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(fixfac&i(g,f,h,draw,sim) - fixfac_mvc&i(g,f,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;   \
+exinc_mvc&i(h,sim,"mean") = sum(draw$(not freakdraw(draw)), exinc&i(h,draw,sim)) / (card(draw) - numfreaks) ;                                                       \
+exinc_mvc&i(h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(exinc&i(h,draw,sim) - exinc_mvc&i(h,sim,"mean")))/(card(draw) - numfreaks-1)) ;           \
+endow_mvc&i(f,h,sim,"mean") = sum(draw$(not freakdraw(draw)), endow&i(f,h,draw,sim)) / (card(draw) - numfreaks) ;                                                \
+endow_mvc&i(f,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(endow&i(f,h,draw,sim) - endow_mvc&i(f,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;     \
+qc_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), qc&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                                      \
+qc_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(qc&i(g,h,draw,sim) - qc_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;              \
+eshare_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), eshare&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                              \
+eshare_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(eshare&i(g,h,draw,sim) - eshare_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;  \
+y_mvc&i(h,sim,"mean") = sum(draw$(not freakdraw(draw)), y&i(h,draw,sim)) / (card(draw) - numfreaks) ;                                                            \
+y_mvc&i(h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(y&i(h,draw,sim) - y_mvc&i(h,sim,"mean")))/(card(draw) - numfreaks-1)) ;                       \
+ty_mvc&i(sim,"mean") = sum(draw$(not freakdraw(draw)), ty&i(draw,sim)) / (card(draw) - numfreaks) ;                                                            \
+ty_mvc&i(sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(ty&i(draw,sim) - ty_mvc&i(sim,"mean")))/(card(draw) - numfreaks-1)) ;                       \
+mry_mvc&i(sim,"mean") = sum(draw$(not freakdraw(draw)), mry&i(draw,sim)) / (card(draw) - numfreaks) ;                                                            \
+mry_mvc&i(sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(mry&i(draw,sim) - mry_mvc&i(sim,"mean")))/(card(draw) - numfreaks-1)) ;                       \
+rytheil_mvc&i(sim,"mean") = sum(draw$(not freakdraw(draw)), rytheil&i(draw,sim)) / (card(draw) - numfreaks) ;                                                     \
+rytheil_mvc&i(sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(rytheil&i(draw,sim) - rytheil_mvc&i(sim,"mean")))/(card(draw) - numfreaks-1)) ;           \
+cpi_mvc&i(h,sim,"mean") = sum(draw$(not freakdraw(draw)), cpi&i(h,draw,sim)) / (card(draw) - numfreaks) ;                                                        \
+cpi_mvc&i(h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(cpi&i(h,draw,sim) - cpi_mvc&i(h,sim,"mean")))/(card(draw) - numfreaks-1)) ;                 \
+vcpi_mvc&i(v,sim,"mean") = sum(draw$(not freakdraw(draw)), vcpi&i(v,draw,sim)) / (card(draw) - numfreaks) ;                                                      \
+vcpi_mvc&i(v,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(vcpi&i(v,draw,sim) - vcpi_mvc&i(v,sim,"mean")))/(card(draw) - numfreaks-1)) ;              \
+cri_mvc&i(v,f,sim,"mean") = sum(draw$(not freakdraw(draw)), cri&i(v,f,draw,sim)) / (card(draw) - numfreaks) ;                                                    \
+cri_mvc&i(v,f,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(cri&i(v,f,draw,sim) - cri_mvc&i(v,f,sim,"mean")))/(card(draw) - numfreaks-1)) ;           \
+ry_mvc&i(h,sim,"mean") = sum(draw$(not freakdraw(draw)), ry&i(h,draw,sim)) / (card(draw) - numfreaks) ;                                                          \
+ry_mvc&i(h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(ry&i(h,draw,sim) - ry_mvc&i(h,sim,"mean")))/(card(draw) - numfreaks-1)) ;                    \
+try_mvc&i(sim,"mean") = sum(draw$(not freakdraw(draw)), try&i(draw,sim)) / (card(draw) - numfreaks) ;                                                            \
+try_mvc&i(sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(try&i(draw,sim) - try_mvc&i(sim,"mean")))/(card(draw) - numfreaks-1)) ;                       \
+emin_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), emin&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                                  \
+emin_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(emin&i(g,h,draw,sim) - emin_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;        \
+trin_mvc&i(h,sim,"mean") = sum(draw$(not freakdraw(draw)), trin&i(h,draw,sim)) / (card(draw) - numfreaks) ;                                                      \
+trin_mvc&i(h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(trin&i(h,draw,sim) - trin_mvc&i(h,sim,"mean")))/(card(draw) - numfreaks-1)) ;              \
+trout_mvc&i(h,sim,"mean") = sum(draw$(not freakdraw(draw)), trout&i(h,draw,sim)) / (card(draw) - numfreaks) ;                                                    \
+trout_mvc&i(h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(trout&i(h,draw,sim) - trout_mvc&i(h,sim,"mean")))/(card(draw) - numfreaks-1)) ;           \
+sav_mvc&i(h,sim,"mean") = sum(draw$(not freakdraw(draw)), sav&i(h,draw,sim)) / (card(draw) - numfreaks) ;                                                        \
+sav_mvc&i(h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(sav&i(h,draw,sim) - sav_mvc&i(h,sim,"mean")))/(card(draw) - numfreaks-1)) ;                 \
+exproc_mvc&i(h,sim,"mean") = sum(draw$(not freakdraw(draw)), exproc&i(h,draw,sim)) / (card(draw) - numfreaks) ;                                                  \
+exproc_mvc&i(h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(exproc&i(h,draw,sim) - exproc_mvc&i(h,sim,"mean")))/(card(draw) - numfreaks-1)) ;        \
+trinsh_mvc&i(h,sim,"mean") = sum(draw$(not freakdraw(draw)), trinsh&i(h,draw,sim)) / (card(draw) - numfreaks) ;                                                  \
+trinsh_mvc&i(h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(trinsh&i(h,draw,sim) - trinsh_mvc&i(h,sim,"mean")))/(card(draw) - numfreaks-1)) ;        \
+troutsh_mvc&i(h,sim,"mean") = sum(draw$(not freakdraw(draw)), troutsh&i(h,draw,sim)) / (card(draw) - numfreaks) ;                                                \
+troutsh_mvc&i(h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(troutsh&i(h,draw,sim) - troutsh_mvc&i(h,sim,"mean")))/(card(draw) - numfreaks-1)) ;     \
+hfd_mvc&i(f,h,sim,"mean") = sum(draw$(not freakdraw(draw)), hfd&i(f,h,draw,sim)) / (card(draw) - numfreaks) ;                                                    \
+hfd_mvc&i(f,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(hfd&i(f,h,draw,sim) - hfd_mvc&i(f,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;           \
+vfd_mvc&i(f,v,sim,"mean") = sum(draw$(not freakdraw(draw)), vfd&i(f,v,draw,sim)) / (card(draw) - numfreaks) ;                                                    \
+vfd_mvc&i(f,v,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(vfd&i(f,v,draw,sim) - vfd_mvc&i(f,v,sim,"mean")))/(card(draw) - numfreaks-1)) ;           \
+zfd_mvc&i(f,sim,"mean") = sum(draw$(not freakdraw(draw)), zfd&i(f,draw,sim)) / (card(draw) - numfreaks) ;                                                        \
+zfd_mvc&i(f,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(zfd&i(f,draw,sim) - zfd_mvc&i(f,sim,"mean")))/(card(draw) - numfreaks-1)) ;                 \
+hms_mvc&i(g,h,sim,"mean") = sum(draw$(not freakdraw(draw)), hms&i(g,h,draw,sim)) / (card(draw) - numfreaks) ;                                                    \
+hms_mvc&i(g,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(hms&i(g,h,draw,sim) - hms_mvc&i(g,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;           \
+vms_mvc&i(g,v,sim,"mean") = sum(draw$(not freakdraw(draw)), vms&i(g,v,draw,sim)) / (card(draw) - numfreaks) ;                                                    \
+vms_mvc&i(g,v,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(vms&i(g,v,draw,sim) - vms_mvc&i(g,v,sim,"mean")))/(card(draw) - numfreaks-1)) ;           \
+zms_mvc&i(g,sim,"mean") = sum(draw$(not freakdraw(draw)), zms&i(g,draw,sim)) / (card(draw) - numfreaks) ;                                                        \
+zms_mvc&i(g,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(zms&i(g,draw,sim) - zms_mvc&i(g,sim,"mean")))/(card(draw) - numfreaks-1)) ;                 \
+hfms_mvc&i(f,h,sim,"mean") = sum(draw$(not freakdraw(draw)), hfms&i(f,h,draw,sim)) / (card(draw) - numfreaks) ;                                                  \
+hfms_mvc&i(f,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(hfms&i(f,h,draw,sim) - hfms_mvc&i(f,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;        \
+vfms_mvc&i(f,v,sim,"mean") = sum(draw$(not freakdraw(draw)), vfms&i(f,v,draw,sim)) / (card(draw) - numfreaks) ;                                                  \
+vfms_mvc&i(f,v,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(vfms&i(f,v,draw,sim) - vfms_mvc&i(f,v,sim,"mean")))/(card(draw) - numfreaks-1)) ;        \
+zfms_mvc&i(f,sim,"mean") = sum(draw$(not freakdraw(draw)), zfms&i(f,draw,sim)) / (card(draw) - numfreaks) ;                                                      \
+zfms_mvc&i(f,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(zfms&i(f,draw,sim) - zfms_mvc&i(f,sim,"mean")))/(card(draw) - numfreaks-1)) ;              \
+hfsup_mvc&i(f,h,sim,"mean") = sum(draw$(not freakdraw(draw)), hfsup&i(f,h,draw,sim)) / (card(draw) - numfreaks) ;                                                  \
+hfsup_mvc&i(f,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(hfsup&i(f,h,draw,sim) - hfsup_mvc&i(f,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;        \
+fsup_mvc&i(f,sim,"mean") = sum(draw$(not freakdraw(draw)), fsup&i(f,draw,sim)) / (card(draw) - numfreaks) ;                                                  \
+fsup_mvc&i(f,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(fsup&i(f,draw,sim) - fsup_mvc&i(f,sim,"mean")))/(card(draw) - numfreaks-1)) ;        \
+;
+
+mvfyc(1) ;
+mvfyc(2) ;
+mvfyc(D) ;
+mvfyc(PC) ;
+display pv_mvc1, pz_mvc2 , zfms_mvc2;
+display_pars(_mvc1) ;
+display_pars(_mvc2) ;
+display_pars(_mvcD) ;
+display_pars(_mvcPC) ;
+
+
+* C. WELFARE AND EFFICIENCY - corrected:
+* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+parameters
+         benefrycD(sim,mv)  the ryD of the beneficiary
+         nbenefrycD(sim,mv) sum of ryD for non-beneficiaries
+         multc(sim,mv)      total benefits divided by simval
+;
+benefrycD(sim,"mean") = sum(h$(benefdum(h,sim)), ry_mvcD(h,sim,"mean")) ;
+nbenefrycD(sim,"mean") = sum(h$(not benefdum(h,sim)), ry_mvcD(h,sim,"mean")) ;
+multc(sim,"mean") = (benefrycD(sim,"mean") + nbenefrycD(sim,"mean")) / simval(sim) ;
+display benefrycD, nbenefrycD, multc ;

@@ -38,41 +38,43 @@ benefs_o(*,sim)  beneficiary and non-beneficiary returns
 pv_o(g,sim)      percent change in prices
 hlsup_o(h,sim)   labor supply level change
 lsup_o(sim)      total labor supply level change
-nreps_o          number of repetitions
+ndraws_o         number of draws (original)
+nreps_o          number of repetitions (minus freak draws)
 ;
-* First display the parameters I want:
+* First display the parameters I want (the "c" indicates corrected for freak draws):
 display tyPC, tryPC, tyD, tryD ;
-display ty_mvD, try_mvD, y_mvD, tqp_mvD ;
+display ty_mvD, ty_mvcD, try_mvD, try_mvcD, y_mvD, y_mvcD, tqp_mvD, tqp_mvcD ;
 
-ty_o(sim) = ty_mvD(sim,"mean") ;
-try_o("mean",sim) = try_mvD(sim, "mean") ;
-try_o("stdev",sim) = try_mvD(sim, "stdev") ;
+ty_o(sim) = ty_mvcD(sim,"mean") ;
+try_o("mean",sim) = try_mvcD(sim, "mean") ;
+try_o("stdev",sim) = try_mvcD(sim, "stdev") ;
 *try_o("pct5",sim) = try_mvD(sim, "pct5") ;
 *try_o("pct95",sim) = try_mvD(sim, "pct95") ;
-ry_o(h,sim) = ry_mvD(h,sim,"mean") ;
+ry_o(h,sim) = ry_mvcD(h,sim,"mean") ;
 tqp_o(g,sim) = 1E-13;
-tqp_o(g,sim) = tqp_mvD(g,sim,"mean") ;
+tqp_o(g,sim) = tqp_mvcD(g,sim,"mean") ;
 tqpsd_o(g,sim) = 1E-13;
-tqpsd_o(g,sim) = tqp_mvD(g,sim,"stdev") ;
-benefs_o("benef", sim) = benefryD(sim,"mean") ;
-benefs_o("non-benef", sim) = nbenefryD(sim,"mean") ;
+tqpsd_o(g,sim) = tqp_mvcD(g,sim,"stdev") ;
+benefs_o("benef", sim) = benefrycD(sim,"mean") ;
+benefs_o("non-benef", sim) = nbenefrycD(sim,"mean") ;
 benefs_o("simval", sim) = simval(sim) ;
-benefs_o("mult", sim) = mult(sim,"mean") ;
-benefs_o("mincPC", sim) = mry_mvPC(sim,"mean") ;
-benefs_o("rytheilPC", sim) = rytheil_mvPC(sim,"mean") ;
-benefs_o("rytheilPCsd", sim) = rytheil_mvPC(sim,"stdev") ;
-nreps_o  = card(draw) ;
+benefs_o("mult", sim) = multc(sim,"mean") ;
+benefs_o("mincPC", sim) = mry_mvcPC(sim,"mean") ;
+benefs_o("rytheilPC", sim) = rytheil_mvcPC(sim,"mean") ;
+benefs_o("rytheilPCsd", sim) = rytheil_mvcPC(sim,"stdev") ;
+ndraws_o  = card(draw);
+nreps_o  = card(draw)-numfreaks ;
 
 
 
 
 *nbenef_o(sim) = nbenefryD(sim,"mean") ;
 pv_o(g,sim) = 1E-13 ;
-hlsup_o(h,sim) = hfsup_mvD("labor",h,sim,"mean") ;
-lsup_o(sim) = fsup_mvD("labor",sim,"mean") ;
+hlsup_o(h,sim) = hfsup_mvcD("labor",h,sim,"mean") ;
+lsup_o(sim) = fsup_mvcD("labor",sim,"mean") ;
 
 display pv_o ;
-pv_o(g,sim)$pv_mvPC(g,"AQUA",sim,"mean") = pv_mvPC(g,"AQUA",sim,"mean") ;
+pv_o(g,sim)$pv_mvcPC(g,"AQUA",sim,"mean") = pv_mvcPC(g,"AQUA",sim,"mean") ;
 
 
 

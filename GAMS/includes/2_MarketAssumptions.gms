@@ -26,7 +26,7 @@
 *=====================
 set
 * factor subsets
-     fk(f)     fixed factors / CAPITAL, LAND /
+     fk(f)     fixed factors /CAPITAL,  LAND /
      ft(f)     tradable inputs / LABOR, INPUT /
      ftv(f)    factors tradable in the village /LABOR,  null /
      ftz(f)    factors tradable in the whole zoi  / null /
