@@ -48,8 +48,14 @@ $phantom null
 
 
 * in future: read sim set from excel too:
-set sim simulations /sim1*sim6/ ;
+set sim simulations  ;
 parameter fsim(g,f,h,sim) shock to the fixed factor parameter;
+$call "gdxxrw input=%sim_dashboard%.xlsx output=%sim_dashboard%.gdx index=index!a2"
+$gdxin %sim_dashboard%.gdx
+$load sim fsim
+display sim, fsim ;
+
+$ontext
 * One acre coming out of nowhere (rental value is 2 lakh in fish, 0.7 lahk in crop, according to our Research Highlights)
 fsim("Fish","Land","AqFSm","sim1") = 2 ;
 fsim("Fish","Land","AqFBg","sim2") = 2 ;
@@ -71,7 +77,7 @@ fsim("Fish","Land","AqFSm","sim6") = 2*0.72 ;
 * redistribution:
 *fsim("Fish","Land","AqFSm","sim6") = 2 ;
 *fsim("Fish","Land","AqFBg","sim6") = -2 ;
-
+$offtext
 
 
 * Read in the matrix:

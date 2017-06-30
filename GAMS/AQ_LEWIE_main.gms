@@ -18,6 +18,8 @@ $setglobal data_input "AQ_LEWIE_InputSheet"
 *$setglobal data_input "AQ_LEWIE_InputSheet"
 * name of index sheet (village-specific):
 $setglobal input_sheet_index "Index!A2"
+* name file containing simulation dashboard
+$setglobal sim_dashboard "AQ_LEWIE_SimDashboard"
 * name of include file containing village-specific assumptions
 $setglobal assumptions_file  "2_MarketAssumptions.gms"
 * name of output file for text output:
@@ -32,7 +34,7 @@ $setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
 *option seed = 500;
-set draw /dr0*dr199/ ;
+set draw /dr0*dr29/ ;
 
 
 
