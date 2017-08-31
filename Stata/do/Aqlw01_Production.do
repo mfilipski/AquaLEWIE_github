@@ -321,16 +321,16 @@ use $agrimade\agri_costs_revs,  clear
 cap mat clear 
 * generate variables to put all costs into simple categories: 
 * purchased inputs, labor, capital
-egen i_agri = rowtotal(dry_seeds_cost monsoon_seeds_cost)
-egen i_intinp = rowtotal(dry_transport_costs monsoon_transport_costs)
+egen 	i_agri = rowtotal(dry_seeds_cost monsoon_seeds_cost)
+egen 	i_intinp = rowtotal(dry_transport_costs monsoon_transport_costs)
 *gen i_agri = 
 *egen i_feed = rowtotal() 
-egen i_labor = rowtotal(dry_dayrate dry_piecerate dry_add_templabor /// 
+egen 	i_labor = rowtotal(dry_dayrate dry_piecerate dry_add_templabor /// 
 				monsoon_dayrate monsoon_piecerate monsoon_add_templabor) 
-egen i_land = rowtotal(agri_sparea) 
-egen i_capit = rowtotal(dry_irri_cost  /// 
+egen 	i_land = rowtotal(agri_sparea) 
+egen 	i_capit = rowtotal(dry_irri_cost  /// 
 						monsoon_irri_cost monsoon_equipment_cost ) 
-egen i_other = rowtotal( dry_inputs_cost /// 
+egen 	i_other = rowtotal( dry_inputs_cost /// 
 						 monsoon_inputs_cost)
 
 global rhscrop "li_labor li_land li_capit li_other"
@@ -376,14 +376,14 @@ putexcel B8 = matrix(mout, names) using $lewiesheet, sheet("Crop") modify keepce
  
  
  * intermediate input shares: 
-gen iish_agri = i_agri / y 
-gen iish_intinp = i_intinp / y 
+gen 	iish_agri = i_agri / y 
+gen 	iish_intinp = i_intinp / y 
 tabstat iish* [aw=wei] if iish_agri!=0, by(lwgroup)  stat(mean) save 
 return list 
-matrix ii = r(Stat1) \ r(Stat2) \ r(Stat3) \ r(Stat4) \ r(Stat5)
-matrix rownames ii = "`r(name1)'"  "`r(name2)'" "`r(name3)'" "`r(name4)'" "`r(name5)'" 
-mat inpag = ii' 
-mat l inpag 
+matrix 	ii = r(Stat1) \ r(Stat2) \ r(Stat3) \ r(Stat4) \ r(Stat5)
+matrix 	rownames ii = "`r(name1)'"  "`r(name2)'" "`r(name3)'" "`r(name4)'" "`r(name5)'" 
+mat 	inpag = ii' 
+mat l 	inpag 
 
 putexcel B20 = matrix(inpag, names) using $lewiesheet, sheet("Crop") modify keepcellformat 
 
