@@ -3,9 +3,6 @@
 [RP:1RMJ_MARKETASSUMPTIONS]
 1=
 
-[RP:2_MODEL_N_CALIBRATION]
-1=
-
 [RP:3_CALIBRATION]
 1=
 
@@ -66,28 +63,7 @@ PlaneRownr=-1
 [RP:7_OUTPUT_TO_TEXT_FILE]
 1=
 
-[RP:6B_CONFIDENCEBOUNDS]
-1=
-
-[RP:3_MODEL]
-1=
-
 [RP:AQ_LEWIE_MAIN_USEDFORDRAFT3]
-1=
-
-[RP:4A_DEFINEALLPARAMETERS]
-1=
-
-[RP:4B_CALIBRATION]
-1=
-
-[RP:6_OUTPUT_PARAMETERS]
-1=
-
-[RP:5_GENERIC_SIMULATION]
-1=
-
-[RP:2_MARKETASSUMPTIONS]
 1=
 
 [RP:UNTITLED_1]
@@ -246,13 +222,37 @@ Order=1
 Decim=7
 PlaneRownr=-1
 
+[RP:6_OUTPUT_PARAMETERS]
+1=
+
+[RP:5_GENERIC_SIMULATION]
+1=
+
+[RP:4B_CALIBRATION]
+1=
+
+[RP:6B_CONFIDENCEBOUNDS]
+1=
+
 [RP:7A_OUTPUT_TO_EXCEL]
 1=
 
 [RP:1_READ_EXCEL]
 1=
 
+[RP:2_MODEL_N_CALIBRATION]
+1=
+
 [RP:AQ_LEWIE_MAIN]
+1=
+
+[RP:2_MARKETASSUMPTIONS]
+1=
+
+[RP:3_MODEL]
+1=
+
+[RP:4A_DEFINEALLPARAMETERS]
 1=
 
 [MRUFILES]
@@ -277,9 +277,9 @@ FILE7=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\5_Generic
 FILE8=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\6_Output_Parameters.gms
 FILE9=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\6b_ConfidenceBounds.gms
 FILE10=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\includes\7a_Output_to_excel.gms
-FILE11=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.lst
+FILE11=D:\Docs\Myanmar\AquaAgri\Analysis\AquaLEWIE_github\GAMS\AQ_LEWIE_main.gms
 MAXIM=0
 TOP=0
-LEFT=312
-HEIGHT=585
-WIDTH=960
+LEFT=331
+HEIGHT=934
+WIDTH=1529
