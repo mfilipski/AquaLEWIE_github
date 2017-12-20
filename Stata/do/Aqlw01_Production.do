@@ -3,6 +3,7 @@ capture log close
 set more off
 cap mat clear 
 global drop 
+version 14
 
 /*
 * define paths
@@ -59,7 +60,6 @@ drop if _m==2
 drop _m 
 count
  
-
 collapse (mean) rev_fish, by (lwgroup) 
 decode lwgroup, gen(gname)
 list 
@@ -93,6 +93,8 @@ egen i_labor = rowtotal(cstlab)
 egen i_land = rowtotal(area) 
 egen i_other = rowtotal(c_feed)
 egen  i_capit = rowtotal(rvmach)
+
+crash 
 
 * Label variables
 label var i_intinp "all other purchased intermediate inputs"
@@ -290,12 +292,18 @@ drop if _m==2
 drop _m 
 count
  
- 
+
 egen y = rowtotal(gross_sale_monsoon gross_sale_dry)
 * Convert to Lahks 
 replace y=y/100000
-decode lwgroup , gen(groupname)
 
+* Count how many aqua households have agri land: 
+gen aglandyes = (ld_agown>0 & ld_agown!=.)
+gen lwaqua = inlist(lwg, 1,2,3)
+tab lwaqua aglandyes [aw=wei], row
+crash 
+
+decode lwgroup , gen(groupname)
 * Give non-ag households some production, assuming they use their ag land same as ag people: 
 gen y_pa = y/ld_agown 
 label var y_pa "crop income per acre of ag land"

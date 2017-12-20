@@ -15,7 +15,7 @@ gen count=1
 sum count hhsize landless ownpond  
 sum count hhsize landless ownpond  [aw=wei] 
  
- 
+  
 
 * Groups defined as: 
 * Non-farm households 
@@ -61,6 +61,8 @@ tab resp
 tab resp [aw=wei]
 
 
+
+ 
 
 * Export to the excel file
 tabstat count , by(lwgroup) stat(count)  save

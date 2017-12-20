@@ -311,6 +311,7 @@ display tryD_dist, freaksim, freakdraw, numfreaks ;
 abort$(card(draw) le 1) "ONE REPETITION ONLY - NO MEANS OR STDEVS TO COMPUTE";
 
 * Macro to compute all the _mv parameters:
+* "c" stands for "corrected"
 $macro mvfyc(i) pv_mvc&i(g,v,sim,"mean") = sum(draw$(not freakdraw(draw)), pv&i(g,v,draw,sim)) / (card(draw)-numfreaks) ; \
 pv_mvc&i(g,v,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(pv&i(g,v,draw,sim) - pv_mvc&i(g,v,sim,"mean")))/(card(draw) - numfreaks-1)) ; \
 pz_mvc&i(g,sim,"mean") = sum(draw$(not freakdraw(draw)), pz&i(g,draw,sim)) / (card(draw) - numfreaks) ;                  \

@@ -32,17 +32,19 @@ try_o(*,sim)       total real income level change
 *try_o95(sim)       total real income level change 95pct bound
 ry_o(h,sim)      household real income level change
 tqp_o(g,sim)     total quantity produced level change
-tqpsd_o(g,sim)     total quantity produced standard dev
+tqpsd_o(g,sim)   total quantity produced standard dev
 benefs_o(*,sim)  beneficiary and non-beneficiary returns
 pv_o(g,sim)      percent change in prices
 hlsup_o(h,sim)   labor supply level change
 lsup_o(sim)      total labor supply level change
 ndraws_o         number of draws (original)
 nreps_o          number of repetitions (minus freak draws)
+qpd_o(g,h,sim)   delta quantity produced by hh and crop
 ;
 * First display the parameters I want (the "c" indicates corrected for freak draws):
 display tyPC, tryPC, tyD, tryD ;
 display ty_mvD, ty_mvcD, try_mvD, try_mvcD, y_mvD, y_mvcD, tqp_mvD, tqp_mvcD ;
+display qp_mvD ;
 
 ty_o(sim) = ty_mvcD(sim,"mean") ;
 try_o("mean",sim) = try_mvcD(sim, "mean") ;

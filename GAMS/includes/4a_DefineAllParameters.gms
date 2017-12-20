@@ -79,6 +79,7 @@ fixfacsim_dr_t(g,f,h,draw,sim) fixed factor after the simulation (temp - not cor
 fixfacsim_dr(g,f,h,draw,sim) fixed factor after the simulation (corrected if needed)
 negfixfacnum(sim)     check the number of negatives that needed to be corrected for each sim
 
+
 ;
 
 * MACRO for defininf all parameters of type 1, 2, D or PC

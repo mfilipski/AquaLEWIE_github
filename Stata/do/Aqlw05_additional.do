@@ -28,9 +28,16 @@ bysort lwgroup: reg imputedimp aqua_spha
 * is 5.5 for a small farmer, 7.6 for a large farmer. 
 * (if no floods) 
 * ratio is about 0.72
-crash
 
-imputeout gmarg_fish, bylist(cluster) 
-bysort lwgroup: reg gmarg_fishimp aqua_spha
 
-bysort lwgroup: reg gmarg_fish aqua_spha if gmargf_pa > -10 & gmargf_pa<50
+*imputeout gmarg_fish, bylist(cluster) 
+*bysort lwgroup: reg gmarg_fishimp aqua_spha
+*bysort lwgroup: reg gmarg_fish aqua_spha if gmargf_pa > -10 & gmargf_pa<50
+
+
+* Check construction method vs. farm size  
+clear
+use $hhchars
+
+
+
