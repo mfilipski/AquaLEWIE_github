@@ -1,0 +1,17 @@
+	(1)	(2)
+VARIABLES	lrev_nurs	ly
+		
+li_labor	0.174	0.0278
+	(0.120)	(0.103)
+li_land	0.496***	0.280***
+	(0.179)	(0.0976)
+li_capit	0.0310	0.0731
+	(0.155)	(0.0449)
+li_other	0.299	0.619***
+	(0.217)	(0.0615)
+Constant	2.077***	1.717***
+	(0.398)	(0.170)
+		
+Observations	55	79
+Robust standard errors in parentheses		
+*** p<0.01, ** p<0.05, * p<0.1		

@@ -94,7 +94,7 @@ egen i_land = rowtotal(area)
 egen i_other = rowtotal(c_feed)
 egen  i_capit = rowtotal(rvmach)
 
-crash 
+ 
 
 * Label variables
 label var i_intinp "all other purchased intermediate inputs"
@@ -115,12 +115,15 @@ constraint 1 li_labor + li_land +li_capit + li_other= 1 , c(1)
 * put into a matrix 
 eststo clear
 reg lrev_nurs  `rhs' [aw=wei] 
-eststo: cnsreg lrev_nurs `rhs', r  c(1) 
+eststo : cnsreg lrev_nurs `rhs', r  c(1) 
 return list
 esttab,  nodepvar  label nonumber not se 
 return list 
 matrix nout = r(coefs) 
+estout
 
+outreg2 using nursreg.csv, replace
+  
 * extract submatrices 
 mat noutb = nout[1..., "est1:b"]
 mat noutse = nout[1..., "est1:se"]
@@ -129,7 +132,7 @@ matrix coleq noutse = "AquaNurs"
 matrix colnames noutb = beta 
 mat l noutb
 mat l noutse
-
+ 
 * intermediate input share: 
 gen iish_nurs = i_nurs / rev_nurs 
 gen iish_intinp = i_intinp / rev_nurs 
@@ -219,9 +222,14 @@ tab li_capit
 eststo clear  
 constraint 3 $cstrfish = 1 , c(3)
 *bysort lwgroup : eststo: reg ly $rhsfish   
-bysort lwgroup : eststo: cnsreg ly $rhsfish [aw=wei], r  c(3) 
+bysort lwgroup : eststo : cnsreg ly $rhsfish [aw=wei], r  c(3) 
 
-estout
+crash 
+estout, cells(b se _star)
+outreg2 est1 est2 using fishreg, replace 
+
+ 
+ 
 return list
 esttab,  nodepvar  label nonumber not se 
 return list 
@@ -301,7 +309,7 @@ replace y=y/100000
 gen aglandyes = (ld_agown>0 & ld_agown!=.)
 gen lwaqua = inlist(lwg, 1,2,3)
 tab lwaqua aglandyes [aw=wei], row
-crash 
+ 
 
 decode lwgroup , gen(groupname)
 * Give non-ag households some production, assuming they use their ag land same as ag people: 
@@ -363,10 +371,11 @@ sum l*
 * run a constrained log-log regression
 eststo clear  
 constraint 3 $cstrcrop = 1 
-bysort lwgroup : eststo: cnsreg ly $rhscrop, r c(3) 
+bysort lwgroup : eststo cropreg: cnsreg ly $rhscrop, r c(3) 
 
-
+outreg2 using cropreg.csv, replace 
 estout
+ 
 return list
 esttab,  nodepvar  label nonumber not se 
 return list 

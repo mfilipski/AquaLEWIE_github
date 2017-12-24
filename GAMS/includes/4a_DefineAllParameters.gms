@@ -79,7 +79,6 @@ fixfacsim_dr_t(g,f,h,draw,sim) fixed factor after the simulation (temp - not cor
 fixfacsim_dr(g,f,h,draw,sim) fixed factor after the simulation (corrected if needed)
 negfixfacnum(sim)     check the number of negatives that needed to be corrected for each sim
 
-
 ;
 
 * MACRO for defininf all parameters of type 1, 2, D or PC
@@ -137,7 +136,11 @@ $macro defpars(i)  parameters  pv&i(g,v,draw,sim) calibrated price at village le
          vfmsfix&i(f,v,draw,sim)       factors fixed at the Village level (family labor)  , \
          zfmsfix&i(f,draw,sim)         factors fixed at the zoi level (hired labor)       , \
          hfsup&i(f,h,draw,sim)         factor supply by the household                     , \
-         fsup&i(f,draw,sim)            factor supply                       \
+         fsup&i(f,draw,sim)            factor supply                     ,  \
+         prev&i(g,h,draw,sim)               production revenue from g by h  , \
+         pcost&i(g,h,draw,sim)              production cost for g by h      , \
+         pprof&i(g,h,draw,sim)              profit from activity g by h    , \
+         finc&i(f,h,draw,sim)          income from sale of factor f \
 ;
 
 defpars(1) ;
@@ -149,7 +152,9 @@ defpars(PC) ;
 
 $macro display_pars(i) display pv&i, pz&i, ph&i, qva&i, fd&i, id&i, pshift&i, fshare&i, r&i, wv&i, wz&i, vash&i, idsh&i, tidsh&i, qp&i, tqp&i,    \
 ttqp&i , fixfac&i, pva&i, exinc&i, endow&i, y&i, cpi&i, vcpi&i, ry&i, try&i, mry&i, rytheil&i, trinsh&i, qc&i, eshare&i, troutsh&i, hfsup&i, fsup&i, \
-hfd&i, vfd&i, zfd&i, hms&i, vms&i, zms&i, hfms&i, vfms&i, zfms&i ;
+hfd&i, vfd&i, zfd&i, hms&i, vms&i, zms&i, hfms&i, vfms&i, zfms&i, hfsup&i, fsup&i, \
+prev&i, pcost&i, pprof&i, finc&i \
+ ;
 
 
 
@@ -213,7 +218,11 @@ hfms_mv&i(f,h,sim,mv)     mean and stdev of household factor marketed surplus   
 vfms_mv&i(f,v,sim,mv)     mean and stdev of village factor marketed surplus                , \
 zfms_mv&i(f,sim,mv)       mean and stdev of zoi factor marketed surplus                    , \
 hfsup_mv&i(f,h,sim,mv)    mean and stdev of factor supply by the household     , \
-fsup_mv&i(f,sim,mv)       mean and stdev of factor supply by the household     \
+fsup_mv&i(f,sim,mv)       mean and stdev of factor supply by the household     , \
+prev_mv&i(g,h,sim,mv)     mean and stdev of production revenue from g by h  , \
+pcost_mv&i(g,h,sim,mv)    mean and stdev of production cost for g by h      , \
+pprof_mv&i(g,h,sim,mv)    mean and stdev of profit from activity g by h     , \
+finc_mv&i(f,h,sim,mv)     mean and stdev of income from sale of factor f \
 ;
 
 defpars_mv(1) ;

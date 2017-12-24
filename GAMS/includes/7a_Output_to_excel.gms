@@ -39,7 +39,13 @@ hlsup_o(h,sim)   labor supply level change
 lsup_o(sim)      total labor supply level change
 ndraws_o         number of draws (original)
 nreps_o          number of repetitions (minus freak draws)
-qpd_o(g,h,sim)   delta quantity produced by hh and crop
+
+qpd_o(g,h,sim)     delta quantity produced by hh and crop
+prevd_o(g,h,sim)   delta revenue from a production
+pcostd_o(g,h,sim)  delta revenue from a production
+pprofd_o(g,h,sim)  delta revenue from a production
+
+
 ;
 * First display the parameters I want (the "c" indicates corrected for freak draws):
 display tyPC, tryPC, tyD, tryD ;
@@ -66,7 +72,10 @@ benefs_o("rytheilPCsd", sim) = rytheil_mvcPC(sim,"stdev") ;
 ndraws_o  = card(draw);
 nreps_o  = card(draw)-numfreaks ;
 
-
+qpd_o(g,h,sim)           =  qp_mvcD(g,h,sim,"mean")    ;
+prevd_o(g,h,sim)         =  prev_mvcD(g,h,sim,"mean") ;
+pcostd_o(g,h,sim)        =  pcost_mvcD(g,h,sim,"mean") ;
+pprofd_o(g,h,sim)        =  pprof_mvcD(g,h,sim,"mean") ;
 
 
 *nbenef_o(sim) = nbenefryD(sim,"mean") ;
@@ -80,11 +89,13 @@ pv_o(g,sim)$pv_mvcPC(g,"AQUA",sim,"mean") = pv_mvcPC(g,"AQUA",sim,"mean") ;
 
 
 display ty_o, try_o, ry_o, tqp_o, tqpsd_o, benefs_o, pv_o, hlsup_o, lsup_o, nreps_o;
+display qpd_o, prevd_o, pcostd_o, pprofd_o ;
 Display "this is the number of sims that had to be corrected", negfixfacnum ;
 
 
 execute_unload "outxl.gdx" modstat ty_o try_o ry_o tqp_o tqpsd_o benefs_o pv_o hlsup_o lsup_o nreps_o fshare_o
-               fsharesd_o, eshare_o, esharesd_o, idsh_o, idshsd_o ;
+               fsharesd_o, eshare_o, esharesd_o, idsh_o, idshsd_o,
+               qpd_o, prevd_o, pcostd_o, pprofd_o ;
 * And this writes in an excel sheet called "MakeMeASam":
 execute "xlstalk.exe -s   %output_xl_file%" ;
 execute "gdxxrw.exe outxl.gdx  o=%output_xl_file% index=index!a2" ;

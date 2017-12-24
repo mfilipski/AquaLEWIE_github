@@ -38,6 +38,13 @@ bysort lwgroup: reg imputedimp aqua_spha
 * Check construction method vs. farm size  
 clear
 use $hhchars
+merge 1:1 eahh using $hhgroups 
+drop _m 
+merge 1:1 ea hhid using $rawdata\sec_t1v0.dta
+
+clonevar constmeth = t101 
+tab lwg constmeth [aw=wei], row nof
+tab lwg constmeth 
 
 
 

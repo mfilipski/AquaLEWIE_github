@@ -71,6 +71,11 @@ savD(h,draw,sim)        = sav2(h,draw,sim)           - sav1(h,draw,sim) ;
 exprocD(h,draw,sim)     = exproc2(h,draw,sim)        - exproc1(h,draw,sim) ;
 hfsupD(f,h,draw,sim)    = hfsup2(f,h,draw,sim)       - hfsup1(f,h,draw,sim) ;
 fsupD(f,draw,sim)       = fsup2(f,draw,sim)          - fsup1(f,draw,sim) ;
+prevD(g,h,draw,sim)     = prev2(g,h,draw,sim)        - prev1(g,h,draw,sim) ;
+pcostD(g,h,draw,sim)    = pcost2(g,h,draw,sim)       - pcost1(g,h,draw,sim) ;
+pprofD(g,h,draw,sim)    = pprof2(g,h,draw,sim)       - pprof1(g,h,draw,sim) ;
+fincD(f,h,draw,sim)     = finc2(f,h,draw,sim)        - finc1(f,h,draw,sim) ;
+
 
 * PERCENT CHANGE between each calibration and the corresponding simulation
 pshiftPC(g,h,draw,sim)$pshift1(g,h,draw,sim)    = 100*pshiftD(g,h,draw,sim)/ pshift1(g,h,draw,sim);
@@ -129,6 +134,12 @@ savPC(h,draw,sim)$sav1(h,draw,sim)          = 100*savD(h,draw,sim)           / s
 exprocPC(h,draw,sim)$exproc1(h,draw,sim)    = 100*exprocD(h,draw,sim)        / exproc1(h,draw,sim) ;
 hfsupPC(f,h,draw,sim)$hfsup1(f,h,draw,sim)  = 100*hfsupD(f,h,draw,sim)       / hfsup1(f,h,draw,sim) ;
 fsupPC(f,draw,sim)$fsup1(f,draw,sim)        = 100*fsupD(f,draw,sim)          / fsup1(f,draw,sim) ;
+
+prevPC(g,h,draw,sim)$prev1(g,h,draw,sim)    = 100*prevD(g,h,draw,sim)        / prev1(g,h,draw,sim) ;
+pcostPC(g,h,draw,sim)$pcost1(g,h,draw,sim)  = 100*pcostD(g,h,draw,sim)       / pcost1(g,h,draw,sim) ;
+pprofPC(g,h,draw,sim)$pprof1(g,h,draw,sim)  = 100*pprofD(g,h,draw,sim)       / pprof1(g,h,draw,sim) ;
+
+fincPC(f,h,draw,sim)$finc1(f,h,draw,sim)    = 100*fincD(f,h,draw,sim)        / finc1(f,h,draw,sim) ;
 
 
 display_pars(D)
@@ -241,12 +252,21 @@ hfms_mv&i(f,h,sim,"mean") = sum(draw, hfms&i(f,h,draw,sim)) / card(draw) ;      
 hfms_mv&i(f,h,sim,"stdev") = sqrt(sum(draw, sqr(hfms&i(f,h,draw,sim) - hfms_mv&i(f,h,sim,"mean")))/(card(draw)-1)) ;        \
 vfms_mv&i(f,v,sim,"mean") = sum(draw, vfms&i(f,v,draw,sim)) / card(draw) ;                                                  \
 vfms_mv&i(f,v,sim,"stdev") = sqrt(sum(draw, sqr(vfms&i(f,v,draw,sim) - vfms_mv&i(f,v,sim,"mean")))/(card(draw)-1)) ;        \
-zfms_mv&i(f,sim,"mean") = sum(draw, zfms&i(f,draw,sim)) / card(draw) ;                                                      \
-zfms_mv&i(f,sim,"stdev") = sqrt(sum(draw, sqr(zfms&i(f,draw,sim) - zfms_mv&i(f,sim,"mean")))/(card(draw)-1)) ;              \
-hfsup_mv&i(f,h,sim,"mean") = sum(draw, hfsup&i(f,h,draw,sim)) / card(draw) ;                                                  \
-hfsup_mv&i(f,h,sim,"stdev") = sqrt(sum(draw, sqr(hfsup&i(f,h,draw,sim) - hfsup_mv&i(f,h,sim,"mean")))/(card(draw)-1)) ;        \
-fsup_mv&i(f,sim,"mean") = sum(draw, fsup&i(f,draw,sim)) / card(draw) ;                                                  \
-fsup_mv&i(f,sim,"stdev") = sqrt(sum(draw, sqr(fsup&i(f,draw,sim) - fsup_mv&i(f,sim,"mean")))/(card(draw)-1)) ;        \
+zfms_mv&i(f,sim,"mean")          = sum(draw, zfms&i(f,draw,sim)) / card(draw) ;                                                      \
+zfms_mv&i(f,sim,"stdev")         = sqrt(sum(draw, sqr(zfms&i(f,draw,sim) - zfms_mv&i(f,sim,"mean")))/(card(draw)-1)) ;              \
+hfsup_mv&i(f,h,sim,"mean")       = sum(draw, hfsup&i(f,h,draw,sim)) / card(draw) ;                                                  \
+hfsup_mv&i(f,h,sim,"stdev")      = sqrt(sum(draw, sqr(hfsup&i(f,h,draw,sim) - hfsup_mv&i(f,h,sim,"mean")))/(card(draw)-1)) ;        \
+fsup_mv&i(f,sim,"mean")          = sum(draw, fsup&i(f,draw,sim)) / card(draw) ;                                                  \
+fsup_mv&i(f,sim,"stdev")         = sqrt(sum(draw, sqr(fsup&i(f,draw,sim) - fsup_mv&i(f,sim,"mean")))/(card(draw)-1)) ;        \
+prev_mv&i(g,h,sim,"mean")        = sum(draw, prev&i(g,h,draw,sim)) / card(draw)  ;     \
+pcost_mv&i(g,h,sim,"mean")       = sum(draw, pcost&i(g,h,draw,sim)) /card(draw) ;       \
+pprof_mv&i(g,h,sim,"mean")       = sum(draw, pprof&i(g,h,draw,sim)) / card(draw);   \
+finc_mv&i(f,h,sim,"mean")        = sum(draw, finc&i(f,h,draw,sim)) / card(draw) ; \
+prev_mv&i(g,h,sim,"stdev")        = sqrt(sum(draw, sqr(prev&i(g,h,draw,sim) - prev_mv&i(g,h,sim,"mean")))/(card(draw)-1))  ;     \
+pcost_mv&i(g,h,sim,"stdev")       = sqrt(sum(draw, sqr(pcost&i(g,h,draw,sim) - pcost_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;       \
+pprof_mv&i(g,h,sim,"stdev")       = sqrt(sum(draw, sqr(pprof&i(g,h,draw,sim) - pprof_mv&i(g,h,sim,"mean")))/(card(draw)-1)) ;   \
+finc_mv&i(f,h,sim,"stdev")        = sqrt(sum(draw, sqr(finc&i(f,h,draw,sim) - finc_mv&i(f,h,sim,"mean")))/(card(draw)-1)) ;   \
+
 ;
 
 mvfy(1) ;
@@ -416,6 +436,14 @@ hfsup_mvc&i(f,h,sim,"mean") = sum(draw$(not freakdraw(draw)), hfsup&i(f,h,draw,s
 hfsup_mvc&i(f,h,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(hfsup&i(f,h,draw,sim) - hfsup_mvc&i(f,h,sim,"mean")))/(card(draw) - numfreaks-1)) ;        \
 fsup_mvc&i(f,sim,"mean") = sum(draw$(not freakdraw(draw)), fsup&i(f,draw,sim)) / (card(draw) - numfreaks) ;                                                  \
 fsup_mvc&i(f,sim,"stdev") = sqrt(sum(draw$(not freakdraw(draw)), sqr(fsup&i(f,draw,sim) - fsup_mvc&i(f,sim,"mean")))/(card(draw) - numfreaks-1)) ;        \
+prev_mvc&i(g,h,sim,"mean")        = sum(draw$(not freakdraw(draw)), prev&i(g,h,draw,sim)) / (card(draw) - numfreaks)  ;     \
+pcost_mvc&i(g,h,sim,"mean")       = sum(draw$(not freakdraw(draw)), pcost&i(g,h,draw,sim)) /(card(draw) - numfreaks) ;       \
+pprof_mvc&i(g,h,sim,"mean")       = sum(draw$(not freakdraw(draw)), pprof&i(g,h,draw,sim)) / (card(draw) - numfreaks);   \
+finc_mvc&i(f,h,sim,"mean")        = sum(draw$(not freakdraw(draw)), finc&i(f,h,draw,sim)) / (card(draw) - numfreaks);    \
+prev_mvc&i(g,h,sim,"stdev")        = sqrt(sum(draw$(not freakdraw(draw)), sqr(prev&i(g,h,draw,sim) - prev_mvc&i(g,h,sim,"mean")))/(card(draw)- numfreaks-1))  ;     \
+pcost_mvc&i(g,h,sim,"stdev")       = sqrt(sum(draw$(not freakdraw(draw)), sqr(pcost&i(g,h,draw,sim) - pcost_mvc&i(g,h,sim,"mean")))/(card(draw)- numfreaks-1)) ;       \
+pprof_mvc&i(g,h,sim,"stdev")       = sqrt(sum(draw$(not freakdraw(draw)), sqr(pprof&i(g,h,draw,sim) - pprof_mvc&i(g,h,sim,"mean")))/(card(draw)- numfreaks-1)) ;   \
+finc_mvc&i(f,h,sim,"stdev")        = sqrt(sum(draw$(not freakdraw(draw)), sqr(finc&i(f,h,draw,sim) - finc_mv&i(f,h,sim,"mean")))/(card(draw)- numfreaks-1)) ;   \
 ;
 
 mvfyc(1) ;

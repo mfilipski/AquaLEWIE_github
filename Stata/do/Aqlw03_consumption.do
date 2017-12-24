@@ -3,6 +3,7 @@ capture log close
 set more off
 cap mat clear 
 global drop 
+version 14
 
 /*
 * define paths
@@ -36,7 +37,7 @@ tab good2 group
 tab good3 group 
 
 * Merge in housheold characteristics 
-merge m:1 eahhid using $hhgroup 
+merge m:1 eahhid using $hhgroups 
 drop _m 
 
 * Now collapse the way we want:  
@@ -86,6 +87,7 @@ label define group2  1 "local crops"  2 "local meat"  3 "local fish" 4 "local pr
 				6 "local services" 7 "everything bought outside"
 label values group2 group2
 
+preserve 
 * first the sum by household, then the mean within the group
 collapse (sum)  annual_total_f annual_expend1 annual_expend2 annual_expend, by(lwgroup eahhid group2)
 list, sepby(lwgroup)
@@ -107,19 +109,19 @@ drop if lwg==.
 reshape wide ae , i(group) j(lwgroup)
 list 
 
+ 
 * Decode and add names: 
 decode group2 , gen(items)
 mkmat  ae* , matrix(m)  rownames(items)
 matrix list m  
 matrix colnames m = "AquaFSm" "AquaFBg" "AquaNurs" "AquaAg" "AquaLL" 
 matrix list m  
-
 putexcel B2 = matrix(m, names) using $lewiesheet, sheet("Cons") modify keepcellformat 
-
+restore 
 
 * Compute average shares with SE's for next version:  
-
-
+list eahh lwg total_foodexp group2 annual_expend  in 1/10
+reshape annual_exp
 
 
 

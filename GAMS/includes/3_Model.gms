@@ -64,7 +64,7 @@ parameters
      pshift(g,h) production shift parameter for the CD
      fshare(g,f,h) factor share parameter for the CD
      vash(g,h) share of value added
-     idsh(g,gg,h) intermediate input share
+     idsh(g,gfac,h) intermediate input share
      tidsh(g,h) total intermediate input share (1-vash)
 
 *Consumption
@@ -164,7 +164,7 @@ EQ_PH(g,h)..
      PH(g,h) =E= PZ(g)$(gtz(g)+gtw(g)) + sum(v$maphv(h,v),PV(g,v))$gtv(g) ;
 
 EQ_PVA(g,h)..
-     PVA(g,h) =E= PH(g,h)- sum(gg,idsh(g,gg,h)*PH(gg,h)) ;
+     PVA(g,h) =E= PH(g,h)- sum(gfac,idsh(g,gfac,h)*PH(gfac,h)) ;
 
 * PRODUCTION BLOCK
 EQ_QVACOBB(g,h)..
@@ -188,9 +188,9 @@ EQ_FDPURCH(g,f,h)$fpurch(f)..
 EQ_QP(g,h)$vash(g,h)..
      QP(g,h) =E= QVA(g,h)/vash(g,h) ;
 
-* "gg production requires intermediate demand for g"
-EQ_ID(gg,g,h)..
-     ID(gg,g,h) =E= QP(gg,h)*idsh(gg,g,h)
+* "g production requires intermediate demand for gfac"
+EQ_ID(g,gfac,h)..
+     ID(g,gfac,h) =E= QP(g,h)*idsh(g,gfac,h)
 ;
 
 * CONSUMPTION AND INCOME

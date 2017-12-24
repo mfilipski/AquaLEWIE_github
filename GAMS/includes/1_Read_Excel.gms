@@ -83,7 +83,7 @@ $offtext
 * Read in the matrix:
 *======================================================
 alias (ac, aca) ;
-alias (g,gg,ggg)
+alias (g,gg,ggg,gfac)
       (h,hh)
       (f,fa) ;
 

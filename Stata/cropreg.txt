@@ -1,0 +1,17 @@
+	(1)
+VARIABLES	ly
+	
+li_labor	0.0974**
+	(0.0442)
+li_land	0.199**
+	(0.0993)
+li_capit	0.255***
+	(0.0676)
+li_other	0.448***
+	(0.0858)
+Constant	4.023***
+	(0.900)
+	
+Observations	70
+Robust standard errors in parentheses	
+*** p<0.01, ** p<0.05, * p<0.1	
