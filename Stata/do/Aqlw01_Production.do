@@ -123,7 +123,7 @@ matrix nout = r(coefs)
 estout
 
 outreg2 using nursreg.csv, replace
-  
+ 
 * extract submatrices 
 mat noutb = nout[1..., "est1:b"]
 mat noutse = nout[1..., "est1:se"]
@@ -224,7 +224,7 @@ constraint 3 $cstrfish = 1 , c(3)
 *bysort lwgroup : eststo: reg ly $rhsfish   
 bysort lwgroup : eststo : cnsreg ly $rhsfish [aw=wei], r  c(3) 
 
-crash 
+ 
 estout, cells(b se _star)
 outreg2 est1 est2 using fishreg, replace 
 

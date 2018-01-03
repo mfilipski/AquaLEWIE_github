@@ -21,8 +21,10 @@ idshsd_o(g,gg,h) = idsh_mv2(g,gg,h,"sim1","stdev") ;
 
 display fshare_o, fsharesd_o, eshare_o, esharesd_o, idsh_o, idshsd_o ;
 
-
-
+parameter effidsh(g,gfac,h,draw,sim) effective id share ;
+effidsh(g,gfac,h,draw,sim)$qp1(g,h,draw,sim) = id1(g,gfac,h,draw,sim) / qp1(g,h,draw,sim);
+display effidsh ;
+$exit
 
 * Result parameters:
 Parameter
