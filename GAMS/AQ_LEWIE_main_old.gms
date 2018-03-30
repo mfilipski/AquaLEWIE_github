@@ -14,12 +14,12 @@ $onsymxref
 
 
 * name of the excel file (WITHOUT .xlsx extension):
-$setglobal data_input "AQ_LEWIE_InputSheet_usedForDraft3"
+$setglobal data_input "AQ_LEWIE_InputSheet"
 *$setglobal data_input "AQ_LEWIE_InputSheet"
 * name of index sheet (village-specific):
 $setglobal input_sheet_index "Index!A2"
 * name file containing simulation dashboard
-$setglobal sim_dashboard "AQ_LEWIE_SimDashboard_usedForDraft3"
+$setglobal sim_dashboard "AQ_LEWIE_SimDashboard"
 * name of include file containing village-specific assumptions
 $setglobal assumptions_file  "2_MarketAssumptions.gms"
 * name of output file for text output:
@@ -34,7 +34,7 @@ $setglobal output_xl_file "AQ_LEWIE_AutoOut.xlsx"
 * choose the number of draws (the second number)
 * nb: must be greater than 10 to allow for percentiles to be computed
 *option seed = 500;
-set draw /dr0*dr199/ ;
+set draw /dr0*dr29/ ;
 
 
 
@@ -216,7 +216,7 @@ id1(gg,g,h,draw,sim)    = ID.l(gg,g,h) ;
 r1(g,fk,h,draw,sim)     = R.l(g,fk,h) ;
 wv1(f,v,draw,sim)       = WV.l(f,v) ;
 wz1(f,draw,sim)         = WZ.l(f) ;
-vash1(g,h,draw,sim)          = vash_dr(g,h,draw)  ;
+vash1(g,h,draw,sim)     = vash_dr(g,h,draw)  ;
 qp1(g,h,draw,sim)       = QP.l(g,h) ;
 fixfac1(g,fk,h,draw,sim) = fixfac(g,fk,h) ;
 pva1(g,h,draw,sim)      = PVA.l(g,h) ;
@@ -256,16 +256,10 @@ zfms1(ft,draw,sim)      = ZFMS.l(ft) ;
 hfsup1(ft,h,draw,sim)   = HFSUP.l(ft,h) ;
 fsup1(ft,draw,sim)      = sum(h,hfsup1(ft,h,draw,sim)) ;
 
-* Rev vs. costs:
 prev1(g,h,draw,sim)     = QP.l(g,h)*PH.l(g,h) ;
-pcost1(g,h,draw,sim)    = sum(gfac, ID.l(g,gfac,h)*PH.l(gfac,h))
-                         + sum(f$sameas(f,"input"), FD.l(g,f,h)
-                         *(R.l(g,f,h)$fk(f) + WZ.l(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),WV.l(f,v))$ftv(f))) ;
-                         ;
+pcost1(g,h,draw,sim)    = sum(f, FD.l(g,f,h)*(R.l(g,f,h)$fk(f) + WZ.l(f)$(ftz(f)+ftw(f))+ sum(v$maphv(h,v),WV.l(f,v))$ftv(f)))
+                         +sum(gfac, ID.l(g,gfac,h)*PH.l(gfac,h));
 pprof1(g,h,draw,sim)    = prev1(g,h,draw,sim) - pcost1(g,h,draw,sim) ;
-
-* Factor income from sales
-finc1(f,h,draw,sim)      = HFMS.l(f,h)*(WZ.l(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),WV.l(f,v))$ftv(f)) ;
 
 vfmsfix1(ft,v,draw,sim) = vfmsfix_dr(ft,v,draw) ;
 zfmsfix1(ft,draw,sim)   = zfmsfix_dr(ft,draw) ;
@@ -379,13 +373,9 @@ hfsup2(ft,h,draw,sim)   = HFSUP.l(ft,h) ;
 fsup2(ft,draw,sim)      = sum(h,hfsup2(ft,h,draw,sim)) ;
 
 prev2(g,h,draw,sim)     = QP.l(g,h)*PH.l(g,h) ;
-pcost2(g,h,draw,sim)    =  sum(gfac, ID.l(g,gfac,h)*PH.l(gfac,h))
-                         + sum(f$sameas(f,"input"), FD.l(g,f,h)
-                         *(R.l(g,f,h)$fk(f) + WZ.l(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),WV.l(f,v))$ftv(f))) ;
+pcost2(g,h,draw,sim)    = sum(f, FD.l(g,f,h)*(R.l(g,f,h)$fk(f) + WZ.l(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),WV.l(f,v))$ftv(f)))
+                         +sum(gfac, ID.l(g,gfac,h)*PH.l(gfac,h));
 pprof2(g,h,draw,sim)    = prev2(g,h,draw,sim) - pcost2(g,h,draw,sim) ;
-
-* Factor income from sales
-finc2(f,h,draw,sim)      = HFMS.l(f,h)*(WZ.l(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),WV.l(f,v))$ftv(f)) ;
 
 
 mry2(draw,sim)           = sum(h, ry2(h,draw,sim)) / sum(h,xlnhh(h)) ;
@@ -414,7 +404,7 @@ display_pars(2);
 * Output : compute all the parameters
 $include includes/6_Output_Parameters.gms
 $include includes/6b_ConfidenceBounds.gms
-*$include includes/7a_Output_to_excel.gms
+$include includes/7a_Output_to_excel.gms
 $exit
 
 

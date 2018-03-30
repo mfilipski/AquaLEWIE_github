@@ -172,8 +172,9 @@ EQ_QVACOBB(g,h)..
 ;
 
 EQ_FDCOBB(g,f,h)$((not fpurch(f)))..
-     FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f)) + sum(v$maphv(h,v),WV(f,v))$ftv(f) )
-      =E= PVA(g,h)*QP(g,h)*fshare(g,f,h)
+     FD(g,f,h)*(R(g,f,h)$fk(f) + WZ(f)$(ftz(f)+ftw(f))
+         + sum(v$maphv(h,v),WV(f,v))$ftv(f) )
+                 =E= PVA(g,h)*QP(g,h)*fshare(g,f,h)
 ;
 
 * If the dummy is 0 the FD of purchased inputs is of the same form as all other factors
@@ -195,7 +196,8 @@ EQ_ID(g,gfac,h)..
 
 * CONSUMPTION AND INCOME
 EQ_QC(g,h)..
-     QC(g,h) =E= eshare(g,h)/PH(g,h)*[(Y(h)-TROUT(h)-SAV(h)-EXPROC(h))-sum(gg, PH(gg,h)*emin(gg,h))] + emin(g,h)
+     QC(g,h) =E= eshare(g,h)/PH(g,h)*[(Y(h)-TROUT(h)-SAV(h)-EXPROC(h))
+                 -sum(gg, PH(gg,h)*emin(gg,h))] + emin(g,h)
 ;
 
 * Full income (value of factor endowments)
